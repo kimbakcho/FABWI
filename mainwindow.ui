@@ -31,6 +31,7 @@
     </property>
     <addaction name="actionIDIX"/>
     <addaction name="actionEISystem"/>
+    <addaction name="actionMessage"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
@@ -63,6 +64,11 @@
   <action name="actionEISystem">
    <property name="text">
     <string>EIS</string>
+   </property>
+  </action>
+  <action name="actionMessage">
+   <property name="text">
+    <string>message</string>
    </property>
   </action>
  </widget>

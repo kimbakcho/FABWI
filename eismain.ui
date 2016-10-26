@@ -38,6 +38,30 @@
             <height>524</height>
            </rect>
           </property>
+          <widget class="QTableWidget" name="tableWidget_2">
+           <property name="geometry">
+            <rect>
+             <x>100</x>
+             <y>90</y>
+             <width>256</width>
+             <height>192</height>
+            </rect>
+           </property>
+           <property name="dragDropMode">
+            <enum>QAbstractItemView::NoDragDrop</enum>
+           </property>
+           <property name="alternatingRowColors">
+            <bool>false</bool>
+           </property>
+           <property name="gridStyle">
+            <enum>Qt::SolidLine</enum>
+           </property>
+           <column>
+            <property name="text">
+             <string>234↕</string>
+            </property>
+           </column>
+          </widget>
          </widget>
         </widget>
        </item>
