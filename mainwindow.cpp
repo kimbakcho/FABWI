@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     manager = new QNetworkAccessManager();
+
 }
 
 MainWindow::~MainWindow()
@@ -45,4 +46,10 @@ void MainWindow::on_actionMessage_triggered()
 //    manager->post(sendformat,postData.toString(QUrl::FullyEncoded).toUtf8());
 
 
+}
+
+void MainWindow::on_action_server_setting_triggered()
+{
+    Server_setting *setting_log = new Server_setting();
+    setting_log->exec();
 }

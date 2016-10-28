@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui network ftp sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,17 +17,22 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     idix_gui.cpp \
     e2r_every_report.cpp \
-    eismain.cpp
+    eismain.cpp \
+    btextedit.cpp \
+    server_setting.cpp
 
 HEADERS  += mainwindow.h \
     idix_gui.h \
     e2r_every_report.h \
-    eismain.h
+    eismain.h \
+    btextedit.h \
+    server_setting.h
 
 FORMS    += mainwindow.ui \
     idix_gui.ui \
     e2r_every_report.ui \
-    eismain.ui
+    eismain.ui \
+    server_setting.ui
 
 RESOURCES += \
     resourec.qrc

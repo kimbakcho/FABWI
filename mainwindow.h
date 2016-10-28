@@ -8,6 +8,7 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QUrlQuery>
+#include <server_setting.h>
 namespace Ui {
 class MainWindow;
 }
@@ -28,6 +29,8 @@ private slots:
     void on_actionEISystem_triggered();
 
     void on_actionMessage_triggered();
+
+    void on_action_server_setting_triggered();
 
 private:
     Ui::MainWindow *ui;

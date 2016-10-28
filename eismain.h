@@ -4,6 +4,13 @@
 #include <QWidget>
 #include <QTableWidgetItem>
 #include <QHeaderView>
+#include <btextedit.h>
+#include <QDebug>
+#include <QSqlDatabase>
+#include <QSettings>
+#include <QMessageBox>
+#include <QSqlError>
+#include <QSqlQuery>
 namespace Ui {
 class EISmain;
 }
@@ -14,6 +21,8 @@ class EISmain : public QWidget
 
 public:
     explicit EISmain(QWidget *parent = 0);
+    int doc_number;
+    int update_doc_number;
     ~EISmain();
 
 public slots:
