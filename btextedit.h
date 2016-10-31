@@ -14,7 +14,8 @@
 #include <QDateTime>
 #include <QTime>
 #include <QTextTable>
-class BTextEdit : public QTextBrowser
+#include <d_image_size.h>
+class BTextEdit : public QTextEdit
 {
     Q_OBJECT
 public:
@@ -24,6 +25,11 @@ public:
     QString outputpath(QString source);
     QString outputfilename(QString source);
     int *doc_number;
+    QString tosqlhtml();
+    QStringList image_list;
+    QStringList getImage_list() const;
+    void setImage_list(const QStringList &value);
+
 private:
     void insertFromMimeData(const QMimeData *source);
 public slots:
