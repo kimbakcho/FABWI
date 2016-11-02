@@ -1,5 +1,6 @@
 #include "btextedit.h"
-
+#include <eismain.h>
+#include "ui_eismain.h"
 BTextEdit::BTextEdit(QWidget *parent) : QTextEdit(parent)
 {
 
@@ -9,18 +10,21 @@ BTextEdit::BTextEdit(int *doc_number, QWidget *parent):QTextEdit(parent)
 {
 
     this->setTextInteractionFlags(Qt::TextEditable|Qt::TextSelectableByMouse|Qt::TextSelectableByKeyboard);
+    parent_widget = parent;
     this->doc_number = doc_number;
+    connect(this,SIGNAL(cursorPositionChanged())
+                 ,this,SLOT(b_text_cursor_change()));
+
 }
 
-
 void BTextEdit::insertFromMimeData( const QMimeData *source ){
-
           QString source_text = source->text();
-
           QString doc_number_txt = QString("%1").arg(*doc_number);
           if(ispicture(source_text)){
                 D_image_size image_size_dialog;
-                image_size_dialog.exec();
+                if(!image_size_dialog.exec()==QDialog::Accepted){
+                    return;
+                }
                 QFile source_file(outputpath(source_text),this);
                 QString makedir_txt = qApp->applicationDirPath()+"/temp/EIS/img";
                 QDir makedir(makedir_txt);
@@ -39,9 +43,21 @@ void BTextEdit::insertFromMimeData( const QMimeData *source ){
                 cursor.insertImage(imageformat);
                 image_list.append(des_file);
           }
+
 }
 void BTextEdit::replyFinished(QNetworkReply* reply){
     qDebug()<<"finish";
+}
+
+void BTextEdit::b_text_cursor_change()
+{
+    if(textCursor().selection().toPlainText()==""){
+        EISmain *eismain = (EISmain *)parent_widget;
+        int size = currentCharFormat().font().pointSize();
+        QString font_family =currentCharFormat().font().family();
+        eismain->ui->fontsize->setValue(size);
+        eismain->ui->font_type->setCurrentText(font_family);
+    }
 }
 /**
  * @brief BTextEdit::ispicture

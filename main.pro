@@ -20,7 +20,9 @@ SOURCES += main.cpp\
     eismain.cpp \
     btextedit.cpp \
     server_setting.cpp \
-    d_image_size.cpp
+    d_image_size.cpp \
+    d_attachment.cpp \
+    eis_big_view.cpp
 
 HEADERS  += mainwindow.h \
     idix_gui.h \
@@ -28,14 +30,18 @@ HEADERS  += mainwindow.h \
     eismain.h \
     btextedit.h \
     server_setting.h \
-    d_image_size.h
+    d_image_size.h \
+    d_attachment.h \
+    eis_big_view.h
 
 FORMS    += mainwindow.ui \
     idix_gui.ui \
     e2r_every_report.ui \
     eismain.ui \
     server_setting.ui \
-    d_image_size.ui
+    d_image_size.ui \
+    d_attachment.ui \
+    eis_big_view.ui
 
 RESOURCES += \
     resourec.qrc

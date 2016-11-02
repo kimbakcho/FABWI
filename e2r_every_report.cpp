@@ -58,7 +58,7 @@ void E2R_every_report::on_ICP_Etch_rate_btn_clicked()
 {
     QFileDialog dialog(this);
     dialog.setNameFilter(tr("excelfile (*.xlsx)"));
-    dialog.setFileMode(QFileDialog::ExistingFile);\
+    dialog.setFileMode(QFileDialog::ExistingFile);
     dialog.exec();
     QStringList fileselect = dialog.selectedFiles();
     QString path ="";

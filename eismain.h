@@ -13,7 +13,13 @@
 #include <QSqlQuery>
 #include <QTimer>
 #include <QFtp>
-
+#include <QProgressDialog>
+#include <QMutex>
+#include <QThread>
+#include <QEventLoop>
+#include <QFileDialog>
+#include <QStandardItemModel>
+#include <eis_big_view.h>
 namespace Ui {
 class EISmain;
 }
@@ -40,6 +46,15 @@ public:
     QString server_ip;
     QString db_port;
     QString ftp_port;
+    QByteArray ftp_data;
+    QProgressDialog *progressdialog;
+    QStandardItemModel *attach_list_model;
+    QFont mainfont;
+
+    QMutex mutex;
+    QEventLoop loop;
+    QEventLoop listwaitloop;
+    Ui::EISmain *ui;
     ~EISmain();
 
 public slots:
@@ -56,6 +71,12 @@ public slots:
     void updateDataTransferProgress(qint64 readBytes,
                                     qint64 totalBytes);
 
+    void ftp_listInfo(QUrlInfo urlInfo);
+
+    void ftp_rawCommandReply(int a, QString data);
+
+
+
 private slots:
     void on_select_process_currentIndexChanged(const QString &arg1);
 
@@ -65,8 +86,29 @@ private slots:
 
     void on_select_team_currentIndexChanged(const QString &arg1);
 
+    void on_attach_btn_clicked();
+
+    void on_attach_remove_btn_clicked();
+
+    void on_attach_listview_doubleClicked(const QModelIndex &index);
+
+    void on_total_view_phenomenon_clicked();
+
+
+    void on_fontsize_editingFinished();
+
+    void on_font_type_currentTextChanged(const QString &arg1);
+
+    void on_total_view_cause_clicked();
+
+    void on_total_view_current_action_clicked();
+
+    void on_total_view_current_lot_action_clicked();
+
+    void on_total_view_change_master_sheet_clicked();
+
 private:
-    Ui::EISmain *ui;
+
 };
 
 #endif // EISMAIN_H

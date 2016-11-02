@@ -15,6 +15,9 @@
 #include <QTime>
 #include <QTextTable>
 #include <d_image_size.h>
+#include <QMessageBox>
+#include <QTextDocumentFragment>
+
 class BTextEdit : public QTextEdit
 {
     Q_OBJECT
@@ -25,15 +28,20 @@ public:
     QString outputpath(QString source);
     QString outputfilename(QString source);
     int *doc_number;
+    QFont mainfont;
+    QWidget *parent_widget;
+    QTextCharFormat charformat;
     QString tosqlhtml();
     QStringList image_list;
     QStringList getImage_list() const;
+
     void setImage_list(const QStringList &value);
 
-private:
-    void insertFromMimeData(const QMimeData *source);
+protected:
+    void insertFromMimeData( const QMimeData *source ) ;
 public slots:
     void replyFinished(QNetworkReply* reply);
+    void b_text_cursor_change();
 };
 
 #endif // BTEXTEDIT_H
