@@ -1,6 +1,8 @@
 #include "btextedit.h"
 #include <eismain.h>
 #include "ui_eismain.h"
+#include "ui_eis_listview_item.h"
+
 BTextEdit::BTextEdit(QWidget *parent) : QTextEdit(parent)
 {
 
@@ -8,13 +10,11 @@ BTextEdit::BTextEdit(QWidget *parent) : QTextEdit(parent)
 }
 BTextEdit::BTextEdit(int *doc_number, QWidget *parent):QTextEdit(parent)
 {
-
     this->setTextInteractionFlags(Qt::TextEditable|Qt::TextSelectableByMouse|Qt::TextSelectableByKeyboard);
     parent_widget = parent;
     this->doc_number = doc_number;
     connect(this,SIGNAL(cursorPositionChanged())
                  ,this,SLOT(b_text_cursor_change()));
-
 }
 
 void BTextEdit::insertFromMimeData( const QMimeData *source ){
@@ -52,11 +52,20 @@ void BTextEdit::replyFinished(QNetworkReply* reply){
 void BTextEdit::b_text_cursor_change()
 {
     if(textCursor().selection().toPlainText()==""){
-        EISmain *eismain = (EISmain *)parent_widget;
-        int size = currentCharFormat().font().pointSize();
-        QString font_family =currentCharFormat().font().family();
-        eismain->ui->fontsize->setValue(size);
-        eismain->ui->font_type->setCurrentText(font_family);
+        QString objname = parent_widget->objectName();
+        if(objname == "EISmain"){
+            EISmain *eismain = (EISmain *)parent_widget;
+            int size = currentCharFormat().font().pointSize();
+            QString font_family =currentCharFormat().font().family();
+            eismain->ui->fontsize->setValue(size);
+            eismain->ui->font_type->setCurrentText(font_family);
+        }else if (objname == "EIS_listview_item"){
+            EIS_listview_item *eis_listview_item = (EIS_listview_item *)parent_widget;
+            int size = currentCharFormat().font().pointSize();
+            QString font_family =currentCharFormat().font().family();
+            eis_listview_item->ui->fontsize->setValue(size);
+            eis_listview_item->ui->font_type->setCurrentText(font_family);
+        }
     }
 }
 /**

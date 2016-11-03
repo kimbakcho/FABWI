@@ -1,5 +1,6 @@
 #include "eismain.h"
 #include "ui_eismain.h"
+#include "ui_eis_serarch_item.h"
 
 EISmain::EISmain(QWidget *parent) :
     QWidget(parent),
@@ -7,6 +8,14 @@ EISmain::EISmain(QWidget *parent) :
 {
     ui->setupUi(this);
     progressdialog = 0;
+    ui->current_time->setDateTime(QDateTime::currentDateTime());
+    QTime nowtime = ui->current_time->time();
+    int second_diff = nowtime.secsTo(QTime(17,00,0));
+    if(second_diff>=0){
+        ui->select_part_time->setCurrentIndex(0);
+    }else{
+        ui->select_part_time->setCurrentIndex(1);
+    }
     time_update.setInterval(1000);
     time_update.start();
     connect(&time_update,SIGNAL(timeout()),this,SLOT(time_update_out()));
@@ -42,13 +51,13 @@ EISmain::EISmain(QWidget *parent) :
        db = QSqlDatabase::database("EISDB");
     }
 
-
-
-    if(!db.open()){
-         int ret = QMessageBox::warning(this, tr("conntion false"),
-                                           "server connection fail\n"
-                                              ""+db.lastError().text(),
-                                                QMessageBox::Close);
+    if(!db.isOpen()){
+        if(!db.open()){
+             int ret = QMessageBox::warning(this, tr("conntion false"),
+                                               "server connection fail\n"
+                                                  ""+db.lastError().text(),
+                                                    QMessageBox::Close);
+        }
     }
 
     //docnumber을 +1 한값을 데이터베이스 업로드 시켜 문서가 서로 중첩되지 않게한다.
@@ -57,18 +66,25 @@ EISmain::EISmain(QWidget *parent) :
     QString str_query = QString("update EIS_management set document_number = EIS_management.document_number +1;");
     query.exec(str_query);
 
+    ui->search_start_time->setDate(QDate::currentDate());
+    ui->search_end_time->setDateTime(QDateTime::currentDateTime());
+
     query.exec("select * from EIS_management");
     query.next();
     doc_number = query.value("document_number").toInt();
-
+    ui->select_team->addItem("");
+    ui->search_select_team->addItem("");
     query.exec("select team from People_information GROUP by team;");
     while(query.next()){
         ui->select_team->addItem(query.value("team").toString());
+        ui->search_select_team->addItem(query.value("team").toString());
     }
     QHeaderView *tempheader;
-    tempheader = ui->tableWidget_2->horizontalHeader();
+    tempheader = ui->search_listview->horizontalHeader();
     tempheader->resizeSection(3,400); //제목 사이즈 변경
-    tempheader->resizeSection(0,50); //체크박스 사이즈 변경
+    tempheader->resizeSection(2,150); //시간 사이즈 변경
+    tempheader->resizeSection(1,60); //num 사이즈 변경
+    tempheader->resizeSection(0,25); //체크박스 사이즈 변경
     connect(tempheader,SIGNAL(sectionClicked(int)),this,SLOT(header_click(int)));
     phenomenon_edit = new BTextEdit(&doc_number,this);
     ui->layout_phenomenon->addWidget(phenomenon_edit,0,0);
@@ -104,7 +120,6 @@ EISmain::EISmain(QWidget *parent) :
     next_shift_edit->setCurrentCharFormat(charfotmet);
     part_change_edit->setCurrentCharFormat(charfotmet);
     after_lot_monitering_edit->setCurrentCharFormat(charfotmet);
-
 }
 
 EISmain::~EISmain()
@@ -112,15 +127,8 @@ EISmain::~EISmain()
     delete ui;
 }
 
-void EISmain::on_tableWidget_2_clicked(const QModelIndex &index)
-{
-    qDebug()<<"test";
-}
 
-void EISmain::on_tableWidget_2_itemClicked(QTableWidgetItem *item)
-{
-    qDebug()<<"test";
-}
+
 void EISmain::header_click(int data){
     qDebug()<<"test";
 }
@@ -176,21 +184,14 @@ void EISmain::on_add_button_clicked()
         ftp->login(QUrl::fromPercentEncoding("EIS"),"1234");
         loop.exec();
         ftp->setTransferMode(QFtp::Passive);
-    }else {
-        ftp->close();
-        loop.exec();
-        ftp->connectToHost(server_ip,21);
-
-        ftp->login(QUrl::fromPercentEncoding("EIS"),"1234");
-        loop.exec();
-        ftp->setTransferMode(QFtp::Passive);
     }
-    ftp->cd("img/");
+    ftp->rawCommand("CWD /home/EIS/img");
     loop.exec();
-    ftp->mkdir(QString("%1").arg(doc_number));
+    ftp->rawCommand(QString("MKD %1").arg(doc_number));
     loop.exec();
-    ftp->cd(QString("%1").arg(doc_number));
+    ftp->rawCommand(QString("CWD /home/EIS/img/%1").arg(doc_number));
     loop.exec();
+
     QString makedir_txt = qApp->applicationDirPath()+"/temp/EIS/img/"+QString("%1").arg(doc_number);
     QDir doc_dir(makedir_txt);
     QStringList filelist =  doc_dir.entryList(QDir::Files);
@@ -198,7 +199,7 @@ void EISmain::on_add_button_clicked()
         if(progressdialog == 0){
             progressdialog = new QProgressDialog(this);
         }
-        qDebug()<<"filelist"<<filelist.at(i);
+        //qDebug()<<"filelist"<<filelist.at(i);
         QString des_file = makedir_txt+"/"+filelist.at(i);
         QFile *file = new QFile(des_file);
         ftp->put(file,filelist.at(i),QFtp::Binary);
@@ -216,12 +217,12 @@ void EISmain::on_add_button_clicked()
     }
     QSqlQuery query(db);
     QString Time_part = '1';
-    QTime nowtime = ui->current_time->time();
-    int second_diff = nowtime.secsTo(QTime(17,00,0));
-    if(second_diff>=0){
-        Time_part = "1";
-    }else{
-        Time_part = "0";
+
+
+    if(ui->select_part_time->currentIndex()==0){
+        Time_part = '0';
+    }else if (ui->select_part_time->currentIndex()==1) {
+        Time_part = '1';
     }
     QString document_name = ui->document_name->text();
     QString team_name = ui->select_team->currentText();
@@ -237,6 +238,61 @@ void EISmain::on_add_button_clicked()
     QString next_shift = next_shift_edit->tosqlhtml();
     QString part_change_statue = part_change_edit->tosqlhtml();
     QString attach_file_list;
+    QStringList total_img_list;
+    QString total_img_txt;
+
+//    phenomenon_edit->setCurrentCharFormat(charfotmet);
+//    cause_edit->setCurrentCharFormat(charfotmet);
+//    current_action_edit->setCurrentCharFormat(charfotmet);
+//    current_lot_action_edit->setCurrentCharFormat(charfotmet);
+//    change_master_sheet_edit->setCurrentCharFormat(charfotmet);
+//    next_shift_edit->setCurrentCharFormat(charfotmet);
+//    part_change_edit->setCurrentCharFormat(charfotmet);
+//    after_lot_monitering_edit->setCurrentCharFormat(charfotmet);
+
+    for(int i=0;i<phenomenon_edit->image_list.count();i++){
+        QString img_path = phenomenon_edit->image_list.at(i);
+        total_img_list.append(img_path.split("/").last());
+    }
+
+    for(int i=0;i<cause_edit->image_list.count();i++){
+        QString img_path = cause_edit->image_list.at(i);
+        total_img_list.append(img_path.split("/").last());
+    }
+
+    for(int i=0;i<current_action_edit->image_list.count();i++){
+        QString img_path = current_action_edit->image_list.at(i);
+        total_img_list.append(img_path.split("/").last());
+    }
+
+    for(int i=0;i<current_lot_action_edit->image_list.count();i++){
+        QString img_path = current_lot_action_edit->image_list.at(i);
+        total_img_list.append(img_path.split("/").last());
+    }
+
+    for(int i=0;i<change_master_sheet_edit->image_list.count();i++){
+        QString img_path = change_master_sheet_edit->image_list.at(i);
+        total_img_list.append(img_path.split("/").last());
+    }
+
+    for(int i=0;i<next_shift_edit->image_list.count();i++){
+        QString img_path = next_shift_edit->image_list.at(i);
+        total_img_list.append(img_path.split("/").last());
+    }
+
+    for(int i=0;i<part_change_edit->image_list.count();i++){
+        QString img_path = part_change_edit->image_list.at(i);
+        total_img_list.append(img_path.split("/").last());
+    }
+
+    for(int i=0;i<after_lot_monitering_edit->image_list.count();i++){
+        QString img_path = after_lot_monitering_edit->image_list.at(i);
+        total_img_list.append(img_path.split("/").last());
+    }
+    for(int i=0;i<total_img_list.count();i++){
+        QString img_file = total_img_list.at(i);
+        total_img_txt = total_img_txt+img_file+"/////";
+    }
     for(int i=0;i<attach_list_model->rowCount();i++){
         QString item = attach_list_model->item(i)->text();
         attach_file_list = attach_file_list + item + "/////";
@@ -281,21 +337,43 @@ void EISmain::on_add_button_clicked()
                                    "'"+next_shift+"',"
                                    "'"+part_change_statue+"',"
                                    "'"+after_lot_monitering+"',"
-                                   "' ',"
+                                   "'"+total_img_txt+"',"
                                    "'"+attach_file_list+"',"
                                    "'2'"
                                    ");");
         query.exec(insert_query);
+
+        QString str_query = QString("update EIS_management set document_number = EIS_management.document_number +1;");
+        query.exec(str_query);
+        query.exec("select * from EIS_management");
+        query.next();
+        doc_number = query.value("document_number").toInt();
+
+        QTime nowtime = ui->current_time->time();
+        int second_diff = nowtime.secsTo(QTime(17,00,0));
+        if(second_diff>=0){
+            ui->select_part_time->setCurrentIndex(0);
+        }else{
+            ui->select_part_time->setCurrentIndex(1);
+        }
+
+        ui->select_team->setCurrentIndex(0);
+        ui->document_name->clear();
+        attach_list_model->clear();
+        phenomenon_edit->clear();
+        cause_edit->clear();
+        current_action_edit->clear();
+        current_lot_action_edit->clear();
+        change_master_sheet_edit->clear();
+        next_shift_edit->clear();
+        part_change_edit->clear();
+        after_lot_monitering_edit->clear();
+
 }
 
 void EISmain::ftpCommandFinished(int commandId, bool error)
 {
-//    if (ftp->currentCommand() == QFtp::ConnectToHost) {
-//        qDebug()<<"connection :"<<error;
-//    }
-//    if (ftp->currentCommand() == QFtp::Login){
-//        qDebug()<<"login : "<<error;
-//    }
+
     loop.exit();
 }
 
@@ -406,8 +484,6 @@ void EISmain::on_attach_listview_doubleClicked(const QModelIndex &index)
 }
 
 
-
-
 void EISmain::on_fontsize_editingFinished()
 {
     mainfont.setPointSize(ui->fontsize->value());
@@ -467,4 +543,180 @@ void EISmain::on_total_view_change_master_sheet_clicked()
 {
     EIS_big_view *big_view = new EIS_big_view(ui->label_change_master_sheet->text(),change_master_sheet_edit,ui->layout_change_master_sheet);
     big_view->show();
+}
+
+void EISmain::on_total_view_next_shift_clicked()
+{
+    EIS_big_view *big_view = new EIS_big_view(ui->label_next_shift->text(),next_shift_edit,ui->layout_next_shift);
+    big_view->show();
+}
+
+void EISmain::on_total_view_part_change_clicked()
+{
+    EIS_big_view *big_view = new EIS_big_view(ui->label_part_change->text(),part_change_edit,ui->layout_part_change);
+    big_view->show();
+}
+
+void EISmain::on_total_view_after_lot_monitering_clicked()
+{
+    EIS_big_view *big_view = new EIS_big_view(ui->label_after_lot_monitering->text(),after_lot_monitering_edit,ui->layout_after_lot_monitering);
+    big_view->show();
+}
+
+void EISmain::on_search_select_team_currentIndexChanged(const QString &arg1)
+{
+    ui->search_select_process->clear();;
+    ui->search_select_process->addItem("");
+    QSqlQuery query(db);
+    QString query_txt = QString("select factory_process from People_information where team = '%1' group by factory_process").arg(arg1);
+    query.exec(query_txt);
+    while(query.next()){
+        ui->search_select_process->addItem(query.value("factory_process").toString());
+    }
+}
+
+void EISmain::on_search_select_process_currentIndexChanged(const QString &arg1)
+{
+    ui->search_select_facilities->clear();;
+    ui->search_select_facilities->addItem("");
+    QSqlQuery query(db);
+    QString query_txt = QString("select facilities from People_information where factory_process = '%1' group by facilities").arg(arg1);
+    query.exec(query_txt);
+    while(query.next()){
+        ui->search_select_facilities->addItem(query.value("facilities").toString());
+    }
+}
+
+void EISmain::on_search_select_facilities_currentIndexChanged(const QString &arg1)
+{
+    ui->search_select_name->clear();;
+    ui->search_select_name->addItem("");
+    QSqlQuery query(db);
+    QString query_txt = QString("select name from People_information where facilities = '%1'").arg(arg1);
+    query.exec(query_txt);
+    while(query.next()){
+        ui->search_select_name->addItem(query.value("name").toString());
+    }
+}
+
+void EISmain::on_search_button_clicked()
+{
+    QSqlQuery query(db);
+    QString query_txt = Return_search_query();
+    query.exec(query_txt);
+/*    qDebug()<<"query = "<<query.lastQuery();
+    qDebug()<<"erro = "<<query.lastError().text()*/;
+    while(ui->search_listview->rowCount()!=0){
+        ui->search_listview->removeRow(ui->search_listview->rowCount()-1);
+    }
+    for(int i=0;i<itemlist.size();i++){
+        itemlist.at(i)->deleteLater();
+    }
+    itemlist.clear();
+    while(query.next()){
+        int rowcount = ui->search_listview->rowCount();
+        EIS_serarch_item *item =new EIS_serarch_item;
+        ui->search_listview->insertRow(rowcount);
+        ui->search_listview->setCellWidget(rowcount,0,item->ui->select_doc);
+
+        item->ui->doc_number->setText(QString("%1").arg(query.value("idx").toString()));
+        ui->search_listview->setCellWidget(rowcount,1,item->ui->doc_number);
+
+        item->ui->write_time->setText(QString("%1").arg(query.value("write_time")
+                                                        .toDateTime().toString("yyyy-MM-dd hh:mm:ss")));
+        ui->search_listview->setCellWidget(rowcount,2,item->ui->write_time);
+
+        item->ui->doc_name->setText(QString("%1").arg(query.value("document_name").toString()));
+        ui->search_listview->setCellWidget(rowcount,3,item->ui->doc_name);
+
+        item->ui->team->setText(QString("%1").arg(query.value("team").toString()));
+        ui->search_listview->setCellWidget(rowcount,4,item->ui->team);
+
+        item->ui->process->setText(QString("%1").arg(query.value("factory_process").toString()));
+        ui->search_listview->setCellWidget(rowcount,5,item->ui->process);
+
+        item->ui->facilities->setText(QString("%1").arg(query.value("facilities_name").toString()));
+        ui->search_listview->setCellWidget(rowcount,6,item->ui->facilities);
+
+        item->ui->write_name->setText(QString("%1").arg(query.value("witer_name").toString()));
+        ui->search_listview->setCellWidget(rowcount,7,item->ui->write_name);
+
+        item->ui->change_have->setText(QString("%1").arg(query.value("change_have").toString()));
+        ui->search_listview->setCellWidget(rowcount,8,item->ui->change_have);
+
+        item->ui->time_part->setText(QString("%1").arg(query.value("time_part").toString()));
+        ui->search_listview->setCellWidget(rowcount,9,item->ui->time_part);
+
+        itemlist.append(item);
+    }
+    if(itemlist.size()==0){
+        QMessageBox msg;
+        msg.setText("no reslut");
+        msg.addButton(QMessageBox::Ok);
+        msg.exec();
+    }
+}
+
+void EISmain::on_search_listview_cellDoubleClicked(int row, int column)
+{
+    //qDebug()<<"cell double click | row = "<<row<<" colum = "<<column;
+    QStringList check_list;
+    QString number_doc = itemlist.at(row)->ui->doc_number->text();
+    number_doc = number_doc + "/"+itemlist.at(row)->ui->write_time->text();
+    check_list.append(number_doc);
+    Eis_list_view *list_view = new Eis_list_view(check_list);
+    list_view->show();
+}
+QString EISmain::Return_search_query()
+{
+    QString start_time = ui->search_start_time->dateTime().toString("yyyy-MM-dd hh:mm:ss");
+    QString end_time = ui->search_end_time->dateTime().toString("yyyy-MM-dd hh:mm:ss");;
+    QString query_txt = QString("select * from EIS_document where write_time BETWEEN \'%1\' AND \'%2\'").arg(start_time).arg(end_time);
+    if(ui->search_select_team->currentText()!=""){
+        query_txt.append(QString(" AND team = \'%1\'").arg(ui->search_select_team->currentText()));
+    }
+    if(ui->search_select_process->currentText()!=""){
+        query_txt.append(QString(" AND factory_process = \'%1\'").arg(ui->search_select_process->currentText()));
+    }
+    if(ui->search_select_facilities->currentText()!=""){
+        query_txt.append(QString(" AND facilities_name = \'%1\'").arg(ui->search_select_facilities->currentText()));
+    }
+    if(ui->search_select_name->currentText()!=""){
+        query_txt.append(QString(" AND witer_name = \'%1\'").arg(ui->search_select_name->currentText()));
+    }
+    if(ui->search_select_name->currentText()!=""){
+        if(ui->search_select_name->currentText()=="O"){
+            query_txt.append(QString(" AND change_have = \'%1\'").arg(1));
+        }else if(ui->search_select_name->currentText()=="X"){
+            query_txt.append(QString(" AND change_have = \'%1\'").arg(0));
+        }
+    }
+    if(ui->search_part_time->currentText()!=""){
+      if(ui->search_part_time->currentIndex()==1){
+         query_txt.append(QString(" AND time_part = \'%1\'").arg(0));
+      }else if(ui->search_part_time->currentIndex()==2){
+         query_txt.append(QString(" AND time_part = \'%1\'").arg(1));
+      }
+    }
+    if(ui->search_name_edit->text()!=""){
+        query_txt.append(QString(" AND document_name LIKE \'%%1%\'").arg(ui->search_name_edit->text()));
+    }
+    return query_txt;
+}
+
+
+
+void EISmain::on_total_view_btn_clicked()
+{
+    QStringList check_list;
+
+    for(int i=0;i<itemlist.count();i++){
+        if(itemlist.at(i)->ui->select_doc->isChecked()){
+            QString number_doc = itemlist.at(i)->ui->doc_number->text();
+            number_doc = number_doc + "/"+itemlist.at(i)->ui->write_time->text();
+            check_list.append(number_doc);
+        }
+    }
+    Eis_list_view *list_view = new Eis_list_view(check_list);
+    list_view->show();
 }

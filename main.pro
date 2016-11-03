@@ -22,7 +22,10 @@ SOURCES += main.cpp\
     server_setting.cpp \
     d_image_size.cpp \
     d_attachment.cpp \
-    eis_big_view.cpp
+    eis_big_view.cpp \
+    eis_serarch_item.cpp \
+    eis_listview_item.cpp \
+    eis_list_view.cpp
 
 HEADERS  += mainwindow.h \
     idix_gui.h \
@@ -32,7 +35,10 @@ HEADERS  += mainwindow.h \
     server_setting.h \
     d_image_size.h \
     d_attachment.h \
-    eis_big_view.h
+    eis_big_view.h \
+    eis_serarch_item.h \
+    eis_listview_item.h \
+    eis_list_view.h
 
 FORMS    += mainwindow.ui \
     idix_gui.ui \
@@ -41,7 +47,10 @@ FORMS    += mainwindow.ui \
     server_setting.ui \
     d_image_size.ui \
     d_attachment.ui \
-    eis_big_view.ui
+    eis_big_view.ui \
+    eis_serarch_item.ui \
+    eis_listview_item.ui \
+    eis_list_view.ui
 
 RESOURCES += \
     resourec.qrc

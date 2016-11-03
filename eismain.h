@@ -20,6 +20,9 @@
 #include <QFileDialog>
 #include <QStandardItemModel>
 #include <eis_big_view.h>
+#include <eis_serarch_item.h>
+#include <QVector>
+#include <eis_list_view.h>
 namespace Ui {
 class EISmain;
 }
@@ -50,17 +53,17 @@ public:
     QProgressDialog *progressdialog;
     QStandardItemModel *attach_list_model;
     QFont mainfont;
+    QVector<EIS_serarch_item *> itemlist;
+    QStringList list_check_list;
 
     QMutex mutex;
     QEventLoop loop;
     QEventLoop listwaitloop;
     Ui::EISmain *ui;
     ~EISmain();
+    QString Return_search_query();
 
 public slots:
-    void on_tableWidget_2_clicked(const QModelIndex &index);
-
-    void on_tableWidget_2_itemClicked(QTableWidgetItem *item);
 
     void header_click(int data);
 
@@ -70,12 +73,9 @@ public slots:
 
     void updateDataTransferProgress(qint64 readBytes,
                                     qint64 totalBytes);
-
     void ftp_listInfo(QUrlInfo urlInfo);
 
     void ftp_rawCommandReply(int a, QString data);
-
-
 
 private slots:
     void on_select_process_currentIndexChanged(const QString &arg1);
@@ -94,7 +94,6 @@ private slots:
 
     void on_total_view_phenomenon_clicked();
 
-
     void on_fontsize_editingFinished();
 
     void on_font_type_currentTextChanged(const QString &arg1);
@@ -106,6 +105,26 @@ private slots:
     void on_total_view_current_lot_action_clicked();
 
     void on_total_view_change_master_sheet_clicked();
+
+    void on_total_view_next_shift_clicked();
+
+    void on_total_view_part_change_clicked();
+
+    void on_total_view_after_lot_monitering_clicked();
+
+    void on_search_select_team_currentIndexChanged(const QString &arg1);
+
+    void on_search_select_process_currentIndexChanged(const QString &arg1);
+
+    void on_search_select_facilities_currentIndexChanged(const QString &arg1);
+
+    void on_search_button_clicked();
+
+    void on_search_listview_cellDoubleClicked(int row, int column);
+
+
+
+    void on_total_view_btn_clicked();
 
 private:
 

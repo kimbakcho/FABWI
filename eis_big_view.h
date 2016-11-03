@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <btextedit.h>
 #include <QGridLayout>
+#include "btextedit.h"
 namespace Ui {
 class EIS_big_view;
 }
