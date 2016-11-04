@@ -44,8 +44,8 @@ EISmain::EISmain(QWidget *parent) :
        db = QSqlDatabase::addDatabase("QMYSQL","EISDB");
        db.setHostName(server_ip);
        db.setPort(db_port.toInt());
-       db.setUserName("fabuser");
-       db.setPassword("wisolfab");
+       db.setUserName(DBID);
+       db.setPassword(DBPW);
        db.setDatabaseName("FAB");
     }else {
        db = QSqlDatabase::database("EISDB");
@@ -86,22 +86,9 @@ EISmain::EISmain(QWidget *parent) :
     tempheader->resizeSection(1,60); //num 사이즈 변경
     tempheader->resizeSection(0,25); //체크박스 사이즈 변경
     connect(tempheader,SIGNAL(sectionClicked(int)),this,SLOT(header_click(int)));
-    phenomenon_edit = new BTextEdit(&doc_number,this);
-    ui->layout_phenomenon->addWidget(phenomenon_edit,0,0);
-    cause_edit = new BTextEdit(&doc_number,this);
-    ui->layout_cause->addWidget(cause_edit,0,0);
-    current_action_edit = new BTextEdit(&doc_number,this);
-    ui->layout_current_action->addWidget(current_action_edit,0,0);
-    current_lot_action_edit = new BTextEdit(&doc_number,this);
-    ui->layout_current_lot_action->addWidget(current_lot_action_edit,0,0);
-    change_master_sheet_edit = new BTextEdit(&doc_number,this);
-    ui->layout_change_master_sheet->addWidget(change_master_sheet_edit,0,0);
-    next_shift_edit = new BTextEdit(&doc_number,this);
-    ui->layout_next_shift->addWidget(next_shift_edit,0,0);
-    part_change_edit = new BTextEdit(&doc_number,this);
-    ui->layout_part_change->addWidget(part_change_edit,0,0);
-    after_lot_monitering_edit = new BTextEdit(&doc_number,this);
-    ui->layout_after_lot_monitering->addWidget(after_lot_monitering_edit,0,0);
+    content_edit = new BTextEdit(&doc_number,this);
+    ui->layout_content->addWidget(content_edit,0,0);
+
     attach_list_model = new QStandardItemModel();
     ui->attach_listview->setModel(attach_list_model);
 
@@ -112,14 +99,12 @@ EISmain::EISmain(QWidget *parent) :
 
     QTextCharFormat charfotmet;
     charfotmet.setFont(mainfont,QTextCharFormat::FontPropertiesAll);
-    phenomenon_edit->setCurrentCharFormat(charfotmet);
-    cause_edit->setCurrentCharFormat(charfotmet);
-    current_action_edit->setCurrentCharFormat(charfotmet);
-    current_lot_action_edit->setCurrentCharFormat(charfotmet);
-    change_master_sheet_edit->setCurrentCharFormat(charfotmet);
-    next_shift_edit->setCurrentCharFormat(charfotmet);
-    part_change_edit->setCurrentCharFormat(charfotmet);
-    after_lot_monitering_edit->setCurrentCharFormat(charfotmet);
+    content_edit->setCurrentCharFormat(charfotmet);
+
+    query.exec("select content_basc_form from EIS_management");
+    query.next();
+    content_edit->setHtml(query.value("content_basc_form").toString());
+
 }
 
 EISmain::~EISmain()
@@ -181,15 +166,15 @@ void EISmain::on_add_button_clicked()
     if(ftp->state()==QFtp::Unconnected){
         ftp->connectToHost(server_ip,21);
 
-        ftp->login(QUrl::fromPercentEncoding("EIS"),"1234");
+        ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
         loop.exec();
         ftp->setTransferMode(QFtp::Passive);
     }
-    ftp->rawCommand("CWD /home/EIS/img");
+    ftp->rawCommand("CWD /home/eis/img");
     loop.exec();
     ftp->rawCommand(QString("MKD %1").arg(doc_number));
     loop.exec();
-    ftp->rawCommand(QString("CWD /home/EIS/img/%1").arg(doc_number));
+    ftp->rawCommand(QString("CWD /home/eis/img/%1").arg(doc_number));
     loop.exec();
 
     QString makedir_txt = qApp->applicationDirPath()+"/temp/EIS/img/"+QString("%1").arg(doc_number);
@@ -199,7 +184,6 @@ void EISmain::on_add_button_clicked()
         if(progressdialog == 0){
             progressdialog = new QProgressDialog(this);
         }
-        //qDebug()<<"filelist"<<filelist.at(i);
         QString des_file = makedir_txt+"/"+filelist.at(i);
         QFile *file = new QFile(des_file);
         ftp->put(file,filelist.at(i),QFtp::Binary);
@@ -229,66 +213,17 @@ void EISmain::on_add_button_clicked()
     QString process = ui->select_process->currentText();
     QString write_name = ui->select_name->currentText();
     QString facilities_name = ui->select_facilities->currentText();
-    QString phenomenon = phenomenon_edit->tosqlhtml();
-    QString cause = cause_edit->tosqlhtml();
-    QString current_action = current_action_edit->tosqlhtml();
-    QString current_lot_action = current_lot_action_edit->tosqlhtml();
-    QString change_master_sheet = change_master_sheet_edit->tosqlhtml();
-    QString after_lot_monitering = after_lot_monitering_edit->tosqlhtml();
-    QString next_shift = next_shift_edit->tosqlhtml();
-    QString part_change_statue = part_change_edit->tosqlhtml();
+    QString content = content_edit->tosqlhtml();
+
     QString attach_file_list;
     QStringList total_img_list;
     QString total_img_txt;
 
-//    phenomenon_edit->setCurrentCharFormat(charfotmet);
-//    cause_edit->setCurrentCharFormat(charfotmet);
-//    current_action_edit->setCurrentCharFormat(charfotmet);
-//    current_lot_action_edit->setCurrentCharFormat(charfotmet);
-//    change_master_sheet_edit->setCurrentCharFormat(charfotmet);
-//    next_shift_edit->setCurrentCharFormat(charfotmet);
-//    part_change_edit->setCurrentCharFormat(charfotmet);
-//    after_lot_monitering_edit->setCurrentCharFormat(charfotmet);
-
-    for(int i=0;i<phenomenon_edit->image_list.count();i++){
-        QString img_path = phenomenon_edit->image_list.at(i);
+    for(int i=0;i<content_edit->image_list.count();i++){
+        QString img_path = content_edit->image_list.at(i);
         total_img_list.append(img_path.split("/").last());
     }
 
-    for(int i=0;i<cause_edit->image_list.count();i++){
-        QString img_path = cause_edit->image_list.at(i);
-        total_img_list.append(img_path.split("/").last());
-    }
-
-    for(int i=0;i<current_action_edit->image_list.count();i++){
-        QString img_path = current_action_edit->image_list.at(i);
-        total_img_list.append(img_path.split("/").last());
-    }
-
-    for(int i=0;i<current_lot_action_edit->image_list.count();i++){
-        QString img_path = current_lot_action_edit->image_list.at(i);
-        total_img_list.append(img_path.split("/").last());
-    }
-
-    for(int i=0;i<change_master_sheet_edit->image_list.count();i++){
-        QString img_path = change_master_sheet_edit->image_list.at(i);
-        total_img_list.append(img_path.split("/").last());
-    }
-
-    for(int i=0;i<next_shift_edit->image_list.count();i++){
-        QString img_path = next_shift_edit->image_list.at(i);
-        total_img_list.append(img_path.split("/").last());
-    }
-
-    for(int i=0;i<part_change_edit->image_list.count();i++){
-        QString img_path = part_change_edit->image_list.at(i);
-        total_img_list.append(img_path.split("/").last());
-    }
-
-    for(int i=0;i<after_lot_monitering_edit->image_list.count();i++){
-        QString img_path = after_lot_monitering_edit->image_list.at(i);
-        total_img_list.append(img_path.split("/").last());
-    }
     for(int i=0;i<total_img_list.count();i++){
         QString img_file = total_img_list.at(i);
         total_img_txt = total_img_txt+img_file+"/////";
@@ -307,14 +242,7 @@ void EISmain::on_add_button_clicked()
                                    "`change_have`,"
                                    "`time_part`,"
                                    "`document_name`,"
-                                   "`phenomenon`,"
-                                   "`cause`,"
-                                   "`current_action`,"
-                                   "`Lot_action_statue`,"
-                                   "`change_master_sheet`,"
-                                   "`next_shift_link`,"
-                                   "`part_change_statue`,"
-                                   "`after_LOT_monitering`,"
+                                   "`content`,"
                                    "`downloadimg`,"
                                    "`attach_file_list`,"
                                    "`complete`"
@@ -329,14 +257,7 @@ void EISmain::on_add_button_clicked()
                                    "'"+change_have+"',"
                                    "'"+Time_part+"',"
                                    "'"+document_name+"',"
-                                   "'"+phenomenon+"',"
-                                   "'"+cause+"',"
-                                   "'"+current_action+"',"
-                                   "'"+current_lot_action+"',"
-                                   "'"+change_master_sheet+"',"
-                                   "'"+next_shift+"',"
-                                   "'"+part_change_statue+"',"
-                                   "'"+after_lot_monitering+"',"
+                                   "'"+content+"',"
                                    "'"+total_img_txt+"',"
                                    "'"+attach_file_list+"',"
                                    "'2'"
@@ -360,15 +281,10 @@ void EISmain::on_add_button_clicked()
         ui->select_team->setCurrentIndex(0);
         ui->document_name->clear();
         attach_list_model->clear();
-        phenomenon_edit->clear();
-        cause_edit->clear();
-        current_action_edit->clear();
-        current_lot_action_edit->clear();
-        change_master_sheet_edit->clear();
-        next_shift_edit->clear();
-        part_change_edit->clear();
-        after_lot_monitering_edit->clear();
 
+        query.exec("select content_basc_form from EIS_management");
+        query.next();
+        content_edit->setHtml(query.value("content_basc_form").toString());
 }
 
 void EISmain::ftpCommandFinished(int commandId, bool error)
@@ -403,15 +319,15 @@ void EISmain::on_attach_btn_clicked()
         if(ftp->state()==QFtp::Unconnected){
             ftp->connectToHost(server_ip,21);
 
-            ftp->login(QUrl::fromPercentEncoding("EIS"),"1234");
+            ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
             loop.exec();
             ftp->setTransferMode(QFtp::Passive);
         }
-        ftp->rawCommand("CWD /home/EIS/attach");
+        ftp->rawCommand("CWD /home/eis/attach");
         loop.exec();
         ftp->rawCommand(QString("MKD %1").arg(doc_number));
         loop.exec();
-        ftp->rawCommand(QString("CWD /home/EIS/attach/%1").arg(doc_number));
+        ftp->rawCommand(QString("CWD /home/eis/attach/%1").arg(doc_number));
         loop.exec();
         QFile *source_file = new QFile(filename);
         source_file->open(QFile::ReadWrite);
@@ -446,11 +362,11 @@ void EISmain::on_attach_remove_btn_clicked()
      if(ftp->state()==QFtp::Unconnected){
          ftp->connectToHost(server_ip,21);
 
-         ftp->login(QUrl::fromPercentEncoding("EIS"),"1234");
+         ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
          loop.exec();
          ftp->setTransferMode(QFtp::Passive);
      }
-     ftp->rawCommand(QString("CWD /home/EIS/attach/%1").arg(doc_number));
+     ftp->rawCommand(QString("CWD /home/eis/attach/%1").arg(doc_number));
      loop.exec();
      ftp->remove(select_file);
      loop.exec();
@@ -470,11 +386,11 @@ void EISmain::on_attach_listview_doubleClicked(const QModelIndex &index)
     if(ftp->state()==QFtp::Unconnected){
         ftp->connectToHost(server_ip,21);
 
-        ftp->login(QUrl::fromPercentEncoding("EIS"),"1234");
+        ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
         loop.exec();
         ftp->setTransferMode(QFtp::Passive);
     }
-    ftp->rawCommand(QString("CWD /home/EIS/attach/%1").arg(doc_number));
+    ftp->rawCommand(QString("CWD /home/eis/attach/%1").arg(doc_number));
     loop.exec();
     save_file->open(QFile::ReadWrite);
     ftp->get(source_file,save_file);
@@ -489,14 +405,8 @@ void EISmain::on_fontsize_editingFinished()
     mainfont.setPointSize(ui->fontsize->value());
     QTextCharFormat charfotmet;
     charfotmet.setFont(mainfont,QTextCharFormat::FontPropertiesAll);
-    phenomenon_edit->setCurrentCharFormat(charfotmet);
-    cause_edit->setCurrentCharFormat(charfotmet);
-    current_action_edit->setCurrentCharFormat(charfotmet);
-    current_lot_action_edit->setCurrentCharFormat(charfotmet);
-    change_master_sheet_edit->setCurrentCharFormat(charfotmet);
-    next_shift_edit->setCurrentCharFormat(charfotmet);
-    part_change_edit->setCurrentCharFormat(charfotmet);
-    after_lot_monitering_edit->setCurrentCharFormat(charfotmet);
+    content_edit->setCurrentCharFormat(charfotmet);
+
 }
 
 void EISmain::on_font_type_currentTextChanged(const QString &arg1)
@@ -504,64 +414,18 @@ void EISmain::on_font_type_currentTextChanged(const QString &arg1)
     mainfont.setFamily(arg1);
     QTextCharFormat charfotmet;
     charfotmet.setFont(mainfont,QTextCharFormat::FontPropertiesAll);
-    phenomenon_edit->setCurrentCharFormat(charfotmet);
-    cause_edit->setCurrentCharFormat(charfotmet);
-    current_action_edit->setCurrentCharFormat(charfotmet);
-    current_lot_action_edit->setCurrentCharFormat(charfotmet);
-    change_master_sheet_edit->setCurrentCharFormat(charfotmet);
-    next_shift_edit->setCurrentCharFormat(charfotmet);
-    part_change_edit->setCurrentCharFormat(charfotmet);
-    after_lot_monitering_edit->setCurrentCharFormat(charfotmet);
+    content_edit->setCurrentCharFormat(charfotmet);
+
 }
 
-void EISmain::on_total_view_phenomenon_clicked()
+
+void EISmain::on_content_big_view_clicked()
 {
-    EIS_big_view *big_view = new EIS_big_view(ui->label_phenomenon->text(),phenomenon_edit,ui->layout_phenomenon);
+    EIS_big_view *big_view = new EIS_big_view(ui->content_label->text(),content_edit,ui->layout_content);
     big_view->show();
 }
 
 
-void EISmain::on_total_view_cause_clicked()
-{
-    EIS_big_view *big_view = new EIS_big_view(ui->label_cause->text(),cause_edit,ui->layout_cause);
-    big_view->show();
-}
-
-void EISmain::on_total_view_current_action_clicked()
-{
-    EIS_big_view *big_view = new EIS_big_view(ui->label_current_action->text(),current_action_edit,ui->layout_current_action);
-    big_view->show();
-}
-
-void EISmain::on_total_view_current_lot_action_clicked()
-{
-    EIS_big_view *big_view = new EIS_big_view(ui->label_current_lot_action->text(),current_lot_action_edit,ui->layout_current_lot_action);
-    big_view->show();
-}
-
-void EISmain::on_total_view_change_master_sheet_clicked()
-{
-    EIS_big_view *big_view = new EIS_big_view(ui->label_change_master_sheet->text(),change_master_sheet_edit,ui->layout_change_master_sheet);
-    big_view->show();
-}
-
-void EISmain::on_total_view_next_shift_clicked()
-{
-    EIS_big_view *big_view = new EIS_big_view(ui->label_next_shift->text(),next_shift_edit,ui->layout_next_shift);
-    big_view->show();
-}
-
-void EISmain::on_total_view_part_change_clicked()
-{
-    EIS_big_view *big_view = new EIS_big_view(ui->label_part_change->text(),part_change_edit,ui->layout_part_change);
-    big_view->show();
-}
-
-void EISmain::on_total_view_after_lot_monitering_clicked()
-{
-    EIS_big_view *big_view = new EIS_big_view(ui->label_after_lot_monitering->text(),after_lot_monitering_edit,ui->layout_after_lot_monitering);
-    big_view->show();
-}
 
 void EISmain::on_search_select_team_currentIndexChanged(const QString &arg1)
 {
@@ -604,8 +468,7 @@ void EISmain::on_search_button_clicked()
     QSqlQuery query(db);
     QString query_txt = Return_search_query();
     query.exec(query_txt);
-/*    qDebug()<<"query = "<<query.lastQuery();
-    qDebug()<<"erro = "<<query.lastError().text()*/;
+
     while(ui->search_listview->rowCount()!=0){
         ui->search_listview->removeRow(ui->search_listview->rowCount()-1);
     }
@@ -659,7 +522,6 @@ void EISmain::on_search_button_clicked()
 
 void EISmain::on_search_listview_cellDoubleClicked(int row, int column)
 {
-    //qDebug()<<"cell double click | row = "<<row<<" colum = "<<column;
     QStringList check_list;
     QString number_doc = itemlist.at(row)->ui->doc_number->text();
     number_doc = number_doc + "/"+itemlist.at(row)->ui->write_time->text();
@@ -719,4 +581,33 @@ void EISmain::on_total_view_btn_clicked()
     }
     Eis_list_view *list_view = new Eis_list_view(check_list);
     list_view->show();
+}
+
+
+
+
+void EISmain::on_print_btn_clicked()
+{
+    QPrinter *printer;
+    printer = new QPrinter();
+    QPainter *painter;
+    painter = new QPainter();
+//    QPrintDialog *printDialog;
+//    printDialog = new QPrintDialog(printer,this);
+
+    QPrintDialog *dialog= new QPrintDialog(printer);
+
+    dialog->exec();
+
+
+    content_edit->print(printer);
+
+
+
+
+
+//    if (printDialog->exec() == QDialog::Accepted) {
+/*            printer->newPage()*/;
+
+//    }
 }

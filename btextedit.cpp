@@ -19,13 +19,23 @@ BTextEdit::BTextEdit(int *doc_number, QWidget *parent):QTextEdit(parent)
 
 void BTextEdit::insertFromMimeData( const QMimeData *source ){
           QString source_text = source->text();
+
+
+
+
           QString doc_number_txt = QString("%1").arg(*doc_number);
           if(ispicture(source_text)){
+
+                QFile source_file(outputpath(source_text),this);
+                QImage tempimage;
+                tempimage.load(outputpath(source_text));
                 D_image_size image_size_dialog;
+                image_size_dialog.setHeight(tempimage.size().height());
+                image_size_dialog.setWidth(tempimage.size().width());
                 if(!image_size_dialog.exec()==QDialog::Accepted){
                     return;
                 }
-                QFile source_file(outputpath(source_text),this);
+
                 QString makedir_txt = qApp->applicationDirPath()+"/temp/EIS/img";
                 QDir makedir(makedir_txt);
                 if(!makedir.exists(doc_number_txt)){
@@ -129,6 +139,7 @@ QStringList BTextEdit::getImage_list() const
 {
     return image_list;
 }
+
 
 void BTextEdit::setImage_list(const QStringList &value)
 {

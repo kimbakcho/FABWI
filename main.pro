@@ -4,14 +4,14 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network ftp sql
+QT       += core gui network ftp sql printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = main
 TEMPLATE = app
 
-TRANSLATIONS += lang_ko.ts lang_zh.ts
+TRANSLATIONS += lang_ko.ts
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -38,7 +38,8 @@ HEADERS  += mainwindow.h \
     eis_big_view.h \
     eis_serarch_item.h \
     eis_listview_item.h \
-    eis_list_view.h
+    eis_list_view.h \
+    global_define.h
 
 FORMS    += mainwindow.ui \
     idix_gui.ui \

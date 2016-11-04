@@ -40,14 +40,14 @@ EIS_listview_item::EIS_listview_item(QString doc_data, QWidget *parent) :
             this, SLOT(updateDataTransferProgress(qint64,qint64)));
 
 
-    progressdialog = new QProgressDialog(this);
+
 
     if(!db.contains("EISDB")){
        db = QSqlDatabase::addDatabase("QMYSQL","EISDB");
        db.setHostName(server_ip);
        db.setPort(db_port.toInt());
-       db.setUserName("fabuser");
-       db.setPassword("wisolfab");
+       db.setUserName(DBID);
+       db.setPassword(DBPW);
        db.setDatabaseName("FAB");
     }else {
        db = QSqlDatabase::database("EISDB");
@@ -78,16 +78,19 @@ EIS_listview_item::EIS_listview_item(QString doc_data, QWidget *parent) :
     if(ftp->state()==QFtp::Unconnected){
         ftp->connectToHost(server_ip,21);
 
-        ftp->login(QUrl::fromPercentEncoding("EIS"),"1234");
+        ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
         loop.exec();
         ftp->setTransferMode(QFtp::Passive);
     }
-    ftp->rawCommand(QString("CWD /home/EIS/img/%1").arg(doc_number));
+    ftp->rawCommand(QString("CWD /home/eis/img/%1").arg(doc_number));
     loop.exec();
     makedir_txt = qApp->applicationDirPath()+"/temp/EIS/img/"+QString("%1").arg(doc_number);
     img_download_file = query_base_data.value("downloadimg").toString();
     QStringList img_file_list = query_base_data.value("downloadimg").toString().split("/////");
     for(int i=0;i<img_file_list.count()-1;i++){
+        if(progressdialog==0){
+            progressdialog = new QProgressDialog(this);
+        }
         QString file_name = img_file_list.at(i);
         QString des_file_path = makedir_txt+ file_name;
         QFile des_file(des_file_path);
@@ -143,22 +146,9 @@ EIS_listview_item::EIS_listview_item(QString doc_data, QWidget *parent) :
     connect(ui->select_facilities,SIGNAL(currentIndexChanged(QString)),
                this,SLOT(on_select_facilities_currentIndexChanged(QString)));
 
-    phenomenon_edit = new BTextEdit(&doc_number,this);
-    ui->layout_phenomenon->addWidget(phenomenon_edit,0,0);
-    cause_edit = new BTextEdit(&doc_number,this);
-    ui->layout_cause->addWidget(cause_edit,0,0);
-    current_action_edit = new BTextEdit(&doc_number,this);
-    ui->layout_current_action->addWidget(current_action_edit,0,0);
-    current_lot_action_edit = new BTextEdit(&doc_number,this);
-    ui->layout_current_lot_action->addWidget(current_lot_action_edit,0,0);
-    change_master_sheet_edit = new BTextEdit(&doc_number,this);
-    ui->layout_change_master_sheet->addWidget(change_master_sheet_edit,0,0);
-    next_shift_edit = new BTextEdit(&doc_number,this);
-    ui->layout_next_shift->addWidget(next_shift_edit,0,0);
-    part_change_edit = new BTextEdit(&doc_number,this);
-    ui->layout_part_change->addWidget(part_change_edit,0,0);
-    after_lot_monitering_edit = new BTextEdit(&doc_number,this);
-    ui->layout_after_lot_monitering->addWidget(after_lot_monitering_edit,0,0);
+    content_edit = new BTextEdit(&doc_number,this);
+    ui->layout_content->addWidget(content_edit,0,0);
+
     attach_list_model = new QStandardItemModel();
     ui->attach_listview->setModel(attach_list_model);
 
@@ -174,15 +164,7 @@ EIS_listview_item::EIS_listview_item(QString doc_data, QWidget *parent) :
 
     QTextCharFormat charfotmet;
     charfotmet.setFont(mainfont,QTextCharFormat::FontPropertiesAll);
-    phenomenon_edit->setCurrentCharFormat(charfotmet);
-    cause_edit->setCurrentCharFormat(charfotmet);
-    current_action_edit->setCurrentCharFormat(charfotmet);
-    current_lot_action_edit->setCurrentCharFormat(charfotmet);
-    change_master_sheet_edit->setCurrentCharFormat(charfotmet);
-    next_shift_edit->setCurrentCharFormat(charfotmet);
-    part_change_edit->setCurrentCharFormat(charfotmet);
-    after_lot_monitering_edit->setCurrentCharFormat(charfotmet);
-
+    content_edit->setCurrentCharFormat(charfotmet);
 
     ui->current_time->setText(query_base_data.value("write_time").toDateTime().toString("yyyy-MM-dd hh:mm:ss"));
 
@@ -201,16 +183,7 @@ EIS_listview_item::EIS_listview_item(QString doc_data, QWidget *parent) :
     }
 
 
-    phenomenon_edit->setHtml(query_base_data.value("phenomenon").toString());
-    cause_edit->setHtml(query_base_data.value("cause").toString());
-    current_action_edit->setHtml(query_base_data.value("current_action").toString());
-    current_lot_action_edit->setHtml(query_base_data.value("Lot_action_statue").toString());
-    change_master_sheet_edit->setHtml(query_base_data.value("change_master_sheet").toString());
-    next_shift_edit->setHtml(query_base_data.value("next_shift_link").toString());
-    part_change_edit->setHtml(query_base_data.value("part_change_statue").toString());
-    after_lot_monitering_edit->setHtml(query_base_data.value("after_LOT_monitering").toString());
-
-
+    content_edit->setHtml(query_base_data.value("content").toString());
 }
 
 EIS_listview_item::~EIS_listview_item()
@@ -260,14 +233,8 @@ void EIS_listview_item::on_font_type_currentTextChanged(const QString &arg1)
     mainfont.setFamily(arg1);
     QTextCharFormat charfotmet;
     charfotmet.setFont(mainfont,QTextCharFormat::FontPropertiesAll);
-    phenomenon_edit->setCurrentCharFormat(charfotmet);
-    cause_edit->setCurrentCharFormat(charfotmet);
-    current_action_edit->setCurrentCharFormat(charfotmet);
-    current_lot_action_edit->setCurrentCharFormat(charfotmet);
-    change_master_sheet_edit->setCurrentCharFormat(charfotmet);
-    next_shift_edit->setCurrentCharFormat(charfotmet);
-    part_change_edit->setCurrentCharFormat(charfotmet);
-    after_lot_monitering_edit->setCurrentCharFormat(charfotmet);
+    content_edit->setCurrentCharFormat(charfotmet);
+
 }
 
 void EIS_listview_item::on_fontsize_editingFinished()
@@ -275,14 +242,8 @@ void EIS_listview_item::on_fontsize_editingFinished()
     mainfont.setPointSize(ui->fontsize->value());
     QTextCharFormat charfotmet;
     charfotmet.setFont(mainfont,QTextCharFormat::FontPropertiesAll);
-    phenomenon_edit->setCurrentCharFormat(charfotmet);
-    cause_edit->setCurrentCharFormat(charfotmet);
-    current_action_edit->setCurrentCharFormat(charfotmet);
-    current_lot_action_edit->setCurrentCharFormat(charfotmet);
-    change_master_sheet_edit->setCurrentCharFormat(charfotmet);
-    next_shift_edit->setCurrentCharFormat(charfotmet);
-    part_change_edit->setCurrentCharFormat(charfotmet);
-    after_lot_monitering_edit->setCurrentCharFormat(charfotmet);
+    content_edit->setCurrentCharFormat(charfotmet);
+
 }
 void EIS_listview_item::ftpCommandFinished(int commandId, bool error)
 {
@@ -322,11 +283,11 @@ void EIS_listview_item::on_attach_listview_doubleClicked(const QModelIndex &inde
     if(ftp->state()==QFtp::Unconnected){
         ftp->connectToHost(server_ip,21);
 
-        ftp->login(QUrl::fromPercentEncoding("EIS"),"1234");
+        ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
         loop.exec();
         ftp->setTransferMode(QFtp::Passive);
     }
-    ftp->rawCommand(QString("CWD /home/EIS/attach/%1").arg(doc_number));
+    ftp->rawCommand(QString("CWD /home/eis/attach/%1").arg(doc_number));
     loop.exec();
     save_file->open(QFile::ReadWrite);
     ftp->get(source_file,save_file);
@@ -334,69 +295,29 @@ void EIS_listview_item::on_attach_listview_doubleClicked(const QModelIndex &inde
     progressdialog->exec();
     save_file->close();
 }
-void EIS_listview_item::on_total_view_phenomenon_clicked()
+
+void EIS_listview_item::on_total_view_content_clicked()
 {
-    EIS_big_view *big_view = new EIS_big_view(ui->label_phenomenon->text(),phenomenon_edit,ui->layout_phenomenon);
-    big_view->show();
+        EIS_big_view *big_view = new EIS_big_view(ui->content_label->text(),content_edit,ui->layout_content);
+        big_view->show();
 }
 
 
-void EIS_listview_item::on_total_view_cause_clicked()
-{
-    EIS_big_view *big_view = new EIS_big_view(ui->label_cause->text(),cause_edit,ui->layout_cause);
-    big_view->show();
-}
-
-void EIS_listview_item::on_total_view_current_action_clicked()
-{
-    EIS_big_view *big_view = new EIS_big_view(ui->label_current_action->text(),current_action_edit,ui->layout_current_action);
-    big_view->show();
-}
-
-void EIS_listview_item::on_total_view_current_lot_action_clicked()
-{
-    EIS_big_view *big_view = new EIS_big_view(ui->label_current_lot_action->text(),current_lot_action_edit,ui->layout_current_lot_action);
-    big_view->show();
-}
-
-void EIS_listview_item::on_total_view_change_master_sheet_clicked()
-{
-    EIS_big_view *big_view = new EIS_big_view(ui->label_change_master_sheet->text(),change_master_sheet_edit,ui->layout_change_master_sheet);
-    big_view->show();
-}
-
-void EIS_listview_item::on_total_view_next_shift_clicked()
-{
-    EIS_big_view *big_view = new EIS_big_view(ui->label_next_shift->text(),next_shift_edit,ui->layout_next_shift);
-    big_view->show();
-}
-
-void EIS_listview_item::on_total_view_part_change_clicked()
-{
-    EIS_big_view *big_view = new EIS_big_view(ui->label_part_change->text(),part_change_edit,ui->layout_part_change);
-    big_view->show();
-}
-
-void EIS_listview_item::on_total_view_after_lot_monitering_clicked()
-{
-    EIS_big_view *big_view = new EIS_big_view(ui->label_after_lot_monitering->text(),after_lot_monitering_edit,ui->layout_after_lot_monitering);
-    big_view->show();
-}
 
 void EIS_listview_item::on_modify_button_clicked()
 {
     if(ftp->state()==QFtp::Unconnected){
         ftp->connectToHost(server_ip,21);
 
-        ftp->login(QUrl::fromPercentEncoding("EIS"),"1234");
+        ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
         loop.exec();
         ftp->setTransferMode(QFtp::Passive);
     }
-    ftp->rawCommand("CWD /home/EIS/img");
+    ftp->rawCommand("CWD /home/eis/img");
     loop.exec();
     ftp->rawCommand(QString("MKD %1").arg(doc_number));
     loop.exec();
-    ftp->rawCommand(QString("CWD /home/EIS/img/%1").arg(doc_number));
+    ftp->rawCommand(QString("CWD /home/eis/img/%1").arg(doc_number));
     loop.exec();
 
     QString makedir_txt = qApp->applicationDirPath()+"/temp/EIS/img/"+QString("%1").arg(doc_number);
@@ -437,66 +358,17 @@ void EIS_listview_item::on_modify_button_clicked()
     QString process = ui->select_process->currentText();
     QString write_name = ui->select_name->currentText();
     QString facilities_name = ui->select_facilities->currentText();
-    QString phenomenon = phenomenon_edit->tosqlhtml();
-    QString cause = cause_edit->tosqlhtml();
-    QString current_action = current_action_edit->tosqlhtml();
-    QString current_lot_action = current_lot_action_edit->tosqlhtml();
-    QString change_master_sheet = change_master_sheet_edit->tosqlhtml();
-    QString after_lot_monitering = after_lot_monitering_edit->tosqlhtml();
-    QString next_shift = next_shift_edit->tosqlhtml();
-    QString part_change_statue = part_change_edit->tosqlhtml();
+    QString content = content_edit->tosqlhtml();
+
     QString attach_file_list;
     QStringList total_img_list;
     QString total_img_txt;
 
-//    phenomenon_edit->setCurrentCharFormat(charfotmet);
-//    cause_edit->setCurrentCharFormat(charfotmet);
-//    current_action_edit->setCurrentCharFormat(charfotmet);
-//    current_lot_action_edit->setCurrentCharFormat(charfotmet);
-//    change_master_sheet_edit->setCurrentCharFormat(charfotmet);
-//    next_shift_edit->setCurrentCharFormat(charfotmet);
-//    part_change_edit->setCurrentCharFormat(charfotmet);
-//    after_lot_monitering_edit->setCurrentCharFormat(charfotmet);
-
-    for(int i=0;i<phenomenon_edit->image_list.count();i++){
-        QString img_path = phenomenon_edit->image_list.at(i);
+    for(int i=0;i<content_edit->image_list.count();i++){
+        QString img_path = content_edit->image_list.at(i);
         total_img_list.append(img_path.split("/").last());
     }
 
-    for(int i=0;i<cause_edit->image_list.count();i++){
-        QString img_path = cause_edit->image_list.at(i);
-        total_img_list.append(img_path.split("/").last());
-    }
-
-    for(int i=0;i<current_action_edit->image_list.count();i++){
-        QString img_path = current_action_edit->image_list.at(i);
-        total_img_list.append(img_path.split("/").last());
-    }
-
-    for(int i=0;i<current_lot_action_edit->image_list.count();i++){
-        QString img_path = current_lot_action_edit->image_list.at(i);
-        total_img_list.append(img_path.split("/").last());
-    }
-
-    for(int i=0;i<change_master_sheet_edit->image_list.count();i++){
-        QString img_path = change_master_sheet_edit->image_list.at(i);
-        total_img_list.append(img_path.split("/").last());
-    }
-
-    for(int i=0;i<next_shift_edit->image_list.count();i++){
-        QString img_path = next_shift_edit->image_list.at(i);
-        total_img_list.append(img_path.split("/").last());
-    }
-
-    for(int i=0;i<part_change_edit->image_list.count();i++){
-        QString img_path = part_change_edit->image_list.at(i);
-        total_img_list.append(img_path.split("/").last());
-    }
-
-    for(int i=0;i<after_lot_monitering_edit->image_list.count();i++){
-        QString img_path = after_lot_monitering_edit->image_list.at(i);
-        total_img_list.append(img_path.split("/").last());
-    }
     for(int i=0;i<total_img_list.count();i++){
         QString img_file = total_img_list.at(i);
         total_img_txt = total_img_txt+img_file+"/////";
@@ -517,14 +389,7 @@ void EIS_listview_item::on_modify_button_clicked()
                                    "`change_have`,"
                                    "`time_part`,"
                                    "`document_name`,"
-                                   "`phenomenon`,"
-                                   "`cause`,"
-                                   "`current_action`,"
-                                   "`Lot_action_statue`,"
-                                   "`change_master_sheet`,"
-                                   "`next_shift_link`,"
-                                   "`part_change_statue`,"
-                                   "`after_LOT_monitering`,"
+                                   "`content`,"
                                    "`downloadimg`,"
                                    "`attach_file_list`,"
                                    "`complete`"
@@ -539,17 +404,11 @@ void EIS_listview_item::on_modify_button_clicked()
                                    "'"+change_have+"',"
                                    "'"+Time_part+"',"
                                    "'"+document_name+"',"
-                                   "'"+phenomenon+"',"
-                                   "'"+cause+"',"
-                                   "'"+current_action+"',"
-                                   "'"+current_lot_action+"',"
-                                   "'"+change_master_sheet+"',"
-                                   "'"+next_shift+"',"
-                                   "'"+part_change_statue+"',"
-                                   "'"+after_lot_monitering+"',"
+                                   "'"+content+"',"
                                    "'"+img_download_file+"',"
                                    "'"+attach_file_list+"',"
                                    "'2'"
                                    ");");
         query.exec(insert_query);
 }
+

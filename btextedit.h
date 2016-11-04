@@ -35,6 +35,7 @@ public:
     QStringList image_list;
     QStringList getImage_list() const;
 
+
     void setImage_list(const QStringList &value);
 
 protected:

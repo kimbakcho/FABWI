@@ -8,6 +8,18 @@ D_image_size::D_image_size(QWidget *parent) :
     ui->setupUi(this);
 }
 
+void D_image_size::setWidth(double value)
+{
+    width = value;
+    ui->LE_width->setText(QString("%1").arg(width));
+}
+
+void D_image_size::setHeight(double value)
+{
+    height = value;
+    ui->LE_height->setText(QString("%1").arg(height));
+}
+
 double D_image_size::getWidth() const
 {
     return width;

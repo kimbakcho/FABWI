@@ -13,6 +13,7 @@
 #include <QProgressDialog>
 #include <QFileDialog>
 #include <eis_big_view.h>
+#include <global_define.h>
 namespace Ui {
 class EIS_listview_item;
 }
@@ -24,14 +25,7 @@ class EIS_listview_item : public QWidget
 public:
     explicit EIS_listview_item(QWidget *parent = 0);
     EIS_listview_item(QString doc_data,QWidget *parent);
-    BTextEdit *phenomenon_edit;
-    BTextEdit *cause_edit;
-    BTextEdit *current_action_edit;
-    BTextEdit *current_lot_action_edit;
-    BTextEdit *change_master_sheet_edit;
-    BTextEdit *next_shift_edit;
-    BTextEdit *part_change_edit;
-    BTextEdit *after_lot_monitering_edit;
+    BTextEdit *content_edit;
     QStandardItemModel *attach_list_model;
     QFont mainfont;
     QSqlDatabase db ;
@@ -56,21 +50,7 @@ public slots:
 
     void ftp_rawCommandReply(int a, QString data);
 
-    void on_total_view_phenomenon_clicked();
 
-    void on_total_view_cause_clicked();
-
-    void on_total_view_current_action_clicked();
-
-    void on_total_view_current_lot_action_clicked();
-
-    void on_total_view_change_master_sheet_clicked();
-
-    void on_total_view_next_shift_clicked();
-
-    void on_total_view_part_change_clicked();
-
-    void on_total_view_after_lot_monitering_clicked();
 
 private slots:
     void on_select_team_currentIndexChanged(const QString &arg1);
@@ -87,6 +67,8 @@ private slots:
     void on_attach_listview_doubleClicked(const QModelIndex &index);
 
     void on_modify_button_clicked();
+
+    void on_total_view_content_clicked();
 
 private:
 

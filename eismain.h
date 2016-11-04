@@ -23,6 +23,11 @@
 #include <eis_serarch_item.h>
 #include <QVector>
 #include <eis_list_view.h>
+#include <QPrinter>
+#include <QPainter>
+#include <QPrintDialog>
+#include <QPrintPreviewDialog>
+#include <global_define.h>
 namespace Ui {
 class EISmain;
 }
@@ -37,14 +42,14 @@ public:
     int update_doc_number;
     QSqlDatabase db ;
     QTimer time_update;
-    BTextEdit *phenomenon_edit;
-    BTextEdit *cause_edit;
-    BTextEdit *current_action_edit;
-    BTextEdit *current_lot_action_edit;
-    BTextEdit *change_master_sheet_edit;
-    BTextEdit *next_shift_edit;
-    BTextEdit *part_change_edit;
-    BTextEdit *after_lot_monitering_edit;
+    BTextEdit *content_edit;
+//    BTextEdit *cause_edit;
+//    BTextEdit *current_action_edit;
+//    BTextEdit *current_lot_action_edit;
+//    BTextEdit *change_master_sheet_edit;
+//    BTextEdit *next_shift_edit;
+//    BTextEdit *part_change_edit;
+//    BTextEdit *after_lot_monitering_edit;
     QFtp *ftp;
     QString server_ip;
     QString db_port;
@@ -92,25 +97,9 @@ private slots:
 
     void on_attach_listview_doubleClicked(const QModelIndex &index);
 
-    void on_total_view_phenomenon_clicked();
-
     void on_fontsize_editingFinished();
 
     void on_font_type_currentTextChanged(const QString &arg1);
-
-    void on_total_view_cause_clicked();
-
-    void on_total_view_current_action_clicked();
-
-    void on_total_view_current_lot_action_clicked();
-
-    void on_total_view_change_master_sheet_clicked();
-
-    void on_total_view_next_shift_clicked();
-
-    void on_total_view_part_change_clicked();
-
-    void on_total_view_after_lot_monitering_clicked();
 
     void on_search_select_team_currentIndexChanged(const QString &arg1);
 
@@ -122,9 +111,13 @@ private slots:
 
     void on_search_listview_cellDoubleClicked(int row, int column);
 
-
-
     void on_total_view_btn_clicked();
+
+    void on_content_big_view_clicked();
+
+
+
+    void on_print_btn_clicked();
 
 private:
 

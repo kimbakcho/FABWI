@@ -22,6 +22,10 @@ public:
 
     double getWidth() const;
 
+    void setHeight(double value);
+
+    void setWidth(double value);
+
 private slots:
     void on_buttonBox_accepted();
 
