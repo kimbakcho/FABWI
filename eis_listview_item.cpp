@@ -182,9 +182,32 @@ EIS_listview_item::EIS_listview_item(QString doc_data, QWidget *parent) :
         ui->radio_btn_change_none->setChecked(true);
     }
 
+    if(query_base_data.value("complete").toInt() == 3){
+        ui->complete->setChecked(true);
+    }else {
+        ui->no_complete->setChecked(true);
+    }
 
     content_edit->setHtml(query_base_data.value("content").toString());
+
+
+    QSqlQuery query_history_data(db);
+    query_txt = QString("select write_time,witer_name from EIS_document where idx = '%1' ORDER BY `write_time` desc").arg(doc_number_str);
+    query_history_data.exec(query_txt);
+    ui->table_save_histroy->horizontalHeader()->resizeSection(0,150);
+    while(query_history_data.next()){
+        int row_count = ui->table_save_histroy->rowCount();
+        ui->table_save_histroy->insertRow(row_count);
+        ui->table_save_histroy->setCellWidget(row_count,0,new QLabel(query_history_data
+                                                                     .value("write_time")
+                                                                     .toDateTime()
+                                                                     .toString("yyyy-MM-dd hh:mm:ss")));
+        ui->table_save_histroy->setCellWidget(row_count,1,new QLabel(query_history_data.value("witer_name")
+                                                                     .toString()));
+    }
+
 }
+
 
 EIS_listview_item::~EIS_listview_item()
 {
@@ -378,7 +401,18 @@ void EIS_listview_item::on_modify_button_clicked()
         QString item = attach_list_model->item(i)->text();
         attach_file_list = attach_file_list + item + "/////";
     }
-
+    QString complete;
+    if(ui->complete->isChecked()){
+        complete = "3";
+        QSqlQuery update_query(db);
+        QString query_txt = QString("update EIS_document SET `complete`='3' WHERE  `idx`=%1").arg(doc_number);
+        update_query.exec(query_txt);
+    }else {
+        QSqlQuery update_query(db);
+        QString query_txt = QString("update EIS_document SET `complete`='2' WHERE  `idx`=%1").arg(doc_number);
+        update_query.exec(query_txt);
+        complete = "2";
+    }
     QString insert_query = QString("INSERT INTO EIS_document ("
                                    "`idx`,"
                                    "`team`,"
@@ -407,7 +441,7 @@ void EIS_listview_item::on_modify_button_clicked()
                                    "'"+content+"',"
                                    "'"+img_download_file+"',"
                                    "'"+attach_file_list+"',"
-                                   "'2'"
+                                   "'"+complete+"'"
                                    ");");
         query.exec(insert_query);
 }

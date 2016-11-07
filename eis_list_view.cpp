@@ -1,5 +1,6 @@
 #include "eis_list_view.h"
 #include "ui_eis_list_view.h"
+#include "ui_eis_listview_item.h"
 
 Eis_list_view::Eis_list_view(QWidget *parent) :
     QWidget(parent),
@@ -29,6 +30,13 @@ void Eis_list_view::resizeEvent(QResizeEvent *event)
     int setHight = ui->item_listview->height();
     for(int i=0;i<ui->item_listview->rowCount();i++){
         ui->item_listview->setRowHeight(i,setHight-50);
+    }
+}
+
+void Eis_list_view::modify_button_show(bool choice)
+{
+    for(int i=0;i<item_list.count();i++){
+        item_list.at(i)->ui->modify_button->setVisible(choice);
     }
 }
 

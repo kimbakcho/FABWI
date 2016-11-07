@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -381,12 +381,17 @@
                <string>시간파트</string>
               </property>
              </column>
+             <column>
+              <property name="text">
+               <string>완료</string>
+              </property>
+             </column>
             </widget>
            </item>
            <item row="2" column="1" colspan="2">
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="modify_btn">
              <property name="text">
-              <string>내용 보기</string>
+              <string>내용 수정</string>
              </property>
             </widget>
            </item>
@@ -623,6 +628,32 @@
                 </size>
                </property>
               </spacer>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="groupBox_2">
+               <property name="title">
+                <string>완료 유무</string>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_5">
+                <item row="0" column="0">
+                 <widget class="QRadioButton" name="complete">
+                  <property name="text">
+                   <string>완료</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QRadioButton" name="no_complete">
+                  <property name="text">
+                   <string>미완료</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
              </item>
              <item>
               <widget class="QPushButton" name="print_btn">

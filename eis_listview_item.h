@@ -39,6 +39,7 @@ public:
     QEventLoop listwaitloop;
     Ui::EIS_listview_item *ui;
     QString img_download_file;
+
     ~EIS_listview_item();
 
 public slots:

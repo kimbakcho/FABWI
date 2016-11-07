@@ -2,4 +2,8 @@
     <qresource prefix="/lang">
         <file>lang_ko.qm</file>
     </qresource>
+    <qresource prefix="/img">
+        <file>img/checked_checkbox.png</file>
+        <file>img/unchecked_checkbox.png</file>
+    </qresource>
 </RCC>

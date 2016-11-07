@@ -19,6 +19,7 @@ public:
     Eis_list_view(QStringList check_list,QWidget *parent = 0);
     QVector<EIS_listview_item *>item_list;
     void resizeEvent(QResizeEvent *event);
+    void modify_button_show(bool choice);
     ~Eis_list_view();
 
 private:

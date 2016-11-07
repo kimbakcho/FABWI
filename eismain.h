@@ -43,13 +43,6 @@ public:
     QSqlDatabase db ;
     QTimer time_update;
     BTextEdit *content_edit;
-//    BTextEdit *cause_edit;
-//    BTextEdit *current_action_edit;
-//    BTextEdit *current_lot_action_edit;
-//    BTextEdit *change_master_sheet_edit;
-//    BTextEdit *next_shift_edit;
-//    BTextEdit *part_change_edit;
-//    BTextEdit *after_lot_monitering_edit;
     QFtp *ftp;
     QString server_ip;
     QString db_port;
@@ -118,6 +111,8 @@ private slots:
 
 
     void on_print_btn_clicked();
+
+    void on_modify_btn_clicked();
 
 private:
 

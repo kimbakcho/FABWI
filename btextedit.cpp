@@ -21,9 +21,36 @@ void BTextEdit::insertFromMimeData( const QMimeData *source ){
           QString source_text = source->text();
 
 
-
-
           QString doc_number_txt = QString("%1").arg(*doc_number);
+          QString makedir_txt = qApp->applicationDirPath()+"/temp/EIS/img";
+
+          if(source->hasImage()){
+              QImage image = qvariant_cast<QImage>(source->imageData());
+              D_image_size image_size_dialog;
+              image_size_dialog.setHeight(image.size().height());
+              image_size_dialog.setWidth(image.size().width());
+              if(!image_size_dialog.exec()==QDialog::Accepted){
+                  return;
+              }
+
+              QDir makedir(makedir_txt);
+              if(!makedir.exists(doc_number_txt)){
+                 makedir.mkdir(doc_number_txt);
+              }
+
+              QString output_filename = QDateTime::currentDateTime().toString("yyyy_MM_dd_HH_mm_ss_") + "chapture.png";
+              QString des_file = QString("%1/%2/%3").arg(makedir_txt).arg(doc_number_txt).arg(output_filename);
+              image.save(des_file,"PNG");
+
+              QTextCursor cursor = this->textCursor();
+              QTextImageFormat imageformat;
+              imageformat.setName(QString("%1%2").arg("file:///").arg(des_file));
+              imageformat.setHeight(image_size_dialog.getHeight());
+              imageformat.setWidth(image_size_dialog.getWidth());
+              cursor.insertImage(imageformat);
+              image_list.append(output_filename);
+          }
+
           if(ispicture(source_text)){
 
                 QFile source_file(outputpath(source_text),this);
@@ -35,8 +62,6 @@ void BTextEdit::insertFromMimeData( const QMimeData *source ){
                 if(!image_size_dialog.exec()==QDialog::Accepted){
                     return;
                 }
-
-                QString makedir_txt = qApp->applicationDirPath()+"/temp/EIS/img";
                 QDir makedir(makedir_txt);
                 if(!makedir.exists(doc_number_txt)){
                    makedir.mkdir(doc_number_txt);
