@@ -14,6 +14,8 @@
 #include <QFileDialog>
 #include <eis_big_view.h>
 #include <global_define.h>
+#include <QPrinter>
+#include <QPrintDialog>
 namespace Ui {
 class EIS_listview_item;
 }
@@ -70,6 +72,8 @@ private slots:
     void on_modify_button_clicked();
 
     void on_total_view_content_clicked();
+
+    void on_print_button_clicked();
 
 private:
 

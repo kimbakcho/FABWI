@@ -235,7 +235,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="print_button">
            <property name="text">
             <string>프린터</string>
            </property>

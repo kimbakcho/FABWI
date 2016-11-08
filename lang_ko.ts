@@ -333,6 +333,53 @@ PR두께</source>
         <source>Save File</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="eis_listview_item.cpp" line="463"/>
+        <source>team</source>
+        <translation>부서</translation>
+    </message>
+    <message>
+        <location filename="eis_listview_item.cpp" line="465"/>
+        <source>process</source>
+        <translation>공정                              </translation>
+    </message>
+    <message>
+        <location filename="eis_listview_item.cpp" line="467"/>
+        <source>facilities</source>
+        <translation>설비</translation>
+    </message>
+    <message>
+        <location filename="eis_listview_item.cpp" line="469"/>
+        <source>witer_name</source>
+        <translation>작성자</translation>
+    </message>
+    <message>
+        <location filename="eis_listview_item.cpp" line="471"/>
+        <source>change_have</source>
+        <translation>변경점유무</translation>
+    </message>
+    <message>
+        <location filename="eis_listview_item.cpp" line="473"/>
+        <location filename="eis_listview_item.cpp" line="479"/>
+        <source>have</source>
+        <translation>유</translation>
+    </message>
+    <message>
+        <location filename="eis_listview_item.cpp" line="475"/>
+        <location filename="eis_listview_item.cpp" line="481"/>
+        <source>don&apos;t have</source>
+        <translation>무</translation>
+    </message>
+    <message>
+        <location filename="eis_listview_item.cpp" line="477"/>
+        <source>complete</source>
+        <translation>완료 유무</translation>
+    </message>
+    <message>
+        <location filename="eis_listview_item.cpp" line="486"/>
+        <source>subname</source>
+        <translation>제목</translation>
+    </message>
 </context>
 <context>
     <name>EIS_serarch_item</name>
@@ -344,7 +391,7 @@ PR두께</source>
     <message>
         <location filename="eis_serarch_item.ui" line="197"/>
         <source>team</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">부서</translation>
     </message>
     <message>
         <location filename="eis_serarch_item.ui" line="220"/>
@@ -364,7 +411,7 @@ PR두께</source>
     <message>
         <location filename="eis_serarch_item.ui" line="241"/>
         <source>facilities</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">설비</translation>
     </message>
     <message>
         <location filename="eis_serarch_item.ui" line="255"/>
@@ -374,7 +421,7 @@ PR두께</source>
     <message>
         <location filename="eis_serarch_item.ui" line="262"/>
         <source>process</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">공정</translation>
     </message>
     <message>
         <location filename="eis_serarch_item.ui" line="269"/>
@@ -489,13 +536,13 @@ PR두께</source>
     </message>
     <message>
         <location filename="eismain.ui" line="292"/>
-        <location filename="eismain.cpp" line="624"/>
+        <location filename="eismain.cpp" line="623"/>
         <source>O</source>
         <translation>유</translation>
     </message>
     <message>
         <location filename="eismain.ui" line="297"/>
-        <location filename="eismain.cpp" line="626"/>
+        <location filename="eismain.cpp" line="625"/>
         <source>X</source>
         <translation>무</translation>
     </message>
@@ -661,11 +708,15 @@ PR두께</source>
     </message>
     <message>
         <location filename="eismain.cpp" line="564"/>
+        <location filename="eismain.cpp" line="683"/>
+        <location filename="eismain.cpp" line="689"/>
         <source>have</source>
         <translation>유</translation>
     </message>
     <message>
         <location filename="eismain.cpp" line="566"/>
+        <location filename="eismain.cpp" line="685"/>
+        <location filename="eismain.cpp" line="691"/>
         <source>don&apos;t have</source>
         <translation>무</translation>
     </message>
@@ -680,9 +731,44 @@ PR두께</source>
         <translation>야간</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="590"/>
+        <location filename="eismain.cpp" line="589"/>
         <source>no reslut</source>
         <translation>결과 없음</translation>
+    </message>
+    <message>
+        <location filename="eismain.cpp" line="673"/>
+        <source>team</source>
+        <translation>부서</translation>
+    </message>
+    <message>
+        <location filename="eismain.cpp" line="675"/>
+        <source>process</source>
+        <translation>공정</translation>
+    </message>
+    <message>
+        <location filename="eismain.cpp" line="677"/>
+        <source>facilities</source>
+        <translation>설비</translation>
+    </message>
+    <message>
+        <location filename="eismain.cpp" line="679"/>
+        <source>witer_name</source>
+        <translation>작성자</translation>
+    </message>
+    <message>
+        <location filename="eismain.cpp" line="681"/>
+        <source>change_have</source>
+        <translation>변경점유무</translation>
+    </message>
+    <message>
+        <location filename="eismain.cpp" line="687"/>
+        <source>complete</source>
+        <translation>완료 유무</translation>
+    </message>
+    <message>
+        <location filename="eismain.cpp" line="696"/>
+        <source>subname</source>
+        <translation>제목</translation>
     </message>
 </context>
 <context>
@@ -746,7 +832,7 @@ PR두께</source>
     <message>
         <location filename="mainwindow.ui" line="73"/>
         <source>EIS</source>
-        <translation type="unfinished"></translation>
+        <translation>인폼시스템(EIS)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="78"/>

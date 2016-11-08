@@ -41,7 +41,6 @@ void BTextEdit::insertFromMimeData( const QMimeData *source ){
               QString output_filename = QDateTime::currentDateTime().toString("yyyy_MM_dd_HH_mm_ss_") + "chapture.png";
               QString des_file = QString("%1/%2/%3").arg(makedir_txt).arg(doc_number_txt).arg(output_filename);
               image.save(des_file,"PNG");
-
               QTextCursor cursor = this->textCursor();
               QTextImageFormat imageformat;
               imageformat.setName(QString("%1%2").arg("file:///").arg(des_file));
@@ -69,7 +68,6 @@ void BTextEdit::insertFromMimeData( const QMimeData *source ){
                 QString output_file = outputfilename(outputpath(source_text));
                 QString des_file = QString("%1/%2/%3").arg(makedir_txt).arg(doc_number_txt).arg(output_file);
                 source_file.copy(des_file);
-
                 QTextCursor cursor = this->textCursor();
                 QTextImageFormat imageformat;
                 imageformat.setName(QString("%1%2").arg("file:///").arg(des_file));

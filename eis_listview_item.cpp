@@ -446,3 +446,48 @@ void EIS_listview_item::on_modify_button_clicked()
         query.exec(insert_query);
 }
 
+
+void EIS_listview_item::on_print_button_clicked()
+{
+    QPrinter printer;
+    printer.setPaperSize(QPrinter::A4);
+    printer.setFullPage(true);
+
+    QPrintDialog *dialog= new QPrintDialog(&printer);
+    dialog->exec();
+
+    QTextEdit edit;
+
+    QTextTable *table1 = edit.textCursor().insertTable(2,6);
+
+    table1->cellAt(0,0).firstCursorPosition().insertText(tr("team"));
+    table1->cellAt(1,0).firstCursorPosition().insertText(ui->select_team->currentText());
+    table1->cellAt(0,1).firstCursorPosition().insertText(tr("process"));
+    table1->cellAt(1,1).firstCursorPosition().insertText(ui->select_process->currentText());
+    table1->cellAt(0,2).firstCursorPosition().insertText(tr("facilities"));
+    table1->cellAt(1,2).firstCursorPosition().insertText(ui->select_facilities->currentText());
+    table1->cellAt(0,3).firstCursorPosition().insertText(tr("witer_name"));
+    table1->cellAt(1,3).firstCursorPosition().insertText(ui->select_name->currentText());
+    table1->cellAt(0,4).firstCursorPosition().insertText(tr("change_have"));
+    if(ui->radio_btn_change_exist->isChecked()){
+        table1->cellAt(1,4).firstCursorPosition().insertText(tr("have"));
+    }else {
+        table1->cellAt(1,4).firstCursorPosition().insertText(tr("don't have"));
+    }
+    table1->cellAt(0,5).firstCursorPosition().insertText(tr("complete"));
+    if(ui->complete->isChecked()){
+        table1->cellAt(1,5).firstCursorPosition().insertText(tr("have"));
+    }else {
+        table1->cellAt(1,5).firstCursorPosition().insertText(tr("don't have"));
+    }
+    edit.textCursor().insertText("\n");
+
+    QTextTable *table2 = edit.textCursor().insertTable(1,2);
+    table2->cellAt(0,0).firstCursorPosition().insertText(tr("subname"));
+    table2->cellAt(0,1).firstCursorPosition().insertText(ui->document_name->text());
+
+    edit.textCursor().insertHtml(content_edit->toHtml());
+    edit.print(&printer);
+
+    dialog->deleteLater();
+}
