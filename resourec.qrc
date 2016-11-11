@@ -5,5 +5,9 @@
     <qresource prefix="/img">
         <file>img/checked_checkbox.png</file>
         <file>img/unchecked_checkbox.png</file>
+        <file>img/icon.png.ico</file>
+    </qresource>
+    <qresource prefix="/etc">
+        <file>myapp.rc</file>
     </qresource>
 </RCC>
