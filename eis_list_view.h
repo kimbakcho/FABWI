@@ -23,6 +23,7 @@ public:
     ~Eis_list_view();
 
 private:
+    void closeEvent(QCloseEvent *event);
     Ui::Eis_list_view *ui;
 };
 

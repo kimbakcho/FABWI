@@ -2,6 +2,7 @@
 #define D_IMAGE_SIZE_H
 
 #include <QDialog>
+#include <QMdiSubWindow>
 
 namespace Ui {
 class D_image_size;
@@ -13,6 +14,8 @@ class D_image_size : public QDialog
 
 public:
     explicit D_image_size(QWidget *parent = 0);
+    QString filepath;
+    QImage img;
     double height;
     double width;
     ~D_image_size();
@@ -26,8 +29,18 @@ public:
 
     void setWidth(double value);
 
+    QString getFilepath() const;
+
+    void setFilepath(const QString &value);
+
+    QImage getImg() const;
+    void setImg(const QImage &value);
+
+    void image_pack();
+
 private slots:
     void on_buttonBox_accepted();
+
 
 private:
     Ui::D_image_size *ui;

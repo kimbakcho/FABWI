@@ -27,8 +27,10 @@ void BTextEdit::insertFromMimeData( const QMimeData *source ){
           if(source->hasImage()){
               QImage image = qvariant_cast<QImage>(source->imageData());
               D_image_size image_size_dialog;
+              image_size_dialog.setImg(image);
               image_size_dialog.setHeight(image.size().height());
               image_size_dialog.setWidth(image.size().width());
+              image_size_dialog.image_pack();
               if(!image_size_dialog.exec()==QDialog::Accepted){
                   return;
               }
@@ -56,8 +58,10 @@ void BTextEdit::insertFromMimeData( const QMimeData *source ){
                 QImage tempimage;
                 tempimage.load(outputpath(source_text));
                 D_image_size image_size_dialog;
+                image_size_dialog.setFilepath(source_text.split("file:///").at(1));
                 image_size_dialog.setHeight(tempimage.size().height());
                 image_size_dialog.setWidth(tempimage.size().width());
+                image_size_dialog.image_pack();
                 if(!image_size_dialog.exec()==QDialog::Accepted){
                     return;
                 }

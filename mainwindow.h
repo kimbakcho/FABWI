@@ -9,6 +9,7 @@
 #include <QNetworkReply>
 #include <QUrlQuery>
 #include <server_setting.h>
+#include "Smtp/SmtpMime"
 namespace Ui {
 class MainWindow;
 }
@@ -33,6 +34,7 @@ private slots:
     void on_action_server_setting_triggered();
 
 private:
+    void closeEvent(QCloseEvent *event);
     Ui::MainWindow *ui;
 };
 

@@ -6,14 +6,41 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>215</width>
-    <height>146</height>
+    <width>363</width>
+    <height>339</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="3" column="0" colspan="2">
+    <widget class="QMdiArea" name="reszie_windows">
+     <property name="contextMenuPolicy">
+      <enum>Qt::DefaultContextMenu</enum>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="activationOrder">
+      <enum>QMdiArea::CreationOrder</enum>
+     </property>
+     <property name="viewMode">
+      <enum>QMdiArea::SubWindowView</enum>
+     </property>
+     <property name="documentMode">
+      <bool>false</bool>
+     </property>
+     <property name="tabsClosable">
+      <bool>false</bool>
+     </property>
+     <widget class="B_image_resize_widget" name="subwindow">
+      <property name="windowTitle">
+       <string>resize</string>
+      </property>
+     </widget>
+    </widget>
+   </item>
    <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
@@ -29,6 +56,9 @@
      <property name="inputMask">
       <string>9999</string>
      </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item row="1" column="0">
@@ -42,6 +72,9 @@
     <widget class="QLineEdit" name="LE_width">
      <property name="inputMask">
       <string>9999</string>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -57,6 +90,14 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>B_image_resize_widget</class>
+   <extends>QWidget</extends>
+   <header>b_image_resize_widget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

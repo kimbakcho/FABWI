@@ -6,6 +6,38 @@ D_image_size::D_image_size(QWidget *parent) :
     ui(new Ui::D_image_size)
 {
     ui->setupUi(this);
+    this->filepath  = filepath;
+    ui->reszie_windows->subWindowList().at(0)->setWindowFlags(Qt::WindowTitleHint);
+    ui->subwindow->setLE_width(ui->LE_width);
+    ui->subwindow->setLE_height(ui->LE_height);
+}
+
+QImage D_image_size::getImg() const
+{
+    return img;
+}
+
+void D_image_size::setImg(const QImage &value)
+{
+    img = value;
+    ui->subwindow->setImg(img);
+}
+
+void D_image_size::image_pack()
+{
+    ui->reszie_windows->subWindowList().at(0)->resize(getWidth(),getHeight());
+    resize(getWidth()+30,getHeight()+140);
+}
+
+void D_image_size::setFilepath(const QString &value)
+{
+    filepath = value;
+    ui->subwindow->setFilepath(filepath);
+}
+
+QString D_image_size::getFilepath() const
+{
+    return filepath;
 }
 
 void D_image_size::setWidth(double value)

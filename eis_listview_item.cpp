@@ -92,7 +92,7 @@ EIS_listview_item::EIS_listview_item(QString doc_data, QWidget *parent) :
             progressdialog = new QProgressDialog(this);
         }
         QString file_name = img_file_list.at(i);
-        QString des_file_path = makedir_txt+ file_name;
+        QString des_file_path = makedir_txt+"/"+file_name;
         QFile des_file(des_file_path);
         des_file.open(QFile::ReadWrite);
         ftp->get(file_name,&des_file);
@@ -123,7 +123,7 @@ EIS_listview_item::EIS_listview_item(QString doc_data, QWidget *parent) :
     }
     ui->select_process->setCurrentText(query_base_data.value("factory_process").toString());
 
-    query_txt = QString("select facilities from People_information where factory_process = '%1' group by facilities")
+    query_txt = QString("select facilities from People_information where factory_process = '%1' group by facilities order by facilities asc")
             .arg(query_base_data.value("factory_process").toString());
     query.exec(query_txt);
     while(query.next()){
@@ -131,7 +131,7 @@ EIS_listview_item::EIS_listview_item(QString doc_data, QWidget *parent) :
     }
     ui->select_facilities->setCurrentText(query_base_data.value("facilities_name").toString());
 
-    query_txt = QString("select name from People_information where facilities = '%1'")
+    query_txt = QString("select name from People_information where factory_process = '%1' group by name order by name asc")
             .arg(query_base_data.value("facilities_name").toString());
     query.exec(query_txt);
     while(query.next()){
@@ -211,6 +211,7 @@ EIS_listview_item::EIS_listview_item(QString doc_data, QWidget *parent) :
 
 EIS_listview_item::~EIS_listview_item()
 {
+    ftp->deleteLater();
     delete ui;
 }
 
@@ -228,7 +229,7 @@ void EIS_listview_item::on_select_team_currentIndexChanged(const QString &arg1)
 
 void EIS_listview_item::on_select_process_currentIndexChanged(const QString &arg1)
 {
-    ui->select_facilities->clear();;
+    ui->select_facilities->clear();
     ui->select_facilities->addItem("");
     QSqlQuery query(db);
     QString query_txt = QString("select facilities from People_information where factory_process = '%1' group by facilities").arg(arg1);
@@ -236,18 +237,26 @@ void EIS_listview_item::on_select_process_currentIndexChanged(const QString &arg
     while(query.next()){
         ui->select_facilities->addItem(query.value("facilities").toString());
     }
-}
 
-void EIS_listview_item::on_select_facilities_currentIndexChanged(const QString &arg1)
-{
-    ui->select_name->clear();;
+    ui->select_name->clear();
     ui->select_name->addItem("");
-    QSqlQuery query(db);
-    QString query_txt = QString("select name from People_information where facilities = '%1'").arg(arg1);
+    query_txt = QString("select name from People_information where factory_process = '%1' group by name order by name asc").arg(arg1);
     query.exec(query_txt);
     while(query.next()){
         ui->select_name->addItem(query.value("name").toString());
     }
+}
+
+void EIS_listview_item::on_select_facilities_currentIndexChanged(const QString &arg1)
+{
+//    ui->select_name->clear();;
+//    ui->select_name->addItem("");
+//    QSqlQuery query(db);
+//    QString query_txt = QString("select name from People_information where facilities = '%1'").arg(arg1);
+//    query.exec(query_txt);
+//    while(query.next()){
+//        ui->select_name->addItem(query.value("name").toString());
+//    }
 }
 
 

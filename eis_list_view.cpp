@@ -44,3 +44,12 @@ Eis_list_view::~Eis_list_view()
 {
     delete ui;
 }
+
+void Eis_list_view::closeEvent(QCloseEvent *event)
+{
+    for(int i=0;i<item_list.size();i++){
+        EIS_listview_item *item = item_list.at(i);
+        item->deleteLater();
+    }
+    this->deleteLater();
+}

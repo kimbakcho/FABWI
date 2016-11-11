@@ -9,7 +9,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     manager = new QNetworkAccessManager();
-
 }
 
 MainWindow::~MainWindow()
@@ -44,7 +43,7 @@ void MainWindow::on_actionMessage_triggered()
 //    sendformat.setUrl(QUrl("http://api.coolsms.co.kr/sendmsg"));
 
 //    manager->post(sendformat,postData.toString(QUrl::FullyEncoded).toUtf8());
-
+    SmtpClient smtp("mail.wisol.co.kr", 110, SmtpClient::SslConnection);
 
 }
 
@@ -52,4 +51,24 @@ void MainWindow::on_action_server_setting_triggered()
 {
     Server_setting *setting_log = new Server_setting();
     setting_log->exec();
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    QString temp_dir_path = qApp->applicationDirPath()+"/temp/EIS/img/";
+    QDir tempdir(temp_dir_path);
+    QStringList dir_list = tempdir.entryList();
+    for(int i=0;i<dir_list.size();i++){
+        if(dir_list.at(i) != "." && dir_list.at(i) != ".."){
+             QString rm_dir_path = temp_dir_path+ dir_list.at(i)+"/";
+             QDir rm_dir(rm_dir_path);
+             for(int j=0;j<rm_dir.entryList().size();j++){
+                if(rm_dir.entryList().at(j) != "." && rm_dir.entryList().at(j) != ".."){
+                    rm_dir.remove(rm_dir.entryList().at(j));
+                }
+             }
+             tempdir.rmdir(dir_list.at(i));
+        }
+    }
+
 }

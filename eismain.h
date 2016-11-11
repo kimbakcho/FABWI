@@ -115,6 +115,7 @@ private slots:
     void on_modify_btn_clicked();
 
 private:
+    void closeEvent(QCloseEvent *event);
 
 };
 
