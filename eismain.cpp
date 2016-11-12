@@ -678,7 +678,10 @@ void EISmain::on_print_btn_clicked()
     printer.setFullPage(true);
 
     QPrintDialog *dialog= new QPrintDialog(&printer);
-    dialog->exec();
+    int result = dialog->exec();
+    if(result != QPrintDialog::Accepted){
+        return;
+    }
 
     QTextEdit edit;
 
