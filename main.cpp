@@ -6,8 +6,6 @@
 
 int main(int argc, char *argv[])
 {
-
-
     QApplication a(argc, argv);
     QTranslator qtTranslator;
     qtTranslator.load(":/lang/lang_ko.qm");

@@ -15,6 +15,8 @@ TRANSLATIONS += lang_ko.ts
 
 RC_FILE = myapp.rc
 
+LIBS += -lSMTPEmail
+
 SOURCES += main.cpp\
         mainwindow.cpp \
     idix_gui.cpp \

@@ -20,10 +20,8 @@ BTextEdit::BTextEdit(int *doc_number, QWidget *parent):QTextEdit(parent)
 void BTextEdit::insertFromMimeData( const QMimeData *source ){
           QString source_text = source->text();
 
-
           QString doc_number_txt = QString("%1").arg(*doc_number);
           QString makedir_txt = qApp->applicationDirPath()+"/temp/EIS/img";
-
           if(source->hasImage()){
               QImage image = qvariant_cast<QImage>(source->imageData());
               D_image_size image_size_dialog;
@@ -50,9 +48,7 @@ void BTextEdit::insertFromMimeData( const QMimeData *source ){
               imageformat.setWidth(image_size_dialog.getWidth());
               cursor.insertImage(imageformat);
               image_list.append(output_filename);
-          }
-
-          if(ispicture(source_text)){
+          }else if(ispicture(source_text)){
 
                 QFile source_file(outputpath(source_text),this);
                 QImage tempimage;
@@ -79,7 +75,10 @@ void BTextEdit::insertFromMimeData( const QMimeData *source ){
                 imageformat.setWidth(image_size_dialog.getWidth());
                 cursor.insertImage(imageformat);
                 image_list.append(des_file);
+          }else {
+              QTextEdit::insertFromMimeData(source);
           }
+
 
 }
 void BTextEdit::replyFinished(QNetworkReply* reply){

@@ -28,6 +28,7 @@
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
 #include <global_define.h>
+#include "Smtp/SmtpMime"
 namespace Ui {
 class EISmain;
 }
@@ -75,6 +76,8 @@ public slots:
 
     void ftp_rawCommandReply(int a, QString data);
 
+    void send_email();
+
 private slots:
     void on_select_process_currentIndexChanged(const QString &arg1);
 
@@ -108,11 +111,10 @@ private slots:
 
     void on_content_big_view_clicked();
 
-
-
     void on_print_btn_clicked();
 
     void on_modify_btn_clicked();
+
 
 private:
     void closeEvent(QCloseEvent *event);

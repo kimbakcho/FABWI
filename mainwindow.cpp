@@ -30,20 +30,7 @@ void MainWindow::on_actionEISystem_triggered()
 
 void MainWindow::on_actionMessage_triggered()
 {
-//    QNetworkRequest sendformat;
-//    QUrlQuery postData;
-//    postData.addQueryItem("user", "vngkgk624");
-//    postData.addQueryItem("password", "super624");
-//    postData.addQueryItem("to", "01040988663");
-//    postData.addQueryItem("from", "01040988663");
-//    postData.addQueryItem("text", "hello");
 
-//    sendformat.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
-
-//    sendformat.setUrl(QUrl("http://api.coolsms.co.kr/sendmsg"));
-
-//    manager->post(sendformat,postData.toString(QUrl::FullyEncoded).toUtf8());
-    SmtpClient smtp("mail.wisol.co.kr", 110, SmtpClient::SslConnection);
 
 }
 
@@ -82,5 +69,51 @@ void MainWindow::on_infrom_entet_btn_clicked()
 void MainWindow::on_testbtn_clicked()
 {
 
+    //mail example code
+    SmtpClient smtp("mx.info.wisol.co.kr", 25, SmtpClient::TcpConnection);
+
+    MimeMessage message;
+
+    EmailAddress sender("bhkim@wisol.co.kr", "beckho");
+    message.setSender(&sender);
+
+    EmailAddress to("bhkim@wisol.co.kr", "beckho");
+    message.addRecipient(&to);
+
+    message.setSubject("SmtpClient for Qt - Demo");
+    MimeHtml html;
+
+    html.setHtml("<h1> Hello! </h1>"
+                 "<h2> This is the first image </h2>");
+
+    MimeInlineFile image1 (new QFile("1111.png"));
+
+    image1.setContentId("image1");
+    image1.setContentType("image/png");
+
+
+    message.addPart(&html);
+    message.addPart(&image1);
+
+
+    if (!smtp.connectToHost()) {
+        qDebug() << "Failed to connect to host!" << endl;
+    }
+    if (!smtp.sendMail(message)) {
+        qDebug() << "Failed to send mail!" << endl;
+
+    }
+    smtp.quit();
+
+}
+
+void MainWindow::mail_contionfail(QByteArray msg)
+{
+    qDebug()<<msg;
+}
+
+void MainWindow::mail_fail(int a, int b, QByteArray msg)
+{
+    qDebug()<<msg;
 }
 

@@ -9,6 +9,8 @@
 #include <QNetworkReply>
 #include <QUrlQuery>
 #include <server_setting.h>
+#include "Smtp/SmtpMime"
+
 namespace Ui {
 class MainWindow;
 }
@@ -35,6 +37,9 @@ private slots:
     void on_infrom_entet_btn_clicked();
 
     void on_testbtn_clicked();
+
+    void mail_contionfail(QByteArray msg);
+    void mail_fail(int a,int b,QByteArray msg);
 
 private:
     void closeEvent(QCloseEvent *event);

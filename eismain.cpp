@@ -291,6 +291,9 @@ void EISmain::on_add_button_clicked()
     }else {
         complete = "2";
     }
+//    send_email();
+
+    send_email();
     QString insert_query = QString("INSERT INTO EIS_document ("
                                    "`idx`,"
                                    "`team`,"
@@ -345,6 +348,10 @@ void EISmain::on_add_button_clicked()
         query.next();
         content_edit->setHtml(query.value("content_basc_form").toString());
 
+        content_edit->image_list.clear();
+
+
+
         msg.setText("add complete");
 
         msg.exec();
@@ -370,6 +377,74 @@ void EISmain::ftp_listInfo(QUrlInfo urlInfo)
 void EISmain::ftp_rawCommandReply(int a, QString data)
 {
     //    qDebug()<<"ftp data = "<<data;
+}
+
+void EISmain::send_email()
+{
+    SmtpClient smtp("mx.info.wisol.co.kr", 25, SmtpClient::TcpConnection);
+
+    MimeMessage message;
+
+    EmailAddress sender("bhkim@wisol.co.kr", "beckho");
+    message.setSender(&sender);
+
+    EmailAddress to("bhkim@wisol.co.kr", "beckho");
+    message.addRecipient(&to);
+
+    message.setSubject("SmtpClient for Qt - Demo");
+    MimeHtml html;
+
+    QTextEdit edit;
+
+    QTextTable *table1 = edit.textCursor().insertTable(2,6);
+
+    table1->cellAt(0,0).firstCursorPosition().insertText(tr("team"));
+    table1->cellAt(1,0).firstCursorPosition().insertText(ui->select_team->currentText());
+    table1->cellAt(0,1).firstCursorPosition().insertText(tr("process"));
+    table1->cellAt(1,1).firstCursorPosition().insertText(ui->select_process->currentText());
+    table1->cellAt(0,2).firstCursorPosition().insertText(tr("facilities"));
+    table1->cellAt(1,2).firstCursorPosition().insertText(ui->select_facilities->currentText());
+    table1->cellAt(0,3).firstCursorPosition().insertText(tr("witer_name"));
+    table1->cellAt(1,3).firstCursorPosition().insertText(ui->select_name->currentText());
+    table1->cellAt(0,4).firstCursorPosition().insertText(tr("change_have"));
+    if(ui->radio_btn_change_exist->isChecked()){
+        table1->cellAt(1,4).firstCursorPosition().insertText(tr("have"));
+    }else {
+        table1->cellAt(1,4).firstCursorPosition().insertText(tr("don't have"));
+    }
+    table1->cellAt(0,5).firstCursorPosition().insertText(tr("complete"));
+    if(ui->complete->isChecked()){
+        table1->cellAt(1,5).firstCursorPosition().insertText(tr("have"));
+    }else {
+        table1->cellAt(1,5).firstCursorPosition().insertText(tr("don't have"));
+    }
+    edit.textCursor().insertText("\n");
+
+    QTextTable *table2 = edit.textCursor().insertTable(1,2);
+    table2->cellAt(0,0).firstCursorPosition().insertText(tr("subname"));
+    table2->cellAt(0,1).firstCursorPosition().insertText(ui->document_name->text());
+
+    QString send_mail_html  = content_edit->toHtml();
+
+    QString change_image_url_before = qApp->applicationDirPath()+"/temp/EIS/img";
+    QString change_image_url_After = "http://10.20.10.230/img";
+
+    send_mail_html.replace("file:///"+change_image_url_before,change_image_url_After);
+    qDebug()<<send_mail_html;
+    edit.textCursor().insertHtml(send_mail_html);
+
+    html.setHtml(edit.toHtml());
+
+    message.addPart(&html);
+
+    if (!smtp.connectToHost()) {
+        qDebug() << "Failed to connect to host!" << endl;
+    }
+    if (!smtp.sendMail(message)) {
+        qDebug() << "Failed to send mail!" << endl;
+
+    }
+    smtp.quit();
 }
 
 void EISmain::on_attach_btn_clicked()
@@ -737,3 +812,5 @@ void EISmain::closeEvent(QCloseEvent *event)
     ftp->deleteLater();
     content_edit->deleteLater();
 }
+
+
