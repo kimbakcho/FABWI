@@ -11,8 +11,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = main
 TEMPLATE = app
 
-LIBS += -lSMTPEmail
-
 TRANSLATIONS += lang_ko.ts
 
 RC_FILE = myapp.rc
