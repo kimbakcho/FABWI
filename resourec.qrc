@@ -6,6 +6,9 @@
         <file>img/checked_checkbox.png</file>
         <file>img/unchecked_checkbox.png</file>
         <file>img/icon.png.ico</file>
+        <file>img/slideshow_survey.jpg</file>
+        <file>img/infrombutton_off.png</file>
+        <file>img/infrombutton_on.png</file>
     </qresource>
     <qresource prefix="/etc">
         <file>myapp.rc</file>

@@ -72,3 +72,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
     }
 
 }
+
+void MainWindow::on_infrom_entet_btn_clicked()
+{
+    EISmain *eismain = new EISmain();
+    eismain->show();
+}

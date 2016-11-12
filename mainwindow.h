@@ -33,6 +33,8 @@ private slots:
 
     void on_action_server_setting_triggered();
 
+    void on_infrom_entet_btn_clicked();
+
 private:
     void closeEvent(QCloseEvent *event);
     Ui::MainWindow *ui;
