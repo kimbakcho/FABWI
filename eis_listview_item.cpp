@@ -1,6 +1,6 @@
 #include "eis_listview_item.h"
 #include "ui_eis_listview_item.h"
-
+#include <eis_list_view.h>
 EIS_listview_item::EIS_listview_item(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::EIS_listview_item)
@@ -187,9 +187,9 @@ EIS_listview_item::EIS_listview_item(QString doc_data, QWidget *parent) :
     }else {
         ui->no_complete->setChecked(true);
     }
-
-    content_edit->setHtml(query_base_data.value("content").toString());
-
+    QString content_change = query_base_data.value("content").toString();
+    content_change.replace("server_image_change_part_temp",qApp->applicationDirPath());
+    content_edit->setHtml(content_change);
 
     QSqlQuery query_history_data(db);
     query_txt = QString("select write_time,witer_name from EIS_document where idx = '%1' ORDER BY `write_time` desc").arg(doc_number_str);
@@ -205,6 +205,7 @@ EIS_listview_item::EIS_listview_item(QString doc_data, QWidget *parent) :
         ui->table_save_histroy->setCellWidget(row_count,1,new QLabel(query_history_data.value("witer_name")
                                                                      .toString()));
     }
+
 
 }
 
@@ -390,7 +391,10 @@ void EIS_listview_item::on_modify_button_clicked()
     QString process = ui->select_process->currentText();
     QString write_name = ui->select_name->currentText();
     QString facilities_name = ui->select_facilities->currentText();
-    QString content = content_edit->tosqlhtml();
+    QString content_change = content_edit->tosqlhtml();
+
+    content_change.replace(qApp->applicationDirPath(),"server_image_change_part_temp");
+    QString content = content_change;
 
     QString attach_file_list;
     QStringList total_img_list;
@@ -502,4 +506,16 @@ void EIS_listview_item::on_print_button_clicked()
     edit.print(&printer);
 
     dialog->deleteLater();
+}
+
+void EIS_listview_item::on_table_save_histroy_cellDoubleClicked(int row, int column)
+{
+         QLabel *LE_time = (QLabel *)ui->table_save_histroy->cellWidget(row,0);
+         QStringList check_list;
+         QString number_doc = QString("%1").arg(doc_number);
+         number_doc = number_doc + "/"+LE_time->text();
+         check_list.append(number_doc);
+         Eis_list_view *list_view = new Eis_list_view(check_list);
+         list_view->modify_button_show(false);
+         list_view->show();
 }

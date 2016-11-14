@@ -66,46 +66,46 @@ void MainWindow::on_infrom_entet_btn_clicked()
     eismain->show();
 }
 
-void MainWindow::on_testbtn_clicked()
-{
+//void MainWindow::on_testbtn_clicked()
+//{
 
-    //mail example code
-    SmtpClient smtp("mx.info.wisol.co.kr", 25, SmtpClient::TcpConnection);
+//    //mail example code
+//    SmtpClient smtp("mx.info.wisol.co.kr", 25, SmtpClient::TcpConnection);
 
-    MimeMessage message;
+//    MimeMessage message;
 
-    EmailAddress sender("bhkim@wisol.co.kr", "beckho");
-    message.setSender(&sender);
+//    EmailAddress sender("bhkim@wisol.co.kr", "beckho");
+//    message.setSender(&sender);
 
-    EmailAddress to("bhkim@wisol.co.kr", "beckho");
-    message.addRecipient(&to);
+//    EmailAddress to("bhkim@wisol.co.kr", "beckho");
+//    message.addRecipient(&to);
 
-    message.setSubject("SmtpClient for Qt - Demo");
-    MimeHtml html;
+//    message.setSubject("SmtpClient for Qt - Demo");
+//    MimeHtml html;
 
-    html.setHtml("<h1> Hello! </h1>"
-                 "<h2> This is the first image </h2>");
+//    html.setHtml("<h1> Hello! </h1>"
+//                 "<h2> This is the first image </h2>");
 
-    MimeInlineFile image1 (new QFile("1111.png"));
+//    MimeInlineFile image1 (new QFile("1111.png"));
 
-    image1.setContentId("image1");
-    image1.setContentType("image/png");
-
-
-    message.addPart(&html);
-    message.addPart(&image1);
+//    image1.setContentId("image1");
+//    image1.setContentType("image/png");
 
 
-    if (!smtp.connectToHost()) {
-        qDebug() << "Failed to connect to host!" << endl;
-    }
-    if (!smtp.sendMail(message)) {
-        qDebug() << "Failed to send mail!" << endl;
+//    message.addPart(&html);
+//    message.addPart(&image1);
 
-    }
-    smtp.quit();
 
-}
+//    if (!smtp.connectToHost()) {
+//        qDebug() << "Failed to connect to host!" << endl;
+//    }
+//    if (!smtp.sendMail(message)) {
+//        qDebug() << "Failed to send mail!" << endl;
+
+//    }
+//    smtp.quit();
+
+//}
 
 void MainWindow::mail_contionfail(QByteArray msg)
 {

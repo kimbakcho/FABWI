@@ -16,6 +16,7 @@
 #include <global_define.h>
 #include <QPrinter>
 #include <QPrintDialog>
+
 namespace Ui {
 class EIS_listview_item;
 }
@@ -74,6 +75,8 @@ private slots:
     void on_total_view_content_clicked();
 
     void on_print_button_clicked();
+
+    void on_table_save_histroy_cellDoubleClicked(int row, int column);
 
 private:
 

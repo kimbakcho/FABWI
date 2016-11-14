@@ -29,6 +29,7 @@
 #include <QPrintPreviewDialog>
 #include <global_define.h>
 #include "Smtp/SmtpMime"
+#include <QCompleter>
 namespace Ui {
 class EISmain;
 }
@@ -114,6 +115,7 @@ private slots:
     void on_print_btn_clicked();
 
     void on_modify_btn_clicked();
+
 
 
 private:

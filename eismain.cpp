@@ -107,8 +107,8 @@ EISmain::EISmain(QWidget *parent) :
     query.next();
     content_edit->setHtml(query.value("content_basc_form").toString());
 
-    on_search_button_clicked();
 
+    on_search_button_clicked();
 }
 
 EISmain::~EISmain()
@@ -119,7 +119,7 @@ EISmain::~EISmain()
 
 
 void EISmain::header_click(int data){
-    qDebug()<<"test";
+
 }
 
 void EISmain::time_update_out()
@@ -266,7 +266,10 @@ void EISmain::on_add_button_clicked()
     QString process = ui->select_process->currentText();
     QString write_name = ui->select_name->currentText();
     QString facilities_name = ui->select_facilities->currentText();
-    QString content = content_edit->tosqlhtml();
+    QString content_change = content_edit->tosqlhtml();
+
+    content_change.replace(qApp->applicationDirPath(),"server_image_change_part_temp");
+    QString content = content_change;
 
     QString attach_file_list;
     QStringList total_img_list;
@@ -293,7 +296,6 @@ void EISmain::on_add_button_clicked()
     }
 //    send_email();
 
-    send_email();
     QString insert_query = QString("INSERT INTO EIS_document ("
                                    "`idx`,"
                                    "`team`,"
@@ -430,7 +432,7 @@ void EISmain::send_email()
     QString change_image_url_After = "http://10.20.10.230/img";
 
     send_mail_html.replace("file:///"+change_image_url_before,change_image_url_After);
-    qDebug()<<send_mail_html;
+//    qDebug()<<send_mail_html;
     edit.textCursor().insertHtml(send_mail_html);
 
     html.setHtml(edit.toHtml());
@@ -553,7 +555,6 @@ void EISmain::on_font_type_currentTextChanged(const QString &arg1)
     QTextCharFormat charfotmet;
     charfotmet.setFont(mainfont,QTextCharFormat::FontPropertiesAll);
     content_edit->setCurrentCharFormat(charfotmet);
-
 }
 
 
@@ -612,8 +613,9 @@ void EISmain::on_search_button_clicked()
 {
     QSqlQuery query(db);
     QString query_txt = Return_search_query();
-    query_txt = query_txt + "ORDER BY `write_time` DESC";
+    query_txt.append(" ORDER BY `write_time` DESC");
     query.exec(query_txt);
+    QVector<int> idxlist;
     while(ui->search_listview->rowCount()!=0){
         ui->search_listview->removeRow(ui->search_listview->rowCount()-1);
     }
@@ -622,8 +624,15 @@ void EISmain::on_search_button_clicked()
     }
     itemlist.clear();
     while(query.next()){
+
         int rowcount = ui->search_listview->rowCount();
         EIS_serarch_item *item =new EIS_serarch_item;
+
+        if(idxlist.contains(query.value("idx").toInt())){
+           continue;
+        }else {
+            idxlist.append(query.value("idx").toInt());
+        }
         ui->search_listview->insertRow(rowcount);
         ui->search_listview->setCellWidget(rowcount,0,item->ui->select_doc);
 
@@ -726,6 +735,7 @@ QString EISmain::Return_search_query()
         query_txt.append(QString(" AND document_name LIKE \'%%1%\'").arg(ui->search_name_edit->text()));
     }
     return query_txt;
+
 }
 
 
@@ -812,5 +822,3 @@ void EISmain::closeEvent(QCloseEvent *event)
     ftp->deleteLater();
     content_edit->deleteLater();
 }
-
-

@@ -49,7 +49,13 @@ void BTextEdit::insertFromMimeData( const QMimeData *source ){
               cursor.insertImage(imageformat);
               image_list.append(output_filename);
           }else if(ispicture(source_text)){
-
+                if(source_text.indexOf('%',0)>0){
+                    QMessageBox msg;
+                    msg.setText(tr("no special input"));
+                    msg.addButton(QMessageBox::Ok);
+                    msg.exec();
+                    return ;
+                }
                 QFile source_file(outputpath(source_text),this);
                 QImage tempimage;
                 tempimage.load(outputpath(source_text));
