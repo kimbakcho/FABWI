@@ -13,6 +13,8 @@ TEMPLATE = app
 
 TRANSLATIONS += lang_ko.ts
 
+QMAKE_LFLAGS_DEBUG += /INCREMENTAL:NO
+
 RC_FILE = myapp.rc
 
 LIBS += -lSMTPEmail

@@ -457,6 +457,11 @@ void EIS_listview_item::on_modify_button_clicked()
                                    "'"+complete+"'"
                                    ");");
         query.exec(insert_query);
+        QMessageBox msg;
+        msg.addButton(QMessageBox::Ok);
+        msg.setText("modify complete");
+
+        msg.exec();
 }
 
 
@@ -517,5 +522,70 @@ void EIS_listview_item::on_table_save_histroy_cellDoubleClicked(int row, int col
          check_list.append(number_doc);
          Eis_list_view *list_view = new Eis_list_view(check_list);
          list_view->modify_button_show(false);
+         list_view->attach_button_show(false);
          list_view->show();
+}
+
+void EIS_listview_item::on_attach_btn_clicked()
+{
+    QFileDialog filedialog(this);
+    filedialog.setFileMode(QFileDialog::AnyFile);
+    filedialog.setViewMode(QFileDialog::Detail);
+    if(filedialog.exec()==QFileDialog::Accepted){
+        QString filename = filedialog.selectedFiles().at(0);
+        if(ftp->state()==QFtp::Unconnected){
+            ftp->connectToHost(server_ip,21);
+
+            ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
+            loop.exec();
+            ftp->setTransferMode(QFtp::Passive);
+        }
+        ftp->rawCommand("CWD /home/eis/attach");
+        loop.exec();
+        ftp->rawCommand(QString("MKD %1").arg(doc_number));
+        loop.exec();
+        ftp->rawCommand(QString("CWD /home/eis/attach/%1").arg(doc_number));
+        loop.exec();
+        QFile *source_file = new QFile(filename);
+        source_file->open(QFile::ReadWrite);
+        QString upload_filename = filename.split('/').last();
+        for(int i=0;i<attach_list_model->rowCount();i++){
+              QString item = attach_list_model->item(i)->text();
+              if(item == upload_filename){
+                    QString first_name = upload_filename.split(".").at(0)+"_t";
+                    QString Last_name;
+                    if(upload_filename.split('.').size()>=2){
+                        Last_name = "."+upload_filename.split(".").at(1);
+                    }
+                    upload_filename =first_name + Last_name;
+              }
+        }
+        ftp->put(source_file,upload_filename);
+        if(progressdialog == 0){
+            progressdialog = new QProgressDialog(this);
+        }
+        progressdialog->setLabelText("upload");
+        progressdialog->exec();
+        attach_list_model->insertRow(attach_list_model->rowCount(),
+                                     new QStandardItem(upload_filename));
+        source_file->close();
+    }
+}
+
+void EIS_listview_item::on_attach_remove_btn_clicked()
+{
+    QModelIndex index  = ui->attach_listview->currentIndex();
+//    QString select_file = index.data().toString();
+//    if(ftp->state()==QFtp::Unconnected){
+//        ftp->connectToHost(server_ip,21);
+
+//        ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
+//        loop.exec();
+//        ftp->setTransferMode(QFtp::Passive);
+//    }
+//    ftp->rawCommand(QString("CWD /home/eis/attach/%1").arg(doc_number));
+//    loop.exec();
+//    ftp->remove(select_file);
+//    loop.exec();
+    attach_list_model->removeRow(index.row());
 }

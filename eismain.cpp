@@ -698,6 +698,7 @@ void EISmain::on_search_listview_cellDoubleClicked(int row, int column)
     check_list.append(number_doc);
     Eis_list_view *list_view = new Eis_list_view(check_list);
     list_view->modify_button_show(false);
+    list_view->attach_button_show(false);
     list_view->show();
 }
 QString EISmain::Return_search_query()
@@ -753,6 +754,7 @@ void EISmain::on_total_view_btn_clicked()
     }
     Eis_list_view *list_view = new Eis_list_view(check_list);
     list_view->modify_button_show(false);
+    list_view->attach_button_show(false);
     list_view->show();
 }
 

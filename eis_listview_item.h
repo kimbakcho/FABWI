@@ -78,6 +78,10 @@ private slots:
 
     void on_table_save_histroy_cellDoubleClicked(int row, int column);
 
+    void on_attach_btn_clicked();
+
+    void on_attach_remove_btn_clicked();
+
 private:
 
 };
