@@ -549,6 +549,7 @@ void EISmain::on_fontsize_editingFinished()
     mainfont.setPointSize(ui->fontsize->value());
     QTextCharFormat charfotmet;
     charfotmet.setFont(mainfont,QTextCharFormat::FontPropertiesAll);
+    charfotmet.setForeground(content_edit->currentCharFormat().foreground());
     content_edit->setCurrentCharFormat(charfotmet);
 
 }
@@ -558,6 +559,7 @@ void EISmain::on_font_type_currentTextChanged(const QString &arg1)
     mainfont.setFamily(arg1);
     QTextCharFormat charfotmet;
     charfotmet.setFont(mainfont,QTextCharFormat::FontPropertiesAll);
+    charfotmet.setForeground(content_edit->currentCharFormat().foreground());
     content_edit->setCurrentCharFormat(charfotmet);
 }
 
@@ -863,6 +865,7 @@ void EISmain::on_Bold_btn_clicked()
     }
     QTextCharFormat charfotmet;
     charfotmet.setFont(mainfont,QTextCharFormat::FontPropertiesAll);
+    charfotmet.setForeground(content_edit->currentCharFormat().foreground());
     content_edit->setCurrentCharFormat(charfotmet);
 }
 
@@ -888,6 +891,7 @@ void EISmain::on_underline_btn_clicked()
     }
     QTextCharFormat charfotmet;
     charfotmet.setFont(mainfont,QTextCharFormat::FontPropertiesAll);
+    charfotmet.setForeground(content_edit->currentCharFormat().foreground());
     content_edit->setCurrentCharFormat(charfotmet);
 }
 
