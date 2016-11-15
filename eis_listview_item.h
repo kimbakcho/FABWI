@@ -16,7 +16,7 @@
 #include <global_define.h>
 #include <QPrinter>
 #include <QPrintDialog>
-
+#include <QColorDialog>
 namespace Ui {
 class EIS_listview_item;
 }
@@ -81,6 +81,12 @@ private slots:
     void on_attach_btn_clicked();
 
     void on_attach_remove_btn_clicked();
+
+    void on_Bold_btn_clicked();
+
+    void on_underline_btn_clicked();
+
+    void on_color_dialog_clicked();
 
 private:
 

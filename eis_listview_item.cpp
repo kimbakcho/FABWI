@@ -331,7 +331,10 @@ void EIS_listview_item::on_attach_listview_doubleClicked(const QModelIndex &inde
 
 void EIS_listview_item::on_total_view_content_clicked()
 {
-        EIS_big_view *big_view = new EIS_big_view(ui->content_label->text(),content_edit,ui->layout_content);
+    EIS_big_view *big_view = new EIS_big_view(ui->content_label->text(),content_edit,ui->font_type,
+                                              ui->fontsize,ui->Bold_btn,ui->underline_btn,
+                                              ui->now_color,ui->color_dialog,
+                                              ui->layout_content,ui->font_layout);
         big_view->show();
 }
 
@@ -588,4 +591,62 @@ void EIS_listview_item::on_attach_remove_btn_clicked()
 //    ftp->remove(select_file);
 //    loop.exec();
     attach_list_model->removeRow(index.row());
+}
+
+void EIS_listview_item::on_Bold_btn_clicked()
+{
+    QString current_stylesheet =  ui->Bold_btn->styleSheet();
+    bool current_bold;
+    if(current_stylesheet.indexOf("Bold_btn_activity.png")>0){
+        current_bold = true;
+    }else {
+        current_bold = false;
+    }
+    if(current_bold){
+        mainfont.setBold(false);
+        ui->Bold_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                    "	border-image:url(:/img/img/Bold_btn_inactivity.png)\n"
+                                    "}"));
+    }else {
+        mainfont.setBold(true);
+        ui->Bold_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                    "	border-image:url(:/img/img/Bold_btn_activity.png)\n"
+                                    "}"));
+    }
+    QTextCharFormat charfotmet;
+    charfotmet.setFont(mainfont,QTextCharFormat::FontPropertiesAll);
+    content_edit->setCurrentCharFormat(charfotmet);
+}
+
+void EIS_listview_item::on_underline_btn_clicked()
+{
+    QString current_stylesheet =  ui->underline_btn->styleSheet();
+    bool current_underline;
+    if(current_stylesheet.indexOf("under_line_activity.png")>0){
+        current_underline = true;
+    }else {
+        current_underline = false;
+    }
+    if(current_underline){
+        mainfont.setUnderline(false);
+        ui->underline_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                    "	border-image:url(:/img/img/under_line_inactivity.png)\n"
+                                    "}"));
+    }else {
+        mainfont.setUnderline(true);
+        ui->underline_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                    "	border-image:url(:/img/img/under_line_activity.png)\n"
+                                    "}"));
+    }
+    QTextCharFormat charfotmet;
+    charfotmet.setFont(mainfont,QTextCharFormat::FontPropertiesAll);
+    content_edit->setCurrentCharFormat(charfotmet);
+}
+void EIS_listview_item::on_color_dialog_clicked()
+{
+   QColor font_color = QColorDialog::getColor();
+   QTextCharFormat charfotmet;
+   charfotmet.setFont(mainfont,QTextCharFormat::FontPropertiesAll);
+   charfotmet.setForeground(QBrush(font_color));
+   content_edit->setCurrentCharFormat(charfotmet);
 }

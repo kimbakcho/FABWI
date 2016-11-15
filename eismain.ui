@@ -34,8 +34,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>662</width>
-            <height>176</height>
+            <width>1030</width>
+            <height>844</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_8">
@@ -500,7 +500,7 @@
             </layout>
            </item>
            <item row="6" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <layout class="QHBoxLayout" name="font_layout">
              <item>
               <widget class="QFontComboBox" name="font_type">
                <property name="sizePolicy">
@@ -528,7 +528,80 @@
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_5">
+              <widget class="QPushButton" name="Bold_btn">
+               <property name="minimumSize">
+                <size>
+                 <width>30</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+	border-image: url(:/img/img/Bold_btn_inactivity.png);
+}</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="underline_btn">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>30</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+	border-image: url(:/img/img/under_line_inactivity.png);
+}</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normalon>:/img/img/underline.png</normalon>
+                </iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="now_color">
+               <property name="minimumSize">
+                <size>
+                 <width>20</width>
+                 <height>10</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>    </string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="color_dialog">
+               <property name="text">
+                <string>색상</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="font_space">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -691,7 +764,7 @@
                 <enum>Qt::LeftToRight</enum>
                </property>
                <property name="text">
-                <string>추가</string>
+                <string>등록</string>
                </property>
               </widget>
              </item>

@@ -9,6 +9,10 @@
         <file>img/slideshow_survey.jpg</file>
         <file>img/infrombutton_off.png</file>
         <file>img/infrombutton_on.png</file>
+        <file>img/Bold_btn_activity.png</file>
+        <file>img/Bold_btn_inactivity.png</file>
+        <file>img/under_line_activity.png</file>
+        <file>img/under_line_inactivity.png</file>
     </qresource>
     <qresource prefix="/etc">
         <file>myapp.rc</file>

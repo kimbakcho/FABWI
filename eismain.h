@@ -30,6 +30,7 @@
 #include <global_define.h>
 #include "Smtp/SmtpMime"
 #include <QCompleter>
+#include <QColorDialog>
 namespace Ui {
 class EISmain;
 }
@@ -117,6 +118,12 @@ private slots:
     void on_modify_btn_clicked();
 
 
+
+    void on_Bold_btn_clicked();
+
+    void on_underline_btn_clicked();
+
+    void on_color_dialog_clicked();
 
 private:
     void closeEvent(QCloseEvent *event);

@@ -357,6 +357,10 @@ void EISmain::on_add_button_clicked()
         msg.setText("add complete");
 
         msg.exec();
+
+        ui->search_end_time->setDateTime(QDateTime::currentDateTime());
+
+        on_search_button_clicked();
 }
 
 void EISmain::ftpCommandFinished(int commandId, bool error)
@@ -560,7 +564,10 @@ void EISmain::on_font_type_currentTextChanged(const QString &arg1)
 
 void EISmain::on_content_big_view_clicked()
 {
-    EIS_big_view *big_view = new EIS_big_view(ui->content_label->text(),content_edit,ui->layout_content);
+    EIS_big_view *big_view = new EIS_big_view(ui->content_label->text(),content_edit,ui->font_type,
+                                              ui->fontsize,ui->Bold_btn,ui->underline_btn,
+                                              ui->now_color,ui->color_dialog,
+                                              ui->layout_content,ui->font_layout);
     big_view->show();
 }
 
@@ -819,8 +826,76 @@ void EISmain::on_modify_btn_clicked()
 
 void EISmain::closeEvent(QCloseEvent *event)
 {
-    progressdialog->deleteLater();
-    attach_list_model->deleteLater();
-    ftp->deleteLater();
-    content_edit->deleteLater();
+    QMessageBox::StandardButton resBtn = QMessageBox::question( this, "EIS",
+                                                                 tr("Are you sure?\n"),
+                                                                 QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
+                                                                 QMessageBox::Yes);
+     if (resBtn != QMessageBox::Yes) {
+         event->ignore();
+     } else {
+         event->accept();
+         progressdialog->deleteLater();
+         attach_list_model->deleteLater();
+         ftp->deleteLater();
+         content_edit->deleteLater();
+     }
+}
+
+void EISmain::on_Bold_btn_clicked()
+{
+    QString current_stylesheet =  ui->Bold_btn->styleSheet();
+    bool current_bold;
+    if(current_stylesheet.indexOf("Bold_btn_activity.png")>0){
+        current_bold = true;
+    }else {
+        current_bold = false;
+    }
+    if(current_bold){
+        mainfont.setBold(false);
+        ui->Bold_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                    "	border-image:url(:/img/img/Bold_btn_inactivity.png)\n"
+                                    "}"));
+    }else {
+        mainfont.setBold(true);
+        ui->Bold_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                    "	border-image:url(:/img/img/Bold_btn_activity.png)\n"
+                                    "}"));
+    }
+    QTextCharFormat charfotmet;
+    charfotmet.setFont(mainfont,QTextCharFormat::FontPropertiesAll);
+    content_edit->setCurrentCharFormat(charfotmet);
+}
+
+void EISmain::on_underline_btn_clicked()
+{
+    QString current_stylesheet =  ui->underline_btn->styleSheet();
+    bool current_underline;
+    if(current_stylesheet.indexOf("under_line_activity.png")>0){
+        current_underline = true;
+    }else {
+        current_underline = false;
+    }
+    if(current_underline){
+        mainfont.setUnderline(false);
+        ui->underline_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                    "	border-image:url(:/img/img/under_line_inactivity.png)\n"
+                                    "}"));
+    }else {
+        mainfont.setUnderline(true);
+        ui->underline_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                    "	border-image:url(:/img/img/under_line_activity.png)\n"
+                                    "}"));
+    }
+    QTextCharFormat charfotmet;
+    charfotmet.setFont(mainfont,QTextCharFormat::FontPropertiesAll);
+    content_edit->setCurrentCharFormat(charfotmet);
+}
+
+void EISmain::on_color_dialog_clicked()
+{
+   QColor font_color = QColorDialog::getColor();
+   QTextCharFormat charfotmet;
+   charfotmet.setFont(mainfont,QTextCharFormat::FontPropertiesAll);
+   charfotmet.setForeground(QBrush(font_color));
+   content_edit->setCurrentCharFormat(charfotmet);
 }

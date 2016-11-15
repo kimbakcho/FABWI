@@ -96,17 +96,64 @@ void BTextEdit::b_text_cursor_change()
     if(textCursor().selection().toPlainText()==""){
         QString objname = parent_widget->objectName();
         if(objname == "EISmain"){
+
             EISmain *eismain = (EISmain *)parent_widget;
             int size = currentCharFormat().font().pointSize();
             QString font_family =currentCharFormat().font().family();
             eismain->ui->fontsize->setValue(size);
             eismain->ui->font_type->setCurrentText(font_family);
+            if(currentCharFormat().font().bold()){
+                eismain->ui->Bold_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                            "	border-image:url(:/img/img/Bold_btn_activity.png)\n"
+                                            "}"));
+            }else {
+                eismain->ui->Bold_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                            "	border-image:url(:/img/img/Bold_btn_inactivity.png)\n"
+                                            "}"));
+
+            }
+            if(currentCharFormat().font().underline()){
+                eismain->ui->underline_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                            "	border-image:url(:/img/img/under_line_activity.png)\n"
+                                            "}"));
+            }else {
+                eismain->ui->underline_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                            "	border-image:url(:/img/img/under_line_inactivity.png)\n"
+                                            "}"));
+
+            }
+            QColor font_color = currentCharFormat().foreground().color();
+            eismain->ui->now_color->setStyleSheet(QString("background-color : %1").arg(font_color.name()));
+
         }else if (objname == "EIS_listview_item"){
             EIS_listview_item *eis_listview_item = (EIS_listview_item *)parent_widget;
             int size = currentCharFormat().font().pointSize();
             QString font_family =currentCharFormat().font().family();
             eis_listview_item->ui->fontsize->setValue(size);
             eis_listview_item->ui->font_type->setCurrentText(font_family);
+            if(currentCharFormat().font().bold()){
+                eis_listview_item->ui->Bold_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                            "	border-image:url(:/img/img/Bold_btn_activity.png)\n"
+                                            "}"));
+            }else {
+                eis_listview_item->ui->Bold_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                            "	border-image:url(:/img/img/Bold_btn_inactivity.png)\n"
+                                            "}"));
+
+            }
+            if(currentCharFormat().font().underline()){
+                eis_listview_item->ui->underline_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                            "	border-image:url(:/img/img/under_line_activity.png)\n"
+                                            "}"));
+            }else {
+                eis_listview_item->ui->underline_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                            "	border-image:url(:/img/img/under_line_inactivity.png)\n"
+                                            "}"));
+
+            }
+            QColor font_color = currentCharFormat().foreground().color();
+            eis_listview_item->ui->now_color->setStyleSheet(QString("background-color : %1").arg(font_color.name()));
+
         }
     }
 }

@@ -42,6 +42,9 @@ void MainWindow::on_action_server_setting_triggered()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+
+
+
     QString temp_dir_path = qApp->applicationDirPath()+"/temp/EIS/img/";
     QDir tempdir(temp_dir_path);
     QStringList dir_list = tempdir.entryList();
