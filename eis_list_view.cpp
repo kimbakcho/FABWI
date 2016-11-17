@@ -41,11 +41,20 @@ void Eis_list_view::modify_button_show(bool choice)
     }
 }
 
+
 void Eis_list_view::attach_button_show(bool choice)
 {
     for(int i=0;i<item_list.count();i++){
         item_list.at(i)->ui->attach_btn->setVisible(choice);
         item_list.at(i)->ui->attach_remove_btn->setVisible(choice);
+    }
+}
+
+void Eis_list_view::worktime_readonly_mode(bool choice)
+{
+    for(int i=0;i<item_list.count();i++){
+        item_list.at(i)->ui->workstart_time->setReadOnly(false);
+        item_list.at(i)->ui->workend_time->setReadOnly(false);
     }
 }
 

@@ -162,9 +162,14 @@ EISmain::EISmain(QWidget *parent) :
     query.next();
     alarm_content_edit->setHtml(query.value("alarm_content_base_from").toString());
 
+    ui->workstart_time->setDate(QDate::currentDate());
+    ui->workend_time->setDate(QDate::currentDate());
+
     on_search_button_clicked();
 
     search_alarm_logic();
+
+
 
 }
 
@@ -592,7 +597,9 @@ void EISmain::on_add_button_clicked()
                                    "`content`,"
                                    "`downloadimg`,"
                                    "`attach_file_list`,"
-                                   "`complete`"
+                                   "`complete`,"
+                                   "`worktime_start`,"
+                                   "`worktime_end`"
                                    ") "
                                    "VALUES ("
                                    "'"+QString("%1").arg(doc_number)+"',"
@@ -607,7 +614,9 @@ void EISmain::on_add_button_clicked()
                                    "'"+content+"',"
                                    "'"+total_img_txt+"',"
                                    "'"+attach_file_list+"',"
-                                   "'"+complete+"'"
+                                   "'"+complete+"',"
+                                   "'"+ui->workstart_time->dateTime().toString("yyyy-MM-dd HH:mm:ss")+"',"
+                                   "'"+ui->workend_time->dateTime().toString("yyyy-MM-dd HH:mm:ss")+"'"
                                    ");");
         query.exec(insert_query);
 
@@ -634,6 +643,11 @@ void EISmain::on_add_button_clicked()
         content_edit->setHtml(query.value("content_basc_form").toString());
 
         content_edit->image_list.clear();
+
+        ui->workstart_time->setDate(QDate::currentDate());\
+        ui->workstart_time->setTime(QTime(0,0,0));
+        ui->workend_time->setDate(QDate::currentDate());
+        ui->workend_time->setTime(QTime(0,0,0));
 
         msg.setText(tr("add complete"));
 
@@ -1223,7 +1237,7 @@ void EISmain::search_alarm_logic()
     }
     alarm_itemlist.clear();
     if(!ui->alarm_search_apply->isChecked()){
-        QString query_txt = "select * from EIS_alarm_document order by priority desc, write_time desc";
+        QString query_txt = "select * from EIS_alarm_document where delete_have = 0 order by priority desc, write_time desc";
         query.exec(query_txt);
         while(query.next()){
             int rowcount = ui->alarm_search_listview->rowCount();
@@ -1300,6 +1314,7 @@ void EISmain::on_alarm_search_listview_cellDoubleClicked(int row, int column)
     number_doc = number_doc+"/"+write_time;
     check_list.append(number_doc);
     eis_alarmlistview_item *view = new eis_alarmlistview_item(number_doc);
+    connect(view,SIGNAL(update_alarm_data()),this,SLOT(alarm_search_loop()));
     view->show();
 
 }
@@ -1319,7 +1334,7 @@ QString EISmain::Return_search_query()
         query_txt.append(QString(" AND facilities_name = \'%1\'").arg(ui->search_select_facilities->currentText()));
     }
     if(ui->search_select_name->currentText()!=""){
-        query_txt.append(QString(" AND witer_name = \'%1\'").arg(ui->search_select_name->currentText()));
+        query_txt.append(QString(" AND witer_name LIkE \'%%1%\'").arg(ui->search_select_name->currentText()));
     }
     if(ui->search_change_have->currentText()!=""){
         if(ui->search_change_have->currentText()==tr("O")){
@@ -1419,6 +1434,8 @@ void EISmain::on_modify_btn_clicked()
     check_list.append(number_doc);
     Eis_list_view *list_view = new Eis_list_view(check_list);
     list_view->show();
+    list_view->worktime_readonly_mode(false);
+
 }
 
 void EISmain::closeEvent(QCloseEvent *event)

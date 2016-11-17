@@ -21,6 +21,7 @@ public:
     void resizeEvent(QResizeEvent *event);
     void modify_button_show(bool choice);
     void attach_button_show(bool choice);
+    void worktime_readonly_mode(bool choice);
     ~Eis_list_view();
 
 private:

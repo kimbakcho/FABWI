@@ -206,6 +206,8 @@ EIS_listview_item::EIS_listview_item(QString doc_data, QWidget *parent) :
         ui->table_save_histroy->setCellWidget(row_count,1,new QLabel(query_history_data.value("witer_name")
                                                                      .toString()));
     }
+    ui->workstart_time->setDateTime(query_base_data.value("worktime_start").toDateTime());
+    ui->workend_time->setDateTime(query_base_data.value("worktime_end").toDateTime());
 
 
 }

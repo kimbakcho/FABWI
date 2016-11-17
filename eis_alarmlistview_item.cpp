@@ -639,3 +639,22 @@ eis_alarmlistview_item::~eis_alarmlistview_item()
 {
     delete ui;
 }
+
+void eis_alarmlistview_item::on_delete_btn_clicked()
+{
+    EIS_delete_dialog dialog;
+    int reslut = dialog.exec();
+    if(reslut == QDialog::Accepted && dialog.getPassword_alright()){
+        QSqlQuery query(db);
+        query.exec(QString("UPDATE `EIS_alarm_document` SET `delete_have`='1' where `idx`= %1").arg(doc_number));
+        emit update_alarm_data();
+        QMessageBox msg;
+        msg.addButton(QMessageBox::Ok);
+        msg.setText(tr("delete complete"));
+        msg.exec();
+        close();
+
+    }else {
+
+    }
+}

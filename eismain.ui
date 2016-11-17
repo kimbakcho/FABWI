@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -534,7 +534,7 @@
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
-       <string>인폼쓰기</string>
+       <string>인폼작성</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
@@ -737,6 +737,40 @@
                   </size>
                  </property>
                 </spacer>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_29">
+                 <property name="text">
+                  <string>작업 시간  시작</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDateTimeEdit" name="workstart_time">
+                 <property name="displayFormat">
+                  <string>yyyy-MM-dd HH:mm:ss</string>
+                 </property>
+                 <property name="calendarPopup">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_30">
+                 <property name="text">
+                  <string>종료</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDateTimeEdit" name="workend_time">
+                 <property name="displayFormat">
+                  <string>yyyy-MM-dd HH:mm:ss</string>
+                 </property>
+                 <property name="calendarPopup">
+                  <bool>true</bool>
+                 </property>
+                </widget>
                </item>
                <item>
                 <widget class="QPushButton" name="print_btn">
@@ -1077,7 +1111,7 @@
      </widget>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
-       <string>알람쓰기</string>
+       <string>공지사항 작성</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_12">
        <item row="0" column="0">

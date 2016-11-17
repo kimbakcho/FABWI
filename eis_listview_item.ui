@@ -206,6 +206,46 @@
           </spacer>
          </item>
          <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>작업 시간 시작</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDateTimeEdit" name="workstart_time">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+           <property name="displayFormat">
+            <string>yyyy-MM-dd HH:mm:ss</string>
+           </property>
+           <property name="calendarPopup">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>종료</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDateTimeEdit" name="workend_time">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+           <property name="displayFormat">
+            <string>yyyy-MM-dd HH:mm:ss</string>
+           </property>
+           <property name="calendarPopup">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="print_button">
            <property name="text">
             <string>프린터</string>

@@ -17,6 +17,7 @@
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QColorDialog>
+#include <eis_delete_dialog.h>
 
 namespace Ui {
 class eis_alarmlistview_item;
@@ -46,6 +47,10 @@ public:
 
     Ui::eis_alarmlistview_item *ui;
     ~eis_alarmlistview_item();
+
+
+
+
 public slots:
     void ftpCommandFinished(int commandId, bool error);
 
@@ -54,6 +59,9 @@ public slots:
     void ftp_listInfo(QUrlInfo urlInfo);
 
     void ftp_rawCommandReply(int a, QString data);
+
+signals:
+    void update_alarm_data();
 
 private slots:
     void on_select_team_currentIndexChanged(const QString &arg1);
@@ -85,6 +93,8 @@ private slots:
     void on_color_dialog_clicked();
 
 
+
+    void on_delete_btn_clicked();
 
 private:
 
