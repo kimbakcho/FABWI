@@ -92,9 +92,16 @@
     </property>
     <addaction name="action_server_setting"/>
    </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>기타</string>
+    </property>
+    <addaction name="actionV_1_1"/>
+   </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
    <addaction name="menu_3"/>
+   <addaction name="menu_4"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -128,6 +135,11 @@
   <action name="action_server_setting">
    <property name="text">
     <string>서버설정</string>
+   </property>
+  </action>
+  <action name="actionV_1_1">
+   <property name="text">
+    <string>V 1.1</string>
    </property>
   </action>
  </widget>
