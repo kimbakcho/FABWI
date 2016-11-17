@@ -13,6 +13,7 @@ Eis_list_view::Eis_list_view(QStringList check_list,QWidget *parent) :
     ui(new Ui::Eis_list_view)
 {
     ui->setupUi(this);
+    this->setWindowState(Qt::WindowMaximized);
     for(int i=0;i<check_list.count();i++){
         QString src_value = check_list.at(i);
         QString doc_number = src_value.split("/").at(0);

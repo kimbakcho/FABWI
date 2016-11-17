@@ -6,7 +6,7 @@ Server_setting::Server_setting(QWidget *parent) :
     ui(new Ui::Server_setting)
 {
     ui->setupUi(this);
-    QString configini_str = "server.ini";
+    QString configini_str = qApp->applicationDirPath()+"/server.ini";
     QSettings settings(configini_str,QSettings::IniFormat);
     settings.beginGroup("setverset");
     ui->LE_server_ip->setText(settings.value("serverip").toString());
@@ -27,7 +27,7 @@ void Server_setting::closeEvent(QCloseEvent *)
 
 void Server_setting::on_buttonBox_accepted()
 {
-    QString configini_str = "server.ini";
+    QString configini_str = qApp->applicationDirPath()+"/server.ini";
     QSettings settings(configini_str,QSettings::IniFormat);
     settings.beginGroup("setverset");
     settings.setValue("serverip",ui->LE_server_ip->text());

@@ -61,6 +61,23 @@ void MainWindow::closeEvent(QCloseEvent *event)
         }
     }
 
+    QString temp_dir_path2 = qApp->applicationDirPath()+"/temp/EIS/alarmimg/";
+    QDir tempdir2(temp_dir_path2);
+    QStringList dir_list2 = tempdir2.entryList();
+    for(int i=0;i<dir_list2.size();i++){
+        if(dir_list2.at(i) != "." && dir_list2.at(i) != ".."){
+             QString rm_dir_path = temp_dir_path2+ dir_list2.at(i)+"/";
+             QDir rm_dir(rm_dir_path);
+             for(int j=0;j<rm_dir.entryList().size();j++){
+                if(rm_dir.entryList().at(j) != "." && rm_dir.entryList().at(j) != ".."){
+                    rm_dir.remove(rm_dir.entryList().at(j));
+                }
+             }
+             tempdir2.rmdir(dir_list2.at(i));
+        }
+    }
+
+
 }
 
 void MainWindow::on_infrom_entet_btn_clicked()

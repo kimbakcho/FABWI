@@ -4,7 +4,7 @@
 <context>
     <name>BTextEdit</name>
     <message>
-        <location filename="btextedit.cpp" line="54"/>
+        <location filename="btextedit.cpp" line="64"/>
         <source>no special input</source>
         <translation>파일에 특수문자 금지</translation>
     </message>
@@ -208,6 +208,91 @@ PR두께</source>
     </message>
 </context>
 <context>
+    <name>EIS_delete_dialog</name>
+    <message>
+        <location filename="eis_delete_dialog.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_delete_dialog.ui" line="30"/>
+        <source>패스워드 </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EIS_input_information</name>
+    <message>
+        <location filename="eis_input_information.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_input_information.ui" line="45"/>
+        <source>부서 추가</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_input_information.ui" line="55"/>
+        <location filename="eis_input_information.ui" line="100"/>
+        <location filename="eis_input_information.ui" line="159"/>
+        <location filename="eis_input_information.ui" line="194"/>
+        <source>추가</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_input_information.ui" line="66"/>
+        <source>공정 추가 </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_input_information.ui" line="73"/>
+        <location filename="eis_input_information.ui" line="114"/>
+        <location filename="eis_input_information.ui" line="177"/>
+        <source>부서</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_input_information.ui" line="86"/>
+        <location filename="eis_input_information.ui" line="121"/>
+        <source>공정</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_input_information.ui" line="128"/>
+        <source>설비</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_input_information.ui" line="152"/>
+        <source>설비 추가</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_input_information.ui" line="184"/>
+        <source>이름</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_input_information.ui" line="201"/>
+        <source>사원 추가</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_input_information.cpp" line="12"/>
+        <source>conntion false</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_input_information.cpp" line="63"/>
+        <location filename="eis_input_information.cpp" line="77"/>
+        <location filename="eis_input_information.cpp" line="90"/>
+        <location filename="eis_input_information.cpp" line="103"/>
+        <source>add complete</source>
+        <translation>등록 완료</translation>
+    </message>
+</context>
+<context>
     <name>EIS_listview_item</name>
     <message>
         <location filename="eis_listview_item.ui" line="14"/>
@@ -265,87 +350,72 @@ PR두께</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.ui" line="217"/>
-        <source>완료 여부</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="eis_listview_item.ui" line="223"/>
-        <source>완료</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="eis_listview_item.ui" line="230"/>
-        <source>미완료</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="eis_listview_item.ui" line="240"/>
+        <location filename="eis_listview_item.ui" line="211"/>
         <source>프린터</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.ui" line="257"/>
+        <location filename="eis_listview_item.ui" line="228"/>
         <source>제목</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.ui" line="281"/>
+        <location filename="eis_listview_item.ui" line="252"/>
         <source>부서</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.ui" line="301"/>
+        <location filename="eis_listview_item.ui" line="272"/>
         <source>공정</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.ui" line="321"/>
+        <location filename="eis_listview_item.ui" line="292"/>
         <source>설비</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.ui" line="341"/>
+        <location filename="eis_listview_item.ui" line="312"/>
         <source>작성자</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.ui" line="361"/>
+        <location filename="eis_listview_item.ui" line="332"/>
         <source>변경점 유무</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.ui" line="373"/>
+        <location filename="eis_listview_item.ui" line="344"/>
         <source>유</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.ui" line="383"/>
+        <location filename="eis_listview_item.ui" line="354"/>
         <source>무</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.ui" line="505"/>
+        <location filename="eis_listview_item.ui" line="476"/>
         <source>색상</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.ui" line="547"/>
+        <location filename="eis_listview_item.ui" line="518"/>
         <source>시간</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.ui" line="552"/>
+        <location filename="eis_listview_item.ui" line="523"/>
         <source>사람</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.ui" line="568"/>
+        <location filename="eis_listview_item.ui" line="539"/>
         <source>내용</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.ui" line="588"/>
+        <location filename="eis_listview_item.ui" line="559"/>
         <source>전체보기</source>
         <translation type="unfinished"></translation>
     </message>
@@ -355,54 +425,57 @@ PR두께</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="310"/>
+        <location filename="eis_listview_item.cpp" line="367"/>
         <source>Save File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="487"/>
+        <location filename="eis_listview_item.cpp" line="525"/>
+        <source>modify complete</source>
+        <translation>수정 완료</translation>
+    </message>
+    <message>
+        <location filename="eis_listview_item.cpp" line="547"/>
         <source>team</source>
         <translation>부서</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="489"/>
+        <location filename="eis_listview_item.cpp" line="549"/>
         <source>process</source>
         <translation>공정                              </translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="491"/>
+        <location filename="eis_listview_item.cpp" line="551"/>
         <source>facilities</source>
         <translation>설비</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="493"/>
+        <location filename="eis_listview_item.cpp" line="553"/>
         <source>witer_name</source>
         <translation>작성자</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="495"/>
+        <location filename="eis_listview_item.cpp" line="555"/>
         <source>change_have</source>
         <translation>변경점유무</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="497"/>
-        <location filename="eis_listview_item.cpp" line="503"/>
+        <location filename="eis_listview_item.cpp" line="557"/>
         <source>have</source>
         <translation>유</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="499"/>
-        <location filename="eis_listview_item.cpp" line="505"/>
+        <location filename="eis_listview_item.cpp" line="559"/>
         <source>don&apos;t have</source>
         <translation>무</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="501"/>
+        <location filename="eis_listview_item.cpp" line="561"/>
         <source>complete</source>
         <translation>완료 유무</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="510"/>
+        <location filename="eis_listview_item.cpp" line="570"/>
         <source>subname</source>
         <translation>제목</translation>
     </message>
@@ -483,338 +556,437 @@ PR두께</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="47"/>
-        <location filename="eismain.ui" line="351"/>
-        <location filename="eismain.ui" line="961"/>
+        <location filename="eismain.ui" line="74"/>
+        <location filename="eismain.ui" line="109"/>
+        <location filename="eismain.ui" line="413"/>
+        <location filename="eismain.ui" line="800"/>
+        <location filename="eismain.ui" line="1355"/>
         <source>제목</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="67"/>
+        <location filename="eismain.ui" line="129"/>
         <source>조회 기간</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="80"/>
+        <location filename="eismain.ui" line="142"/>
         <source>시작</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="99"/>
-        <location filename="eismain.ui" line="143"/>
+        <location filename="eismain.ui" line="161"/>
+        <location filename="eismain.ui" line="205"/>
         <source>yyyy-MM-dd hh:mm:ss</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="115"/>
+        <location filename="eismain.ui" line="177"/>
         <source>종료</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="166"/>
-        <location filename="eismain.ui" line="674"/>
+        <location filename="eismain.ui" line="228"/>
+        <location filename="eismain.ui" line="710"/>
         <source>시간 파트</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="179"/>
-        <location filename="eismain.ui" line="682"/>
+        <location filename="eismain.ui" line="241"/>
+        <location filename="eismain.ui" line="718"/>
         <source>주간</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="184"/>
-        <location filename="eismain.ui" line="687"/>
+        <location filename="eismain.ui" line="246"/>
+        <location filename="eismain.ui" line="723"/>
         <source>야간</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="202"/>
-        <location filename="eismain.ui" line="356"/>
-        <location filename="eismain.ui" line="848"/>
+        <location filename="eismain.ui" line="79"/>
+        <location filename="eismain.ui" line="264"/>
+        <location filename="eismain.ui" line="418"/>
+        <location filename="eismain.ui" line="820"/>
+        <location filename="eismain.ui" line="1375"/>
         <source>부서</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="222"/>
-        <location filename="eismain.ui" line="361"/>
-        <location filename="eismain.ui" line="868"/>
+        <location filename="eismain.ui" line="84"/>
+        <location filename="eismain.ui" line="284"/>
+        <location filename="eismain.ui" line="423"/>
+        <location filename="eismain.ui" line="840"/>
+        <location filename="eismain.ui" line="1395"/>
         <source>공정</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="242"/>
-        <location filename="eismain.ui" line="888"/>
+        <location filename="eismain.ui" line="89"/>
+        <location filename="eismain.ui" line="304"/>
+        <location filename="eismain.ui" line="860"/>
+        <location filename="eismain.ui" line="1415"/>
         <source>설비</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="262"/>
-        <location filename="eismain.ui" line="371"/>
-        <location filename="eismain.ui" line="908"/>
+        <location filename="eismain.ui" line="94"/>
+        <location filename="eismain.ui" line="324"/>
+        <location filename="eismain.ui" line="433"/>
+        <location filename="eismain.ui" line="880"/>
+        <location filename="eismain.ui" line="1435"/>
         <source>작성자</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="276"/>
+        <location filename="eismain.ui" line="338"/>
         <source>변경점유무</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="292"/>
-        <location filename="eismain.cpp" line="727"/>
+        <location filename="eismain.ui" line="354"/>
+        <location filename="eismain.cpp" line="1325"/>
         <source>O</source>
         <translation>유</translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="297"/>
-        <location filename="eismain.cpp" line="729"/>
+        <location filename="eismain.ui" line="359"/>
+        <location filename="eismain.cpp" line="1327"/>
         <source>X</source>
         <translation>무</translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="307"/>
+        <location filename="eismain.ui" line="369"/>
         <source>검색</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="341"/>
+        <location filename="eismain.ui" line="64"/>
+        <location filename="eismain.ui" line="403"/>
         <source>num</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="346"/>
-        <location filename="eismain.ui" line="796"/>
+        <location filename="eismain.ui" line="30"/>
+        <source>전체삭제</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eismain.ui" line="69"/>
+        <location filename="eismain.ui" line="408"/>
+        <location filename="eismain.ui" line="785"/>
+        <location filename="eismain.ui" line="1340"/>
         <source>시간</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="366"/>
+        <location filename="eismain.ui" line="99"/>
+        <location filename="eismain.ui" line="1266"/>
+        <source>우선순위</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eismain.ui" line="428"/>
         <source>설비이름</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="376"/>
-        <location filename="eismain.ui" line="922"/>
+        <location filename="eismain.ui" line="438"/>
+        <location filename="eismain.ui" line="894"/>
         <source>변경점 유무</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="381"/>
+        <location filename="eismain.ui" line="443"/>
         <source>시간파트</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="386"/>
-        <location filename="eismain.ui" line="714"/>
+        <location filename="eismain.ui" line="448"/>
         <source>완료</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="394"/>
+        <location filename="eismain.ui" line="456"/>
         <source>내용 수정</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="401"/>
-        <location filename="eismain.ui" line="831"/>
+        <location filename="eismain.ui" line="463"/>
+        <location filename="eismain.ui" line="953"/>
+        <location filename="eismain.ui" line="1473"/>
         <source>전체보기</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="413"/>
+        <location filename="eismain.ui" line="480"/>
+        <source>공지사항</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eismain.ui" line="496"/>
+        <source>검색 조건 적용</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eismain.ui" line="529"/>
+        <source>부서,공정,설비,사원 추가</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eismain.ui" line="537"/>
         <source>인폼쓰기</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="599"/>
+        <location filename="eismain.ui" line="654"/>
+        <location filename="eismain.ui" line="1197"/>
         <source>색상</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="767"/>
+        <location filename="eismain.ui" line="993"/>
+        <location filename="eismain.ui" line="1513"/>
         <source>등록</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="934"/>
+        <location filename="eismain.ui" line="1080"/>
+        <source>알람쓰기</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eismain.ui" line="1272"/>
+        <source>높음</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eismain.ui" line="1279"/>
+        <source>중간</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eismain.ui" line="1289"/>
+        <source>낮음</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eismain.ui" line="1296"/>
+        <source>최우선</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eismain.ui" line="906"/>
         <source>유</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="944"/>
+        <location filename="eismain.ui" line="916"/>
         <source>무</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="642"/>
+        <location filename="eismain.ui" line="678"/>
+        <location filename="eismain.ui" line="1221"/>
         <source>날짜</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="664"/>
+        <location filename="eismain.ui" line="700"/>
+        <location filename="eismain.ui" line="1243"/>
         <source>yyyy-MM-dd HH:mm:ss</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="708"/>
-        <source>완료 유무</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="eismain.ui" line="721"/>
-        <source>미완료</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="eismain.ui" line="734"/>
+        <location filename="eismain.ui" line="744"/>
         <source>프린터</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="776"/>
+        <location filename="eismain.ui" line="962"/>
+        <location filename="eismain.ui" line="1482"/>
         <source>저장 사람 및 시점 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="463"/>
+        <location filename="eismain.ui" line="1010"/>
+        <location filename="eismain.ui" line="1530"/>
         <source>파일 첨부</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="476"/>
+        <location filename="eismain.ui" line="1023"/>
+        <location filename="eismain.ui" line="1543"/>
         <source>첨부</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="483"/>
+        <location filename="eismain.ui" line="509"/>
+        <location filename="eismain.ui" line="1030"/>
+        <location filename="eismain.ui" line="1550"/>
         <source>삭제</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="801"/>
+        <location filename="eismain.ui" line="790"/>
+        <location filename="eismain.ui" line="1345"/>
         <source>사람</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.ui" line="811"/>
+        <location filename="eismain.ui" line="933"/>
+        <location filename="eismain.ui" line="1453"/>
         <source>내용</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="56"/>
+        <location filename="eismain.cpp" line="64"/>
         <source>conntion false</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="180"/>
+        <location filename="eismain.cpp" line="466"/>
         <source>empty team_name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="186"/>
+        <location filename="eismain.cpp" line="472"/>
         <source>empty process</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="192"/>
-        <location filename="eismain.cpp" line="198"/>
+        <location filename="eismain.cpp" line="478"/>
+        <location filename="eismain.cpp" line="484"/>
         <source>empty facilities</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="204"/>
+        <location filename="eismain.cpp" line="490"/>
         <source>empty name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="211"/>
+        <location filename="eismain.cpp" line="497"/>
+        <location filename="eismain.cpp" line="652"/>
         <source>empty document_name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="522"/>
+        <location filename="eismain.cpp" line="638"/>
+        <source>add complete</source>
+        <translation>등록 완료</translation>
+    </message>
+    <message>
+        <location filename="eismain.cpp" line="774"/>
+        <source>add complete1</source>
+        <translation>등록 완료</translation>
+    </message>
+    <message>
+        <location filename="eismain.cpp" line="1017"/>
+        <location filename="eismain.cpp" line="1046"/>
         <source>Save File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="828"/>
+        <location filename="eismain.cpp" line="1264"/>
+        <source>low</source>
+        <translation>낮음</translation>
+    </message>
+    <message>
+        <location filename="eismain.cpp" line="1266"/>
+        <source>middle</source>
+        <translation>중간</translation>
+    </message>
+    <message>
+        <location filename="eismain.cpp" line="1268"/>
+        <source>high</source>
+        <translation>높음</translation>
+    </message>
+    <message>
+        <location filename="eismain.cpp" line="1270"/>
+        <source>very_high</source>
+        <translation>최우선</translation>
+    </message>
+    <message>
+        <location filename="eismain.cpp" line="1427"/>
         <source>Are you sure?
 </source>
         <translation>정말로 종료 하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="415"/>
-        <location filename="eismain.cpp" line="421"/>
-        <location filename="eismain.cpp" line="667"/>
-        <location filename="eismain.cpp" line="792"/>
-        <location filename="eismain.cpp" line="798"/>
+        <location filename="eismain.cpp" line="1604"/>
+        <location filename="eismain.cpp" line="1626"/>
+        <source>delete complete</source>
+        <translation>삭제 완료</translation>
+    </message>
+    <message>
+        <location filename="eismain.cpp" line="834"/>
+        <location filename="eismain.cpp" line="1184"/>
+        <location filename="eismain.cpp" line="1391"/>
         <source>have</source>
         <translation>유</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="417"/>
-        <location filename="eismain.cpp" line="423"/>
-        <location filename="eismain.cpp" line="669"/>
-        <location filename="eismain.cpp" line="794"/>
-        <location filename="eismain.cpp" line="800"/>
+        <location filename="eismain.cpp" line="836"/>
+        <location filename="eismain.cpp" line="1186"/>
+        <location filename="eismain.cpp" line="1393"/>
         <source>don&apos;t have</source>
         <translation>무</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="674"/>
+        <location filename="eismain.cpp" line="1191"/>
         <source>have sun</source>
         <translation>주간</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="676"/>
+        <location filename="eismain.cpp" line="1193"/>
         <source>don&apos;t have sun</source>
         <translation>야간</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="692"/>
+        <location filename="eismain.cpp" line="1209"/>
         <source>no reslut</source>
         <translation>결과 없음</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="405"/>
-        <location filename="eismain.cpp" line="782"/>
+        <location filename="eismain.cpp" line="824"/>
+        <location filename="eismain.cpp" line="1381"/>
         <source>team</source>
         <translation>부서</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="407"/>
-        <location filename="eismain.cpp" line="784"/>
+        <location filename="eismain.cpp" line="826"/>
+        <location filename="eismain.cpp" line="1383"/>
         <source>process</source>
         <translation>공정</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="409"/>
-        <location filename="eismain.cpp" line="786"/>
+        <location filename="eismain.cpp" line="828"/>
+        <location filename="eismain.cpp" line="1385"/>
         <source>facilities</source>
         <translation>설비</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="411"/>
-        <location filename="eismain.cpp" line="788"/>
+        <location filename="eismain.cpp" line="830"/>
+        <location filename="eismain.cpp" line="1387"/>
         <source>witer_name</source>
         <translation>작성자</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="413"/>
-        <location filename="eismain.cpp" line="790"/>
+        <location filename="eismain.cpp" line="832"/>
+        <location filename="eismain.cpp" line="1389"/>
         <source>change_have</source>
         <translation>변경점유무</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="419"/>
-        <location filename="eismain.cpp" line="796"/>
+        <location filename="eismain.cpp" line="838"/>
+        <location filename="eismain.cpp" line="1395"/>
         <source>complete</source>
         <translation>완료 유무</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="428"/>
-        <location filename="eismain.cpp" line="805"/>
+        <location filename="eismain.cpp" line="847"/>
+        <location filename="eismain.cpp" line="1404"/>
         <source>subname</source>
         <translation>제목</translation>
     </message>
@@ -850,8 +1022,24 @@ PR두께</source>
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Gulim&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#00ffff;&quot;&gt;123124323434234234234234&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#00ffff;&quot;&gt;2344353&lt;/span&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;345345345345&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;업데이트 내용 &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;1. 제목 검색시 영문 대소문자 구분 없애기&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;2. 글자 굵게,밑줄,색깔 기능 추가함&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3. 종료전 Warning 물어보기&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;4. 추가-&amp;gt;등록으로 변환&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;5. 인폼 추가시 조회 시간 최근으로 변경 &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;6. 글자 크기 10으로 통일하기 &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;7. 수정에서 첨부 버그 수정 &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;7. 공지사항 기능 추가 &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;업데이트중 내용 &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;1. 공지 사항 기능 보완 &lt;br /&gt;2. 삭제기능 -&amp;gt; 실제로 삭제 하지는 않지만&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   삭제시 검색에서 제외 &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   추후 관리자를 통해 언제든지 복구 가능 &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3. 공정,설비,사람 추가 기능&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -928,6 +1116,232 @@ p, li { white-space: pre-wrap; }
         <location filename="server_setting.ui" line="49"/>
         <source>ftp포트</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>eis_alarm_serarch_item</name>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="20"/>
+        <source>공정</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="27"/>
+        <source>number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="34"/>
+        <source>document_name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="41"/>
+        <source>process</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="48"/>
+        <source>문서제목</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="55"/>
+        <source>작성자</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="62"/>
+        <source>시간</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="69"/>
+        <source>witer_name</source>
+        <translation type="unfinished">작성자</translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="76"/>
+        <source>설비</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="83"/>
+        <source>facilities</source>
+        <translation type="unfinished">설비</translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="90"/>
+        <source>번호</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="104"/>
+        <source>체크박스</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="111"/>
+        <source>Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="118"/>
+        <source>부서</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="125"/>
+        <source>Team</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="132"/>
+        <source>우선순위</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="139"/>
+        <source>priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>eis_alarmlistview_item</name>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="64"/>
+        <source>파일 첨부</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="77"/>
+        <source>첨부</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="84"/>
+        <source>삭제</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="112"/>
+        <source>저장 사람 및 시점 </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="134"/>
+        <source>수정</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="151"/>
+        <source>날짜</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="164"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="184"/>
+        <source>우선순위</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="190"/>
+        <source>높음</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="197"/>
+        <source>중간</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="207"/>
+        <source>낮음</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="214"/>
+        <source>최우선</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="234"/>
+        <source>제목</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="258"/>
+        <source>부서</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="278"/>
+        <source>공정</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="298"/>
+        <source>설비</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="318"/>
+        <source>작성자</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="441"/>
+        <source>색상</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="483"/>
+        <source>시간</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="488"/>
+        <source>사람</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="504"/>
+        <source>내용</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.ui" line="524"/>
+        <source>전체보기</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.cpp" line="54"/>
+        <source>conntion false</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.cpp" line="351"/>
+        <source>Save File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarmlistview_item.cpp" line="489"/>
+        <source>modify complete</source>
+        <translation type="unfinished">수정 완료</translation>
     </message>
 </context>
 </TS>

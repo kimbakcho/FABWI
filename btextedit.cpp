@@ -2,6 +2,7 @@
 #include <eismain.h>
 #include "ui_eismain.h"
 #include "ui_eis_listview_item.h"
+#include "ui_eis_alarmlistview_item.h"
 
 BTextEdit::BTextEdit(QWidget *parent) : QTextEdit(parent)
 {
@@ -18,10 +19,19 @@ BTextEdit::BTextEdit(int *doc_number, QWidget *parent):QTextEdit(parent)
 }
 
 void BTextEdit::insertFromMimeData( const QMimeData *source ){
+
           QString source_text = source->text();
 
           QString doc_number_txt = QString("%1").arg(*doc_number);
-          QString makedir_txt = qApp->applicationDirPath()+"/temp/EIS/img";
+
+          QString makedir_txt;
+          if(this->objectName()=="content_edit"){
+                makedir_txt = qApp->applicationDirPath()+"/temp/EIS/img";
+          }else if(this->objectName()=="alarm_content_edit"){
+                makedir_txt = qApp->applicationDirPath()+"/temp/EIS/alarmimg";
+          }
+          qDebug()<<this->objectName();
+
           if(source->hasImage()){
               QImage image = qvariant_cast<QImage>(source->imageData());
               D_image_size image_size_dialog;
@@ -85,7 +95,6 @@ void BTextEdit::insertFromMimeData( const QMimeData *source ){
               QTextEdit::insertFromMimeData(source);
           }
 
-
 }
 void BTextEdit::replyFinished(QNetworkReply* reply){
     qDebug()<<"finish";
@@ -98,33 +107,61 @@ void BTextEdit::b_text_cursor_change()
         if(objname == "EISmain"){
 
             EISmain *eismain = (EISmain *)parent_widget;
-            int size = currentCharFormat().font().pointSize();
-            QString font_family =currentCharFormat().font().family();
-            eismain->ui->fontsize->setValue(size);
-            eismain->ui->font_type->setCurrentText(font_family);
-            if(currentCharFormat().font().bold()){
-                eismain->ui->Bold_btn->setStyleSheet(QLatin1String("QPushButton{\n"
-                                            "	border-image:url(:/img/img/Bold_btn_activity.png)\n"
-                                            "}"));
-            }else {
-                eismain->ui->Bold_btn->setStyleSheet(QLatin1String("QPushButton{\n"
-                                            "	border-image:url(:/img/img/Bold_btn_inactivity.png)\n"
-                                            "}"));
+            if(eismain->ui->tabWidget->currentIndex()==1){
+                int size = currentCharFormat().font().pointSize();
+                QString font_family =currentCharFormat().font().family();
+                eismain->ui->fontsize->setValue(size);
+                eismain->ui->font_type->setCurrentText(font_family);
+                if(currentCharFormat().font().bold()){
+                    eismain->ui->Bold_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                                "	border-image:url(:/img/img/Bold_btn_activity.png)\n"
+                                                "}"));
+                }else {
+                    eismain->ui->Bold_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                                "	border-image:url(:/img/img/Bold_btn_inactivity.png)\n"
+                                                "}"));
 
+                }
+                if(currentCharFormat().font().underline()){
+                    eismain->ui->underline_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                                "	border-image:url(:/img/img/under_line_activity.png)\n"
+                                                "}"));
+                }else {
+                    eismain->ui->underline_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                                "	border-image:url(:/img/img/under_line_inactivity.png)\n"
+                                                "}"));
+
+                }
+                QColor font_color = currentCharFormat().foreground().color();
+                eismain->ui->now_color->setStyleSheet(QString("background-color : %1").arg(font_color.name()));
+            }else if(eismain->ui->tabWidget->currentIndex()==2) {
+                int size = currentCharFormat().font().pointSize();
+                QString font_family =currentCharFormat().font().family();
+                eismain->ui->fontsize_2->setValue(size);
+                eismain->ui->font_type_2->setCurrentText(font_family);
+                if(currentCharFormat().font().bold()){
+                    eismain->ui->Bold_btn_2->setStyleSheet(QLatin1String("QPushButton{\n"
+                                                "	border-image:url(:/img/img/Bold_btn_activity.png)\n"
+                                                "}"));
+                }else {
+                    eismain->ui->Bold_btn_2->setStyleSheet(QLatin1String("QPushButton{\n"
+                                                "	border-image:url(:/img/img/Bold_btn_inactivity.png)\n"
+                                                "}"));
+
+                }
+                if(currentCharFormat().font().underline()){
+                    eismain->ui->underline_btn_2->setStyleSheet(QLatin1String("QPushButton{\n"
+                                                "	border-image:url(:/img/img/under_line_activity.png)\n"
+                                                "}"));
+                }else {
+                    eismain->ui->underline_btn_2->setStyleSheet(QLatin1String("QPushButton{\n"
+                                                "	border-image:url(:/img/img/under_line_inactivity.png)\n"
+                                                "}"));
+
+                }
+                QColor font_color = currentCharFormat().foreground().color();
+                eismain->ui->now_color_2->setStyleSheet(QString("background-color : %1").arg(font_color.name()));
             }
-            if(currentCharFormat().font().underline()){
-                eismain->ui->underline_btn->setStyleSheet(QLatin1String("QPushButton{\n"
-                                            "	border-image:url(:/img/img/under_line_activity.png)\n"
-                                            "}"));
-            }else {
-                eismain->ui->underline_btn->setStyleSheet(QLatin1String("QPushButton{\n"
-                                            "	border-image:url(:/img/img/under_line_inactivity.png)\n"
-                                            "}"));
-
-            }
-            QColor font_color = currentCharFormat().foreground().color();
-            eismain->ui->now_color->setStyleSheet(QString("background-color : %1").arg(font_color.name()));
-
         }else if (objname == "EIS_listview_item"){
             EIS_listview_item *eis_listview_item = (EIS_listview_item *)parent_widget;
             int size = currentCharFormat().font().pointSize();
@@ -154,6 +191,34 @@ void BTextEdit::b_text_cursor_change()
             QColor font_color = currentCharFormat().foreground().color();
             eis_listview_item->ui->now_color->setStyleSheet(QString("background-color : %1").arg(font_color.name()));
 
+        }else if (objname == "eis_alarmlistview_item"){
+            eis_alarmlistview_item *eis_alarmlistview = (eis_alarmlistview_item *)parent_widget;
+            int size = currentCharFormat().font().pointSize();
+            QString font_family =currentCharFormat().font().family();
+            eis_alarmlistview->ui->fontsize->setValue(size);
+            eis_alarmlistview->ui->font_type->setCurrentText(font_family);
+            if(currentCharFormat().font().bold()){
+                eis_alarmlistview->ui->Bold_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                            "	border-image:url(:/img/img/Bold_btn_activity.png)\n"
+                                            "}"));
+            }else {
+                eis_alarmlistview->ui->Bold_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                            "	border-image:url(:/img/img/Bold_btn_inactivity.png)\n"
+                                            "}"));
+
+            }
+            if(currentCharFormat().font().underline()){
+                eis_alarmlistview->ui->underline_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                            "	border-image:url(:/img/img/under_line_activity.png)\n"
+                                            "}"));
+            }else {
+                eis_alarmlistview->ui->underline_btn->setStyleSheet(QLatin1String("QPushButton{\n"
+                                            "	border-image:url(:/img/img/under_line_inactivity.png)\n"
+                                            "}"));
+
+            }
+            QColor font_color = currentCharFormat().foreground().color();
+            eis_alarmlistview->ui->now_color->setStyleSheet(QString("background-color : %1").arg(font_color.name()));
         }
     }
 }

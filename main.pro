@@ -32,7 +32,11 @@ SOURCES += main.cpp\
     eis_serarch_item.cpp \
     eis_listview_item.cpp \
     eis_list_view.cpp \
-    b_image_resize_widget.cpp
+    b_image_resize_widget.cpp \
+    eis_alarm_serarch_item.cpp \
+    eis_alarmlistview_item.cpp \
+    eis_delete_dialog.cpp \
+    eis_input_information.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -48,7 +52,11 @@ HEADERS  += mainwindow.h \
     eis_listview_item.h \
     eis_list_view.h \
     global_define.h \
-    b_image_resize_widget.h
+    b_image_resize_widget.h \
+    eis_alarm_serarch_item.h \
+    eis_alarmlistview_item.h \
+    eis_delete_dialog.h \
+    eis_input_information.h
 
 
 FORMS    += mainwindow.ui \
@@ -62,7 +70,11 @@ FORMS    += mainwindow.ui \
     eis_serarch_item.ui \
     eis_listview_item.ui \
     eis_list_view.ui \
-    b_image_resize_widget.ui
+    b_image_resize_widget.ui \
+    eis_alarm_serarch_item.ui \
+    eis_alarmlistview_item.ui \
+    eis_delete_dialog.ui \
+    eis_input_information.ui
 
 RESOURCES += \
     resourec.qrc
