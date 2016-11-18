@@ -137,3 +137,10 @@ void MainWindow::mail_fail(int a, int b, QByteArray msg)
     qDebug()<<msg;
 }
 
+
+void MainWindow::on_action_etching_analysor_triggered()
+{
+    etching_analysor *analysor = new etching_analysor();
+    analysor->show();
+
+}

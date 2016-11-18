@@ -10,6 +10,7 @@
 #include <QUrlQuery>
 #include <server_setting.h>
 #include "Smtp/SmtpMime"
+#include <etching_analysor.h>
 
 namespace Ui {
 class MainWindow;
@@ -40,6 +41,8 @@ private slots:
 
     void mail_contionfail(QByteArray msg);
     void mail_fail(int a,int b,QByteArray msg);
+
+    void on_action_etching_analysor_triggered();
 
 private:
     void closeEvent(QCloseEvent *event);

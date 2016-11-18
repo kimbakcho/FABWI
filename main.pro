@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network ftp sql printsupport
+QT       += core gui network ftp sql printsupport charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -36,7 +36,10 @@ SOURCES += main.cpp\
     eis_alarm_serarch_item.cpp \
     eis_alarmlistview_item.cpp \
     eis_delete_dialog.cpp \
-    eis_input_information.cpp
+    eis_input_information.cpp \
+    etching_analysor.cpp \
+    etching_chart_1.cpp \
+    etching_chart_1_view.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -56,7 +59,10 @@ HEADERS  += mainwindow.h \
     eis_alarm_serarch_item.h \
     eis_alarmlistview_item.h \
     eis_delete_dialog.h \
-    eis_input_information.h
+    eis_input_information.h \
+    etching_analysor.h \
+    etching_chart_1.h \
+    etching_chart_1_view.h
 
 
 FORMS    += mainwindow.ui \
@@ -74,7 +80,8 @@ FORMS    += mainwindow.ui \
     eis_alarm_serarch_item.ui \
     eis_alarmlistview_item.ui \
     eis_delete_dialog.ui \
-    eis_input_information.ui
+    eis_input_information.ui \
+    etching_analysor.ui
 
 RESOURCES += \
     resourec.qrc

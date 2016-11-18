@@ -98,9 +98,16 @@
     </property>
     <addaction name="actionV_1_1"/>
    </widget>
+   <widget class="QMenu" name="menu_5">
+    <property name="title">
+     <string>분석기</string>
+    </property>
+    <addaction name="action_etching_analysor"/>
+   </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
    <addaction name="menu_3"/>
+   <addaction name="menu_5"/>
    <addaction name="menu_4"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -140,6 +147,11 @@
   <action name="actionV_1_1">
    <property name="text">
     <string>V 1.1</string>
+   </property>
+  </action>
+  <action name="action_etching_analysor">
+   <property name="text">
+    <string>에칭</string>
    </property>
   </action>
  </widget>
