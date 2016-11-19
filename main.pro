@@ -39,7 +39,9 @@ SOURCES += main.cpp\
     eis_input_information.cpp \
     etching_analysor.cpp \
     etching_chart_1.cpp \
-    etching_chart_1_view.cpp
+    etching_chart_1_view.cpp \
+    etching_base_chart_view.cpp \
+    etching_chart_bigview.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -62,7 +64,9 @@ HEADERS  += mainwindow.h \
     eis_input_information.h \
     etching_analysor.h \
     etching_chart_1.h \
-    etching_chart_1_view.h
+    etching_chart_1_view.h \
+    etching_base_chart_view.h \
+    etching_chart_bigview.h
 
 
 FORMS    += mainwindow.ui \
@@ -81,7 +85,9 @@ FORMS    += mainwindow.ui \
     eis_alarmlistview_item.ui \
     eis_delete_dialog.ui \
     eis_input_information.ui \
-    etching_analysor.ui
+    etching_analysor.ui \
+    etching_base_chart_view.ui \
+    etching_chart_bigview.ui
 
 RESOURCES += \
     resourec.qrc

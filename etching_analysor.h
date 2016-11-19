@@ -9,6 +9,8 @@
 #include <etching_chart_1_view.h>
 #include <QLineSeries>
 #include <QColorDialog>
+#include <etching_base_chart_view.h>
+#include <QMimeData>
 namespace Ui {
 class etching_analysor;
 }
@@ -29,25 +31,15 @@ public:
     QColor line_color;
     ~etching_analysor();
 public slots:
-    void chart_move_value(QPointF value);
+
 
 private slots:
-    void on_select_file_clicked();
-    void read_ready_log();
-
-
-    void on_cb_type_currentIndexChanged(int index);
-
-    void on_cb_type_2_currentIndexChanged(int index);
-
-    void on_zoomreset_btn_clicked();
-
-    void on_line_add_btn_clicked();
-
-    void on_select_color_btn_clicked();
+//    void on_select_file_clicked();
 
 private:
     Ui::etching_analysor *ui;
+    void dragEnterEvent(QDragEnterEvent *event);
+    void dropEvent(QDropEvent *event);
 };
 
 #endif // ETCHING_ANALYSOR_H

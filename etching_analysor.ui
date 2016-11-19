@@ -6,9 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>855</width>
-    <height>447</height>
+    <width>1226</width>
+    <height>814</height>
    </rect>
+  </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -126,102 +129,8 @@
      </item>
     </layout>
    </item>
-   <item row="4" column="0">
-    <widget class="QScrollArea" name="scrollArea">
-     <property name="widgetResizable">
-      <bool>true</bool>
-     </property>
-     <widget class="QWidget" name="scrollAreaWidgetContents">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>835</width>
-        <height>303</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="3">
-        <widget class="QLabel" name="Y_value">
-         <property name="font">
-          <font>
-           <family>맑은 고딕</family>
-           <pointsize>13</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>  </string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="X_value">
-         <property name="font">
-          <font>
-           <family>맑은 고딕</family>
-           <pointsize>13</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string> </string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_3">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="font">
-          <font>
-           <family>맑은 고딕</family>
-           <pointsize>13</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>X = </string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="label_6">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="font">
-          <font>
-           <family>맑은 고딕</family>
-           <pointsize>13</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Y =</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0" colspan="6">
-        <layout class="QGridLayout" name="chart_layout"/>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-   </item>
    <item row="0" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0">
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
      <item>
       <widget class="QLabel" name="label">
        <property name="sizePolicy">
@@ -231,171 +140,82 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>파일 선택</string>
+        <string>로그 파일을 드래그 하세요</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="select_file">
-       <property name="text">
-        <string>선택 </string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="2" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <item>
-      <widget class="QLabel" name="label_7">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>항목</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="cb_type"/>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_8">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>자료 타입</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="cb_type_2"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="zoomreset_btn">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>줌리셋</string>
-       </property>
-      </widget>
+      <widget class="QWidget" name="widget_3" native="true"/>
      </item>
     </layout>
    </item>
    <item row="3" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_5">
-     <item>
-      <widget class="QLabel" name="label_9">
-       <property name="text">
-        <string>추가스펙</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="cb_newline_name">
-       <property name="minimumSize">
-        <size>
-         <width>300</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="editable">
-        <bool>true</bool>
-       </property>
-       <item>
-        <property name="text">
-         <string/>
-        </property>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1206</width>
+        <height>725</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="1" column="2">
+          <widget class="Etching_base_chart_view" name="logview_5" native="true"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="Etching_base_chart_view" name="logview_4" native="true"/>
+         </item>
+         <item row="0" column="2">
+          <widget class="Etching_base_chart_view" name="logview_2" native="true"/>
+         </item>
+         <item row="0" column="1">
+          <widget class="Etching_base_chart_view" name="logview_1" native="true"/>
+         </item>
+         <item row="2" column="1">
+          <widget class="Etching_base_chart_view" name="logview_7" native="true"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="Etching_base_chart_view" name="logview_3" native="true"/>
+         </item>
+         <item row="0" column="0">
+          <widget class="Etching_base_chart_view" name="logview_0" native="true"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="Etching_base_chart_view" name="logview_6" native="true"/>
+         </item>
+         <item row="2" column="2">
+          <widget class="Etching_base_chart_view" name="logview_8" native="true"/>
+         </item>
+        </layout>
        </item>
-       <item>
-        <property name="text">
-         <string>++++</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>------</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>safe</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_11">
-       <property name="text">
-        <string>값</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="newline_value"/>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_10">
-       <property name="text">
-        <string>라인 색깔</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="line_colorview">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 0, 0);</string>
-       </property>
-       <property name="text">
-        <string>       </string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="select_color_btn">
-       <property name="text">
-        <string>색상 선택</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="line_add_btn">
-       <property name="text">
-        <string>추가</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="LA_start_end_time">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Etching_base_chart_view</class>
+   <extends>QWidget</extends>
+   <header>etching_base_chart_view.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

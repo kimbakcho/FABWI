@@ -12,9 +12,8 @@ class etching_chart_1 : public QChart
 {
     Q_OBJECT
 public:
-    etching_chart_1(QLineSeries *line,QGraphicsItem *parent = 0, Qt::WindowFlags wFlags = 0);
-
-
+    etching_chart_1(QGraphicsItem *parent = 0, Qt::WindowFlags wFlags = 0);
+    QVector<QLineSeries *> *linedata_list;
 
 
 private:
