@@ -108,14 +108,13 @@ void Etching_base_chart_view::on_cb_item_currentIndexChanged(int index)
         QString data = type_data.at(index-1);
         QStringList type_data_list = data.split(",");
         ui->cb_type->clear();
-        ui->cb_type->addItem(" ");
         ui->cb_type->addItem(type_data_list.at(1));
     }
 }
 
 void Etching_base_chart_view::on_cb_type_currentIndexChanged(int index)
 {
-    if(index > 0 ){
+
         QVector<QLineSeries *> *line_list =  mainchart->linedata_list;
         for(int i=0;i<line_list->count();i++){
             QLineSeries *delete_line = line_list->at(i);
@@ -155,7 +154,7 @@ void Etching_base_chart_view::on_cb_type_currentIndexChanged(int index)
         mainchart->axisX()->setTitleText("msec");
         mainchart->axisY()->setTitleText(ui->cb_type->currentText());
 
-    }
+
 }
 
 void Etching_base_chart_view::on_select_color_btn_clicked()

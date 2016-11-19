@@ -64,21 +64,21 @@ void etching_analysor::analysor(QString filepath)
     ui->logview_8->setLog_data(dataline);
 
     ui->logview_0->set_item_name("processTime");
-    ui->logview_0->set_type_index(1);
+
     ui->logview_1->set_item_name("pressure");
-    ui->logview_1->set_type_index(1);
+
     ui->logview_2->set_item_name("RF1DCBiasSensor");
-    ui->logview_2->set_type_index(1);
+
     ui->logview_3->set_item_name("RF1ForwardPowerSensor");
-    ui->logview_3->set_type_index(1);
+
     ui->logview_4->set_item_name("RF1ReflectedPowerSens");
-    ui->logview_4->set_type_index(1);
+
     ui->logview_5->set_item_name("Temperature1Temperatu");
-    ui->logview_5->set_type_index(1);
+
     ui->logview_6->set_item_name("Temperature2Temperatu");
-    ui->logview_6->set_type_index(1);
+
     ui->logview_7->set_item_name("ThrottleValveControll");
-    ui->logview_7->set_type_index(1);
+
 
 
 
