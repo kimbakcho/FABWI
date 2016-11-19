@@ -40,6 +40,7 @@ private:
     Ui::etching_analysor *ui;
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
+    void resizeEvent(QResizeEvent *event);
 };
 
 #endif // ETCHING_ANALYSOR_H

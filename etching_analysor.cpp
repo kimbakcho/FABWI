@@ -80,6 +80,8 @@ void etching_analysor::analysor(QString filepath)
     ui->logview_7->set_item_name("ThrottleValveControll");
     ui->logview_7->set_type_index(1);
 
+
+
 }
 
 etching_analysor::~etching_analysor()
@@ -104,6 +106,13 @@ void etching_analysor::dropEvent(QDropEvent *event)
     QString filepath = event->mimeData()->text();
     if(filepath.indexOf("file:")>=0){
          analysor(filepath.split("file:").at(1));
-     }
+    }
+}
+
+void etching_analysor::resizeEvent(QResizeEvent *event)
+{
+    ui->total_chart_layout->setColumnMinimumWidth(0,(this->width()/3)-20);
+    ui->total_chart_layout->setColumnMinimumWidth(1,(this->width()/3)-20);
+    ui->total_chart_layout->setColumnMinimumWidth(2,(this->width()/3)-20);
 }
 
