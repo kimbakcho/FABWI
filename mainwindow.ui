@@ -151,7 +151,7 @@
   </action>
   <action name="action_etching_analysor">
    <property name="text">
-    <string>에칭</string>
+    <string>CVD</string>
    </property>
   </action>
  </widget>
