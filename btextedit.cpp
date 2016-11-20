@@ -21,8 +21,8 @@ BTextEdit::BTextEdit(int *doc_number, QWidget *parent):QTextEdit(parent)
 void BTextEdit::insertFromMimeData( const QMimeData *source ){
 
           QString source_text = source->text();
-
           QString doc_number_txt = QString("%1").arg(*doc_number);
+          QList<QUrl> source_list = source->urls();
 
           QString makedir_txt;
           if(this->objectName()=="content_edit"){
@@ -66,24 +66,29 @@ void BTextEdit::insertFromMimeData( const QMimeData *source ){
                     msg.exec();
                     return ;
                 }
-                QFile source_file(outputpath(source_text),this);
-                QImage tempimage;
-                tempimage.load(outputpath(source_text));
-                D_image_size image_size_dialog;
-                image_size_dialog.setFilepath(source_text.split("file:///").at(1));
-                image_size_dialog.setHeight(tempimage.size().height());
-                image_size_dialog.setWidth(tempimage.size().width());
-                image_size_dialog.image_pack();
-                if(!image_size_dialog.exec()==QDialog::Accepted){
-                    return;
-                }
+                QFile source_file(source_list.at(0).toString(QUrl::PreferLocalFile));
+
                 QDir makedir(makedir_txt);
                 if(!makedir.exists(doc_number_txt)){
                    makedir.mkdir(doc_number_txt);
                 }
-                QString output_file = outputfilename(outputpath(source_text));
+                QString output_file = outputfilename(source_list.at(0).toString(QUrl::PreferLocalFile));
                 QString des_file = QString("%1/%2/%3").arg(makedir_txt).arg(doc_number_txt).arg(output_file);
                 source_file.copy(des_file);
+
+                QImage tempimage;
+                tempimage.load(des_file);
+                D_image_size image_size_dialog;
+                image_size_dialog.setFilepath(des_file);
+                image_size_dialog.setHeight(tempimage.size().height());
+                image_size_dialog.setWidth(tempimage.size().width());
+                image_size_dialog.image_pack();
+                if(!image_size_dialog.exec()==QDialog::Accepted){
+                    QFile temp_des_file(des_file);
+                    temp_des_file.remove();
+                    return;
+                }
+
                 QTextCursor cursor = this->textCursor();
                 QTextImageFormat imageformat;
                 imageformat.setName(QString("%1%2").arg("file:///").arg(des_file));
@@ -244,19 +249,7 @@ bool BTextEdit::ispicture(QString source)
     }
     return result;
 }
-/**
- * @brief BTextEdit::outputpath
- * 전체 경로
- * @param source
- * @return
- *
- */
-QString BTextEdit::outputpath(QString source)
-{
-    QString result;
-    result = source.split("file:///").at(1);
-    return result;
-}
+
 /**
  * @brief BTextEdit::outputfilename
  * output_file_name 생성

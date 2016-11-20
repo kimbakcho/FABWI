@@ -22,7 +22,7 @@ etching_chart_bigview::etching_chart_bigview(QObject *parent_view) :
     ui->layout_2->insertWidget(0,base_parent_view->ui->LA_item);
     ui->layout_2->insertWidget(1,base_parent_view->ui->cb_item);
     ui->layout_2->insertWidget(2,base_parent_view->ui->LA_type);
-    ui->layout_2->insertWidget(3,base_parent_view->ui->cb_type);
+    ui->layout_2->insertWidget(3,base_parent_view->ui->LA_type_2);
     ui->layout_2->insertWidget(4,base_parent_view->ui->zoomreset_btn);
     ui->layout_2->insertWidget(5,base_parent_view->ui->view_linelabel_btn);
 
@@ -58,7 +58,7 @@ void etching_chart_bigview::closeEvent(QCloseEvent *event)
     base_parent_view->ui->layout_2->insertWidget(0,base_parent_view->ui->LA_item);
     base_parent_view->ui->layout_2->insertWidget(1,base_parent_view->ui->cb_item);
     base_parent_view->ui->layout_2->insertWidget(2,base_parent_view->ui->LA_type);
-    base_parent_view->ui->layout_2->insertWidget(3,base_parent_view->ui->cb_type);
+    base_parent_view->ui->layout_2->insertWidget(3,base_parent_view->ui->LA_type_2);
     base_parent_view->ui->layout_2->insertWidget(4,base_parent_view->ui->zoomreset_btn);
     base_parent_view->ui->layout_2->insertWidget(5,base_parent_view->ui->view_linelabel_btn);
 

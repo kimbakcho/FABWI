@@ -25,7 +25,6 @@ public:
     BTextEdit(QWidget *parent = 0);
     BTextEdit(int *doc_number,QWidget *parent = 0);
     bool ispicture(QString source);
-    QString outputpath(QString source);
     QString outputfilename(QString source);
     int *doc_number;
     QFont mainfont;

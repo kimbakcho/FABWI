@@ -16,60 +16,19 @@ Etching_base_chart_view::Etching_base_chart_view(QWidget *parent) :
 
 void Etching_base_chart_view::set_item_list_box(QStringList value)
 {
-    ui->cb_item->clear();
-    ui->cb_item->addItem("");
-    ui->cb_item->addItems(value);
-}
-
-void Etching_base_chart_view::set_type_list_box(QStringList value)
-{
-    ui->cb_type->clear();
-    ui->cb_type->addItem("");
-    ui->cb_type->addItems(value);
-}
-
-int Etching_base_chart_view::getData_start_row() const
-{
-    return data_start_row;
-}
-
-void Etching_base_chart_view::setData_start_row(int value)
-{
-    data_start_row = value;
-}
-
-QStringList Etching_base_chart_view::getLog_data() const
-{
-    return log_data;
-}
-
-void Etching_base_chart_view::setLog_data(const QStringList &value)
-{
-    log_data = value;
-    for(int i=0;i<log_data.size();i++){
-         QString readline = log_data.at(i);
-         if(readline.indexOf("HistoricalData:")>=0){
-             data_start_row = i+1;
-            break;
-         }
+    bool contain = false;
+    for(int i=0;i<value.size();i++){
+          contain = false;
+          int cb_count = ui->cb_item->count();
+          for(int j=0;j<cb_count;j++){
+             if(value.at(i) == ui->cb_item->itemText(j)){
+                 contain = true;
+             }
+          }
+          if(!contain){
+              ui->cb_item->addItem(value.at(i));
+          }
     }
-    QString data_str = log_data.at(data_start_row);
-    QRegularExpression patten;
-    patten.setPattern("\\S+");
-    QRegularExpressionMatchIterator match_ite = patten.globalMatch(data_str);
-    QStringList item_list;
-    while(match_ite.hasNext()){
-        item_list<<match_ite.next().captured();
-    }
-    set_item_list_box(item_list);
-    data_start_row++;
-
-    QString data_type = log_data.at(data_start_row);
-
-    QByteArray temp_data_type= data_type.toLocal8Bit();
-    temp_data_type = temp_data_type.replace(0x09,'$');
-    QString reslut_data = QString(temp_data_type);
-    type_data = reslut_data.split('$');
 }
 
 void Etching_base_chart_view::set_item_index(int index)
@@ -82,10 +41,16 @@ void Etching_base_chart_view::set_item_name(QString str)
     ui->cb_item->setCurrentText(str);
 }
 
-void Etching_base_chart_view::set_type_index(int index)
+void Etching_base_chart_view::append_file_item(etching_analysor_item *file_item)
 {
-    ui->cb_type->setCurrentIndex(index);
+    file_item_list.append(file_item);
 }
+
+void Etching_base_chart_view::signal_cb_item_current(const QString &text)
+{
+    on_cb_item_currentIndexChanged(text);
+}
+
 
 QColor Etching_base_chart_view::getLine_color() const
 {
@@ -102,60 +67,50 @@ Etching_base_chart_view::~Etching_base_chart_view()
     delete ui;
 }
 
-void Etching_base_chart_view::on_cb_item_currentIndexChanged(int index)
-{
-    if(index > 0 ){
-        QString data = type_data.at(index-1);
-        QStringList type_data_list = data.split(",");
-        ui->cb_type->clear();
-        ui->cb_type->addItem(type_data_list.at(1));
-    }
-}
+//void Etching_base_chart_view::on_cb_type_currentIndexChanged(int index)
+//{
 
-void Etching_base_chart_view::on_cb_type_currentIndexChanged(int index)
-{
-
-        QVector<QLineSeries *> *line_list =  mainchart->linedata_list;
-        for(int i=0;i<line_list->count();i++){
-            QLineSeries *delete_line = line_list->at(i);
-            mainchart->removeSeries(delete_line);
-            delete_line->deleteLater();
-        }
-        line_list->clear();
-        main_line = new QLineSeries();
+    //        QVector<QLineSeries *> *line_list =  mainchart->linedata_list;
+    //        for(int i=0;i<line_list->count();i++){
+    //            QLineSeries *delete_line = line_list->at(i);
+    //            mainchart->removeSeries(delete_line);
+    //            delete_line->deleteLater();
+    //        }
+    //        line_list->clear();
+    //        main_line = new QLineSeries();
 
 
-        line_list->append(main_line);
-        main_line->setColor(QColor("#00aaff"));
-        main_line->setName(ui->cb_item->currentText());
-        for(int i=data_start_row+1;i<log_data.size();i++){
-            QString data = log_data.at(i);
-            QByteArray data_temp = data.toLocal8Bit();
-            data_temp = data_temp.replace(0x09,'$');
-            QString result_data = QString(data_temp);
-            QStringList result_list = result_data.split('$');
-            QString x_y_data = result_list.at(ui->cb_item->currentIndex()-1);
-            QStringList result_data_list = x_y_data.split(',');
-            QString X_value_str = result_data_list.at(0);
-            QString Y_value_str = result_data_list.at(1);
-            //qDebug()<<"X = "<<result_data_list.at(0)<<"Y = "<<result_data_list.at(1);
-            int find_str_x =  X_value_str.indexOf("-");
-            int find_str_y =  Y_value_str.indexOf("-");
-            if(find_str_x < 0 && find_str_y<0){
+    //        line_list->append(main_line);
+    //        main_line->setColor(QColor("#00aaff"));
+    //        main_line->setName(ui->cb_item->currentText());
+    //        for(int i=data_start_row+1;i<log_data.size();i++){
+    //            QString data = log_data.at(i);
+    //            QByteArray data_temp = data.toLocal8Bit();
+    //            data_temp = data_temp.replace(0x09,'$');
+    //            QString result_data = QString(data_temp);
+    //            QStringList result_list = result_data.split('$');
+    //            QString x_y_data = result_list.at(ui->cb_item->currentIndex()-1);
+    //            QStringList result_data_list = x_y_data.split(',');
+    //            QString X_value_str = result_data_list.at(0);
+    //            QString Y_value_str = result_data_list.at(1);
+    //            //qDebug()<<"X = "<<result_data_list.at(0)<<"Y = "<<result_data_list.at(1);
+    //            int find_str_x =  X_value_str.indexOf("-");
+    //            int find_str_y =  Y_value_str.indexOf("-");
+    //            if(find_str_x < 0 && find_str_y<0){
 
-                main_line->append(X_value_str.toDouble(),Y_value_str.toDouble());
-            }
-        }
-        mainchart->addSeries(main_line);
-        main_line->setName(ui->cb_item->currentText());
-        main_line->setPointsVisible(true);
+    //                main_line->append(X_value_str.toDouble(),Y_value_str.toDouble());
+    //            }
+    //        }
+    //        mainchart->addSeries(main_line);
+    //        main_line->setName(ui->cb_item->currentText());
+    //        main_line->setPointsVisible(true);
 
-        mainchart->createDefaultAxes();
-        mainchart->axisX()->setTitleText("msec");
-        mainchart->axisY()->setTitleText(ui->cb_type->currentText());
+    //        mainchart->createDefaultAxes();
+    //        mainchart->axisX()->setTitleText("msec");
+    //        mainchart->axisY()->setTitleText(ui->cb_type->currentText());
 
 
-}
+//}
 
 void Etching_base_chart_view::on_select_color_btn_clicked()
 {
@@ -177,17 +132,16 @@ void Etching_base_chart_view::chart_move_value(QPointF value)
 void Etching_base_chart_view::on_view_linelabel_btn_clicked()
 {
     if(ui->view_linelabel_btn->text() == tr("view")){
-        QVector<QLineSeries *> *line_list =  mainchart->linedata_list;
-         for(int i=0;i<line_list->count();i++){
-             QLineSeries *line = line_list->at(i);
+          ;
+         for(int i=0;i<mainchart->series().count();i++){
+             QLineSeries *line = (QLineSeries *)mainchart->series().at(i);
              line->setPointLabelsVisible(true);
          }
         ui->view_linelabel_btn->setText(tr("no view"));
 
     }else {
-        QVector<QLineSeries *> *line_list =  mainchart->linedata_list;
-         for(int i=0;i<line_list->count();i++){
-             QLineSeries *line = line_list->at(i);
+         for(int i=0;i<mainchart->series().count();i++){
+             QLineSeries *line = (QLineSeries *)mainchart->series().at(i);
              line->setPointLabelsVisible(false);
          }
        ui->view_linelabel_btn->setText(tr("view"));
@@ -209,11 +163,47 @@ void Etching_base_chart_view::on_line_add_btn_clicked()
         new_line->setColor(line_color);
 
         new_line->setName(ui->newline_spec->currentText());
-        QList<QPointF> list_point = main_line->points();
+        QLineSeries * mainline = (QLineSeries *) mainchart->series().at(0);
+        QList<QPointF> list_point =mainline->points();
         for(int i=0;i<list_point.size();i++){
                 qreal ydata = ui->newline_value->text().toDouble();
                 new_line->append(list_point.at(i).x(),ydata);
         }
         mainchart->addSeries(new_line);
         mainchart->createDefaultAxes();
+}
+
+void Etching_base_chart_view::on_cb_item_currentIndexChanged(const QString &text)
+{
+    QString text_data = text;
+    if(text_data=="auto"){
+        text_data = ui->cb_item->currentText();
+    }
+    int chartseirs_count = mainchart->series().count();
+    for(int i=0;i<chartseirs_count;i++){
+        mainchart->removeSeries(mainchart->series().at(0));
+    }
+    for(int i=0;i<file_item_list.count();i++){
+        int count = file_item_list.at(i)->lines.count();
+        for(int j=0;j<count;j++){
+            QString item_name = file_item_list.at(i)->lines.at(j)->item_name;
+            if(text_data == item_name){
+                QLineSeries *new_line = new QLineSeries();
+                int line_data_count = file_item_list.at(i)->lines.at(j)->line.count();
+                for(int k=0;k<line_data_count;k++){
+                    new_line->append(file_item_list.at(i)->lines.at(j)->line.at(k).x(),
+                                     file_item_list.at(i)->lines.at(j)->line.at(k).y());
+                }
+                new_line->setColor(file_item_list.at(i)->lines.at(j)->line.color());
+                new_line->setName(file_item_list.at(i)->lines.at(j)->line.name());
+                new_line->setPointsVisible(true);
+                mainchart->addSeries(new_line);
+                ui->LA_type_2->setText(file_item_list.at(i)->lines.at(j)->item_type);
+                break;
+            }
+        }
+    }
+    mainchart->createDefaultAxes();
+    mainchart->axisX()->setTitleText("mesc");
+    mainchart->axisY()->setTitleText(ui->LA_type_2->text());
 }

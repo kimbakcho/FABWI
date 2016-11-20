@@ -92,7 +92,7 @@
         <string notr="true">background-color: rgb(255, 0, 0);</string>
        </property>
        <property name="text">
-        <string>   </string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -263,7 +263,17 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="cb_type"/>
+      <widget class="QLabel" name="LA_type_2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>    </string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="zoomreset_btn">
