@@ -42,7 +42,8 @@ SOURCES += main.cpp\
     etching_chart_1_view.cpp \
     etching_base_chart_view.cpp \
     etching_chart_bigview.cpp \
-    etching_analysor_item.cpp
+    etching_analysor_item.cpp \
+    eis_select_copymode_dialog.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -68,7 +69,8 @@ HEADERS  += mainwindow.h \
     etching_chart_1_view.h \
     etching_base_chart_view.h \
     etching_chart_bigview.h \
-    etching_analysor_item.h
+    etching_analysor_item.h \
+    eis_select_copymode_dialog.h
 
 
 FORMS    += mainwindow.ui \
@@ -90,7 +92,8 @@ FORMS    += mainwindow.ui \
     etching_analysor.ui \
     etching_base_chart_view.ui \
     etching_chart_bigview.ui \
-    etching_analysor_item.ui
+    etching_analysor_item.ui \
+    eis_select_copymode_dialog.ui
 
 RESOURCES += \
     resourec.qrc

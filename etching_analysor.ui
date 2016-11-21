@@ -17,139 +17,54 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
-   <item row="0" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>로그 파일을 드래그 하세요</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QWidget" name="widget_3" native="true"/>
-     </item>
-    </layout>
+   <item row="1" column="0" colspan="2">
+    <widget class="QTableWidget" name="chart_listview">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>false</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>정보</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>이름</string>
+      </property>
+     </column>
+    </widget>
    </item>
-   <item row="1" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLabel" name="label_4">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="font">
-        <font>
-         <family>맑은 고딕</family>
-         <pointsize>13</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>웨이퍼ID =</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="La_waferid">
-       <property name="font">
-        <font>
-         <family>맑은 고딕</family>
-         <pointsize>13</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>waferid</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_2">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="font">
-        <font>
-         <family>맑은 고딕</family>
-         <pointsize>13</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>레시피 = </string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="La_recipe">
-       <property name="font">
-        <font>
-         <family>맑은 고딕</family>
-         <pointsize>13</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>recipe</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_5">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="font">
-        <font>
-         <family>맑은 고딕</family>
-         <pointsize>13</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>lotID =</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="La_LotID">
-       <property name="font">
-        <font>
-         <family>맑은 고딕</family>
-         <pointsize>13</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>lotID</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+   <item row="2" column="0">
+    <widget class="QLabel" name="LA_start_end_time">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </item>
-   <item row="5" column="0">
+   <item row="4" column="0">
     <widget class="QScrollArea" name="scrollArea">
      <property name="horizontalScrollBarPolicy">
       <enum>Qt::ScrollBarAsNeeded</enum>
@@ -163,7 +78,7 @@
         <x>0</x>
         <y>0</y>
         <width>1200</width>
-        <height>525</height>
+        <height>556</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
@@ -268,52 +183,25 @@
      </widget>
     </widget>
    </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="LA_start_end_time">
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0" colspan="2">
-    <widget class="QTableWidget" name="chart_listview">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="selectionMode">
-      <enum>QAbstractItemView::SingleSelection</enum>
-     </property>
-     <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-      <bool>false</bool>
-     </attribute>
-     <attribute name="horizontalHeaderStretchLastSection">
-      <bool>false</bool>
-     </attribute>
-     <column>
-      <property name="text">
-       <string>    </string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>정보</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>이름</string>
-      </property>
-     </column>
-    </widget>
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>로그 파일을 드래그 하세요</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="widget_3" native="true"/>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

@@ -17,7 +17,9 @@
 #include <d_image_size.h>
 #include <QMessageBox>
 #include <QTextDocumentFragment>
-
+#include <eis_select_copymode_dialog.h>
+#define PICTURE_MODE 1
+#define TEXT_MODE 2
 class BTextEdit : public QTextEdit
 {
     Q_OBJECT

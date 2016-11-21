@@ -45,6 +45,9 @@ public:
 
     ~EIS_listview_item();
 
+signals:
+    void modify_button_click();
+
 public slots:
     void ftpCommandFinished(int commandId, bool error);
 

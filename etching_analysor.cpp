@@ -157,6 +157,7 @@ void etching_analysor::on_chart_listview_cellDoubleClicked(int row, int column)
 
 
     QColor choice_color = QColorDialog::getColor();
+    logfile.at(row)->lineColor = choice_color;
     int count = logfile.at(row)->lines.count();
     for(int i=0;i<count;i++){
         logfile.at(row)->lines.at(i)->line.setColor(choice_color);
@@ -182,6 +183,7 @@ void etching_analysor::change_line_show(bool ischeck, QColor linecolor, QString 
             QLineSeries *templine  = (QLineSeries *)base_chartview_list.at(j)->mainchart->series().at(i);
             QString tempcolorname = templine->color().name();
             qDebug()<<waferid;
+            qDebug()<<"tempcolorname = "<<tempcolorname << "linecolor.name = "<<linecolor.name();
             if((linecolor.name() == tempcolorname)&&(templine->name() == waferid)){
                  templine->setVisible(ischeck);
             }

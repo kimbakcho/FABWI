@@ -163,7 +163,20 @@ void Etching_base_chart_view::on_line_add_btn_clicked()
         new_line->setColor(line_color);
 
         new_line->setName(ui->newline_spec->currentText());
-        QLineSeries * mainline = (QLineSeries *) mainchart->series().at(0);
+
+        QLineSeries * mainline ;
+
+        int series_count = mainchart->series().count();
+        int max_0=0;
+        for(int i=0;i<series_count;i++){
+            QLineSeries * temp_line =(QLineSeries *) mainchart->series().at(i);
+            int max_1 = temp_line->points().last().x();
+            if(max_0 < max_1){
+                max_0 = max_1;
+                mainline = temp_line;
+            }
+        }
+
         QList<QPointF> list_point =mainline->points();
         for(int i=0;i<list_point.size();i++){
                 qreal ydata = ui->newline_value->text().toDouble();
@@ -191,12 +204,22 @@ void Etching_base_chart_view::on_cb_item_currentIndexChanged(const QString &text
                 QLineSeries *new_line = new QLineSeries();
                 int line_data_count = file_item_list.at(i)->lines.at(j)->line.count();
                 for(int k=0;k<line_data_count;k++){
-                    new_line->append(file_item_list.at(i)->lines.at(j)->line.at(k).x(),
-                                     file_item_list.at(i)->lines.at(j)->line.at(k).y());
+                    if(text_data == "processTime"){
+                        new_line->append(file_item_list.at(i)->lines.at(j)->line.at(k).y(),
+                                         file_item_list.at(i)->lines.at(j)->line.at(k).x());
+                    }else {
+                        new_line->append(file_item_list.at(i)->lines.at(j)->line.at(k).x(),
+                                         file_item_list.at(i)->lines.at(j)->line.at(k).y());
+                    }
+
                 }
                 new_line->setColor(file_item_list.at(i)->lines.at(j)->line.color());
                 new_line->setName(file_item_list.at(i)->lines.at(j)->line.name());
-                new_line->setPointsVisible(true);
+                if(file_item_list.at(i)->lines.at(j)->line.isVisible()){
+                    new_line->setPointsVisible(true);
+                }else {
+                    new_line->setPointsVisible(false);
+                }
                 mainchart->addSeries(new_line);
                 ui->LA_type_2->setText(file_item_list.at(i)->lines.at(j)->item_type);
                 break;
@@ -204,6 +227,12 @@ void Etching_base_chart_view::on_cb_item_currentIndexChanged(const QString &text
         }
     }
     mainchart->createDefaultAxes();
-    mainchart->axisX()->setTitleText("mesc");
-    mainchart->axisY()->setTitleText(ui->LA_type_2->text());
+    if(text_data == "processTime"){
+        mainchart->axisX()->setTitleText(ui->LA_type_2->text());
+        mainchart->axisY()->setTitleText("mesc");
+    }else {
+        mainchart->axisX()->setTitleText("mesc");
+        mainchart->axisY()->setTitleText(ui->LA_type_2->text());
+    }
+
 }

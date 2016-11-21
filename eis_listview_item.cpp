@@ -527,6 +527,8 @@ void EIS_listview_item::on_modify_button_clicked()
         msg.setText(tr("modify complete"));
 
         msg.exec();
+        emit modify_button_click();
+
 }
 
 

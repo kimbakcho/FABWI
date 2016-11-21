@@ -97,6 +97,8 @@ public slots:
 
     void alarm_search_loop();
 
+    void modify_complete();
+
 private slots:
     void on_select_process_currentIndexChanged(const QString &arg1);
 

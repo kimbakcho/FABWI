@@ -24,6 +24,11 @@ public:
     void worktime_readonly_mode(bool choice);
     ~Eis_list_view();
 
+signals:
+    void modify_button_click_pass();
+public slots :
+    void modify_button_click();
+
 private:
     void closeEvent(QCloseEvent *event);
     Ui::Eis_list_view *ui;

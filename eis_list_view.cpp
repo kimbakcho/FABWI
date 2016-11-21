@@ -19,6 +19,7 @@ Eis_list_view::Eis_list_view(QStringList check_list,QWidget *parent) :
         QString doc_number = src_value.split("/").at(0);
         QString doc_write_time = src_value.split("/").at(1);
         EIS_listview_item *item = new EIS_listview_item(src_value,this);
+        connect(item,SIGNAL(modify_button_click()),this,SLOT(modify_button_click()));
         ui->item_listview->insertRow(i);
         ui->item_listview->setRowHeight(i,800);
         ui->item_listview->setCellWidget(i,0,item);
@@ -62,6 +63,12 @@ void Eis_list_view::worktime_readonly_mode(bool choice)
 Eis_list_view::~Eis_list_view()
 {
     delete ui;
+}
+
+void Eis_list_view::modify_button_click()
+{
+
+    emit modify_button_click_pass();
 }
 
 void Eis_list_view::closeEvent(QCloseEvent *event)

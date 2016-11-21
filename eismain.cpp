@@ -888,6 +888,14 @@ void EISmain::alarm_search_loop()
     search_alarm_logic();
 }
 
+void EISmain::modify_complete()
+{
+
+    ui->search_end_time->setDateTime(QDateTime::currentDateTime());
+
+    on_search_button_clicked();
+}
+
 
 
 void EISmain::on_attach_btn_clicked()
@@ -1299,6 +1307,7 @@ void EISmain::on_search_listview_cellDoubleClicked(int row, int column)
     number_doc = number_doc + "/"+itemlist.at(row)->ui->write_time->text();
     check_list.append(number_doc);
     Eis_list_view *list_view = new Eis_list_view(check_list);
+    connect(list_view,SIGNAL(modify_button_click_pass()),this,SLOT(modify_complete()));
     list_view->modify_button_show(false);
     list_view->attach_button_show(false);
     list_view->show();
@@ -1372,6 +1381,7 @@ void EISmain::on_total_view_btn_clicked()
         }
     }
     Eis_list_view *list_view = new Eis_list_view(check_list);
+    connect(list_view,SIGNAL(modify_button_click_pass()),this,SLOT(modify_complete()));
     list_view->modify_button_show(false);
     list_view->attach_button_show(false);
     list_view->show();
@@ -1433,6 +1443,7 @@ void EISmain::on_modify_btn_clicked()
     number_doc = number_doc + "/"+itemlist.at(row)->ui->write_time->text();
     check_list.append(number_doc);
     Eis_list_view *list_view = new Eis_list_view(check_list);
+    connect(list_view,SIGNAL(modify_button_click_pass()),this,SLOT(modify_complete()));
     list_view->show();
     list_view->worktime_readonly_mode(false);
 
