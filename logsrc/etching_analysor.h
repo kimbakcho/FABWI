@@ -5,13 +5,13 @@
 #include <QFileDialog>
 #include <QDebug>
 #include <QFile>
-#include <etching_chart_1.h>
-#include <etching_chart_1_view.h>
+#include <logsrc/etching_chart_1.h>
+#include <logsrc/etching_chart_1_view.h>
 #include <QLineSeries>
 #include <QColorDialog>
-#include <etching_base_chart_view.h>
+#include <logsrc/etching_base_chart_view.h>
 #include <QMimeData>
-#include <etching_analysor_item.h>
+#include <logsrc/etching_analysor_item.h>
 #include <QHeaderView>
 namespace Ui {
 class etching_analysor;

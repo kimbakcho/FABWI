@@ -2,11 +2,11 @@
 #define ETCHING_BASE_CHART_VIEW_H
 
 #include <QWidget>
-#include <etching_chart_1.h>
-#include <etching_chart_1_view.h>
+#include <logsrc/etching_chart_1.h>
+#include <logsrc/etching_chart_1_view.h>
 #include <QColorDialog>
-#include <etching_chart_bigview.h>
-#include <etching_analysor_item.h>
+#include <logsrc/etching_chart_bigview.h>
+#include <logsrc/etching_analysor_item.h>
 #include <QDebug>
 namespace Ui {
 class Etching_base_chart_view;

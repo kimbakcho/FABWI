@@ -23,7 +23,7 @@ void BTextEdit::insertFromMimeData( const QMimeData *source ){
           QString source_text = source->text();
           QString doc_number_txt = QString("%1").arg(*doc_number);
           QList<QUrl> source_list = source->urls();
-          //qDebug()<<source->formats();
+          qDebug()<<source->formats();
           QString makedir_txt;
           if(this->objectName()=="content_edit"){
                 makedir_txt = qApp->applicationDirPath()+"/temp/EIS/img";
@@ -32,7 +32,7 @@ void BTextEdit::insertFromMimeData( const QMimeData *source ){
           }
           qDebug()<<this->objectName();
 
-          if(source->hasText() && source->hasText()){
+          if(source->hasImage() && source->hasText()){
             eis_select_copymode_dialog select_dialog;
             int result = select_dialog.exec();
             if(result == QDialog::Accepted){

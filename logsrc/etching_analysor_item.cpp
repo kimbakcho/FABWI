@@ -157,13 +157,15 @@ void etching_analysor_item::setFile_path(const QString &value)
             QString x_y_data = result_list.at(i);
             QStringList result_data_list = x_y_data.split(',');
             QString X_value_str = result_data_list.at(0);
+            double x_value = X_value_str.toDouble() / 1000.0;
             QString Y_value_str = result_data_list.at(1);
             int find_str_x =  X_value_str.indexOf("-");
             int find_str_y =  Y_value_str.indexOf("-");
             if(find_str_x < 0 && find_str_y<0){
-                lines.at(i)->line.append(X_value_str.toDouble(),Y_value_str.toDouble());
+                lines.at(i)->line.append(x_value,Y_value_str.toDouble());
             }
           }
+          lines.at(i)->line.setPointLabelsFormat("(@yPoint)");
           lines.at(i)->line.setName(waferid);
           lines.at(i)->line.setPointsVisible(true);
           lines.at(i)->line.setColor(lineColor);

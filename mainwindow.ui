@@ -102,7 +102,14 @@
     <property name="title">
      <string>분석기</string>
     </property>
+    <widget class="QMenu" name="menuNikon">
+     <property name="title">
+      <string>Nikon </string>
+     </property>
+     <addaction name="action_nikon_err_log"/>
+    </widget>
     <addaction name="action_etching_analysor"/>
+    <addaction name="menuNikon"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
@@ -152,6 +159,11 @@
   <action name="action_etching_analysor">
    <property name="text">
     <string>CVD</string>
+   </property>
+  </action>
+  <action name="action_nikon_err_log">
+   <property name="text">
+    <string>에러분석기</string>
    </property>
   </action>
  </widget>

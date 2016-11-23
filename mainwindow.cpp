@@ -144,3 +144,10 @@ void MainWindow::on_action_etching_analysor_triggered()
     analysor->show();
 
 }
+
+void MainWindow::on_action_nikon_err_log_triggered()
+{
+    nikon_log_err_main *analysor = new nikon_log_err_main();
+    analysor->show();
+
+}

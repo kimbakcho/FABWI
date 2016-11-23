@@ -37,13 +37,19 @@ SOURCES += main.cpp\
     eis_alarmlistview_item.cpp \
     eis_delete_dialog.cpp \
     eis_input_information.cpp \
-    etching_analysor.cpp \
-    etching_chart_1.cpp \
-    etching_chart_1_view.cpp \
-    etching_base_chart_view.cpp \
-    etching_chart_bigview.cpp \
-    etching_analysor_item.cpp \
-    eis_select_copymode_dialog.cpp
+    eis_select_copymode_dialog.cpp \
+    logsrc/etching_analysor.cpp \
+    logsrc/etching_analysor_item.cpp \
+    logsrc/etching_base_chart_view.cpp \
+    logsrc/etching_chart_1.cpp \
+    logsrc/etching_chart_1_view.cpp \
+    logsrc/etching_chart_bigview.cpp \
+    nikon_log_err_main.cpp \
+    nikon_log_err_thread.cpp \
+    nikon_log_err_chart.cpp \
+    nikon_log_err_chartview.cpp \
+    nikon_log_err_list_item.cpp \
+    nikon_log_err_linseries.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -64,13 +70,19 @@ HEADERS  += mainwindow.h \
     eis_alarmlistview_item.h \
     eis_delete_dialog.h \
     eis_input_information.h \
-    etching_analysor.h \
-    etching_chart_1.h \
-    etching_chart_1_view.h \
-    etching_base_chart_view.h \
-    etching_chart_bigview.h \
-    etching_analysor_item.h \
-    eis_select_copymode_dialog.h
+    eis_select_copymode_dialog.h \
+    logsrc/etching_analysor.h \
+    logsrc/etching_analysor_item.h \
+    logsrc/etching_base_chart_view.h \
+    logsrc/etching_chart_1.h \
+    logsrc/etching_chart_1_view.h \
+    logsrc/etching_chart_bigview.h \
+    nikon_log_err_main.h \
+    nikon_log_err_thread.h \
+    nikon_log_err_chart.h \
+    nikon_log_err_chartview.h \
+    nikon_log_err_list_item.h \
+    nikon_log_err_linseries.h
 
 
 FORMS    += mainwindow.ui \
@@ -89,11 +101,13 @@ FORMS    += mainwindow.ui \
     eis_alarmlistview_item.ui \
     eis_delete_dialog.ui \
     eis_input_information.ui \
-    etching_analysor.ui \
-    etching_base_chart_view.ui \
-    etching_chart_bigview.ui \
-    etching_analysor_item.ui \
-    eis_select_copymode_dialog.ui
+    eis_select_copymode_dialog.ui \
+    logsrc/etching_analysor.ui \
+    logsrc/etching_analysor_item.ui \
+    logsrc/etching_base_chart_view.ui \
+    logsrc/etching_chart_bigview.ui \
+    nikon_log_err_main.ui \
+    nikon_log_err_list_item.ui
 
 RESOURCES += \
     resourec.qrc

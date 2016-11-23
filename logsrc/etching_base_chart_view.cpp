@@ -215,6 +215,7 @@ void Etching_base_chart_view::on_cb_item_currentIndexChanged(const QString &text
                 }
                 new_line->setColor(file_item_list.at(i)->lines.at(j)->line.color());
                 new_line->setName(file_item_list.at(i)->lines.at(j)->line.name());
+                new_line->setPointLabelsFormat(file_item_list.at(i)->lines.at(j)->line.pointLabelsFormat());
                 if(file_item_list.at(i)->lines.at(j)->line.isVisible()){
                     new_line->setPointsVisible(true);
                 }else {
@@ -229,9 +230,9 @@ void Etching_base_chart_view::on_cb_item_currentIndexChanged(const QString &text
     mainchart->createDefaultAxes();
     if(text_data == "processTime"){
         mainchart->axisX()->setTitleText(ui->LA_type_2->text());
-        mainchart->axisY()->setTitleText("mesc");
+        mainchart->axisY()->setTitleText("sec");
     }else {
-        mainchart->axisX()->setTitleText("mesc");
+        mainchart->axisX()->setTitleText("sec");
         mainchart->axisY()->setTitleText(ui->LA_type_2->text());
     }
 
