@@ -107,6 +107,7 @@
       <string>Nikon </string>
      </property>
      <addaction name="action_nikon_err_log"/>
+     <addaction name="action_nikon_err_log1"/>
     </widget>
     <addaction name="action_etching_analysor"/>
     <addaction name="menuNikon"/>
@@ -164,6 +165,11 @@
   <action name="action_nikon_err_log">
    <property name="text">
     <string>에러분석기</string>
+   </property>
+  </action>
+  <action name="action_nikon_err_log1">
+   <property name="text">
+    <string>TEST1</string>
    </property>
   </action>
  </widget>

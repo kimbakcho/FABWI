@@ -11,7 +11,7 @@
 #include <server_setting.h>
 #include "Smtp/SmtpMime"
 #include <logsrc/etching_analysor.h>
-#include <nikon_log_err_main.h>
+#include <logsrc/nikon_log_err_main.h>
 
 namespace Ui {
 class MainWindow;

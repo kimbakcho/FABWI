@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network ftp sql printsupport charts
+QT       += core gui network ftp sql printsupport charts datavisualization
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,8 +12,6 @@ TARGET = main
 TEMPLATE = app
 
 TRANSLATIONS += lang_ko.ts
-
-QMAKE_LFLAGS_DEBUG += /INCREMENTAL:NO
 
 RC_FILE = myapp.rc
 
@@ -44,12 +42,13 @@ SOURCES += main.cpp\
     logsrc/etching_chart_1.cpp \
     logsrc/etching_chart_1_view.cpp \
     logsrc/etching_chart_bigview.cpp \
-    nikon_log_err_main.cpp \
-    nikon_log_err_thread.cpp \
-    nikon_log_err_chart.cpp \
-    nikon_log_err_chartview.cpp \
-    nikon_log_err_list_item.cpp \
-    nikon_log_err_linseries.cpp
+    logsrc/nikon_log_err_chart.cpp \
+    logsrc/nikon_log_err_chartview.cpp \
+    logsrc/nikon_log_err_linseries.cpp \
+    logsrc/nikon_log_err_list_item.cpp \
+    logsrc/nikon_log_err_main.cpp \
+    logsrc/nikon_log_err_thread.cpp \
+    b_visualization_test.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -77,12 +76,13 @@ HEADERS  += mainwindow.h \
     logsrc/etching_chart_1.h \
     logsrc/etching_chart_1_view.h \
     logsrc/etching_chart_bigview.h \
-    nikon_log_err_main.h \
-    nikon_log_err_thread.h \
-    nikon_log_err_chart.h \
-    nikon_log_err_chartview.h \
-    nikon_log_err_list_item.h \
-    nikon_log_err_linseries.h
+    logsrc/nikon_log_err_chart.h \
+    logsrc/nikon_log_err_chartview.h \
+    logsrc/nikon_log_err_linseries.h \
+    logsrc/nikon_log_err_list_item.h \
+    logsrc/nikon_log_err_main.h \
+    logsrc/nikon_log_err_thread.h \
+    b_visualization_test.h
 
 
 FORMS    += mainwindow.ui \
@@ -106,8 +106,9 @@ FORMS    += mainwindow.ui \
     logsrc/etching_analysor_item.ui \
     logsrc/etching_base_chart_view.ui \
     logsrc/etching_chart_bigview.ui \
-    nikon_log_err_main.ui \
-    nikon_log_err_list_item.ui
+    logsrc/nikon_log_err_list_item.ui \
+    logsrc/nikon_log_err_main.ui \
+    b_visualization_test.ui
 
 RESOURCES += \
     resourec.qrc

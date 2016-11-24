@@ -491,6 +491,8 @@ void EIS_listview_item::on_modify_button_clicked()
 //        update_query.exec(query_txt);
 //        complete = "2";
 //    }
+    QString workstart_time = ui->workstart_time->dateTime().toString("yyyy-MM-dd HH:mm:ss");
+    QString workstart_end = ui->workend_time->dateTime().toString("yyyy-MM-dd HH:mm:ss");
     QString insert_query = QString("INSERT INTO EIS_document ("
                                    "`idx`,"
                                    "`team`,"
@@ -504,7 +506,9 @@ void EIS_listview_item::on_modify_button_clicked()
                                    "`content`,"
                                    "`downloadimg`,"
                                    "`attach_file_list`,"
-                                   "`complete`"
+                                   "`complete`,"
+                                   "`worktime_start`,"
+                                   "`worktime_end`"
                                    ") "
                                    "VALUES ("
                                    "'"+QString("%1").arg(doc_number)+"',"
@@ -519,7 +523,9 @@ void EIS_listview_item::on_modify_button_clicked()
                                    "'"+content+"',"
                                    "'"+img_download_file+"',"
                                    "'"+attach_file_list+"',"
-                                   "'"+complete+"'"
+                                   "'"+complete+"',"
+                                   "'"+workstart_time+"',"
+                                   "'"+workstart_end+"'"
                                    ");");
         query.exec(insert_query);
         QMessageBox msg;

@@ -13,11 +13,11 @@
 #include <QDateTime>
 #include <QDir>
 #include <QProgressDialog>
-#include <nikon_log_err_thread.h>
-#include <nikon_log_err_chart.h>
-#include <nikon_log_err_chartview.h>
+#include <logsrc/nikon_log_err_thread.h>
+#include <logsrc/nikon_log_err_chart.h>
+#include <logsrc/nikon_log_err_chartview.h>
 #include <QBarset>
-#include <nikon_log_err_list_item.h>
+#include <logsrc/nikon_log_err_list_item.h>
 
 #include <QtCharts/QChart>
 #include <QLineSeries>
