@@ -48,7 +48,9 @@ SOURCES += main.cpp\
     logsrc/nikon_log_err_list_item.cpp \
     logsrc/nikon_log_err_main.cpp \
     logsrc/nikon_log_err_thread.cpp \
-    b_visualization_test.cpp
+    b_visualization_test.cpp \
+    hanile_log_main.cpp \
+    hanile_log_item.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -82,7 +84,9 @@ HEADERS  += mainwindow.h \
     logsrc/nikon_log_err_list_item.h \
     logsrc/nikon_log_err_main.h \
     logsrc/nikon_log_err_thread.h \
-    b_visualization_test.h
+    b_visualization_test.h \
+    hanile_log_main.h \
+    hanile_log_item.h
 
 
 FORMS    += mainwindow.ui \
@@ -108,7 +112,9 @@ FORMS    += mainwindow.ui \
     logsrc/etching_chart_bigview.ui \
     logsrc/nikon_log_err_list_item.ui \
     logsrc/nikon_log_err_main.ui \
-    b_visualization_test.ui
+    b_visualization_test.ui \
+    hanile_log_main.ui \
+    hanile_log_item.ui
 
 RESOURCES += \
     resourec.qrc

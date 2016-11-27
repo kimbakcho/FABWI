@@ -151,3 +151,14 @@ void MainWindow::on_action_nikon_err_log_triggered()
     analysor->show();
 
 }
+
+void MainWindow::on_action_hanile_triggered()
+{
+    hanile_log_main *analysor = new hanile_log_main();
+    analysor->show();
+}
+
+void MainWindow::on_action_EVATEC_triggered()
+{
+
+}

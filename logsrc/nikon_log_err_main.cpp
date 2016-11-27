@@ -118,7 +118,9 @@ void nikon_log_err_main::dropEvent(QDropEvent *event)
         {
             sourceline_list<<source_file.readLine();
         }
+
         analysor(sourceline_list);
+        source_file.close();
 //        QProgressDialog *dialog = new QProgressDialog();
 //        dialog->setMaximum(sourceline_list.size()-2);
 //        nikon_log_err_thread *new_thread = new nikon_log_err_thread(sourceline_list,db,current_table_name);
