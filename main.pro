@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network ftp sql printsupport charts datavisualization
+QT       += core gui network ftp sql printsupport charts datavisualization axcontainer
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -50,7 +50,15 @@ SOURCES += main.cpp\
     logsrc/nikon_log_err_thread.cpp \
     b_visualization_test.cpp \
     hanile_log_main.cpp \
-    hanile_log_item.cpp
+    hanile_log_item.cpp \
+    hanile_log_chartview.cpp \
+    hanile_log_err_chart.cpp \
+    temp_humi_widget.cpp \
+    logsrc/asml_err_log_chart.cpp \
+    logsrc/asml_err_log_chartview.cpp \
+    logsrc/asml_err_log_list_item.cpp \
+    logsrc/asml_err_log_main.cpp
+
 
 
 HEADERS  += mainwindow.h \
@@ -86,7 +94,17 @@ HEADERS  += mainwindow.h \
     logsrc/nikon_log_err_thread.h \
     b_visualization_test.h \
     hanile_log_main.h \
-    hanile_log_item.h
+    hanile_log_item.h \
+    hanile_log_chartview.h \
+    hanile_log_err_chart.h \
+    temp_humi_widget.h \
+    logsrc/asml_err_log_chart.h \
+    logsrc/asml_err_log_chartview.h \
+    logsrc/asml_err_log_list_item.h \
+    logsrc/asml_err_log_main.h
+
+
+
 
 
 FORMS    += mainwindow.ui \
@@ -114,7 +132,11 @@ FORMS    += mainwindow.ui \
     logsrc/nikon_log_err_main.ui \
     b_visualization_test.ui \
     hanile_log_main.ui \
-    hanile_log_item.ui
+    hanile_log_item.ui \
+    temp_humi_widget.ui \
+    logsrc/asml_err_log_list_item.ui \
+    logsrc/asml_err_log_main.ui
+
 
 RESOURCES += \
     resourec.qrc

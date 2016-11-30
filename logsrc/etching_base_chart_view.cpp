@@ -211,7 +211,6 @@ void Etching_base_chart_view::on_cb_item_currentIndexChanged(const QString &text
                         new_line->append(file_item_list.at(i)->lines.at(j)->line.at(k).x(),
                                          file_item_list.at(i)->lines.at(j)->line.at(k).y());
                     }
-
                 }
                 new_line->setColor(file_item_list.at(i)->lines.at(j)->line.color());
                 new_line->setName(file_item_list.at(i)->lines.at(j)->line.name());

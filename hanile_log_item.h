@@ -16,7 +16,9 @@ public:
     QLabel *LA_layernumber;
     QLabel *LA_Matname;
     int data_start_point;
+    int data_end_point;
     QDateTime date_time;
+    QLabel *LA_testcheck;
 
     QLabel *getLA_filename() const;
     void setLA_filename(QLabel *value);
@@ -28,6 +30,10 @@ public:
     void setData_start_point(int value);
     QLabel *getLA_Matname() const;
     void setLA_Matname(QLabel *value);
+    int getData_end_point() const;
+    void setData_end_point(int value);
+    QLabel *getLA_testcheck() const;
+    void setLA_testcheck(QLabel *value);
 };
 
 namespace Ui {

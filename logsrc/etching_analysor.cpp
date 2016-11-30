@@ -52,14 +52,15 @@ void etching_analysor::analysor(etching_analysor_item *item)
     ui->logview_8->set_item_list_box(item->item_list);
 
     if(file_drag_count==1){
-        ui->logview_0->set_item_name("processTime");
-        ui->logview_1->set_item_name("RF1DCBiasSensor");
-        ui->logview_2->set_item_name("RF1ForwardPowerSensor");
-        ui->logview_3->set_item_name("RF1ReflectedPowerSens");
-        ui->logview_4->set_item_name("RF1ReflectedPowerSens");
-        ui->logview_5->set_item_name("Temperature1Temperatu");
-        ui->logview_6->set_item_name("Temperature2Temperatu");
-        ui->logview_7->set_item_name("ThrottleValveControll");
+        ui->logview_0->set_item_index(0);
+        ui->logview_1->set_item_index(1);
+        ui->logview_2->set_item_index(2);
+        ui->logview_3->set_item_index(3);
+        ui->logview_4->set_item_index(4);
+        ui->logview_5->set_item_index(5);
+        ui->logview_6->set_item_index(6);
+        ui->logview_7->set_item_index(7);
+        ui->logview_8->set_item_index(8);
     }else {
         ui->logview_0->signal_cb_item_current("auto");
         ui->logview_1->signal_cb_item_current("auto");

@@ -126,6 +126,11 @@ void etching_analysor_item::setFile_path(const QString &value)
     while(match_ite.hasNext()){
         QString captureed_data;
         captureed_data =match_ite.next().captured();
+        for(int i=0;i<item_list.count();i++){
+               if(item_list.at(i) == captureed_data){
+                   captureed_data = captureed_data + "_2";
+               }
+        }
         item_list<<captureed_data;
         line_item *temp_item = new line_item();
         temp_item->item_name = captureed_data;

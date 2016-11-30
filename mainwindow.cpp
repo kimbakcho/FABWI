@@ -162,3 +162,16 @@ void MainWindow::on_action_EVATEC_triggered()
 {
 
 }
+
+void MainWindow::on_action_temp_humi_triggered()
+{
+    temp_humi_widget *popup = new temp_humi_widget();
+    popup->show();
+
+}
+
+void MainWindow::on_action_asml_err_triggered()
+{
+    ASML_err_log_main *analysor = new ASML_err_log_main();
+    analysor->show();
+}

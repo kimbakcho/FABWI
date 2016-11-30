@@ -85,6 +85,7 @@
      <string>업무보조</string>
     </property>
     <addaction name="action_everyday_report"/>
+    <addaction name="action_temp_humi"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
@@ -116,9 +117,16 @@
      <addaction name="action_hanile"/>
      <addaction name="action_EVATEC"/>
     </widget>
+    <widget class="QMenu" name="menuASML">
+     <property name="title">
+      <string>ASML</string>
+     </property>
+     <addaction name="action_asml_err"/>
+    </widget>
     <addaction name="action_etching_analysor"/>
     <addaction name="menuNikon"/>
     <addaction name="menu_6"/>
+    <addaction name="menuASML"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
@@ -188,6 +196,16 @@
   <action name="action_EVATEC">
    <property name="text">
     <string>EVATEC</string>
+   </property>
+  </action>
+  <action name="action_temp_humi">
+   <property name="text">
+    <string>온습도메일</string>
+   </property>
+  </action>
+  <action name="action_asml_err">
+   <property name="text">
+    <string>에러분석기</string>
    </property>
   </action>
  </widget>

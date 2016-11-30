@@ -61,12 +61,10 @@ bool hanile_log_item::file_read()
             qDebug()<<item->date_time.toString("yyyy:MM:dd hh:mm:ss");
             item->getLA_Matname()->setText(data_split.at(5));
             item_list.append(item);
-
         }
     }
     source_file.close();
     return true;
-
 }
 
 QStringList hanile_log_item::getSourceline_list() const
@@ -107,7 +105,28 @@ hanile_item::hanile_item()
       LA_filetime = new QLabel();
       LA_layernumber = new QLabel();
       LA_Matname = new QLabel();
+      LA_testcheck = new QLabel();
       data_start_point = 0;
+}
+
+QLabel *hanile_item::getLA_testcheck() const
+{
+    return LA_testcheck;
+}
+
+void hanile_item::setLA_testcheck(QLabel *value)
+{
+    LA_testcheck = value;
+}
+
+int hanile_item::getData_end_point() const
+{
+    return data_end_point;
+}
+
+void hanile_item::setData_end_point(int value)
+{
+    data_end_point = value;
 }
 
 QLabel *hanile_item::getLA_Matname() const

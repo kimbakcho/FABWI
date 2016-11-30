@@ -281,6 +281,7 @@ bool BTextEdit::ispicture(QString source)
     picturesoure.append(".bmp");
     picturesoure.append(".jpeg");
     picturesoure.append(".gif");
+    source = source.toLower();
     for(int i=0;i<picturesoure.count();i++){
         if(source.indexOf(picturesoure.at(i))>0){
             result = true;
