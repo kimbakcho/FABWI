@@ -77,8 +77,12 @@ void ASML_err_log_main::analysor(QStringList dataline)
         while(iter.hasNext()){
             captured_data<<iter.next().captured();
         }
+        QString tempdata = temp_line_data;
+        if(tempdata.indexOf("FT")>=0){
+            continue;
+        }
         if(captured_data.size()>1){
-            if(captured_data.at(0)!= "ERROR:" && captured_data.at(1) != "ERROR:"){
+            if((captured_data.at(0)!= "ERROR:") || (captured_data.size() >= 3)){
                 continue;
             }
         }else {
@@ -232,8 +236,13 @@ void ASML_err_log_main::on_bar_list_view_cellClicked(int row, int column)
         while(iter.hasNext()){
             captured_data<<iter.next().captured();
         }
+        QString tempdata = temp_line_data;
+        if(tempdata.indexOf("FT")>=0){
+            continue;
+        }
         if(captured_data.size()>1){
-            if(captured_data.at(0)!= "ERROR:" && captured_data.at(1) != "ERROR:"){
+            QString tempdata3 = captured_data.at(1);
+            if((captured_data.at(0)!= "ERROR:") || (captured_data.size() >= 3) ){
                 continue;
             }
         }else {

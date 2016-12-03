@@ -873,7 +873,6 @@ void EISmain::send_email()
     html.setHtml(edit.toHtml());
 
     message.addPart(&html);
-
     if (!smtp.connectToHost()) {
         qDebug() << "Failed to connect to host!" << endl;
     }
@@ -882,6 +881,7 @@ void EISmain::send_email()
 
     }
     smtp.quit();
+
 }
 void EISmain::alarm_search_loop()
 {

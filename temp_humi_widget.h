@@ -27,10 +27,10 @@ public:
     QByteArrayList datalist;
     QTimer temp_humi_timer;
 
+
     ~temp_humi_widget();
 
 private slots:
-    void on_setpath_btn_clicked();
 
 
     void planloop();

@@ -21,7 +21,6 @@ temp_humi_widget::temp_humi_widget(QWidget *parent) :
     }
     settings.endArray();
     settings.beginGroup("file_path");
-    ui->LE_filepath->setText(settings.value("path").toString());
 
     settings.endGroup();
 
@@ -44,19 +43,6 @@ temp_humi_widget::~temp_humi_widget()
     delete ui;
 }
 
-void temp_humi_widget::on_setpath_btn_clicked()
-{
-    QString filepath = QFileDialog::getOpenFileName(this,"select",qApp->applicationDirPath()
-                                                    ,"excel (*.*)");
-    ui->LE_filepath->setText(filepath);
-
-    configini_str =qApp->applicationDirPath()+"/temp_humiplan.ini";
-    QSettings settings(configini_str,QSettings::IniFormat);
-    settings.beginGroup("file_path");
-    settings.setValue("path",filepath);
-
-    settings.endGroup();
-}
 
 //void temp_humi_widget::on_testbtn_clicked()
 //{
