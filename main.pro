@@ -57,7 +57,8 @@ SOURCES += main.cpp\
     logsrc/asml_err_log_chart.cpp \
     logsrc/asml_err_log_chartview.cpp \
     logsrc/asml_err_log_list_item.cpp \
-    logsrc/asml_err_log_main.cpp
+    logsrc/asml_err_log_main.cpp \
+    worst_search_excel_main.cpp
 
 
 
@@ -101,7 +102,8 @@ HEADERS  += mainwindow.h \
     logsrc/asml_err_log_chart.h \
     logsrc/asml_err_log_chartview.h \
     logsrc/asml_err_log_list_item.h \
-    logsrc/asml_err_log_main.h
+    logsrc/asml_err_log_main.h \
+    worst_search_excel_main.h
 
 
 
@@ -135,7 +137,8 @@ FORMS    += mainwindow.ui \
     hanile_log_item.ui \
     temp_humi_widget.ui \
     logsrc/asml_err_log_list_item.ui \
-    logsrc/asml_err_log_main.ui
+    logsrc/asml_err_log_main.ui \
+    worst_search_excel_main.ui
 
 
 RESOURCES += \

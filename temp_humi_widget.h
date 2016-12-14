@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QFileDialog>
-#include <QAxObject>
 #include <QDebug>
 #include <QTimer>
 #include <QStandardItemModel>
@@ -32,12 +31,8 @@ public:
 
 private slots:
 
-
-    void planloop();
-
     void host_connect();
 
-    void on_Btn_time_add_clicked();
 
     void model_change();
 
@@ -45,9 +40,7 @@ private slots:
 
     void temp_humi_time_out();
 
-    void on_Btn_time_del_clicked();
 
-    void on_sendmail_btn_clicked();
 
 private:
     Ui::temp_humi_widget *ui;

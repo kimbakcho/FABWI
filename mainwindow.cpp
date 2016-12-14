@@ -175,3 +175,10 @@ void MainWindow::on_action_asml_err_triggered()
     ASML_err_log_main *analysor = new ASML_err_log_main();
     analysor->show();
 }
+
+void MainWindow::on_action_worst_serarch_triggered()
+{
+    worst_search_excel_main *popup = new worst_search_excel_main();
+    popup->show();
+
+}

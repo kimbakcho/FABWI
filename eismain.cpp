@@ -1281,6 +1281,8 @@ void EISmain::search_alarm_logic()
             item->ui->write_name->setText(QString("%1").arg(query.value("witer_name").toString()));
             ui->alarm_search_listview->setCellWidget(rowcount,7,item->ui->write_name);
 
+
+
             QString priority_str = "";
             if(query.value("priority").toInt() == 1){
                 priority_str = tr("low");
@@ -1293,6 +1295,8 @@ void EISmain::search_alarm_logic()
             }
             item->ui->priority->setText(QString("%1").arg(priority_str));
             ui->alarm_search_listview->setCellWidget(rowcount,8,item->ui->priority);
+
+
 
             alarm_itemlist.append(item);
         }

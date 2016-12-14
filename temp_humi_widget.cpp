@@ -6,26 +6,6 @@ temp_humi_widget::temp_humi_widget(QWidget *parent) :
     ui(new Ui::temp_humi_widget)
 {
     ui->setupUi(this);
-    ui->set_time->setTime(QTime::currentTime());
-    connect(&plantimer,SIGNAL(timeout()),this,SLOT(planloop()));
-    mainmodel = new QStandardItemModel();
-
-    ui->plan_list->setModel(mainmodel);
-
-    configini_str =qApp->applicationDirPath()+"/temp_humiplan.ini";
-    QSettings settings(configini_str,QSettings::IniFormat);
-    int setting_size = settings.beginReadArray("time_plan");
-    for(int i=0;i<setting_size;i++){
-        settings.setArrayIndex(i);
-        mainmodel->appendRow(new QStandardItem(settings.value("paln_time").toString()));
-    }
-    settings.endArray();
-    settings.beginGroup("file_path");
-
-    settings.endGroup();
-
-    plantimer.setInterval(300);
-    plantimer.start();
     socket.connectToHost("10.22.10.60",2004);
 
     connect(&socket,SIGNAL(connected()),this,SLOT(host_connect()));
@@ -43,45 +23,11 @@ temp_humi_widget::~temp_humi_widget()
     delete ui;
 }
 
-
-//void temp_humi_widget::on_testbtn_clicked()
-//{
-//    QAxObject* excel = new QAxObject( "Excel.Application", 0 );
-//    excel->setProperty("Visible", true);
-//    QAxObject* workbooks = excel->querySubObject( "Workbooks" );
-//    QAxObject* workbook = workbooks->querySubObject( "Open(const QString&)", ui->LE_filepath->text());
-//    QAxObject* sheets = workbook->querySubObject("Worksheets(QString)", "Sheet1");
-//    QAxObject* range = sheets->querySubObject("Range(QString)", "B3");
-//    QAxObject* range1 = sheets->querySubObject("Range(QString)", "B4");
-//    qDebug()<<range->dynamicCall("Value").toString();
-//    range1->setProperty("Value","4");
-//    workbook->dynamicCall("Close(bool)",true);
-//    excel->dynamicCall("Quit()");
-//}
-
-void temp_humi_widget::planloop()
-{
-    ui->LA_currentime->setText(QTime::currentTime().toString("hh:mm:ss"));
-}
-
 void temp_humi_widget::host_connect()
 {
-    qDebug()<<"connect";
+//    qDebug()<<"connect";
     temp_humi_time_out();
 
-}
-
-void temp_humi_widget::on_Btn_time_add_clicked()
-{
-    mainmodel->appendRow(new QStandardItem(ui->set_time->text()));
-    configini_str =qApp->applicationDirPath()+"/temp_humiplan.ini";
-    QSettings settings(configini_str,QSettings::IniFormat);
-    settings.beginWriteArray("time_plan");
-    for(int i=0;i<mainmodel->rowCount();i++){
-        settings.setArrayIndex(i);
-        settings.setValue("paln_time",mainmodel->index(i,0).data().toString());
-    }
-    settings.endArray();
 }
 
 void temp_humi_widget::model_change()
@@ -262,81 +208,4 @@ void temp_humi_widget::temp_humi_time_out()
 
 }
 
-void temp_humi_widget::on_Btn_time_del_clicked()
-{
-    mainmodel->removeRow(ui->plan_list->currentIndex().row());
-    configini_str =qApp->applicationDirPath()+"/temp_humiplan.ini";
-    QSettings settings(configini_str,QSettings::IniFormat);
-    settings.beginWriteArray("time_plan");
-    for(int i=0;i<mainmodel->rowCount();i++){
-        settings.setArrayIndex(i);
-        settings.setValue("paln_time",mainmodel->index(i,0).data().toString());
-    }
-    settings.endArray();
-}
 
-void temp_humi_widget::on_sendmail_btn_clicked()
-{
-
-//    excel->setProperty("Visible", true);
-//    QAxObject* workbooks = excel->querySubObject( "Workbooks" );
-//    QAxObject* workbook = workbooks->querySubObject( "Open(const QString&)", ui->LE_filepath->text());
-//    QAxObject* sheets = workbook->querySubObject("Worksheets(QString)", "Sheet1");
-//    QAxObject* range = sheets->querySubObject("Range(QString)", "B3");
-//    QAxObject* range1 = sheets->querySubObject("Range(QString)", "B4");
-//    qDebug()<<range->dynamicCall("Value").toString();
-//    range1->setProperty("Value","4");
-//    workbook->dynamicCall("Close(bool)",true);
-//    excel->dynamicCall("Quit()");
-    QDir dir("\\\\fabsv.wisol.co.kr\\daily_temp_humi\\");
-    QString today_dir = QDate::currentDate().toString("MM_dd");
-    if(!dir.exists(today_dir)){
-        dir.mkdir(today_dir);
-    }
-    QAxObject* excel = new QAxObject( "Excel.Application", 0 );
-    excel->setProperty("Visible", true);
-    QAxObject* workbooks = excel->querySubObject( "Workbooks" );
-    QAxObject* workbook = workbooks->querySubObject( "Open(const QString&)","\\\\fabsv.wisol.co.kr\\daily_temp_humi\\main.xlsx");
-    QAxObject* sheets = workbook->querySubObject("Worksheets(QString)", "main");
-    QAxObject* range = sheets->querySubObject("Range(QString)", "C2");
-    range = range->querySubObject("End(Int)",(int)-4161);
-    range = range->querySubObject("Offset(Int,Int)",(int)0,(int)1);
-    range->setProperty("Value",QDate::currentDate().toString("yyyy/MM/dd"));
-    range = range->querySubObject("Offset(Int,Int)",(int)1,(int)0);
-    range->setProperty("Value",ui->light1_temp->value());
-    range = range->querySubObject("Offset(Int,Int)",(int)1,(int)0);
-    range->setProperty("Value",ui->light2_temp->value());
-    range = range->querySubObject("Offset(Int,Int)",(int)1,(int)0);
-    range->setProperty("Value",ui->light3_temp->value());
-
-    range = sheets->querySubObject("Range(QString)", "C25");
-    range = range->querySubObject("End(Int)",(int)-4161);
-    range = range->querySubObject("Offset(Int,Int)",(int)0,(int)1);
-    range->setProperty("Value",QDate::currentDate().toString("yyyy/MM/dd"));
-    range = range->querySubObject("Offset(Int,Int)",(int)1,(int)0);
-    range->setProperty("Value",ui->light1_humi->value());
-    range = range->querySubObject("Offset(Int,Int)",(int)1,(int)0);
-    range->setProperty("Value",ui->light2_humi->value());
-    range = range->querySubObject("Offset(Int,Int)",(int)1,(int)0);
-    range->setProperty("Value",ui->light3_humi->value());
-
-
-    range = sheets->querySubObject("Range(QString)", "C46");
-    range = range->querySubObject("End(Int)",(int)-4161);
-    range = range->querySubObject("Offset(Int,Int)",(int)0,(int)1);
-    range->setProperty("Value",QDate::currentDate().toString("yyyy/MM/dd"));
-    range = range->querySubObject("Offset(Int,Int)",(int)1,(int)0);
-    range->setProperty("Value",ui->light1_humi->value());
-    range = range->querySubObject("Offset(Int,Int)",(int)1,(int)0);
-    range->setProperty("Value",ui->light2_humi->value());
-    range = range->querySubObject("Offset(Int,Int)",(int)1,(int)0);
-    range->setProperty("Value",ui->light3_humi->value());
-
-//    qDebug()<<range->dynamicCall("Value").toString();
-
-
-//    workbook->dynamicCall("Close(bool)",true);
-//    excel->dynamicCall("Quit()");
-
-
-}

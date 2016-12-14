@@ -86,6 +86,7 @@
     </property>
     <addaction name="action_everyday_report"/>
     <addaction name="action_temp_humi"/>
+    <addaction name="action_worst_serarch"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
@@ -200,12 +201,17 @@
   </action>
   <action name="action_temp_humi">
    <property name="text">
-    <string>온습도메일</string>
+    <string>FAB 실시간 온도</string>
    </property>
   </action>
   <action name="action_asml_err">
    <property name="text">
     <string>에러분석기</string>
+   </property>
+  </action>
+  <action name="action_worst_serarch">
+   <property name="text">
+    <string>Worst_search</string>
    </property>
   </action>
  </widget>

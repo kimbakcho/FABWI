@@ -20,6 +20,9 @@ public:
 
     Ui::eis_alarm_serarch_item *ui;
 
+private slots:
+    void on_attacth_file_btn_clicked();
+
 private:
 
 };

@@ -149,7 +149,7 @@ eis_alarmlistview_item::eis_alarmlistview_item(QString doc_data,QWidget *parent)
                this,SLOT(on_select_facilities_currentIndexChanged(QString)));
 
     content_edit = new BTextEdit(&doc_number,this);
-
+    content_edit->setObjectName("alarm_content_edit");
     ui->layout_content->addWidget(content_edit,0,0);
 
     attach_list_model = new QStandardItemModel();

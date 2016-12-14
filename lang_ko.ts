@@ -2,9 +2,86 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ko_KR">
 <context>
+    <name>ASML_err_log_list_item</name>
+    <message>
+        <location filename="logsrc/asml_err_log_list_item.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ASML_err_log_main</name>
+    <message>
+        <location filename="logsrc/asml_err_log_main.ui" line="17"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/asml_err_log_main.ui" line="68"/>
+        <location filename="logsrc/asml_err_log_main.ui" line="134"/>
+        <source>줌 리셋</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/asml_err_log_main.ui" line="85"/>
+        <source>발생 횟수</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/asml_err_log_main.ui" line="102"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/asml_err_log_main.ui" line="123"/>
+        <source>이력 조회</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/asml_err_log_main.ui" line="154"/>
+        <source>값보기</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/asml_err_log_main.ui" line="175"/>
+        <source>색</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/asml_err_log_main.ui" line="180"/>
+        <source>경고내용</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/asml_err_log_main.ui" line="185"/>
+        <source>횟수</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/asml_err_log_main.ui" line="201"/>
+        <source>Date_time = </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/asml_err_log_main.ui" line="208"/>
+        <source>X</source>
+        <translation type="unfinished">무</translation>
+    </message>
+    <message>
+        <location filename="logsrc/asml_err_log_main.ui" line="221"/>
+        <source>값 =</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/asml_err_log_main.ui" line="228"/>
+        <source>Y</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>BTextEdit</name>
     <message>
-        <location filename="btextedit.cpp" line="64"/>
+        <location filename="btextedit.cpp" line="103"/>
         <source>no special input</source>
         <translation>파일에 특수문자 금지</translation>
     </message>
@@ -446,52 +523,52 @@ PR두께</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="527"/>
+        <location filename="eis_listview_item.cpp" line="533"/>
         <source>modify complete</source>
         <translation>수정 완료</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="549"/>
+        <location filename="eis_listview_item.cpp" line="557"/>
         <source>team</source>
         <translation>부서</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="551"/>
+        <location filename="eis_listview_item.cpp" line="559"/>
         <source>process</source>
         <translation>공정                              </translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="553"/>
+        <location filename="eis_listview_item.cpp" line="561"/>
         <source>facilities</source>
         <translation>설비</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="555"/>
+        <location filename="eis_listview_item.cpp" line="563"/>
         <source>witer_name</source>
         <translation>작성자</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="557"/>
+        <location filename="eis_listview_item.cpp" line="565"/>
         <source>change_have</source>
         <translation>변경점유무</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="559"/>
+        <location filename="eis_listview_item.cpp" line="567"/>
         <source>have</source>
         <translation>유</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="561"/>
+        <location filename="eis_listview_item.cpp" line="569"/>
         <source>don&apos;t have</source>
         <translation>무</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="563"/>
+        <location filename="eis_listview_item.cpp" line="571"/>
         <source>complete</source>
         <translation>완료 유무</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="572"/>
+        <location filename="eis_listview_item.cpp" line="580"/>
         <source>subname</source>
         <translation>제목</translation>
     </message>
@@ -662,13 +739,13 @@ PR두께</source>
     </message>
     <message>
         <location filename="eismain.ui" line="354"/>
-        <location filename="eismain.cpp" line="1340"/>
+        <location filename="eismain.cpp" line="1353"/>
         <source>O</source>
         <translation>유</translation>
     </message>
     <message>
         <location filename="eismain.ui" line="359"/>
-        <location filename="eismain.cpp" line="1342"/>
+        <location filename="eismain.cpp" line="1355"/>
         <source>X</source>
         <translation>무</translation>
     </message>
@@ -907,111 +984,111 @@ PR두께</source>
         <translation>등록 완료</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1031"/>
-        <location filename="eismain.cpp" line="1060"/>
+        <location filename="eismain.cpp" line="1039"/>
+        <location filename="eismain.cpp" line="1068"/>
         <source>Save File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1278"/>
+        <location filename="eismain.cpp" line="1288"/>
         <source>low</source>
         <translation>낮음</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1280"/>
+        <location filename="eismain.cpp" line="1290"/>
         <source>middle</source>
         <translation>중간</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1282"/>
+        <location filename="eismain.cpp" line="1292"/>
         <source>high</source>
         <translation>높음</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1284"/>
+        <location filename="eismain.cpp" line="1294"/>
         <source>very_high</source>
         <translation>최우선</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1444"/>
+        <location filename="eismain.cpp" line="1459"/>
         <source>Are you sure?
 </source>
         <translation>정말로 종료 하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1621"/>
-        <location filename="eismain.cpp" line="1643"/>
+        <location filename="eismain.cpp" line="1636"/>
+        <location filename="eismain.cpp" line="1658"/>
         <source>delete complete</source>
         <translation>삭제 완료</translation>
     </message>
     <message>
         <location filename="eismain.cpp" line="848"/>
-        <location filename="eismain.cpp" line="1198"/>
-        <location filename="eismain.cpp" line="1406"/>
+        <location filename="eismain.cpp" line="1206"/>
+        <location filename="eismain.cpp" line="1420"/>
         <source>have</source>
         <translation>유</translation>
     </message>
     <message>
         <location filename="eismain.cpp" line="850"/>
-        <location filename="eismain.cpp" line="1200"/>
-        <location filename="eismain.cpp" line="1408"/>
+        <location filename="eismain.cpp" line="1208"/>
+        <location filename="eismain.cpp" line="1422"/>
         <source>don&apos;t have</source>
         <translation>무</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1205"/>
+        <location filename="eismain.cpp" line="1213"/>
         <source>have sun</source>
         <translation>주간</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1207"/>
+        <location filename="eismain.cpp" line="1215"/>
         <source>don&apos;t have sun</source>
         <translation>야간</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1223"/>
+        <location filename="eismain.cpp" line="1231"/>
         <source>no reslut</source>
         <translation>결과 없음</translation>
     </message>
     <message>
         <location filename="eismain.cpp" line="838"/>
-        <location filename="eismain.cpp" line="1396"/>
+        <location filename="eismain.cpp" line="1410"/>
         <source>team</source>
         <translation>부서</translation>
     </message>
     <message>
         <location filename="eismain.cpp" line="840"/>
-        <location filename="eismain.cpp" line="1398"/>
+        <location filename="eismain.cpp" line="1412"/>
         <source>process</source>
         <translation>공정</translation>
     </message>
     <message>
         <location filename="eismain.cpp" line="842"/>
-        <location filename="eismain.cpp" line="1400"/>
+        <location filename="eismain.cpp" line="1414"/>
         <source>facilities</source>
         <translation>설비</translation>
     </message>
     <message>
         <location filename="eismain.cpp" line="844"/>
-        <location filename="eismain.cpp" line="1402"/>
+        <location filename="eismain.cpp" line="1416"/>
         <source>witer_name</source>
         <translation>작성자</translation>
     </message>
     <message>
         <location filename="eismain.cpp" line="846"/>
-        <location filename="eismain.cpp" line="1404"/>
+        <location filename="eismain.cpp" line="1418"/>
         <source>change_have</source>
         <translation>변경점유무</translation>
     </message>
     <message>
         <location filename="eismain.cpp" line="852"/>
-        <location filename="eismain.cpp" line="1410"/>
+        <location filename="eismain.cpp" line="1424"/>
         <source>complete</source>
         <translation>완료 유무</translation>
     </message>
     <message>
         <location filename="eismain.cpp" line="861"/>
-        <location filename="eismain.cpp" line="1419"/>
+        <location filename="eismain.cpp" line="1433"/>
         <source>subname</source>
         <translation>제목</translation>
     </message>
@@ -1032,78 +1109,83 @@ PR두께</source>
 <context>
     <name>Etching_base_chart_view</name>
     <message>
-        <location filename="etching_base_chart_view.ui" line="14"/>
+        <location filename="logsrc/etching_base_chart_view.ui" line="14"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_base_chart_view.ui" line="22"/>
+        <location filename="logsrc/etching_base_chart_view.ui" line="28"/>
         <source>추가스펙</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_base_chart_view.ui" line="29"/>
+        <location filename="logsrc/etching_base_chart_view.ui" line="50"/>
+        <source>+++</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/etching_base_chart_view.ui" line="55"/>
+        <source>---</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/etching_base_chart_view.ui" line="69"/>
         <source>값</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_base_chart_view.ui" line="39"/>
-        <source>라인 색깔</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="etching_base_chart_view.ui" line="56"/>
+        <location filename="logsrc/etching_base_chart_view.ui" line="102"/>
         <source>색상 선택</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_base_chart_view.ui" line="63"/>
+        <location filename="logsrc/etching_base_chart_view.ui" line="109"/>
         <source>추가</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_base_chart_view.ui" line="70"/>
+        <location filename="logsrc/etching_base_chart_view.ui" line="116"/>
         <source>크게 보기 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_base_chart_view.ui" line="100"/>
+        <location filename="logsrc/etching_base_chart_view.ui" line="245"/>
         <source>항목</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_base_chart_view.ui" line="116"/>
+        <location filename="logsrc/etching_base_chart_view.ui" line="261"/>
         <source>자료 타입</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_base_chart_view.ui" line="132"/>
+        <location filename="logsrc/etching_base_chart_view.ui" line="287"/>
         <source>줌리셋</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_base_chart_view.ui" line="145"/>
+        <location filename="logsrc/etching_base_chart_view.ui" line="300"/>
         <source>값 보기</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_base_chart_view.ui" line="179"/>
+        <location filename="logsrc/etching_base_chart_view.ui" line="150"/>
         <source>X = </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_base_chart_view.ui" line="233"/>
+        <location filename="logsrc/etching_base_chart_view.ui" line="204"/>
         <source>Y =</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_base_chart_view.cpp" line="177"/>
-        <location filename="etching_base_chart_view.cpp" line="191"/>
+        <location filename="logsrc/etching_base_chart_view.cpp" line="134"/>
+        <location filename="logsrc/etching_base_chart_view.cpp" line="147"/>
         <source>view</source>
         <translation>값 보기</translation>
     </message>
     <message>
-        <location filename="etching_base_chart_view.cpp" line="183"/>
+        <location filename="logsrc/etching_base_chart_view.cpp" line="140"/>
         <source>no view</source>
         <translation>값 해제</translation>
     </message>
@@ -1128,16 +1210,10 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Gulim&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;업데이트 내용 &lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;1. 제목 검색시 영문 대소문자 구분 없애기&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;2. 글자 굵게,밑줄,색깔 기능 추가함&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3. 종료전 Warning 물어보기&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;4. 추가-&amp;gt;등록으로 변환&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;5. 인폼 추가시 조회 시간 최근으로 변경 &lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;6. 글자 크기 10으로 통일하기 &lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;7. 수정에서 첨부 버그 수정 &lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;7. 공지사항 기능 추가 &lt;br /&gt;8. 삭제기능 -- 관리자 비밀번호 필요&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;9. 공정,설비,사람 추가 기능 -- 관리자 비밀 번호 필요 &lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;10. 작업 시간 추가&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Nikon 설비 에러 로그 분석기 업데이트&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;작업 시간 수정 할수 있도록 변경했습니다.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
@@ -1161,53 +1237,99 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="91"/>
+        <location filename="mainwindow.ui" line="93"/>
         <source>설정</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="97"/>
+        <location filename="mainwindow.ui" line="99"/>
         <source>기타</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="103"/>
+        <location filename="mainwindow.ui" line="105"/>
         <source>분석기</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="124"/>
-        <source>IDIX</source>
+        <location filename="mainwindow.ui" line="109"/>
+        <source>Nikon </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="129"/>
-        <source>일일 업무 보고</source>
+        <location filename="mainwindow.ui" line="116"/>
+        <source>성막</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="134"/>
-        <source>EIS</source>
-        <translation>인폼시스템(EIS)</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="139"/>
-        <source>message</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="144"/>
-        <source>서버설정</source>
+        <location filename="mainwindow.ui" line="123"/>
+        <source>ASML</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="149"/>
-        <source>V 1.1</source>
+        <source>IDIX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="154"/>
-        <source>에칭</source>
+        <source>일일 업무 보고</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="159"/>
+        <source>EIS</source>
+        <translation>인폼시스템(EIS)</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="164"/>
+        <source>message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="169"/>
+        <source>서버설정</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="174"/>
+        <source>V 1.1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="179"/>
+        <source>CVD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="184"/>
+        <location filename="mainwindow.ui" line="209"/>
+        <source>에러분석기</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="189"/>
+        <source>TEST1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="194"/>
+        <source>한일진공</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="199"/>
+        <source>EVATEC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="204"/>
+        <source>FAB 실시간 온도</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="214"/>
+        <source>Worst_search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1235,6 +1357,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="server_setting.ui" line="49"/>
         <source>ftp포트</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>b_visualization_test</name>
+    <message>
+        <location filename="b_visualization_test.ui" line="14"/>
+        <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1328,6 +1458,16 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="eis_alarm_serarch_item.ui" line="139"/>
         <source>priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="146"/>
+        <source>첨부파일 다운로드</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_alarm_serarch_item.ui" line="153"/>
+        <source>첨부파일</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1471,61 +1611,489 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>eis_select_copymode_dialog</name>
+    <message>
+        <location filename="eis_select_copymode_dialog.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_select_copymode_dialog.ui" line="20"/>
+        <source>붙혀넣기 모드</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_select_copymode_dialog.ui" line="26"/>
+        <source>그림</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eis_select_copymode_dialog.ui" line="36"/>
+        <source>글자</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>etching_analysor</name>
     <message>
-        <location filename="etching_analysor.ui" line="14"/>
+        <location filename="logsrc/etching_analysor.ui" line="17"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_analysor.ui" line="36"/>
-        <source>웨이퍼ID =</source>
+        <location filename="logsrc/etching_analysor.ui" line="31"/>
+        <source>로그 파일을 드래그 하세요</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_analysor.ui" line="51"/>
-        <source>waferid</source>
+        <location filename="logsrc/etching_analysor.ui" line="70"/>
+        <source>정보</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_analysor.ui" line="72"/>
-        <source>레시피 = </source>
+        <location filename="logsrc/etching_analysor.ui" line="75"/>
+        <source>이름</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>etching_analysor_item</name>
+    <message>
+        <location filename="logsrc/etching_analysor_item.ui" line="14"/>
+        <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_analysor.ui" line="87"/>
-        <source>recipe</source>
+        <location filename="logsrc/etching_analysor_item.ui" line="20"/>
+        <location filename="logsrc/etching_analysor_item.ui" line="56"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>etching_chart_bigview</name>
+    <message>
+        <location filename="logsrc/etching_chart_bigview.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>hanile_log_item</name>
+    <message>
+        <location filename="hanile_log_item.ui" line="14"/>
+        <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_analysor.ui" line="108"/>
-        <source>lotID =</source>
+        <location filename="hanile_log_item.ui" line="20"/>
+        <location filename="hanile_log_item.ui" line="27"/>
+        <location filename="hanile_log_item.ui" line="34"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>hanile_log_main</name>
+    <message>
+        <location filename="hanile_log_main.ui" line="17"/>
+        <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_analysor.ui" line="123"/>
-        <source>lotID</source>
+        <location filename="hanile_log_main.ui" line="31"/>
+        <source>기준값 설정값</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_analysor.ui" line="140"/>
+        <location filename="hanile_log_main.ui" line="39"/>
+        <location filename="hanile_log_main.ui" line="133"/>
+        <source>Rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="53"/>
+        <source>설정값</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="66"/>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="79"/>
+        <source>시간 설정(S)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="92"/>
+        <source>30</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="119"/>
+        <source>Vacuum</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="126"/>
+        <source>Thickness</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="140"/>
+        <source>Power</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="147"/>
+        <source>Xtal No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="154"/>
+        <source>Xtal Life</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="161"/>
+        <source>Xtal Freq</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="168"/>
+        <source>XPos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="175"/>
+        <source>YPos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="191"/>
+        <source>List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="196"/>
+        <source>Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="201"/>
+        <source>Lot_id</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="206"/>
+        <source>mat_name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="211"/>
+        <source>테스트체크</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="hanile_log_main.ui" line="234"/>
+        <source>줌리셋</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>nikon_log_err_list_item</name>
+    <message>
+        <location filename="logsrc/nikon_log_err_list_item.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>nikon_log_err_main</name>
+    <message>
+        <location filename="logsrc/nikon_log_err_main.ui" line="17"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/nikon_log_err_main.ui" line="61"/>
+        <source>발생 횟수</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/nikon_log_err_main.ui" line="85"/>
+        <location filename="logsrc/nikon_log_err_main.ui" line="117"/>
+        <source>줌 리셋</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/nikon_log_err_main.ui" line="106"/>
+        <source>이력 조회</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/nikon_log_err_main.ui" line="137"/>
+        <source>값보기</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/nikon_log_err_main.ui" line="158"/>
+        <source>색</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/nikon_log_err_main.ui" line="163"/>
+        <source>경고내용</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/nikon_log_err_main.ui" line="168"/>
+        <source>횟수</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/nikon_log_err_main.ui" line="184"/>
+        <source>Date_time = </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/nikon_log_err_main.ui" line="191"/>
+        <source>X</source>
+        <translation type="unfinished">무</translation>
+    </message>
+    <message>
+        <location filename="logsrc/nikon_log_err_main.ui" line="204"/>
+        <source>값 =</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logsrc/nikon_log_err_main.ui" line="211"/>
+        <source>Y</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>temp_humi_widget</name>
+    <message>
+        <location filename="temp_humi_widget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="temp_humi_widget.ui" line="43"/>
+        <location filename="temp_humi_widget.ui" line="222"/>
+        <location filename="temp_humi_widget.ui" line="254"/>
+        <location filename="temp_humi_widget.ui" line="286"/>
+        <location filename="temp_humi_widget.ui" line="302"/>
+        <location filename="temp_humi_widget.ui" line="372"/>
+        <location filename="temp_humi_widget.ui" line="410"/>
+        <location filename="temp_humi_widget.ui" line="837"/>
+        <location filename="temp_humi_widget.ui" line="3334"/>
+        <location filename="temp_humi_widget.ui" line="3366"/>
+        <source>습도</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="temp_humi_widget.ui" line="59"/>
+        <location filename="temp_humi_widget.ui" line="206"/>
+        <location filename="temp_humi_widget.ui" line="238"/>
+        <location filename="temp_humi_widget.ui" line="270"/>
+        <location filename="temp_humi_widget.ui" line="318"/>
+        <location filename="temp_humi_widget.ui" line="340"/>
+        <location filename="temp_humi_widget.ui" line="356"/>
+        <location filename="temp_humi_widget.ui" line="394"/>
+        <location filename="temp_humi_widget.ui" line="3296"/>
+        <location filename="temp_humi_widget.ui" line="3318"/>
+        <location filename="temp_humi_widget.ui" line="3350"/>
+        <source>온도</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="temp_humi_widget.ui" line="690"/>
+        <source>프로프2층 온습도</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="temp_humi_widget.ui" line="1510"/>
+        <source>노광#2 온습도</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="temp_humi_widget.ui" line="1671"/>
+        <source>애칭#1온습도</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="temp_humi_widget.ui" line="1695"/>
+        <source>성막 온습도</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="temp_humi_widget.ui" line="1713"/>
+        <source>약품창고 2층 온도</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="temp_humi_widget.ui" line="1868"/>
+        <source>노광 #1온습도</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="temp_humi_widget.ui" line="2279"/>
+        <source>프로프 1층 온습도</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="temp_humi_widget.ui" line="2428"/>
+        <source>애칭#2 온습도</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="temp_humi_widget.ui" line="2446"/>
+        <source>노광#3 온습도</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="temp_humi_widget.ui" line="2863"/>
+        <source>KRF룸 온습도</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="temp_humi_widget.ui" line="3143"/>
+        <source>리프트오프룸 온습도</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>worst_search_excel_main</name>
+    <message>
+        <location filename="worst_search_excel_main.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="worst_search_excel_main.ui" line="25"/>
         <source>파일 선택</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_analysor.ui" line="153"/>
-        <source>선택 </source>
+        <location filename="worst_search_excel_main.ui" line="49"/>
+        <source>시작</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_analysor.cpp" line="62"/>
-        <source>Open File</source>
+        <location filename="worst_search_excel_main.cpp" line="33"/>
+        <source>conntion false</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="etching_analysor.cpp" line="62"/>
-        <source>log (*.log)</source>
-        <translation type="unfinished"></translation>
+        <location filename="worst_search_excel_main.cpp" line="49"/>
+        <location filename="worst_search_excel_main.cpp" line="318"/>
+        <source>workerfail(probe)</source>
+        <translation>작업자파손(프로브)</translation>
+    </message>
+    <message>
+        <location filename="worst_search_excel_main.cpp" line="50"/>
+        <location filename="worst_search_excel_main.cpp" line="321"/>
+        <source>workerfail(eatching)</source>
+        <translation>작업자파손(에칭)</translation>
+    </message>
+    <message>
+        <location filename="worst_search_excel_main.cpp" line="51"/>
+        <location filename="worst_search_excel_main.cpp" line="324"/>
+        <source>workerfail(light)</source>
+        <translation>작업자파손(노광)</translation>
+    </message>
+    <message>
+        <location filename="worst_search_excel_main.cpp" line="52"/>
+        <location filename="worst_search_excel_main.cpp" line="327"/>
+        <source>workerfail(defect)</source>
+        <translation>작업자파손(성막)</translation>
+    </message>
+    <message>
+        <location filename="worst_search_excel_main.cpp" line="53"/>
+        <location filename="worst_search_excel_main.cpp" line="330"/>
+        <source>workerfail(output)</source>
+        <translation>작업자파손(출하)</translation>
+    </message>
+    <message>
+        <location filename="worst_search_excel_main.cpp" line="55"/>
+        <location filename="worst_search_excel_main.cpp" line="333"/>
+        <source>machinefail(probe)</source>
+        <translation>설비파손(프로브)</translation>
+    </message>
+    <message>
+        <location filename="worst_search_excel_main.cpp" line="56"/>
+        <location filename="worst_search_excel_main.cpp" line="336"/>
+        <source>machinefail(eatching)</source>
+        <translation>설비파손(에칭)</translation>
+    </message>
+    <message>
+        <location filename="worst_search_excel_main.cpp" line="57"/>
+        <location filename="worst_search_excel_main.cpp" line="339"/>
+        <source>machinefail(light)</source>
+        <translation>설비파손(노광)</translation>
+    </message>
+    <message>
+        <location filename="worst_search_excel_main.cpp" line="58"/>
+        <location filename="worst_search_excel_main.cpp" line="342"/>
+        <source>machinefail(defect)</source>
+        <translation>설비파손(성막)</translation>
+    </message>
+    <message>
+        <location filename="worst_search_excel_main.cpp" line="60"/>
+        <location filename="worst_search_excel_main.cpp" line="69"/>
+        <location filename="worst_search_excel_main.cpp" line="354"/>
+        <location filename="worst_search_excel_main.cpp" line="429"/>
+        <source>paticle</source>
+        <translation>이물</translation>
+    </message>
+    <message>
+        <location filename="worst_search_excel_main.cpp" line="61"/>
+        <location filename="worst_search_excel_main.cpp" line="345"/>
+        <source>padpaticle</source>
+        <oldsource>padpaticle)</oldsource>
+        <translation>패드이물</translation>
+    </message>
+    <message>
+        <location filename="worst_search_excel_main.cpp" line="62"/>
+        <location filename="worst_search_excel_main.cpp" line="348"/>
+        <source>etcpaticle</source>
+        <oldsource>paticle</oldsource>
+        <translation>이외이물</translation>
+    </message>
+    <message>
+        <location filename="worst_search_excel_main.cpp" line="63"/>
+        <location filename="worst_search_excel_main.cpp" line="351"/>
+        <source>pattenpaticle</source>
+        <oldsource>pattenpaticle)</oldsource>
+        <translation>패턴이물</translation>
+    </message>
+    <message>
+        <location filename="worst_search_excel_main.cpp" line="65"/>
+        <location filename="worst_search_excel_main.cpp" line="441"/>
+        <source>jobmiss(probe)</source>
+        <translation>작업미스(프로브)</translation>
+    </message>
+    <message>
+        <location filename="worst_search_excel_main.cpp" line="66"/>
+        <location filename="worst_search_excel_main.cpp" line="435"/>
+        <source>jobmiss(eatching)</source>
+        <translation>작업미스(에칭)</translation>
+    </message>
+    <message>
+        <location filename="worst_search_excel_main.cpp" line="67"/>
+        <location filename="worst_search_excel_main.cpp" line="438"/>
+        <source>jobmiss(light)</source>
+        <translation>작업미스(노광)</translation>
+    </message>
+    <message>
+        <location filename="worst_search_excel_main.cpp" line="68"/>
+        <location filename="worst_search_excel_main.cpp" line="432"/>
+        <source>jobmiss(defect)</source>
+        <translation>작업미스(성막)</translation>
     </message>
 </context>
 </TS>
