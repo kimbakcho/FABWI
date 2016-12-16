@@ -75,6 +75,106 @@ worst_search_th::worst_search_th()
     last_probe_vild_daily = 0;
 }
 
+QVector<rework_text_type> worst_search_th::getRework_worstcpsprocesslist() const
+{
+    return rework_worstcpsprocesslist;
+}
+
+void worst_search_th::setRework_worstcpsprocesslist(const QVector<rework_text_type> &value)
+{
+    rework_worstcpsprocesslist = value;
+}
+
+double worst_search_th::getRSM_accumulate_totalvild() const
+{
+    return RSM_accumulate_totalvild;
+}
+
+void worst_search_th::setRSM_accumulate_totalvild(double value)
+{
+    RSM_accumulate_totalvild = value;
+}
+
+double worst_search_th::getRSM_last_probevild() const
+{
+    return RSM_last_probevild;
+}
+
+void worst_search_th::setRSM_last_probevild(double value)
+{
+    RSM_last_probevild = value;
+}
+
+double worst_search_th::getRSM_daily_totalvild() const
+{
+    return RSM_daily_totalvild;
+}
+
+void worst_search_th::setRSM_daily_totalvild(double value)
+{
+    RSM_daily_totalvild = value;
+}
+
+double worst_search_th::getDPX_accumulate_totalvild() const
+{
+    return DPX_accumulate_totalvild;
+}
+
+void worst_search_th::setDPX_accumulate_totalvild(double value)
+{
+    DPX_accumulate_totalvild = value;
+}
+
+double worst_search_th::getDPX_last_probevild() const
+{
+    return DPX_last_probevild;
+}
+
+void worst_search_th::setDPX_last_probevild(double value)
+{
+    DPX_last_probevild = value;
+}
+
+double worst_search_th::getDPX_daily_totalvild() const
+{
+    return DPX_daily_totalvild;
+}
+
+void worst_search_th::setDPX_daily_totalvild(double value)
+{
+    DPX_daily_totalvild = value;
+}
+
+double worst_search_th::getSingle_last_probevild() const
+{
+    return single_last_probevild;
+}
+
+void worst_search_th::setSingle_last_probevild(double value)
+{
+    single_last_probevild = value;
+}
+
+double worst_search_th::getSingle_accumulate_totalvild() const
+{
+    return single_accumulate_totalvild;
+}
+
+void worst_search_th::setSingle_accumulate_totalvild(double value)
+{
+    single_accumulate_totalvild = value;
+}
+
+double worst_search_th::getSingle_daily_totalvild() const
+{
+    return single_daily_totalvild;
+}
+
+void worst_search_th::setSingle_daily_totalvild(double value)
+{
+    single_daily_totalvild = value;
+}
+
 double worst_search_th::getLast_probe_vild_daily() const
 {
     return last_probe_vild_daily;
@@ -436,11 +536,12 @@ void worst_search_th::run()
         data.setDEFECT_SUM(ms_query.value("DEFECT_SUM").toDouble());
         data.setEXCLUDE_YIELD_QTY_SUM(ms_query.value("EXCLUDE_YIELD_SUM").toDouble());
         data.setVield((data.getOUTPUT_SUM()+data.getEXCLUDE_YIELD_QTY_SUM())/data.getINPUT_SUM());
-        if(data.getName() == tr("lastprobe_vaild")){
-            last_probe_vild_daily = data.getVield()*100.0;
-            last_probe_vild_daily = roundf(last_probe_vild_daily * 100) / 100;
+        if(data.getOUTPUT_SUM() != 0){
+            if(data.getName() == tr("lastprobe_vaild")){
+                last_probe_vild_daily = data.getVield()*100.0;
+                last_probe_vild_daily = roundf(last_probe_vild_daily * 100) / 100;
+            }
         }
-
         daily_worstcpsprocesslist.append(data);
     }
     daily_totalvild = 1.0;
@@ -453,18 +554,17 @@ void worst_search_th::run()
     daily_totalvild = roundf(daily_totalvild * 100) / 100;
     qDebug()<<"daily_total vaild = "<<daily_totalvild;
 #else
+    last_probe_vild_daily = 89.12;
     daily_totalvild = 89.61;
 #endif
-
+    QDate firstday(select_date.year(),select_date.month(),1);
+    QString accumulate_start_date_str = firstday.toString("yyyyMMdd")+"080000";
 #ifdef REAL_QUERY
     my_query.exec("select * from MES_Worst_CPS_Process");
     while(my_query.next()){
         process_code data;
         data.setId(my_query.value("OPERATION_ID").toString());
         data.setName(my_query.value("OPERATION_SHORT_NAME").toString());
-        QDate firstday(select_date.year(),select_date.month(),1);
-        QString accumulate_start_date_str = firstday.toString("yyyyMMdd")+"080000";
-
         QString INPUT_OUTPUT_SUM_query = QString("SELECT SUM(INPUT_QTY) INPUT_SUM,SUM(OUTPUT_QTY)OUTPUT_SUM,SUM(DEFECT_QTY)DEFECT_SUM,SUM(EXCLUDE_YIELD_QTY) EXCLUDE_YIELD_SUM "
                                           "FROM [V_OUTPUT_LOTS] "
                                           "WHERE MOVEOUT_DTTM BETWEEN \'%1\' AND \'%2\' "
@@ -542,34 +642,25 @@ void worst_search_th::run()
 
 
 #ifdef REAL_QUERY
-    QString worstitemtype_query = QString("SELECT MATERIAL_ID FROM [V_OUTPUT_LOTS] "
-                                          "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
-                                          "AND MATERIAL_GROUP = 'CSP' "
-                                          "AND LOT_TYPE = 'A' "
-                                          "AND INPUT_QTY !=OUTPUT_QTY "
-                                          "group by MATERIAL_ID;").arg(start_date_str).arg(end_date_str);
-    ms_query.exec(worstitemtype_query);
-    while(ms_query.next()){
-        QString product_lotname = ms_query.value("MATERIAL_ID").toString();
-        product_item *worst_item = new product_item(product_lotname);
-        item_vector.append(worst_item);
-    }
 
-    for(int i=0;i<item_vector.count();i++){
-        product_item *worst_item;
-        worst_item = item_vector.at(i);
-        for(int j=0;j<PROBE_ITEM_LIST.count();j++){
+    total_DP001_worst=0;
+    total_DP003_worst=0;
+    total_DP004_worst=0;
+    total_DP005_worst=0;
+    total_DP006_worst=0;
+    total_DP008_worst=0;
+    for(int j=0;j<PROBE_ITEM_LIST.count();j++){
             QString worstcount_query = QString("SELECT SUM(PROBE_INSP_QTY)PROBE_INSP_SUM "
                                                "FROM [V_PROBE_INSP_LOTS] "
                                                "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                                "AND LOT_TYPE = 'A' "
                                                "AND MATERIAL_GROUP = 'CSP' "
-                                               "AND MATERIAL_ID = '%3' "
-                                               "AND PROBE_INSP_CODE = '%4';").arg(start_date_str).arg(end_date_str)
-                                                .arg(item_vector.at(i)->getProduct_name()).arg(PROBE_ITEM_LIST.at(j));
+                                               "AND PROBE_INSP_CODE = '%3';").arg(start_date_str).arg(end_date_str)
+                                               .arg(PROBE_ITEM_LIST.at(j));
 
             ms_query.exec(worstcount_query);
 
+            qDebug()<<worstcount_query;
             if(ms_query.next()){
                 int count = ms_query.value("PROBE_INSP_SUM").toInt();
                 double vaild_rate;
@@ -578,44 +669,20 @@ void worst_search_th::run()
                 vaild_rate = ((count/temp2)*temp1);
 
                 if(PROBE_ITEM_LIST.at(j)=="DP001"){     //OS 불량 .
-                    worst_item->setProbe_DP001_count(count);
-                    worst_item->setProbe_DP001_rate(vaild_rate);
+                      total_DP001_worst = vaild_rate;
                 }else if(PROBE_ITEM_LIST.at(j)=="DP003"){  //저주파 .
-                    worst_item->setProbe_DP003_count(count);
-                    worst_item->setProbe_DP003_rate(vaild_rate);
+                      total_DP003_worst = vaild_rate;
                 }else if(PROBE_ITEM_LIST.at(j)=="DP004"){  //고주파 .
-                    worst_item->setProbe_DP004_count(count);
-                    worst_item->setProbe_DP004_rate(vaild_rate);
+                      total_DP004_worst = vaild_rate;
                 }else if(PROBE_ITEM_LIST.at(j)=="DP005"){  //BW 불량 .
-                    worst_item->setProbe_DP005_count(count);
-                    worst_item->setProbe_DP005_rate(vaild_rate);
+                      total_DP005_worst = vaild_rate;
                 }else if(PROBE_ITEM_LIST.at(j)=="DP006"){ //LIMIT 불량
-                    worst_item->setProbe_DP006_count(count);
-                    worst_item->setProbe_DP006_rate(vaild_rate);
+                      total_DP006_worst = vaild_rate;
                 }else if(PROBE_ITEM_LIST.at(j)=="DP008"){  //VSWR불량
-                    worst_item->setProbe_DP008_count(count);
-                    worst_item->setProbe_DP008_rate(vaild_rate);
+                      total_DP008_worst = vaild_rate;
                 }
             }
         }
-    }
-    total_DP001_worst=0;
-    total_DP003_worst=0;
-    total_DP004_worst=0;
-    total_DP005_worst=0;
-    total_DP006_worst=0;
-    total_DP008_worst=0;
-    for(int i=0;i<item_vector.count();i++){
-        product_item *worst_item;
-        worst_item = item_vector.at(i);
-        total_DP001_worst += worst_item->getProbe_DP001_rate();
-        total_DP003_worst += worst_item->getProbe_DP003_rate();
-        total_DP004_worst += worst_item->getProbe_DP004_rate();
-        total_DP005_worst += worst_item->getProbe_DP005_rate();
-        total_DP006_worst += worst_item->getProbe_DP006_rate();
-        total_DP008_worst += worst_item->getProbe_DP008_rate();
-
-    }
 #else
     total_DP001_worst=0.13;
     total_DP003_worst=0.48;
@@ -631,76 +698,6 @@ void worst_search_th::run()
     qDebug()<<"p limit DP006 = "<<RoundOff(total_DP006_worst,2);
     qDebug()<<"p vswr DP008 = "<<RoundOff(total_DP008_worst,2);
 
-#ifdef REAL_QUERY
-    for(int i=0;i<item_vector.count();i++){
-        product_item *worst_item;
-        worst_item = item_vector.at(i);
-        for(int j=0;j<DEFECT_ITEM_LIST.count();j++){
-            QString worstcount_query = QString("SELECT SUM(DEFECT_QTY)DEFECT_SUM "
-                                               "FROM [V_DEFECT_LOTS] "
-                                               "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
-                                               "AND LOT_TYPE = 'A' "
-                                               "AND MATERIAL_GROUP = 'CSP' "
-                                               "AND EXCLUDE_YIELD_FLAG <> 'Y' "
-                                               "AND MATERIAL_ID = '%3' "
-                                               "AND DEFECT_NAME = '%4'")
-                                                .arg(start_date_str).arg(end_date_str)
-                                                .arg(item_vector.at(i)->getProduct_name()).arg(DEFECT_ITEM_LIST.at(j));
-
-            ms_query.exec(worstcount_query);
-            qDebug()<<worstcount_query;
-
-            if(ms_query.next()){
-                int count = ms_query.value("DEFECT_SUM").toInt();
-                double vaild_rate;
-                double temp1 = 100.0-daily_totalvild;
-                double temp2 = worst_sum;
-                vaild_rate = ((count/temp2)*temp1);
-
-                if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(probe)")){     //작업자 파손(프로브)
-                    worst_item->setWorkerfail_probe_count(count);
-                    worst_item->setWorkerfail_probe_rate(vaild_rate);
-                }else if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(eatching)")){  //작업자 파손(에칭)
-                    worst_item->setWorkerfail_eatching_count(count);
-                    worst_item->setWorkerfail_eatching_rate(vaild_rate);
-                }else if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(light)")){  //작업자 파손(노광)
-                    worst_item->setWorkerfail_light_count(count);
-                    worst_item->setWorkerfail_light_rate(vaild_rate);
-                }else if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(defect)")){  //작업자 파손(성막)
-                    worst_item->setWorkerfail_defect_count(count);
-                    worst_item->setWorkerfail_defect_rate(vaild_rate);
-                }else if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(output)")){ //작업자 파손(출고)
-                    worst_item->setWorkerfail_output_count(count);
-                    worst_item->setWorkerfail_output_rate(vaild_rate);
-                }else if(DEFECT_ITEM_LIST.at(j)==tr("machinefail(probe)")){  //설비파손(프로브)
-                    worst_item->setMachinefail_probe_count(count);
-                    worst_item->setMachinefail_probe_rate(vaild_rate);
-                }else if(DEFECT_ITEM_LIST.at(j)==tr("machinefail(eatching)")){  //설비파손(에칭)
-                    worst_item->setMachinefail_eatching_rate(count);
-                    worst_item->setMachinefail_eatching_rate(vaild_rate);
-                }else if(DEFECT_ITEM_LIST.at(j)==tr("machinefail(light)")){  //설비파손(노광)
-                    worst_item->setMachinefail_light_count(count);
-                    worst_item->setMachinefail_light_rate(vaild_rate);
-                }else if(DEFECT_ITEM_LIST.at(j)==tr("machinefail(defect)")){  //설비파손(성막)
-                    worst_item->setMachinefail_defect_count(count);
-                    worst_item->setMachinefail_defect_rate(vaild_rate);
-                }else if(DEFECT_ITEM_LIST.at(j)==tr("padpaticle")){  //패트 이물
-                    worst_item->setPadpaticle_count(count);
-                    worst_item->setPadpaticle_rate(vaild_rate);
-                }else if(DEFECT_ITEM_LIST.at(j)==tr("etcpaticle")){  //이외 이물
-                    worst_item->setEtcpaticle_count(count);
-                    worst_item->setEtcpaticle_rate(vaild_rate);
-                }else if(DEFECT_ITEM_LIST.at(j)==tr("pattenpaticle")){  //패턴 이물
-                    worst_item->setPattenpaticle_count(count);
-                    worst_item->setPattenpaticle_rate(vaild_rate);
-                }else if(DEFECT_ITEM_LIST.at(j)==tr("paticle")){  //이물
-                    worst_item->setDefectpaticle_count(count);
-                    worst_item->setDefectpaticle_rate(vaild_rate);
-                }
-            }
-        }
-    }
-
     total_Workerfail_probe=0;
     total_Workerfail_eatching=0;
     total_Workerfail_light=0;
@@ -714,24 +711,56 @@ void worst_search_th::run()
     total_Etcpaticle=0;
     total_Pattenpaticle=0;
     total_Defectpaticle=0;
+#ifdef REAL_QUERY
+        for(int j=0;j<DEFECT_ITEM_LIST.count();j++){
+            QString worstcount_query = QString("SELECT SUM(DEFECT_QTY)DEFECT_SUM "
+                                               "FROM [V_DEFECT_LOTS] "
+                                               "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                               "AND LOT_TYPE = 'A' "
+                                               "AND MATERIAL_GROUP = 'CSP' "
+                                               "AND EXCLUDE_YIELD_FLAG <> 'Y' "
+                                               "AND DEFECT_NAME = '%4'")
+                                                .arg(start_date_str).arg(end_date_str)
+                                                .arg(DEFECT_ITEM_LIST.at(j));
 
-    for(int i=0;i<item_vector.count();i++){
-        product_item *worst_item;
-        worst_item = item_vector.at(i);
-        total_Workerfail_probe += worst_item->getWorkerfail_probe_rate();
-        total_Workerfail_eatching += worst_item->getWorkerfail_eatching_rate();
-        total_Workerfail_light += worst_item->getWorkerfail_light_rate();
-        total_Workerfail_defect += worst_item->getWorkerfail_defect_rate();
-        total_Workerfail_output += worst_item->getWorkerfail_output_rate();
-        total_Machinefail_probe += worst_item->getMachinefail_probe_rate();
-        total_Machinefail_eatching += worst_item->getMachinefail_eatching_rate();
-        total_Machinefail_light += worst_item->getMachinefail_light_rate();
-        total_Machinefail_defect += worst_item->getMachinefail_defect_rate();
-        total_Padpaticle += worst_item->getPadpaticle_rate();
-        total_Etcpaticle += worst_item->getEtcpaticle_rate();
-        total_Pattenpaticle += worst_item->getPattenpaticle_rate();
-        total_Defectpaticle += worst_item->getDefectpaticle_rate();
-    }
+            ms_query.exec(worstcount_query);
+            qDebug()<<worstcount_query;
+            if(ms_query.next()){
+                int count = ms_query.value("DEFECT_SUM").toInt();
+                double vaild_rate;
+                double temp1 = 100.0-daily_totalvild;
+                double temp2 = worst_sum;
+                vaild_rate = ((count/temp2)*temp1);
+
+                if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(probe)")){     //작업자 파손(프로브)
+                    total_Workerfail_probe = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(eatching)")){  //작업자 파손(에칭)
+                    total_Workerfail_eatching = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(light)")){  //작업자 파손(노광)
+                    total_Workerfail_light = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(defect)")){  //작업자 파손(성막)
+                    total_Workerfail_defect = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(output)")){ //작업자 파손(출고)
+                    total_Workerfail_output = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("machinefail(probe)")){  //설비파손(프로브)
+                    total_Machinefail_probe = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("machinefail(eatching)")){  //설비파손(에칭)
+                    total_Machinefail_eatching = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("machinefail(light)")){  //설비파손(노광)
+                    total_Machinefail_light = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("machinefail(defect)")){  //설비파손(성막)
+                    total_Machinefail_defect = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("padpaticle")){  //패트 이물
+                    total_Padpaticle = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("etcpaticle")){  //이외 이물
+                    total_Etcpaticle = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("pattenpaticle")){  //패턴 이물
+                    total_Pattenpaticle = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("paticle")){  //이물
+                    total_Defectpaticle = vaild_rate;
+                }
+            }
+        }
 #else
     total_Workerfail_probe=0;
     total_Workerfail_eatching=0;
@@ -761,59 +790,7 @@ void worst_search_th::run()
     qDebug()<<"d total_Pattenpaticle = "<<total_Pattenpaticle ;
     qDebug()<<"d total_Defectpaticle = "<<total_Defectpaticle ;
 
-#ifdef REAL_QUERY
-    for(int i=0;i<item_vector.count();i++){
-        product_item *worst_item;
-        worst_item = item_vector.at(i);
-        for(int j=0;j<REWORK_ITEM_LIST.count();j++){
-            QString worstcount_query = QString("SELECT  SUM(REWORK_QTY)REWORK_SUM "
-                                               "FROM [V_REWORK_LOTS] "
-                                               "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
-                                               "AND LOT_TYPE = 'A' "
-                                               "AND MATERIAL_GROUP = 'CSP' "
-                                               "AND MATERIAL_ID = '%3' "
-                                               "AND REWORK_NAME = '%4' ")
-                                                .arg(start_date_str).arg(end_date_str)
-                                                .arg(item_vector.at(i)->getProduct_name()).arg(REWORK_ITEM_LIST.at(j));
-            ms_query.exec(worstcount_query);
 
-            if(ms_query.next()){
-                int count = ms_query.value("REWORK_SUM").toInt();
-                double vaild_rate;
-                double temp1 = 100.0-daily_totalvild;
-                double temp2 = worst_sum;
-                vaild_rate = ((count/temp2)*temp1);
-                if(REWORK_ITEM_LIST.at(j)==tr("paticle")){     //이물
-                    worst_item->setRework_paticle_count(count);
-                    worst_item->setRework_paticle_rate(vaild_rate);
-                }else if(REWORK_ITEM_LIST.at(j)==tr("jobmiss(defect)")){ //작업 미스(성막)
-                    worst_item->setJobmiss_defect_count(count);
-                    worst_item->setJobmiss_defect_rate(vaild_rate);
-                }else if(REWORK_ITEM_LIST.at(j)==tr("jobmiss(eatching)")){ //작업 미스(에칭)
-                    worst_item->setJobmiss_eatching_count(count);
-                    worst_item->setJobmiss_eatching_rate(vaild_rate);
-                }else if(REWORK_ITEM_LIST.at(j)==tr("jobmiss(light)")){ //작업 미스(성막)
-                    worst_item->setJobmiss_light_count(count);
-                    worst_item->setJobmiss_light_rate(vaild_rate);
-                }else if(REWORK_ITEM_LIST.at(j)==tr("jobmiss(probe)")){ //작업미스(프로브)
-                    worst_item->setJobmiss_probe_count(count);
-                    worst_item->setJobmiss_probe_rate(vaild_rate);
-                }else if(REWORK_ITEM_LIST.at(j)==tr("metalcdhigh")){
-                    worst_item->setMetalhigh_count(count);
-                    worst_item->setMetalhigh_rate(vaild_rate);
-                }else if(REWORK_ITEM_LIST.at(j)==tr("metalcdlow")){
-                    worst_item->setMetallow_count(count);
-                    worst_item->setMetallow_rate(vaild_rate);
-                }else if(REWORK_ITEM_LIST.at(j)==tr("prcdhigh")){
-                    worst_item->setPrcdhigh_count(count);
-                    worst_item->setPrcdhigh_rate(vaild_rate);
-                }else if(REWORK_ITEM_LIST.at(j)==tr("prcdlow")){
-                    worst_item->setPrcdlow_count(count);
-                    worst_item->setPrcdlow_rate(vaild_rate);
-                }
-            }
-        }
-    }
     total_Rework_paticle=0;
     total_Jobmiss_defect=0;
     total_Jobmiss_eatching=0;
@@ -823,22 +800,46 @@ void worst_search_th::run()
     total_metallow = 0;
     total_prcdhigh = 0;
     total_prcdlow = 0;
+#ifdef REAL_QUERY
+        for(int j=0;j<REWORK_ITEM_LIST.count();j++){
+            QString worstcount_query = QString("SELECT  SUM(REWORK_QTY)REWORK_SUM "
+                                               "FROM [V_REWORK_LOTS] "
+                                               "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                               "AND LOT_TYPE = 'A' "
+                                               "AND MATERIAL_GROUP = 'CSP' "
+                                               "AND REWORK_NAME = '%4' ")
+                                                .arg(start_date_str).arg(end_date_str)
+                                                .arg(REWORK_ITEM_LIST.at(j));
+            ms_query.exec(worstcount_query);
 
+            if(ms_query.next()){
+                int count = ms_query.value("REWORK_SUM").toInt();
+                double vaild_rate;
+                double temp1 = 100.0-daily_totalvild;
+                double temp2 = worst_sum;
+                vaild_rate = ((count/temp2)*temp1);
+                if(REWORK_ITEM_LIST.at(j)==tr("paticle")){     //이물
+                    total_Rework_paticle = vaild_rate;
+                }else if(REWORK_ITEM_LIST.at(j)==tr("jobmiss(defect)")){ //작업 미스(성막)
+                    total_Jobmiss_defect = vaild_rate;
+                }else if(REWORK_ITEM_LIST.at(j)==tr("jobmiss(eatching)")){ //작업 미스(에칭)
+                    total_Jobmiss_eatching = vaild_rate;
+                }else if(REWORK_ITEM_LIST.at(j)==tr("jobmiss(light)")){ //작업 미스(성막)
+                    total_Jobmiss_light = vaild_rate;
+                }else if(REWORK_ITEM_LIST.at(j)==tr("jobmiss(probe)")){ //작업미스(프로브)
+                    total_Jobmiss_probe = vaild_rate;
+                }else if(REWORK_ITEM_LIST.at(j)==tr("metalcdhigh")){
+                    total_metalhigh = vaild_rate;
+                }else if(REWORK_ITEM_LIST.at(j)==tr("metalcdlow")){
+                    total_metallow = vaild_rate;
+                }else if(REWORK_ITEM_LIST.at(j)==tr("prcdhigh")){
+                    total_prcdhigh = vaild_rate;
+                }else if(REWORK_ITEM_LIST.at(j)==tr("prcdlow")){
+                    total_prcdlow = vaild_rate;
+                }
+            }
+        }
 
-    for(int i=0;i<item_vector.count();i++){
-        product_item *worst_item;
-        worst_item = item_vector.at(i);
-        total_Rework_paticle += worst_item->getRework_paticle_rate();
-        total_Jobmiss_defect += worst_item->getJobmiss_defect_rate();
-        total_Jobmiss_eatching += worst_item->getJobmiss_eatching_rate();
-        total_Jobmiss_light += worst_item->getJobmiss_light_rate();
-        total_Jobmiss_probe += worst_item->getJobmiss_probe_rate();
-        total_metalhigh += worst_item->getMetalhigh_rate();
-        total_metallow += worst_item->getMetallow_rate();
-        total_prcdhigh += worst_item->getPrcdhigh_rate();
-        total_prcdlow += worst_item->getPrcdlow_rate();
-
-    }
 #else
     total_Rework_paticle=1.27281;
     total_Jobmiss_defect=0;
@@ -851,6 +852,420 @@ void worst_search_th::run()
     qDebug()<<"r total_Jobmiss_eatching = "<<total_Jobmiss_eatching;
     qDebug()<<"r total_Jobmiss_light = "<<total_Jobmiss_light;
     qDebug()<<"r total_Jobmiss_probe = "<<total_Jobmiss_probe;
+
+    single_daily_totalvild = 0;
+#ifdef REAL_QUERY
+    my_query.exec("select * from MES_Worst_CPS_Process");
+    while(my_query.next()){
+        process_code data;
+        data.setId(my_query.value("OPERATION_ID").toString());
+        data.setName(my_query.value("OPERATION_SHORT_NAME").toString());
+
+        QString INPUT_OUTPUT_SUM_query = QString("SELECT SUM(INPUT_QTY) INPUT_SUM,SUM(OUTPUT_QTY)OUTPUT_SUM,SUM(DEFECT_QTY)DEFECT_SUM,SUM(EXCLUDE_YIELD_QTY) EXCLUDE_YIELD_SUM "
+                                          "FROM [V_OUTPUT_LOTS] "
+                                          "WHERE MOVEOUT_DTTM BETWEEN \'%1\' AND \'%2\' "
+                                          "AND LOT_TYPE = \'A\' "
+                                          "AND MATERIAL_GROUP = \'CSP\' "
+                                          "AND OPERATION_SHORT_NAME = \'%3\' "
+                                          "AND MATERIAL_CATEGORY = '%4' "
+                                          "AND MATERIAL_TYPE = '%5'")
+                                          .arg(start_date_str)
+                                          .arg(end_date_str)
+                                          .arg(data.getName())
+                                          .arg("MOLD").arg("HALB");
+        ms_query.exec(INPUT_OUTPUT_SUM_query);
+        ms_query.next();
+        data.setINPUT_SUM(ms_query.value("INPUT_SUM").toDouble());
+        data.setOUTPUT_SUM(ms_query.value("OUTPUT_SUM").toDouble());
+        data.setDEFECT_SUM(ms_query.value("DEFECT_SUM").toDouble());
+        data.setEXCLUDE_YIELD_QTY_SUM(ms_query.value("EXCLUDE_YIELD_SUM").toDouble());
+        if(data.getOUTPUT_SUM() != 0){
+            data.setVield((data.getOUTPUT_SUM()+data.getEXCLUDE_YIELD_QTY_SUM())/data.getINPUT_SUM());
+            if(data.getName() == tr("lastprobe_vaild")){
+                single_last_probevild = data.getVield()*100.0;
+                single_last_probevild = roundf(single_last_probevild * 100) / 100;
+            }
+        }
+
+        single_worstcpsprocesslist.append(data);
+    }
+    single_daily_totalvild = 1.0;
+
+    for(int i=0;i<single_worstcpsprocesslist.count();i++){
+        if(single_worstcpsprocesslist.at(i).getVield() != 0){
+            single_daily_totalvild *= single_worstcpsprocesslist.at(i).getVield();
+        }
+    }
+    single_daily_totalvild *= 100.0;
+    single_daily_totalvild = roundf(single_daily_totalvild * 100) / 100;
+    qDebug()<<"single_daily_totalvild = "<<single_daily_totalvild;
+#else
+    single_last_probevild = 92.3;
+    single_daily_totalvild = 93.4;
+#endif
+
+
+#ifdef REAL_QUERY
+    my_query.exec("select * from MES_Worst_CPS_Process");
+    while(my_query.next()){
+        process_code data;
+        data.setId(my_query.value("OPERATION_ID").toString());
+        data.setName(my_query.value("OPERATION_SHORT_NAME").toString());
+
+        QString INPUT_OUTPUT_SUM_query = QString("SELECT SUM(INPUT_QTY) INPUT_SUM,SUM(OUTPUT_QTY)OUTPUT_SUM,SUM(DEFECT_QTY)DEFECT_SUM,SUM(EXCLUDE_YIELD_QTY) EXCLUDE_YIELD_SUM "
+                                          "FROM [V_OUTPUT_LOTS] "
+                                          "WHERE MOVEOUT_DTTM BETWEEN \'%1\' AND \'%2\' "
+                                          "AND LOT_TYPE = \'A\' "
+                                          "AND MATERIAL_GROUP = \'CSP\' "
+                                          "AND OPERATION_SHORT_NAME = \'%3\' "
+                                          "AND MATERIAL_CATEGORY = '%4' "
+                                          "AND MATERIAL_TYPE = '%5'")
+                                          .arg(accumulate_start_date_str)
+                                          .arg(end_date_str)
+                                          .arg(data.getName())
+                                          .arg("MOLD").arg("HALB");
+        ms_query.exec(INPUT_OUTPUT_SUM_query);
+        ms_query.next();
+        data.setINPUT_SUM(ms_query.value("INPUT_SUM").toDouble());
+        data.setOUTPUT_SUM(ms_query.value("OUTPUT_SUM").toDouble());
+        data.setDEFECT_SUM(ms_query.value("DEFECT_SUM").toDouble());
+        data.setEXCLUDE_YIELD_QTY_SUM(ms_query.value("EXCLUDE_YIELD_SUM").toDouble());
+        if(data.getOUTPUT_SUM() != 0){
+            data.setVield((data.getOUTPUT_SUM()+data.getEXCLUDE_YIELD_QTY_SUM())/data.getINPUT_SUM());
+        }
+
+        single_accumulate_worstcpsprocesslist.append(data);
+    }
+    single_accumulate_totalvild = 1.0;
+    for(int i=0;i<single_accumulate_worstcpsprocesslist.count();i++){
+        if(single_accumulate_worstcpsprocesslist.at(i).getVield() != 0){
+            single_accumulate_totalvild *= single_accumulate_worstcpsprocesslist.at(i).getVield();
+        }
+    }
+    single_accumulate_totalvild *= 100.0;
+    single_accumulate_totalvild = roundf(single_accumulate_totalvild * 100) / 100;
+    qDebug()<<"single_accumulate_totalvild = "<<single_accumulate_totalvild;
+#else
+    single_accumulate_totalvild = 93.4;
+#endif
+
+    DPX_daily_totalvild = 0;
+#ifdef REAL_QUERY
+    my_query.exec("select * from MES_Worst_CPS_Process");
+    while(my_query.next()){
+        process_code data;
+        data.setId(my_query.value("OPERATION_ID").toString());
+        data.setName(my_query.value("OPERATION_SHORT_NAME").toString());
+
+        QString INPUT_OUTPUT_SUM_query = QString("SELECT SUM(INPUT_QTY) INPUT_SUM,SUM(OUTPUT_QTY)OUTPUT_SUM,SUM(DEFECT_QTY)DEFECT_SUM,SUM(EXCLUDE_YIELD_QTY) EXCLUDE_YIELD_SUM "
+                                          "FROM [V_OUTPUT_LOTS] "
+                                          "WHERE MOVEOUT_DTTM BETWEEN \'%1\' AND \'%2\' "
+                                          "AND LOT_TYPE = \'A\' "
+                                          "AND MATERIAL_GROUP = \'CSP\' "
+                                          "AND OPERATION_SHORT_NAME = \'%3\' "
+                                          "AND MATERIAL_CATEGORY = '%4' "
+                                          "AND MATERIAL_TYPE = '%5'")
+                                          .arg(start_date_str)
+                                          .arg(end_date_str)
+                                          .arg(data.getName())
+                                          .arg("SAWDPX").arg("HALB");
+        ms_query.exec(INPUT_OUTPUT_SUM_query);
+        ms_query.next();
+        data.setINPUT_SUM(ms_query.value("INPUT_SUM").toDouble());
+        data.setOUTPUT_SUM(ms_query.value("OUTPUT_SUM").toDouble());
+        data.setDEFECT_SUM(ms_query.value("DEFECT_SUM").toDouble());
+        data.setEXCLUDE_YIELD_QTY_SUM(ms_query.value("EXCLUDE_YIELD_SUM").toDouble());
+        if(data.getOUTPUT_SUM() != 0){
+            data.setVield((data.getOUTPUT_SUM()+data.getEXCLUDE_YIELD_QTY_SUM())/data.getINPUT_SUM());
+            if(data.getName() == tr("lastprobe_vaild")){
+                DPX_last_probevild = data.getVield()*100.0;
+                DPX_last_probevild = roundf(DPX_last_probevild * 100) / 100;
+            }
+        }
+
+        DPX_worstcpsprocesslist.append(data);
+    }
+    DPX_daily_totalvild = 1.0;
+    for(int i=0;i<DPX_worstcpsprocesslist.count();i++){
+        if(DPX_worstcpsprocesslist.at(i).getVield() != 0){
+            DPX_daily_totalvild *= DPX_worstcpsprocesslist.at(i).getVield();
+        }
+    }
+    DPX_daily_totalvild *= 100.0;
+    DPX_daily_totalvild = roundf(DPX_daily_totalvild * 100) / 100;
+    qDebug()<<"DPX_daily_totalvild = "<<DPX_daily_totalvild;
+#else
+    DPX_last_probevild = 92.03;
+    DPX_daily_totalvild = 92.04;
+#endif
+
+#ifdef REAL_QUERY
+    my_query.exec("select * from MES_Worst_CPS_Process");
+    while(my_query.next()){
+        process_code data;
+        data.setId(my_query.value("OPERATION_ID").toString());
+        data.setName(my_query.value("OPERATION_SHORT_NAME").toString());
+
+        QString INPUT_OUTPUT_SUM_query = QString("SELECT SUM(INPUT_QTY) INPUT_SUM,SUM(OUTPUT_QTY)OUTPUT_SUM,SUM(DEFECT_QTY)DEFECT_SUM,SUM(EXCLUDE_YIELD_QTY) EXCLUDE_YIELD_SUM "
+                                          "FROM [V_OUTPUT_LOTS] "
+                                          "WHERE MOVEOUT_DTTM BETWEEN \'%1\' AND \'%2\' "
+                                          "AND LOT_TYPE = \'A\' "
+                                          "AND MATERIAL_GROUP = \'CSP\' "
+                                          "AND OPERATION_SHORT_NAME = \'%3\' "
+                                          "AND MATERIAL_CATEGORY = '%4' "
+                                          "AND MATERIAL_TYPE = '%5'")
+                                          .arg(accumulate_start_date_str)
+                                          .arg(end_date_str)
+                                          .arg(data.getName())
+                                          .arg("SAWDPX").arg("HALB");
+        ms_query.exec(INPUT_OUTPUT_SUM_query);
+        ms_query.next();
+        data.setINPUT_SUM(ms_query.value("INPUT_SUM").toDouble());
+        data.setOUTPUT_SUM(ms_query.value("OUTPUT_SUM").toDouble());
+        data.setDEFECT_SUM(ms_query.value("DEFECT_SUM").toDouble());
+        data.setEXCLUDE_YIELD_QTY_SUM(ms_query.value("EXCLUDE_YIELD_SUM").toDouble());
+        if(data.getOUTPUT_SUM() != 0){
+            data.setVield((data.getOUTPUT_SUM()+data.getEXCLUDE_YIELD_QTY_SUM())/data.getINPUT_SUM());
+        }
+
+        DPX_accumulate_worstcpsprocesslist.append(data);
+    }
+    DPX_accumulate_totalvild = 1.0;
+    for(int i=0;i<DPX_accumulate_worstcpsprocesslist.count();i++){
+        if(DPX_accumulate_worstcpsprocesslist.at(i).getVield() != 0){
+            DPX_accumulate_totalvild *= DPX_accumulate_worstcpsprocesslist.at(i).getVield();
+        }
+    }
+    DPX_accumulate_totalvild *= 100.0;
+    DPX_accumulate_totalvild = roundf(DPX_accumulate_totalvild * 100) / 100;
+    qDebug()<<"DPX_accumulate_totalvild = "<<DPX_accumulate_totalvild;
+#else
+    DPX_accumulate_totalvild = 93.4;
+#endif
+
+
+    RSM_daily_totalvild = 0;
+#ifdef REAL_QUERY
+    my_query.exec("select * from MES_Worst_CPS_Process");
+    while(my_query.next()){
+        process_code data;
+        data.setId(my_query.value("OPERATION_ID").toString());
+        data.setName(my_query.value("OPERATION_SHORT_NAME").toString());
+
+        QString INPUT_OUTPUT_SUM_query = QString("SELECT SUM(INPUT_QTY) INPUT_SUM,SUM(OUTPUT_QTY)OUTPUT_SUM,SUM(DEFECT_QTY)DEFECT_SUM,SUM(EXCLUDE_YIELD_QTY) EXCLUDE_YIELD_SUM "
+                                          "FROM [V_OUTPUT_LOTS] "
+                                          "WHERE MOVEOUT_DTTM BETWEEN \'%1\' AND \'%2\' "
+                                          "AND LOT_TYPE = \'A\' "
+                                          "AND MATERIAL_GROUP = \'CSP\' "
+                                          "AND OPERATION_SHORT_NAME = \'%3\' "
+                                          "AND MATERIAL_CATEGORY = '%4' "
+                                          "AND MATERIAL_TYPE = '%5'")
+                                          .arg(start_date_str)
+                                          .arg(end_date_str)
+                                          .arg(data.getName())
+                                          .arg("RSM").arg("HALB");
+        ms_query.exec(INPUT_OUTPUT_SUM_query);
+        ms_query.next();
+        data.setINPUT_SUM(ms_query.value("INPUT_SUM").toDouble());
+        data.setOUTPUT_SUM(ms_query.value("OUTPUT_SUM").toDouble());
+        data.setDEFECT_SUM(ms_query.value("DEFECT_SUM").toDouble());
+        data.setEXCLUDE_YIELD_QTY_SUM(ms_query.value("EXCLUDE_YIELD_SUM").toDouble());
+        if(data.getOUTPUT_SUM() != 0){
+            data.setVield((data.getOUTPUT_SUM()+data.getEXCLUDE_YIELD_QTY_SUM())/data.getINPUT_SUM());
+            if(data.getName() == tr("lastprobe_vaild")){
+                RSM_last_probevild = data.getVield()*100.0;
+                RSM_last_probevild = roundf(RSM_last_probevild * 100) / 100;
+            }
+        }
+
+        RSM_worstcpsprocesslist.append(data);
+    }
+    RSM_daily_totalvild = 1.0;
+    for(int i=0;i<RSM_worstcpsprocesslist.count();i++){
+        if(RSM_worstcpsprocesslist.at(i).getVield() != 0){
+            RSM_daily_totalvild *= RSM_worstcpsprocesslist.at(i).getVield();
+        }
+    }
+    RSM_daily_totalvild *= 100.0;
+    RSM_daily_totalvild = roundf(RSM_daily_totalvild * 100) / 100;
+    qDebug()<<"RSM_daily_totalvild = "<<RSM_daily_totalvild;
+#else
+    RSM_last_probevild = 92.03;
+    RSM_daily_totalvild = 92.04;
+#endif
+#ifdef REAL_QUERY
+    my_query.exec("select * from MES_Worst_CPS_Process");
+    while(my_query.next()){
+        process_code data;
+        data.setId(my_query.value("OPERATION_ID").toString());
+        data.setName(my_query.value("OPERATION_SHORT_NAME").toString());
+
+        QString INPUT_OUTPUT_SUM_query = QString("SELECT SUM(INPUT_QTY) INPUT_SUM,SUM(OUTPUT_QTY)OUTPUT_SUM,SUM(DEFECT_QTY)DEFECT_SUM,SUM(EXCLUDE_YIELD_QTY) EXCLUDE_YIELD_SUM "
+                                          "FROM [V_OUTPUT_LOTS] "
+                                          "WHERE MOVEOUT_DTTM BETWEEN \'%1\' AND \'%2\' "
+                                          "AND LOT_TYPE = \'A\' "
+                                          "AND MATERIAL_GROUP = \'CSP\' "
+                                          "AND OPERATION_SHORT_NAME = \'%3\' "
+                                          "AND MATERIAL_CATEGORY = '%4' "
+                                          "AND MATERIAL_TYPE = '%5'")
+                                          .arg(accumulate_start_date_str)
+                                          .arg(end_date_str)
+                                          .arg(data.getName())
+                                          .arg("RSM").arg("HALB");
+        ms_query.exec(INPUT_OUTPUT_SUM_query);
+        ms_query.next();
+        data.setINPUT_SUM(ms_query.value("INPUT_SUM").toDouble());
+        data.setOUTPUT_SUM(ms_query.value("OUTPUT_SUM").toDouble());
+        data.setDEFECT_SUM(ms_query.value("DEFECT_SUM").toDouble());
+        data.setEXCLUDE_YIELD_QTY_SUM(ms_query.value("EXCLUDE_YIELD_SUM").toDouble());
+        if(data.getOUTPUT_SUM() != 0){
+            data.setVield((data.getOUTPUT_SUM()+data.getEXCLUDE_YIELD_QTY_SUM())/data.getINPUT_SUM());
+        }
+
+        RSM_accumulate_worstcpsprocesslist.append(data);
+    }
+    RSM_accumulate_totalvild = 1.0;
+    for(int i=0;i<RSM_accumulate_worstcpsprocesslist.count();i++){
+        if(RSM_accumulate_worstcpsprocesslist.at(i).getVield() != 0){
+            RSM_accumulate_totalvild *= RSM_accumulate_worstcpsprocesslist.at(i).getVield();
+        }
+    }
+    RSM_accumulate_totalvild *= 100.0;
+    RSM_accumulate_totalvild = roundf(RSM_accumulate_totalvild * 100) / 100;
+#else
+    RSM_accumulate_totalvild = 93.3;
+#endif
+    qDebug()<<"RSM_accumulate_totalvild = "<<RSM_accumulate_totalvild;
+
+//    RSM_accumulate_totalvild = 93.4;
+    QString rework_type_txt = QString("SELECT OPERATION_SHORT_NAME "
+                                      "FROM [V_REWORK_LOTS] "
+                                      "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                      "AND LOT_TYPE = 'A' "
+                                      "AND MATERIAL_GROUP = 'CSP' "
+                                      "group by OPERATION_SHORT_NAME;").arg(start_date_str).arg(end_date_str);
+
+    ms_query.exec(rework_type_txt);
+    QSqlQuery ms_query_2(ms_mesdb);
+    QSqlQuery ms_query_3(ms_mesdb);
+    while(ms_query.next()){
+        QString rework_type = ms_query.value("OPERATION_SHORT_NAME").toString();
+        QString rework_lottype_txt = QString("SELECT MATERIAL_ID "
+                                          "FROM [V_REWORK_LOTS] "
+                                          "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                          "AND LOT_TYPE = 'A' "
+                                          "AND MATERIAL_GROUP = 'CSP' "
+                                          "AND OPERATION_SHORT_NAME = '%3' "
+                                          "group by MATERIAL_ID;").arg(start_date_str).arg(end_date_str).arg(rework_type);
+        ms_query_2.exec(rework_lottype_txt);
+        while(ms_query_2.next()){
+            QString rework_MATERIAL_ID = ms_query_2.value("MATERIAL_ID").toString();
+            QString rework_content_txt = QString("SELECT * "
+                                                 "FROM [V_REWORK_LOTS] "
+                                                 "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                                 "AND LOT_TYPE = 'A' "
+                                                 "AND MATERIAL_GROUP = 'CSP' "
+                                                 "AND OPERATION_SHORT_NAME = '%3' "
+                                                 "AND MATERIAL_ID = '%4';").arg(start_date_str).arg(end_date_str)
+                                                                            .arg(rework_type).arg(rework_MATERIAL_ID);
+            ms_query_3.exec(rework_content_txt);
+            int lot_count = 0;
+            int chip_count = 0;
+            rework_text_type rework_item;
+            while(ms_query_3.next()){
+                lot_count++;
+                chip_count += ms_query_3.value("REWORK_QTY").toInt();
+            }
+            ms_query_3.first();
+            QString rework_lotid = ms_query_3.value("LOT_ID").toString();
+            rework_lotid = rework_lotid.mid(0,rework_lotid.length()-1);
+            rework_lotid = rework_lotid + "0";
+            QString rework_worst_type = rework_type;
+            rework_item.setLOT(rework_lotid);
+            rework_item.setProcess(rework_type);
+            rework_item.setChip_count(chip_count);
+            rework_item.setLot_count(lot_count);
+            rework_item.setContent(rework_worst_type);
+            rework_item.setProduct_name(rework_MATERIAL_ID);
+            rework_worstcpsprocesslist.append(rework_item);
+        }
+    }
+    QStringList defect_worst_list;
+    defect_worst_list<<tr("workerfail(probe)");
+    defect_worst_list<<tr("workerfail(eatching)");
+    defect_worst_list<<tr("workerfail(light)");
+    defect_worst_list<<tr("workerfail(defect)");
+    defect_worst_list<<tr("workerfail(output)");
+    defect_worst_list<<tr("machinefail(probe)");
+    defect_worst_list<<tr("machinefail(eatching)");
+    defect_worst_list<<tr("machinefail(light)");
+    defect_worst_list<<tr("machinefail(defect)");
+    for(int i=0;i<defect_worst_list.count();i++){
+    QString defect_lot_txt = QString("SELECT MATERIAL_ID "
+                                     "FROM [V_DEFECT_LOTS] "
+                                     "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                     "AND LOT_TYPE = 'A' "
+                                     "AND MATERIAL_GROUP = 'CSP' "
+                                     "AND EXCLUDE_YIELD_FLAG <> 'Y' "
+                                     "AND DEFECT_NAME = '%3' "
+                                     "GROUP by MATERIAL_ID ").arg(start_date_str).arg(end_date_str)
+                                                             .arg(defect_worst_list.at(i));
+
+        ms_query.exec(defect_lot_txt);
+        while(ms_query.next()){
+            QString MATERIAL_ID = ms_query.value("MATERIAL_ID").toString();
+            QString defect_lot_wrost_txt = QString("SELECT * "
+                                             "FROM [V_DEFECT_LOTS] "
+                                             "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                             "AND LOT_TYPE = 'A' "
+                                             "AND MATERIAL_GROUP = 'CSP' "
+                                             "AND EXCLUDE_YIELD_FLAG <> 'Y' "
+                                             "AND DEFECT_NAME = '%3' "
+                                             "AND MATERIAL_ID = '%4'").arg(start_date_str).arg(end_date_str)
+                                                                     .arg(defect_worst_list.at(i)).arg(MATERIAL_ID);
+
+            ms_query_2.exec(defect_lot_wrost_txt);
+//            qDebug()<<ms_query_2.lastQuery();
+            int lot_count = 0;
+            int chip_count = 0;
+            while(ms_query_2.next()){
+                lot_count++;
+                chip_count += ms_query_2.value("DEFECT_QTY").toInt();
+            }
+            ms_query_2.first();
+            defect_worst_type defect_item;
+            QString defect_lotid = ms_query_2.value("LOT_ID").toString();
+            defect_lotid = defect_lotid.mid(0,defect_lotid.length()-1);
+            defect_lotid = defect_lotid + "0";
+            defect_item.setLOT(defect_lotid);
+            defect_item.setDefect_name(ms_query_2.value("DEFECT_NAME").toString());
+            defect_item.setChip_count(chip_count);
+            defect_item.setLot_count(lot_count);
+            defect_item.setProduct_name(MATERIAL_ID);
+            defect_item.setContent(ms_query_2.value("TX_COMMENT").toString());
+
+            QString defect_materialgroup_txt = QString("SELECT TOP 1 * "
+                                                   "FROM [V_SCM_LOTSUMMARY] "
+                                                   "where MATERIAL_ID = '%1' AND WORK_DATE = '%2';")
+                                                    .arg(MATERIAL_ID).arg(select_date.toString("yyyyMMdd"));
+            ms_query_3.exec(defect_materialgroup_txt);
+            if(ms_query_3.next()){
+                defect_item.setMetarial_grouptype(ms_query_3.value("MATERIAL_ID").toString());
+            }
+            defect_worstcpsprocesslist.append(defect_item);
+        }
+    }
+
+    for(int i=0;i<defect_worstcpsprocesslist.count();i++){
+        defect_worst_type defect_item;
+        defect_item = defect_worstcpsprocesslist.at(i);
+        qDebug()<<select_date.toString("MMdd")<<" product = "<<defect_item.getProduct_name()
+               <<" LOTNO = "<<defect_item.getLOT()<<" LOTCOUNT = "<<defect_item.getLot_count()
+               <<" process = "<<defect_item.getProcess()<<" chipcount = "<<defect_item.getChip_count()
+               <<" money code = "<<defect_item.getMetarial_grouptype()
+               <<" contect = "<<defect_item.getContent()
+               <<" DEFECT_NAME = "<<defect_item.getDefect_name();
+    }
 
     emit sig_excel_work();
 
@@ -1601,4 +2016,143 @@ QString process_code::getId() const
 void process_code::setId(const QString &value)
 {
     id = value;
+}
+
+QString rework_text_type::getLOT() const
+{
+    return LOT;
+}
+
+void rework_text_type::setLOT(const QString &value)
+{
+    LOT = value;
+}
+
+QString rework_text_type::getProcess() const
+{
+    return process;
+}
+
+void rework_text_type::setProcess(const QString &value)
+{
+    process = value;
+}
+
+int rework_text_type::getLot_count() const
+{
+    return lot_count;
+}
+
+void rework_text_type::setLot_count(int value)
+{
+    lot_count = value;
+}
+
+int rework_text_type::getChip_count() const
+{
+    return chip_count;
+}
+
+void rework_text_type::setChip_count(int value)
+{
+    chip_count = value;
+}
+
+QString rework_text_type::getContent() const
+{
+    return content;
+}
+
+void rework_text_type::setContent(const QString &value)
+{
+    content = value;
+}
+
+QString rework_text_type::getProduct_name() const
+{
+    return product_name;
+}
+
+void rework_text_type::setProduct_name(const QString &value)
+{
+    product_name = value;
+}
+
+QString defect_worst_type::getLOT() const
+{
+    return LOT;
+}
+
+void defect_worst_type::setLOT(const QString &value)
+{
+    LOT = value;
+}
+
+QString defect_worst_type::getProcess() const
+{
+    return process;
+}
+
+void defect_worst_type::setProcess(const QString &value)
+{
+    process = value;
+}
+
+int defect_worst_type::getLot_count() const
+{
+    return lot_count;
+}
+
+void defect_worst_type::setLot_count(int value)
+{
+    lot_count = value;
+}
+
+int defect_worst_type::getChip_count() const
+{
+    return chip_count;
+}
+
+void defect_worst_type::setChip_count(int value)
+{
+    chip_count = value;
+}
+
+QString defect_worst_type::getDefect_name() const
+{
+    return Defect_name;
+}
+
+void defect_worst_type::setDefect_name(const QString &value)
+{
+    Defect_name = value;
+}
+
+QString defect_worst_type::getContent() const
+{
+    return content;
+}
+
+void defect_worst_type::setContent(const QString &value)
+{
+    content = value;
+}
+QString defect_worst_type::getMetarial_grouptype() const
+{
+    return metarial_grouptype;
+}
+
+void defect_worst_type::setMetarial_grouptype(const QString &value)
+{
+    metarial_grouptype = value;
+}
+
+QString defect_worst_type::getProduct_name() const
+{
+    return product_name;
+}
+
+void defect_worst_type::setProduct_name(const QString &value)
+{
+    product_name = value;
 }

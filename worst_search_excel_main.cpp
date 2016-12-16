@@ -55,14 +55,12 @@ void worst_search_excel_main::slot_excel_work()
         qDebug()<<write_month;
     }
 
-    modify_cell = sheet->querySubObject("Cells(int,int)",27,2);
-
-    qDebug()<<modify_cell->dynamicCall("Value()").toString();
     int i=2;
     int cellcolumn = 0;
     while(true){
-        modify_cell = modify_cell->querySubObject("Offset(int,int)",0,i);
+        modify_cell = sheet->querySubObject("Cells(int,int)",27,i);
         QString excel_day = modify_cell->dynamicCall("Value()").toString();
+
         QString user_day = QString("%1%2").arg(ui->select_data->date().day()).arg(tr("day"));
         if(excel_day == user_day){
             cellcolumn = modify_cell->dynamicCall("Column()").toInt();
@@ -111,8 +109,6 @@ void worst_search_excel_main::slot_excel_work()
     modify_cell->setProperty("Value",th->getDaily_totalvild());
     modify_cell = sheet->querySubObject("Cells(int,int)",43,cellcolumn);
     modify_cell->setProperty("Value",th->getAccumulate_totalvild());
-
-
 
 }
 

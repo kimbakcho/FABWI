@@ -241,6 +241,59 @@ public:
     double getMetallow_rate() const;
     void setMetallow_rate(double value);
 };
+class rework_text_type{
+public:
+    QString product_name;
+    QString LOT;
+    QString process;
+    int lot_count;
+    int chip_count;
+    QString content;
+
+
+    QString getProduct_name() const;
+    void setProduct_name(const QString &value);
+    QString getLOT() const;
+    void setLOT(const QString &value);
+    QString getProcess() const;
+    void setProcess(const QString &value);
+    int getLot_count() const;
+    void setLot_count(int value);
+    int getChip_count() const;
+    void setChip_count(int value);
+    QString getContent() const;
+    void setContent(const QString &value);
+};
+
+class defect_worst_type{
+    QString product_name;
+    QString LOT;
+    QString process;
+    int lot_count;
+    int chip_count;
+    QString Defect_name;
+    QString content;
+    QString metarial_grouptype;
+
+public:
+    QString getProduct_name() const;
+    void setProduct_name(const QString &value);
+    QString getLOT() const;
+    void setLOT(const QString &value);
+    QString getProcess() const;
+    void setProcess(const QString &value);
+    int getLot_count() const;
+    void setLot_count(int value);
+    int getChip_count() const;
+    void setChip_count(int value);
+    QString getDefect_name() const;
+    void setDefect_name(const QString &value);
+    QString getContent() const;
+    void setContent(const QString &value);
+
+    QString getMetarial_grouptype() const;
+    void setMetarial_grouptype(const QString &value);
+};
 
 class worst_search_th : public QThread
 {
@@ -250,12 +303,31 @@ public:
     QSqlDatabase ms_mesdb;
     QSqlDatabase my_mesdb;
     QVector<process_code> daily_worstcpsprocesslist;
+    QVector<process_code> single_worstcpsprocesslist;
+    QVector<process_code> single_accumulate_worstcpsprocesslist;
+    QVector<process_code> DPX_worstcpsprocesslist;
+    QVector<process_code> DPX_accumulate_worstcpsprocesslist;
+    QVector<process_code> RSM_worstcpsprocesslist;
+    QVector<process_code> RSM_accumulate_worstcpsprocesslist;
     QVector<process_code> accumulate_worstcpsprocesslist;
+    QVector<rework_text_type> rework_worstcpsprocesslist;
+    QVector<defect_worst_type> defect_worstcpsprocesslist;
     QStringList DEFECT_ITEM_LIST;
     QStringList REWORK_ITEM_LIST;
     QStringList PROBE_ITEM_LIST;
     QDate select_date;
+    QStringList rework_content;
     double daily_totalvild;
+    double single_daily_totalvild;
+    double single_last_probevild;
+    double single_accumulate_totalvild;
+    double DPX_daily_totalvild;
+    double DPX_last_probevild;
+    double DPX_accumulate_totalvild;
+    double RSM_daily_totalvild;
+    double RSM_last_probevild;
+    double RSM_accumulate_totalvild;
+
     double accumulate_totalvild;
     double last_probe_vild_daily;
     double worst_sum;
@@ -389,6 +461,36 @@ public:
 
     double getLast_probe_vild_daily() const;
     void setLast_probe_vild_daily(double value);
+
+    double getSingle_daily_totalvild() const;
+    void setSingle_daily_totalvild(double value);
+
+    double getSingle_accumulate_totalvild() const;
+    void setSingle_accumulate_totalvild(double value);
+
+    double getSingle_last_probevild() const;
+    void setSingle_last_probevild(double value);
+
+    double getDPX_daily_totalvild() const;
+    void setDPX_daily_totalvild(double value);
+
+    double getDPX_last_probevild() const;
+    void setDPX_last_probevild(double value);
+
+    double getDPX_accumulate_totalvild() const;
+    void setDPX_accumulate_totalvild(double value);
+
+    double getRSM_daily_totalvild() const;
+    void setRSM_daily_totalvild(double value);
+
+    double getRSM_last_probevild() const;
+    void setRSM_last_probevild(double value);
+
+    double getRSM_accumulate_totalvild() const;
+    void setRSM_accumulate_totalvild(double value);
+
+    QVector<rework_text_type> getRework_worstcpsprocesslist() const;
+    void setRework_worstcpsprocesslist(const QVector<rework_text_type> &value);
 
 signals:
     void sig_excel_work();
