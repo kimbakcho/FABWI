@@ -70,8 +70,8 @@ public:
     double workerfail_eatching_rate;
     int workerfail_light_count;
     double workerfail_light_rate;
-    int workerfail_defect_count;
-    double workerfail_defect_rate;
+    int workerfail_deposition_count;
+    double workerfail_deposition_rate;
     int workerfail_output_count;
     double workerfail_output_rate;
 
@@ -81,11 +81,11 @@ public:
     double machinefail_eatching_rate;
     int machinefail_light_count;
     double machinefail_light_rate;
-    int machinefail_defect_count;
-    double machinefail_defect_rate;
+    int machinefail_deposition_count;
+    double machinefail_deposition_rate;
 
-    int defectpaticle_count;
-    double defectpaticle_rate;
+    int depositionpaticle_count;
+    double depositionpaticle_rate;
     int padpaticle_count;
     double padpaticle_rate;
     int etcpaticle_count;
@@ -103,8 +103,8 @@ public:
     double jobmiss_eatching_rate;
     int jobmiss_light_count;
     double jobmiss_light_rate;
-    int jobmiss_defect_count;
-    double jobmiss_defect_rate;
+    int jobmiss_deposition_count;
+    double jobmiss_deposition_rate;
     int rework_paticle_count;
     double rework_paticle_rate;
 
@@ -164,10 +164,10 @@ public:
     void setWorkerfail_light_count(int value);
     double getWorkerfail_light_rate() const;
     void setWorkerfail_light_rate(double value);
-    int getWorkerfail_defect_count() const;
-    void setWorkerfail_defect_count(int value);
-    double getWorkerfail_defect_rate() const;
-    void setWorkerfail_defect_rate(double value);
+    int getWorkerfail_deposition_count() const;
+    void setWorkerfail_deposition_count(int value);
+    double getWorkerfail_deposition_rate() const;
+    void setWorkerfail_deposition_rate(double value);
     int getWorkerfail_output_count() const;
     void setWorkerfail_output_count(int value);
     double getWorkerfail_output_rate() const;
@@ -184,10 +184,10 @@ public:
     void setMachinefail_light_count(int value);
     double getMachinefail_light_rate() const;
     void setMachinefail_light_rate(double value);
-    int getMachinefail_defect_count() const;
-    void setMachinefail_defect_count(int value);
-    double getMachinefail_defect_rate() const;
-    void setMachinefail_defect_rate(double value);
+    int getMachinefail_deposition_count() const;
+    void setMachinefail_deposition_count(int value);
+    double getMachinefail_deposition_rate() const;
+    void setMachinefail_deposition_rate(double value);
     int getPadpaticle_count() const;
     void setPadpaticle_count(int value);
     double getPadpaticle_rate() const;
@@ -200,10 +200,10 @@ public:
     void setPattenpaticle_count(int value);
     double getPattenpaticle_rate() const;
     void setPattenpaticle_rate(double value);
-    int getDefectpaticle_count() const;
-    void setDefectpaticle_count(int value);
-    double getDefectpaticle_rate() const;
-    void setDefectpaticle_rate(double value);
+    int getDepositionpaticle_count() const;
+    void setDepositionpaticle_count(int value);
+    double getDepositionpaticle_rate() const;
+    void setDepositionpaticle_rate(double value);
     int getRework_paticle_count() const;
     void setRework_paticle_count(int value);
     double getRework_paticle_rate() const;
@@ -220,10 +220,10 @@ public:
     void setJobmiss_light_count(int value);
     double getJobmiss_light_rate() const;
     void setJobmiss_light_rate(double value);
-    int getJobmiss_defect_count() const;
-    void setJobmiss_defect_count(int value);
-    double getJobmiss_defect_rate() const;
-    void setJobmiss_defect_rate(double value);
+    int getJobmiss_deposition_count() const;
+    void setJobmiss_deposition_count(int value);
+    double getJobmiss_deposition_rate() const;
+    void setJobmiss_deposition_rate(double value);
     int getPrcdhigh_count() const;
     void setPrcdhigh_count(int value);
     double getPrcdhigh_rate() const;
@@ -266,6 +266,7 @@ public:
 };
 
 class defect_worst_type{
+ public:
     QString product_name;
     QString LOT;
     QString process;
@@ -274,8 +275,6 @@ class defect_worst_type{
     QString Defect_name;
     QString content;
     QString metarial_grouptype;
-
-public:
     QString getProduct_name() const;
     void setProduct_name(const QString &value);
     QString getLOT() const;
@@ -293,6 +292,22 @@ public:
 
     QString getMetarial_grouptype() const;
     void setMetarial_grouptype(const QString &value);
+};
+class csp_limit_product_type{
+    QString product_name;
+    double input_sum;
+    double output_sum;
+    double vaild;
+
+public:
+    QString getProduct_name() const;
+    void setProduct_name(const QString &value);
+    double getInput_sum() const;
+    void setInput_sum(double value);
+    double getOutput_sum() const;
+    void setOutput_sum(double value);
+    double getVaild() const;
+    void setVaild(double value);
 };
 
 class worst_search_th : public QThread
@@ -312,9 +327,12 @@ public:
     QVector<process_code> accumulate_worstcpsprocesslist;
     QVector<rework_text_type> rework_worstcpsprocesslist;
     QVector<defect_worst_type> defect_worstcpsprocesslist;
+    QVector<csp_limit_product_type> CSP_Limit_product_item_list;
     QStringList DEFECT_ITEM_LIST;
+    QStringList EXTERIOR_DEFECT_ITEM_LIST;
     QStringList REWORK_ITEM_LIST;
     QStringList PROBE_ITEM_LIST;
+    QStringList CSP_LIMIT_PRODUCT_LIST;
     QDate select_date;
     QStringList rework_content;
     double daily_totalvild;
@@ -327,6 +345,9 @@ public:
     double RSM_daily_totalvild;
     double RSM_last_probevild;
     double RSM_accumulate_totalvild;
+
+    double exterior_vaild;
+    double exterior_worst_count;
 
     double accumulate_totalvild;
     double last_probe_vild_daily;
@@ -351,6 +372,8 @@ public:
     double total_Etcpaticle;
     double total_Pattenpaticle;
     double total_Defectpaticle;
+    double total_sin_diseatching_worst;
+    double total_brigit_pad_worst;
 
     double total_Rework_paticle;
     double total_Jobmiss_defect;
@@ -361,6 +384,12 @@ public:
     double total_metallow;
     double total_prcdhigh;
     double total_prcdlow;
+
+    double exterior_pattenpaticle_vaild;
+    double exterior_padpaticle_vaild;
+    double exterior_sindiseatching_vaild;
+    double exterior_etcpaticle_vaild;
+    double exterior_brigitpadworst_vaild;
 
 
     QVector<product_item *> item_vector;
@@ -492,8 +521,43 @@ public:
     QVector<rework_text_type> getRework_worstcpsprocesslist() const;
     void setRework_worstcpsprocesslist(const QVector<rework_text_type> &value);
 
+    QVector<defect_worst_type> getDefect_worstcpsprocesslist() const;
+    void setDefect_worstcpsprocesslist(const QVector<defect_worst_type> &value);
+
+    double getTotal_sin_diseatching_worst() const;
+    void setTotal_sin_diseatching_worst(double value);
+
+    double getTotal_brigit_pad_worst() const;
+    void setTotal_brigit_pad_worst(double value);
+
+    double getExterior_vaild() const;
+    void setExterior_vaild(double value);
+
+    double getExterior_worst_count() const;
+    void setExterior_worst_count(double value);
+
+
+    double getExterior_pattenpaticle_vaild() const;
+    void setExterior_pattenpaticle_vaild(double value);
+
+    double getExterior_padpaticle_vaild() const;
+    void setExterior_padpaticle_vaild(double value);
+
+    double getExterior_sindiseatching_vaild() const;
+    void setExterior_sindiseatching_vaild(double value);
+
+    double getExterior_etcpaticle_vaild() const;
+    void setExterior_etcpaticle_vaild(double value);
+
+    double getExterior_brigitpadworst_vaild() const;
+    void setExterior_brigitpadworst_vaild(double value);
+
+    QVector<csp_limit_product_type> getCSP_Limit_product_item_list() const;
+    void setCSP_Limit_product_item_list(const QVector<csp_limit_product_type> &value);
+
 signals:
     void sig_excel_work();
+    void sig_debug_output(QString str);
 
 private:
     void run();

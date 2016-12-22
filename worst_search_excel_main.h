@@ -12,6 +12,7 @@
 #include <QVector>
 #include <worst_search_th.h>
 #include <QFileDialog>
+#include <worst_search_wlp_th.h>
 
 namespace Ui {
 class worst_search_excel_main;
@@ -32,8 +33,13 @@ private slots:
     void on_start_btn_clicked();
     void closeEvent(QCloseEvent *event);
     void slot_excel_work();
+    void slot_excel_WLP_work();
 
     void on_fileselect_dialog_btn_clicked();
+    void slot_debug_output(QString str);
+    void slot_debug_output_WLP(QString str);
+
+    void on_fileselect_WLP_dialog_btn_clicked();
 
 private:
     Ui::worst_search_excel_main *ui;

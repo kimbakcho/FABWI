@@ -59,7 +59,8 @@ SOURCES += main.cpp\
     logsrc/asml_err_log_list_item.cpp \
     logsrc/asml_err_log_main.cpp \
     worst_search_excel_main.cpp \
-    worst_search_th.cpp
+    worst_search_th.cpp \
+    worst_search_wlp_th.cpp
 
 
 
@@ -105,7 +106,8 @@ HEADERS  += mainwindow.h \
     logsrc/asml_err_log_list_item.h \
     logsrc/asml_err_log_main.h \
     worst_search_excel_main.h \
-    worst_search_th.h
+    worst_search_th.h \
+    worst_search_wlp_th.h
 
 
 
