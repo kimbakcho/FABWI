@@ -927,14 +927,14 @@ void worst_search_excel_main::slot_excel_WLP_work()
         SeriesCollection->setProperty("Values",QString("='%1'!%2:%3").arg(tr("WLP10worstrate_limit")).arg(chart_excel_start_address).arg(chart_excel_end_address));
 
         //재작업 양산 시트 초기화
-        QAxObject *select_cell5 = sheet_rework->querySubObject("Cells(int,int)",1,1);
+        QAxObject *select_cell5 = sheet_rework->querySubObject("Cells(int,int)",2,1);
         select_cell5->dynamicCall("AutoFilter(int)",1);
 
         select_cell5 = sheet_rework->querySubObject("Cells(int,int)",2,1);
         select_cell5 =select_cell5->querySubObject("end(int)",-4121);
         int temp_rowcount1 = select_cell5->dynamicCall("Row").toInt();
         int temp_clear_rowsize = temp_rowcount1 - 1;
-        select_cell5 = sheet_rework->querySubObject("Cells(int,int)",2,1);
+        select_cell5 = sheet_rework->querySubObject("Cells(int,int)",3,1);
         select_cell5 = select_cell5->querySubObject("Resize(int,int)",temp_clear_rowsize,10);
         select_cell5->dynamicCall("ClearContents");
         select_cell5->dynamicCall("ClearFormats");
@@ -942,27 +942,26 @@ void worst_search_excel_main::slot_excel_WLP_work()
         select_cell5->setProperty("NumberFormat",QString("m%1 d%2").arg(tr("month")).arg(tr("day")));
 
         //재작업 한도 시트 초기화
-        select_cell5 = sheet_b_rework->querySubObject("Cells(int,int)",1,1);
+        select_cell5 = sheet_b_rework->querySubObject("Cells(int,int)",2,1);
         select_cell5->dynamicCall("AutoFilter(int)",1);
-
         select_cell5 = sheet_b_rework->querySubObject("Cells(int,int)",2,1);
         select_cell5 =select_cell5->querySubObject("end(int)",-4121);
         temp_rowcount1 = select_cell5->dynamicCall("Row").toInt();
         temp_clear_rowsize = temp_rowcount1 - 1;
-        select_cell5 = sheet_b_rework->querySubObject("Cells(int,int)",2,1);
+        select_cell5 = sheet_b_rework->querySubObject("Cells(int,int)",3,1);
         select_cell5 = select_cell5->querySubObject("Resize(int,int)",temp_clear_rowsize,10);
         select_cell5->dynamicCall("ClearContents");
         select_cell5->dynamicCall("ClearFormats");
         select_cell5 = sheet_b_rework->querySubObject("Cells(int,int)",1,1)->querySubObject("EntireColumn");
         select_cell5->setProperty("NumberFormat",QString("m%1 d%2").arg(tr("month")).arg(tr("day")));
         //파손 양손 시트 초기화
-        QAxObject *select_cell6 = sheet_destoryhistory->querySubObject("Cells(int,int)",1,1);
+        QAxObject *select_cell6 = sheet_destoryhistory->querySubObject("Cells(int,int)",2,1);
         select_cell6->dynamicCall("AutoFilter(int)",1);
         select_cell6 = sheet_destoryhistory->querySubObject("Cells(int,int)",2,1);
         select_cell6 =select_cell6->querySubObject("end(int)",-4121);
         temp_rowcount1 = select_cell6->dynamicCall("Row").toInt();
         temp_clear_rowsize = temp_rowcount1 - 1;
-        select_cell6 = sheet_destoryhistory->querySubObject("Cells(int,int)",2,1);
+        select_cell6 = sheet_destoryhistory->querySubObject("Cells(int,int)",3,1);
         select_cell6 = select_cell6->querySubObject("Resize(int,int)",temp_clear_rowsize,10);
         select_cell6->dynamicCall("ClearContents");
         select_cell6->dynamicCall("ClearFormats");
@@ -975,7 +974,7 @@ void worst_search_excel_main::slot_excel_WLP_work()
         select_cell6 =select_cell6->querySubObject("end(int)",-4121);
         temp_rowcount1 = select_cell6->dynamicCall("Row").toInt();
         temp_clear_rowsize = temp_rowcount1 - 1;
-        select_cell6 = sheet_b_destoryhistory->querySubObject("Cells(int,int)",2,1);
+        select_cell6 = sheet_b_destoryhistory->querySubObject("Cells(int,int)",3,1);
         select_cell6 = select_cell6->querySubObject("Resize(int,int)",temp_clear_rowsize,10);
         select_cell6->dynamicCall("ClearContents");
         select_cell6->dynamicCall("ClearFormats");
@@ -1307,7 +1306,7 @@ void worst_search_excel_main::slot_excel_WLP_work()
     modify_cell = modify_cell->querySubObject("end(int)",-4121);
     int rework_write_point_row = modify_cell->dynamicCall("Row()").toInt()+1;
     if(ui->select_data->date().day()==1){
-        rework_write_point_row=2;
+        rework_write_point_row=3;
     }
     for(int j=0;j<th->getRework_worstcpsprocesslist().count();j++){
         rework_text_type_WLP temp_type = th->getRework_worstcpsprocesslist().at(j);
@@ -1347,7 +1346,7 @@ void worst_search_excel_main::slot_excel_WLP_work()
      modify_cell = modify_cell->querySubObject("end(int)",-4121);
      rework_write_point_row = modify_cell->dynamicCall("Row()").toInt()+1;
      if(ui->select_data->date().day()==1){
-         rework_write_point_row=2;
+         rework_write_point_row=3;
      }
 
      for(int j=0;j<th->getB_rework_worstcpsprocesslist().count();j++){
@@ -1387,7 +1386,7 @@ void worst_search_excel_main::slot_excel_WLP_work()
      modify_cell = modify_cell->querySubObject("end(int)",-4121);
      int distoryhistory_point_row = modify_cell->dynamicCall("Row()").toInt()+1;
      if(ui->select_data->date().day()==1){
-         distoryhistory_point_row=2;
+         distoryhistory_point_row=3;
      }
      for(int j=0;j<th->getDefect_worstcpsprocesslist().count();j++){
          defect_worst_type_WLP defect_item;
@@ -1428,7 +1427,7 @@ void worst_search_excel_main::slot_excel_WLP_work()
      modify_cell = modify_cell->querySubObject("end(int)",-4121);
      distoryhistory_point_row = modify_cell->dynamicCall("Row()").toInt()+1;
      if(ui->select_data->date().day()==1){
-         distoryhistory_point_row=2;
+         distoryhistory_point_row=3;
      }
      for(int j=0;j<th->getB_defect_worstcpsprocesslist().count();j++){
          defect_worst_type_WLP defect_item;
