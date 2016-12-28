@@ -1059,6 +1059,14 @@ void EISmain::on_attach_listview_doubleClicked(const QModelIndex &index)
     progressdialog->setLabelText("download");
     progressdialog->exec();
     save_file->close();
+    QMessageBox::StandardButton resBtn = QMessageBox::question( this, "from",
+                                                                 tr("now open file ?\n"),
+                                                                 QMessageBox::Cancel| QMessageBox::Yes);
+    if(resBtn == QMessageBox::Yes){
+        QString openfile_name  = QString("%1%2").arg("file:///").arg(save_filepath);
+        QDesktopServices::openUrl(openfile_name);
+    }
+
 }
 
 void EISmain::on_attach_listview_2_doubleClicked(const QModelIndex &index)
@@ -1088,6 +1096,13 @@ void EISmain::on_attach_listview_2_doubleClicked(const QModelIndex &index)
     progressdialog->setLabelText("download");
     progressdialog->exec();
     save_file->close();
+    QMessageBox::StandardButton resBtn = QMessageBox::question( this, "from",
+                                                                 tr("now open file ?\n"),
+                                                                 QMessageBox::Cancel| QMessageBox::Yes);
+    if(resBtn == QMessageBox::Yes){
+        QString openfile_name  = QString("%1%2").arg("file:///").arg(save_filepath);
+        QDesktopServices::openUrl(openfile_name);
+    }
 }
 
 

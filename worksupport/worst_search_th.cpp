@@ -682,7 +682,7 @@ void worst_search_th::run()
             }else if(data.getName() == tr("exterior")){
                 exterior_vaild = data.getVield()*100.0;
                 exterior_vaild = roundf(exterior_vaild * 100) / 100;
-                exterior_worst_count = data.getDEFECT_SUM();
+//                exterior_worst_count = data.getDEFECT_SUM()+data.getEXCLUDE_YIELD_QTY_SUM();
             }
         }
 
@@ -782,6 +782,49 @@ void worst_search_th::run()
     double probe_sum = ms_query.value("PROBE_INSP_SUM").toDouble();
 
     worst_sum = defect_sum+rework_sum+probe_sum;
+
+    DEFECT_QTY_SUM_query = QString("SELECT SUM(DEFECT_QTY) DEFECT_SUM "
+                                           "FROM [V_DEFECT_LOTS] "
+                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                           "AND LOT_TYPE = 'A' "
+                                           "AND MATERIAL_GROUP = 'CSP' "
+                                           "AND OPERATION_SHORT_NAME = '%3' "
+                                           "AND EXCLUDE_YIELD_FLAG <> 'Y';")
+                                           .arg(start_date_str).arg(end_date_str).arg(tr("exterior"));
+    emit sig_debug_output(DEFECT_QTY_SUM_query);
+    ms_query.exec(DEFECT_QTY_SUM_query);
+
+    ms_query.next();
+    defect_sum = ms_query.value("DEFECT_SUM").toDouble();
+
+    REWORK_SUM_query = QString("SELECT SUM(REWORK_QTY) REWORK_SUM "
+                                           "FROM [V_REWORK_LOTS] "
+                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                           "AND LOT_TYPE = 'A' "
+                                           "AND OPERATION_SHORT_NAME = '%3' "
+                                           "AND MATERIAL_GROUP = 'CSP';")
+                                           .arg(start_date_str).arg(end_date_str).arg(tr("exterior"));
+    emit sig_debug_output(REWORK_SUM_query);
+    ms_query.exec(REWORK_SUM_query);
+    ms_query.next();
+    rework_sum = ms_query.value("REWORK_SUM").toDouble();
+
+    PROBE_SUM_query = QString("SELECT SUM(PROBE_INSP_QTY) PROBE_INSP_SUM "
+                                           "FROM [V_PROBE_INSP_LOTS] "
+                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                           "AND LOT_TYPE = 'A' "
+                                           "AND OPERATION_SHORT_NAME = '%3' "
+                                           "AND MATERIAL_GROUP = 'CSP';")
+                                           .arg(start_date_str).arg(end_date_str).arg(tr("exterior"));
+    emit sig_debug_output(PROBE_SUM_query);
+    ms_query.exec(PROBE_SUM_query);
+    ms_query.next();
+    probe_sum = ms_query.value("PROBE_INSP_SUM").toDouble();
+
+    exterior_worst_count = defect_sum+rework_sum+probe_sum;
+
+
+
 #else
     worst_sum = 1153931;
 #endif
@@ -1307,41 +1350,55 @@ void worst_search_th::run()
 
     emit sig_debug_output(QString("RSM_accumulate_totalvild = %1").arg(RSM_accumulate_totalvild));
 #ifdef REAL_QUERY
-    QString rework_type_txt = QString("SELECT OPERATION_SHORT_NAME "
+
+    QString rework_type_txt = QString("SELECT REWORK_NAME,SUM(REWORK_QTY) AS rework_qty "
                                       "FROM [V_REWORK_LOTS] "
                                       "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                       "AND LOT_TYPE = 'A' "
                                       "AND MATERIAL_GROUP = 'CSP' "
-                                      "group by OPERATION_SHORT_NAME;").arg(start_date_str).arg(end_date_str);
+                                      "group by REWORK_NAME "
+                                      "order by rework_qty desc;").arg(start_date_str).arg(end_date_str);
 
     ms_query.exec(rework_type_txt);
     QSqlQuery ms_query_2(ms_mesdb);
     QSqlQuery ms_query_3(ms_mesdb);
+
+
     while(ms_query.next()){
-        QString rework_type = ms_query.value("OPERATION_SHORT_NAME").toString();
-        QString rework_lottype_txt = QString("SELECT MATERIAL_ID "
-                                          "FROM [V_REWORK_LOTS] "
-                                          "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
-                                          "AND LOT_TYPE = 'A' "
-                                          "AND MATERIAL_GROUP = 'CSP' "
-                                          "AND OPERATION_SHORT_NAME = '%3' "
-                                          "group by MATERIAL_ID;").arg(start_date_str).arg(end_date_str).arg(rework_type);
+
+        QString rework_name = ms_query.value("REWORK_NAME").toString();
+        QString rework_lottype_txt = QString("SELECT REWORK_NAME,MATERIAL_ID,SUM(REWORK_QTY) AS rework_qty,TX_COMMENT "
+                                             "FROM [V_REWORK_LOTS] "
+                                             "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                             "AND LOT_TYPE = 'A' "
+                                             "AND MATERIAL_GROUP = 'CSP' "
+                                             "AND REWORK_NAME = '%3' "
+                                             "group by REWORK_NAME,MATERIAL_ID,TX_COMMENT "
+                                             "order by rework_qty desc;")
+                                             .arg(start_date_str).arg(end_date_str).arg(rework_name);
+
+
         ms_query_2.exec(rework_lottype_txt);
         emit sig_debug_output(rework_lottype_txt);
         while(ms_query_2.next()){
             QString rework_MATERIAL_ID = ms_query_2.value("MATERIAL_ID").toString();
+            QString rework_REWORK_NAME = ms_query_2.value("REWORK_NAME").toString();
+            QString TX_COMMENT = ms_query_2.value("TX_COMMENT").toString();
             QString rework_content_txt = QString("SELECT * "
                                                  "FROM [V_REWORK_LOTS] "
                                                  "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                                  "AND LOT_TYPE = 'A' "
                                                  "AND MATERIAL_GROUP = 'CSP' "
-                                                 "AND OPERATION_SHORT_NAME = '%3' "
-                                                 "AND MATERIAL_ID = '%4';").arg(start_date_str).arg(end_date_str)
-                                                                            .arg(rework_type).arg(rework_MATERIAL_ID);
-            ms_query_3.exec(rework_content_txt);
-            emit sig_debug_output(rework_content_txt);
+                                                 "AND MATERIAL_ID = '%3' "
+                                                 "AND TX_COMMENT = '%4' "
+                                                 "AND REWORK_NAME = '%5';").arg(start_date_str).arg(end_date_str)
+                                                                            .arg(rework_MATERIAL_ID)
+                                                                            .arg(TX_COMMENT)
+                                                                            .arg(rework_REWORK_NAME);
             int lot_count = 0;
             int chip_count = 0;
+            ms_query_3.exec(rework_content_txt);
+            emit sig_debug_output(rework_content_txt);
             rework_text_type rework_item;
             while(ms_query_3.next()){
                 lot_count++;
@@ -1351,16 +1408,17 @@ void worst_search_th::run()
             QString rework_lotid = ms_query_3.value("LOT_ID").toString();
             rework_lotid = rework_lotid.mid(0,rework_lotid.length()-1);
             rework_lotid = rework_lotid + "0";
-            QString rework_worst_type = rework_type;
             rework_item.setLOT(rework_lotid);
-            rework_item.setProcess(rework_type);
+            rework_item.setProcess(ms_query_3.value("OPERATION_SHORT_NAME").toString());
             rework_item.setChip_count(chip_count);
             rework_item.setLot_count(lot_count);
-            rework_item.setContent(rework_worst_type);
+            rework_item.setContent(ms_query_3.value("REWORK_NAME").toString());
             rework_item.setProduct_name(rework_MATERIAL_ID);
             rework_worstcpsprocesslist.append(rework_item);
         }
     }
+
+
     QStringList defect_worst_list;
     defect_worst_list<<tr("machinefail(probe)");
     defect_worst_list<<tr("machinefail(eatching)");
@@ -1373,29 +1431,32 @@ void worst_search_th::run()
     defect_worst_list<<tr("workerfail(output)");
 
     for(int i=0;i<defect_worst_list.count();i++){
-    QString defect_lot_txt = QString("SELECT TX_COMMENT "
-                                     "FROM [V_DEFECT_LOTS] "
-                                     "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
-                                     "AND LOT_TYPE = 'A' "
-                                     "AND MATERIAL_GROUP = 'CSP' "
-                                     "AND EXCLUDE_YIELD_FLAG <> 'Y' "
-                                     "AND DEFECT_NAME = '%3' "
-                                     "group by TX_COMMENT ").arg(start_date_str).arg(end_date_str)
-                                                             .arg(defect_worst_list.at(i));
+        QString defect_lot_txt = QString("SELECT TX_COMMENT,MATERIAL_ID "
+                                         "FROM [V_DEFECT_LOTS] "
+                                         "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                         "AND LOT_TYPE = 'A' "
+                                         "AND MATERIAL_GROUP = 'CSP' "
+                                         "AND EXCLUDE_YIELD_FLAG <> 'Y' "
+                                         "AND DEFECT_NAME = '%3' "
+                                         "group by TX_COMMENT,MATERIAL_ID ").arg(start_date_str).arg(end_date_str)
+                                                                 .arg(defect_worst_list.at(i));
 
-        ms_query.exec(defect_lot_txt);
-        emit sig_debug_output(defect_lot_txt);
-        while(ms_query.next()){
-            QString TX_COMMENT = ms_query.value("TX_COMMENT").toString();
-            QString defect_lot_wrost_txt = QString("SELECT * "
-                                             "FROM [V_DEFECT_LOTS] "
-                                             "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
-                                             "AND LOT_TYPE = 'A' "
-                                             "AND MATERIAL_GROUP = 'CSP' "
-                                             "AND EXCLUDE_YIELD_FLAG <> 'Y' "
-                                             "AND DEFECT_NAME = '%3' "
-                                             "AND TX_COMMENT = '%4'").arg(start_date_str).arg(end_date_str)
-                                                                     .arg(defect_worst_list.at(i)).arg(TX_COMMENT);
+            ms_query.exec(defect_lot_txt);
+            emit sig_debug_output(defect_lot_txt);
+            while(ms_query.next()){
+                QString TX_COMMENT = ms_query.value("TX_COMMENT").toString();
+                TX_COMMENT = TX_COMMENT.replace("'","''");
+                QString MATERIAL_ID = ms_query.value("MATERIAL_ID").toString();
+                QString defect_lot_wrost_txt = QString("SELECT * "
+                                                 "FROM [V_DEFECT_LOTS] "
+                                                 "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                                 "AND LOT_TYPE = 'A' "
+                                                 "AND MATERIAL_GROUP = 'CSP' "
+                                                 "AND EXCLUDE_YIELD_FLAG <> 'Y' "
+                                                 "AND DEFECT_NAME = '%3' "
+                                                 "AND TX_COMMENT = '%4' "
+                                                 "AND MATERIAL_ID = '%5'").arg(start_date_str).arg(end_date_str)
+                                                                         .arg(defect_worst_list.at(i)).arg(TX_COMMENT).arg(MATERIAL_ID);
 
             ms_query_2.exec(defect_lot_wrost_txt);
             emit sig_debug_output(defect_lot_wrost_txt);

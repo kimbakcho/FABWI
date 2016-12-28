@@ -35,6 +35,7 @@
 #include "eis_alarmlistview_item.h"
 #include <eis_delete_dialog.h>
 #include <eis_input_information.h>
+#include <QProcess>
 namespace Ui {
 class EISmain;
 }

@@ -58,9 +58,10 @@ SOURCES += main.cpp\
     logsrc/asml_err_log_chartview.cpp \
     logsrc/asml_err_log_list_item.cpp \
     logsrc/asml_err_log_main.cpp \
-    worst_search_excel_main.cpp \
-    worst_search_th.cpp \
-    worst_search_wlp_th.cpp
+    worksupport/worst_search_excel_main.cpp \
+    worksupport/worst_search_th.cpp \
+    worksupport/worst_search_wlp_th.cpp
+
 
 
 
@@ -105,9 +106,10 @@ HEADERS  += mainwindow.h \
     logsrc/asml_err_log_chartview.h \
     logsrc/asml_err_log_list_item.h \
     logsrc/asml_err_log_main.h \
-    worst_search_excel_main.h \
-    worst_search_th.h \
-    worst_search_wlp_th.h
+    worksupport/worst_search_excel_main.h \
+    worksupport/worst_search_th.h \
+    worksupport/worst_search_wlp_th.h
+
 
 
 
@@ -142,8 +144,7 @@ FORMS    += mainwindow.ui \
     temp_humi_widget.ui \
     logsrc/asml_err_log_list_item.ui \
     logsrc/asml_err_log_main.ui \
-    worst_search_excel_main.ui
-
+    worksupport/worst_search_excel_main.ui
 
 RESOURCES += \
     resourec.qrc

@@ -10,9 +10,11 @@
 #include <global_define.h>
 #include <QMessageBox>
 #include <QVector>
-#include <worst_search_th.h>
+#include <worksupport/worst_search_th.h>
 #include <QFileDialog>
-#include <worst_search_wlp_th.h>
+#include <worksupport/worst_search_wlp_th.h>
+#include <QSqlTableModel>
+#include <QTimer>
 
 namespace Ui {
 class worst_search_excel_main;
@@ -24,6 +26,13 @@ class worst_search_excel_main : public QWidget
 
 public:
     explicit worst_search_excel_main(QWidget *parent = 0);
+    QSqlDatabase my_mesdb;
+    QSqlDatabase litedb;
+    QSqlTableModel *CSP_model;
+    QSqlTableModel *WLP_model;
+    QSqlTableModel *work_plan_model;
+    QSqlTableModel *type_price_model;
+    QTimer work_plan_timer;
 
 
 
@@ -40,6 +49,25 @@ private slots:
     void slot_debug_output_WLP(QString str);
 
     void on_fileselect_WLP_dialog_btn_clicked();
+
+    void on_CSP_Process_add_btn_clicked();
+
+    void on_CSP_Process_del_btn_clicked();
+
+    void on_WLP_Process_add_btn_clicked();
+
+    void on_WLP_Process_del_btn_clicked();
+
+    void on_work_plan_add_btn_clicked();
+
+    void work_plan_timer_timeout();
+
+    void on_work_plan_del_btn_clicked();
+
+
+    void on_type_price_add_btn_clicked();
+
+    void on_type_price_del_btn_clicked();
 
 private:
     Ui::worst_search_excel_main *ui;

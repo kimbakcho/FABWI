@@ -15,7 +15,7 @@
 #include <hanile_log_main.h>
 #include <temp_humi_widget.h>
 #include <logsrc/asml_err_log_main.h>
-#include <worst_search_excel_main.h>
+#include <worksupport/worst_search_excel_main.h>
 namespace Ui {
 class MainWindow;
 }
@@ -59,6 +59,8 @@ private slots:
     void on_action_asml_err_triggered();
 
     void on_action_worst_serarch_triggered();
+
+    void on_OI_startup_clicked();
 
 private:
     void closeEvent(QCloseEvent *event);

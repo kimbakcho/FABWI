@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>916</width>
-    <height>490</height>
+    <width>945</width>
+    <height>508</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,10 +27,10 @@
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">QWidget{
-	border-image:url(:/img/img/slideshow_survey.jpg);
-
-}</string>
+       <string notr="true">QWidget#widget{
+	border-image :url(:/img/img/slideshow_survey.jpg);
+}
+</string>
       </property>
       <widget class="QPushButton" name="infrom_entet_btn">
        <property name="geometry">
@@ -59,6 +59,28 @@
         <string/>
        </property>
       </widget>
+      <widget class="QPushButton" name="OI_startup">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>20</y>
+         <width>131</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>OI system</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -68,7 +90,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>916</width>
+     <width>945</width>
      <height>21</height>
     </rect>
    </property>

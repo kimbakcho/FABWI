@@ -17,6 +17,8 @@
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QColorDialog>
+#include <QProcess>
+#include <QDesktopServices>
 namespace Ui {
 class EIS_listview_item;
 }

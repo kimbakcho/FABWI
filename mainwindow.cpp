@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
 }
 
 MainWindow::~MainWindow()
@@ -180,5 +181,10 @@ void MainWindow::on_action_worst_serarch_triggered()
 {
     worst_search_excel_main *popup = new worst_search_excel_main();
     popup->show();
+
+}
+
+void MainWindow::on_OI_startup_clicked()
+{
 
 }

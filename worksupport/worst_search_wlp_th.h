@@ -105,9 +105,13 @@ public:
     QSqlDatabase ms_mesdb;
     QSqlDatabase my_mesdb;
     QVector<process_code_WLP> daily_worstcpsprocesslist;
+    QVector<process_code_WLP> b_daily_worstcpsprocesslist;
     QVector<process_code_WLP> accumulate_worstcpsprocesslist;
+    QVector<process_code_WLP> b_accumulate_worstcpsprocesslist;
     QVector<rework_text_type_WLP> rework_worstcpsprocesslist;
+    QVector<rework_text_type_WLP> b_rework_worstcpsprocesslist;
     QVector<defect_worst_type_WLP> defect_worstcpsprocesslist;
+    QVector<defect_worst_type_WLP> b_defect_worstcpsprocesslist;
     QStringList DEFECT_ITEM_LIST;
     QStringList REWORK_ITEM_LIST;
     QStringList PROBE_ITEM_LIST;
@@ -121,12 +125,24 @@ public:
     double last_probe_vild_daily;
     double worst_sum;
 
+    double b_daily_totalvild;
+    double b_accumulate_totalvild;
+    double b_last_probe_vild_daily;
+    double b_worst_sum;
+
     double total_DP001_worst;
     double total_DP003_worst;
     double total_DP004_worst;
     double total_DP005_worst;
     double total_DP006_worst;
     double total_DP008_worst;
+
+    double total_b_DP001_worst;
+    double total_b_DP003_worst;
+    double total_b_DP004_worst;
+    double total_b_DP005_worst;
+    double total_b_DP006_worst;
+    double total_b_DP008_worst;
 
     double total_Workerfail_probe;
     double total_Workerfail_eatching;
@@ -143,11 +159,33 @@ public:
     double total_Defectpaticle;
     double total_brigit_pad_worst;
 
+    double total_b_Workerfail_probe;
+    double total_b_Workerfail_eatching;
+    double total_b_Workerfail_light;
+    double total_b_Workerfail_defect;
+    double total_b_Workerfail_output;
+    double total_b_Machinefail_probe;
+    double total_b_Machinefail_eatching;
+    double total_b_Machinefail_light;
+    double total_b_Machinefail_defect;
+    double total_b_Padpaticle;
+    double total_b_Etcpaticle;
+    double total_b_Pattenpaticle;
+    double total_b_Defectpaticle;
+    double total_b_brigit_pad_worst;
+
     double total_Rework_paticle;
     double total_Jobmiss_defect;
     double total_Jobmiss_eatching;
     double total_Jobmiss_light;
     double total_Jobmiss_probe;
+
+    double total_b_Rework_paticle;
+    double total_b_Jobmiss_defect;
+    double total_b_Jobmiss_eatching;
+    double total_b_Jobmiss_light;
+    double total_b_Jobmiss_probe;
+
 
     double exterior_pattenpaticle_vaild;
     double exterior_padpaticle_vaild;
@@ -155,8 +193,17 @@ public:
     double exterior_etcpaticle_vaild;
     double exterior_brigitpadworst_vaild;
 
+    double b_exterior_pattenpaticle_vaild;
+    double b_exterior_padpaticle_vaild;
+    double b_exterior_sindiseatching_vaild;
+    double b_exterior_etcpaticle_vaild;
+    double b_exterior_brigitpadworst_vaild;
+
     double exterior_vaild;
     double exterior_worst_count;
+
+    double b_exterior_vaild;
+    double b_exterior_worst_count;
 
 
     double getDaily_totalvild() const;
@@ -266,6 +313,126 @@ public:
 
     double getExterior_worst_count() const;
     void setExterior_worst_count(double value);
+
+    double getB_daily_totalvild() const;
+    void setB_daily_totalvild(double value);
+
+    double getB_accumulate_totalvild() const;
+    void setB_accumulate_totalvild(double value);
+
+    double getB_last_probe_vild_daily() const;
+    void setB_last_probe_vild_daily(double value);
+
+    double getB_worst_sum() const;
+    void setB_worst_sum(double value);
+
+    double getTotal_b_DP001_worst() const;
+    void setTotal_b_DP001_worst(double value);
+
+    double getTotal_b_DP003_worst() const;
+    void setTotal_b_DP003_worst(double value);
+
+    double getTotal_b_DP004_worst() const;
+    void setTotal_b_DP004_worst(double value);
+
+    double getTotal_b_DP005_worst() const;
+    void setTotal_b_DP005_worst(double value);
+
+    double getTotal_b_DP006_worst() const;
+    void setTotal_b_DP006_worst(double value);
+
+    double getTotal_b_DP008_worst() const;
+    void setTotal_b_DP008_worst(double value);
+
+    double getTotal_b_Workerfail_probe() const;
+    void setTotal_b_Workerfail_probe(double value);
+
+    double getTotal_b_Workerfail_eatching() const;
+    void setTotal_b_Workerfail_eatching(double value);
+
+    double getTotal_b_Workerfail_light() const;
+    void setTotal_b_Workerfail_light(double value);
+
+    double getTotal_b_Workerfail_defect() const;
+    void setTotal_b_Workerfail_defect(double value);
+
+    double getTotal_b_Workerfail_output() const;
+    void setTotal_b_Workerfail_output(double value);
+
+    double getTotal_b_Machinefail_probe() const;
+    void setTotal_b_Machinefail_probe(double value);
+
+    double getTotal_b_Machinefail_eatching() const;
+    void setTotal_b_Machinefail_eatching(double value);
+
+    double getTotal_b_Machinefail_light() const;
+    void setTotal_b_Machinefail_light(double value);
+
+    double getTotal_b_Machinefail_defect() const;
+    void setTotal_b_Machinefail_defect(double value);
+
+    double getTotal_b_Padpaticle() const;
+    void setTotal_b_Padpaticle(double value);
+
+    double getTotal_b_Etcpaticle() const;
+    void setTotal_b_Etcpaticle(double value);
+
+    double getTotal_b_Pattenpaticle() const;
+    void setTotal_b_Pattenpaticle(double value);
+
+    double getTotal_b_Defectpaticle() const;
+    void setTotal_b_Defectpaticle(double value);
+
+    double getTotal_b_brigit_pad_worst() const;
+    void setTotal_b_brigit_pad_worst(double value);
+
+    double getTotal_b_Rework_paticle() const;
+    void setTotal_b_Rework_paticle(double value);
+
+    double getTotal_b_Jobmiss_defect() const;
+    void setTotal_b_Jobmiss_defect(double value);
+
+    double getTotal_b_Jobmiss_eatching() const;
+    void setTotal_b_Jobmiss_eatching(double value);
+
+    double getTotal_b_Jobmiss_light() const;
+    void setTotal_b_Jobmiss_light(double value);
+
+    double getTotal_b_Jobmiss_probe() const;
+    void setTotal_b_Jobmiss_probe(double value);
+
+    double getB_exterior_pattenpaticle_vaild() const;
+    void setB_exterior_pattenpaticle_vaild(double value);
+
+    double getB_exterior_padpaticle_vaild() const;
+    void setB_exterior_padpaticle_vaild(double value);
+
+    double getB_exterior_sindiseatching_vaild() const;
+    void setB_exterior_sindiseatching_vaild(double value);
+
+    double getB_exterior_etcpaticle_vaild() const;
+    void setB_exterior_etcpaticle_vaild(double value);
+
+    double getB_exterior_brigitpadworst_vaild() const;
+    void setB_exterior_brigitpadworst_vaild(double value);
+
+    double getB_exterior_vaild() const;
+    void setB_exterior_vaild(double value);
+
+    double getB_exterior_worst_count() const;
+    void setB_exterior_worst_count(double value);
+
+    QVector<rework_text_type_WLP> getRework_worstcpsprocesslist() const;
+    void setRework_worstcpsprocesslist(const QVector<rework_text_type_WLP> &value);
+
+    QVector<rework_text_type_WLP> getB_rework_worstcpsprocesslist() const;
+    void setB_rework_worstcpsprocesslist(const QVector<rework_text_type_WLP> &value);
+
+    QVector<defect_worst_type_WLP> getDefect_worstcpsprocesslist() const;
+    void setDefect_worstcpsprocesslist(const QVector<defect_worst_type_WLP> &value);
+
+    QVector<defect_worst_type_WLP> getB_defect_worstcpsprocesslist() const;
+    void setB_defect_worstcpsprocesslist(const QVector<defect_worst_type_WLP> &value);
 
 private:
     void run();

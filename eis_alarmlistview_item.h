@@ -18,6 +18,7 @@
 #include <QPrintDialog>
 #include <QColorDialog>
 #include <eis_delete_dialog.h>
+#include <QDesktopServices>
 
 namespace Ui {
 class eis_alarmlistview_item;
