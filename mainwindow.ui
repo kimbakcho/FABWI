@@ -131,7 +131,7 @@
       <string>Nikon </string>
      </property>
      <addaction name="action_nikon_err_log"/>
-     <addaction name="action_nikon_err_log1"/>
+     <addaction name="action_nikon_err_time"/>
     </widget>
     <widget class="QMenu" name="menu_6">
      <property name="title">
@@ -206,9 +206,9 @@
     <string>에러분석기</string>
    </property>
   </action>
-  <action name="action_nikon_err_log1">
+  <action name="action_nikon_err_time">
    <property name="text">
-    <string>TEST1</string>
+    <string>TIME</string>
    </property>
   </action>
   <action name="action_hanile">

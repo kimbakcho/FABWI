@@ -60,7 +60,8 @@ SOURCES += main.cpp\
     logsrc/asml_err_log_main.cpp \
     worksupport/worst_search_excel_main.cpp \
     worksupport/worst_search_th.cpp \
-    worksupport/worst_search_wlp_th.cpp
+    worksupport/worst_search_wlp_th.cpp \
+    logsrc/nikon_time_log.cpp
 
 
 
@@ -108,7 +109,8 @@ HEADERS  += mainwindow.h \
     logsrc/asml_err_log_main.h \
     worksupport/worst_search_excel_main.h \
     worksupport/worst_search_th.h \
-    worksupport/worst_search_wlp_th.h
+    worksupport/worst_search_wlp_th.h \
+    logsrc/nikon_time_log.h
 
 
 
@@ -144,7 +146,8 @@ FORMS    += mainwindow.ui \
     temp_humi_widget.ui \
     logsrc/asml_err_log_list_item.ui \
     logsrc/asml_err_log_main.ui \
-    worksupport/worst_search_excel_main.ui
+    worksupport/worst_search_excel_main.ui \
+    logsrc/nikon_time_log.ui
 
 RESOURCES += \
     resourec.qrc

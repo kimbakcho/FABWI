@@ -188,3 +188,9 @@ void MainWindow::on_OI_startup_clicked()
 {
 
 }
+
+void MainWindow::on_action_nikon_err_time_triggered()
+{
+    nikon_time_log *analysor = new nikon_time_log();
+    analysor->show();
+}

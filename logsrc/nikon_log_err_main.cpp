@@ -197,9 +197,9 @@ void nikon_log_err_main::analysor(QStringList dataline)
         temp_datetime.setDate(QDate(year,month,day));
         temp_datetime.setTime(QTime(hour,min,sec,msec));
         QString err_txt = captured_data.at(9)+" "+captured_data.at(10)+" "+captured_data.at(11)+" "+captured_data.at(12);
-        if(captured_data.at(9) != "E"){
-            continue;
-        }
+//        if(captured_data.at(9) != "E"){
+//            continue;
+//        }
         bool isexist = false;
         for(int j=0;j<datalist.size();j++){
             if(datalist.at(j)->data == err_txt){

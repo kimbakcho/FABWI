@@ -1475,7 +1475,6 @@ void worst_search_excel_main::on_fileselect_dialog_btn_clicked()
     settings.setValue("worst_excel_file",filepath);
     settings.endGroup();
     ui->LE_filepath->setText(filepath);
-
 }
 
 void worst_search_excel_main::slot_debug_output(QString str)

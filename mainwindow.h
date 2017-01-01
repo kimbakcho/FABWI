@@ -16,6 +16,7 @@
 #include <temp_humi_widget.h>
 #include <logsrc/asml_err_log_main.h>
 #include <worksupport/worst_search_excel_main.h>
+#include <logsrc/nikon_time_log.h>
 namespace Ui {
 class MainWindow;
 }
@@ -61,6 +62,8 @@ private slots:
     void on_action_worst_serarch_triggered();
 
     void on_OI_startup_clicked();
+
+    void on_action_nikon_err_time_triggered();
 
 private:
     void closeEvent(QCloseEvent *event);
