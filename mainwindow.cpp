@@ -186,8 +186,11 @@ void MainWindow::on_action_worst_serarch_triggered()
 
 void MainWindow::on_OI_startup_clicked()
 {
-    operating_ratio_main *operation_main = new operating_ratio_main();
-    operation_main->show();
+    QString OI_program_path = QString("\"%1/operating_ratio_program/OIservice.exe\"").arg(qApp->applicationDirPath());
+    qDebug()<<OI_program_path;
+    QProcess OI_program;
+    OI_program.startDetached(OI_program_path);
+
 }
 
 void MainWindow::on_action_nikon_err_time_triggered()
