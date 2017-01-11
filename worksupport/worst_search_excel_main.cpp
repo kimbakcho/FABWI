@@ -553,6 +553,9 @@ void worst_search_excel_main::slot_excel_work()
     if(ui->select_data->date().day()==1){
         rework_write_point_row=2;
     }
+    if(rework_write_point_row > 10000){
+        rework_write_point_row = 2;
+    }
     QString temp_process_type = "";
     int marge_count = 0;
     for(int j=0;j<th->getRework_worstcpsprocesslist().count();j++){
@@ -593,6 +596,9 @@ void worst_search_excel_main::slot_excel_work()
      int distoryhistory_point_row = modify_cell->dynamicCall("Row()").toInt()+1;
      if(ui->select_data->date().day()==1){
          distoryhistory_point_row=2;
+     }
+     if(distoryhistory_point_row>10000){
+        distoryhistory_point_row=2;
      }
      for(int j=0;j<th->getDefect_worstcpsprocesslist().count();j++){
          defect_worst_type defect_item;
@@ -1108,10 +1114,10 @@ void worst_search_excel_main::slot_excel_WLP_work()
         i++;
     }
     double daily_total_sum = 0.0;
-    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",29,cellcolumn);
+    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",28,cellcolumn);
     modify_cell->setProperty("Value",th->getTotal_DP003_worst());
     daily_total_sum += th->getTotal_DP003_worst();
-    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",28,cellcolumn);
+    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",29,cellcolumn);
     modify_cell->setProperty("Value",th->getTotal_DP004_worst());
     daily_total_sum += th->getTotal_DP004_worst();
     modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",30,cellcolumn);
@@ -1308,6 +1314,10 @@ void worst_search_excel_main::slot_excel_WLP_work()
     if(ui->select_data->date().day()==1){
         rework_write_point_row=3;
     }
+    if(rework_write_point_row > 10000){
+        rework_write_point_row=3;
+    }
+
     for(int j=0;j<th->getRework_worstcpsprocesslist().count();j++){
         rework_text_type_WLP temp_type = th->getRework_worstcpsprocesslist().at(j);
         QAxObject *rework_write_cell = sheet_rework->querySubObject("Cells(int,int)",rework_write_point_row+j,1);
@@ -1348,6 +1358,9 @@ void worst_search_excel_main::slot_excel_WLP_work()
      if(ui->select_data->date().day()==1){
          rework_write_point_row=3;
      }
+     if(rework_write_point_row > 10000){
+         rework_write_point_row=3;
+     }
 
      for(int j=0;j<th->getB_rework_worstcpsprocesslist().count();j++){
          rework_text_type_WLP temp_type = th->getB_rework_worstcpsprocesslist().at(j);
@@ -1386,6 +1399,9 @@ void worst_search_excel_main::slot_excel_WLP_work()
      modify_cell = modify_cell->querySubObject("end(int)",-4121);
      int distoryhistory_point_row = modify_cell->dynamicCall("Row()").toInt()+1;
      if(ui->select_data->date().day()==1){
+         distoryhistory_point_row=3;
+     }
+     if(distoryhistory_point_row>10000){
          distoryhistory_point_row=3;
      }
      for(int j=0;j<th->getDefect_worstcpsprocesslist().count();j++){
@@ -1429,6 +1445,9 @@ void worst_search_excel_main::slot_excel_WLP_work()
      if(ui->select_data->date().day()==1){
          distoryhistory_point_row=3;
      }
+     if(distoryhistory_point_row>10000){
+         distoryhistory_point_row=3;
+     }
      for(int j=0;j<th->getB_defect_worstcpsprocesslist().count();j++){
          defect_worst_type_WLP defect_item;
          defect_item = th->getB_defect_worstcpsprocesslist().at(j);
@@ -1459,6 +1478,9 @@ void worst_search_excel_main::slot_excel_WLP_work()
      modify_cell =  sheet_b_destoryhistory->querySubObject("Cells(int,int)",1,1)->querySubObject("resize(int,int)",215,10);
 
      modify_cell->dynamicCall("AutoFilter(int,QString,int)",1,selection_date,1);
+
+     workbook->dynamicCall("Save");
+     excel->dynamicCall("Quit()");
 
 
 

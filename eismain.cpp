@@ -509,7 +509,7 @@ void EISmain::on_add_button_clicked()
 
         ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
         loop.exec();
-        ftp->setTransferMode(QFtp::Passive);
+        ftp->setTransferMode(QFtp::Active);
     }
     ftp->rawCommand("CWD /home/eis/img");
     loop.exec();
@@ -673,7 +673,7 @@ void EISmain::on_add_button_2_clicked()
 
         ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
         loop.exec();
-        ftp->setTransferMode(QFtp::Passive);
+        ftp->setTransferMode(QFtp::Active);
     }
     ftp->rawCommand("CWD /home/eis/alarmimg");
     loop.exec();
@@ -910,7 +910,7 @@ void EISmain::on_attach_btn_clicked()
 
             ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
             loop.exec();
-            ftp->setTransferMode(QFtp::Passive);
+            ftp->setTransferMode(QFtp::Active);
         }
         ftp->rawCommand("CWD /home/eis/attach");
         loop.exec();
@@ -957,7 +957,7 @@ void EISmain::on_attach_btn_2_clicked()
 
             ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
             loop.exec();
-            ftp->setTransferMode(QFtp::Passive);
+            ftp->setTransferMode(QFtp::Active);
         }
 
         ftp->rawCommand("CWD /home/eis/alarmattach");
@@ -1003,7 +1003,7 @@ void EISmain::on_attach_remove_btn_clicked()
 
          ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
          loop.exec();
-         ftp->setTransferMode(QFtp::Passive);
+         ftp->setTransferMode(QFtp::Active);
      }
      ftp->rawCommand(QString("CWD /home/eis/attach/%1").arg(doc_number));
      loop.exec();
@@ -1022,7 +1022,7 @@ void EISmain::on_attach_remove_btn_2_clicked()
 
         ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
         loop.exec();
-        ftp->setTransferMode(QFtp::Passive);
+        ftp->setTransferMode(QFtp::Active);
     }
     ftp->rawCommand(QString("CWD /home/eis/alarmattach/%1").arg(alarm_doc_number));
     loop.exec();
@@ -1047,7 +1047,7 @@ void EISmain::on_attach_listview_doubleClicked(const QModelIndex &index)
 
         ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
         loop.exec();
-        ftp->setTransferMode(QFtp::Passive);
+        ftp->setTransferMode(QFtp::Active);
     }
     ftp->rawCommand(QString("CWD /home/eis/attach/%1").arg(doc_number));
     loop.exec();
@@ -1084,7 +1084,7 @@ void EISmain::on_attach_listview_2_doubleClicked(const QModelIndex &index)
 
         ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
         loop.exec();
-        ftp->setTransferMode(QFtp::Passive);
+        ftp->setTransferMode(QFtp::Active);
     }
     ftp->rawCommand(QString("CWD /home/eis/alarmattach/%1").arg(alarm_doc_number));
     loop.exec();

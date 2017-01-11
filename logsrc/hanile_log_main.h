@@ -8,12 +8,12 @@
 #include <QFileInfo>
 #include <Qdir>
 #include <QFile>
-#include <hanile_log_item.h>
+#include <logsrc/hanile_log_item.h>
 #include <QtCharts/QChart>
 #include <QLineSeries>
 #include <QXYSeries>
-#include <hanile_log_chartview.h>
-#include <hanile_log_err_chart.h>
+#include <logsrc/hanile_log_chartview.h>
+#include <logsrc/hanile_log_err_chart.h>
 #include <QDateTimeAxis>
 #include <QValueAxis>
 #define RATE 3

@@ -12,11 +12,12 @@
 #include "Smtp/SmtpMime"
 #include <logsrc/etching_analysor.h>
 #include <logsrc/nikon_log_err_main.h>
-#include <hanile_log_main.h>
+#include <logsrc/hanile_log_main.h>
 #include <temp_humi_widget.h>
 #include <logsrc/asml_err_log_main.h>
 #include <worksupport/worst_search_excel_main.h>
 #include <logsrc/nikon_time_log.h>
+#include <operatingratio/operating_ratio_main.h>
 namespace Ui {
 class MainWindow;
 }

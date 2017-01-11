@@ -6,6 +6,8 @@
 
 QT       += core gui network ftp sql printsupport charts datavisualization axcontainer
 
+include(./soap_lib/src/qtsoap.pri)
+
 INCLUDEPATH += ./soap_lib/src/
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -65,10 +67,7 @@ SOURCES += main.cpp\
     logsrc/hanile_log_item.cpp \
     logsrc/hanile_log_main.cpp \
     operatingratio/operating_ratio_main.cpp \
-    operatingratio/operating_ratio_action.cpp \
-    oistystemsoap/oisystemC.cpp \
-    oistystemsoap/oisystemOIWebServiceSoapProxy.cpp \
-    oistystemsoap/stdsoap2.cpp
+    operatingratio/operating_ratio_action.cpp
 
 
 
@@ -119,12 +118,7 @@ HEADERS  += mainwindow.h \
     logsrc/hanile_log_item.h \
     logsrc/hanile_log_main.h \
     operatingratio/operating_ratio_main.h \
-    operatingratio/operating_ratio_action.h \
-    oistystemsoap/oisystem.nsmap \
-    oistystemsoap/oisystemH.h \
-    oistystemsoap/oisystemOIWebServiceSoapProxy.h \
-    oistystemsoap/oisystemStub.h \
-    oistystemsoap/stdsoap2.h
+    operatingratio/operating_ratio_action.h
 
 
 

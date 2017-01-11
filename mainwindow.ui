@@ -35,10 +35,10 @@
       <widget class="QPushButton" name="infrom_entet_btn">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>20</y>
-         <width>121</width>
-         <height>31</height>
+         <x>10</x>
+         <y>30</y>
+         <width>271</width>
+         <height>121</height>
         </rect>
        </property>
        <property name="autoFillBackground">
@@ -62,10 +62,10 @@
       <widget class="QPushButton" name="OI_startup">
        <property name="geometry">
         <rect>
-         <x>160</x>
-         <y>20</y>
-         <width>131</width>
-         <height>31</height>
+         <x>310</x>
+         <y>30</y>
+         <width>211</width>
+         <height>121</height>
         </rect>
        </property>
        <property name="autoFillBackground">

@@ -925,7 +925,7 @@ void worst_search_WLP_th::run()
         data.setId(my_query.value("OPERATION_ID").toString());
         data.setName(my_query.value("OPERATION_SHORT_NAME").toString());
         QString INPUT_OUTPUT_SUM_query = QString("SELECT SUM(INPUT_QTY) INPUT_SUM,SUM(OUTPUT_QTY)OUTPUT_SUM,SUM(DEFECT_QTY)DEFECT_SUM,SUM(EXCLUDE_YIELD_QTY) EXCLUDE_YIELD_SUM "
-                                          "FROM [V_OUTPUT_LOTS] "
+                                          "FROM [V_FAB_OUTPUT_LOTS] "
                                           "WHERE MOVEOUT_DTTM BETWEEN \'%1\' AND \'%2\' "
                                           "AND LOT_TYPE = \'A\' "
                                           "AND MATERIAL_GROUP = \'WLP\' "
@@ -974,7 +974,7 @@ void worst_search_WLP_th::run()
         data.setId(my_query.value("OPERATION_ID").toString());
         data.setName(my_query.value("OPERATION_SHORT_NAME").toString());
         QString INPUT_OUTPUT_SUM_query = QString("SELECT SUM(INPUT_QTY) INPUT_SUM,SUM(OUTPUT_QTY)OUTPUT_SUM,SUM(DEFECT_QTY)DEFECT_SUM,SUM(EXCLUDE_YIELD_QTY) EXCLUDE_YIELD_SUM "
-                                          "FROM [V_OUTPUT_LOTS] "
+                                          "FROM [V_FAB_OUTPUT_LOTS] "
                                           "WHERE MOVEOUT_DTTM BETWEEN \'%1\' AND \'%2\' "
                                           "AND LOT_TYPE = \'B\' "
                                           "AND MATERIAL_GROUP = \'WLP\' "
@@ -1025,7 +1025,7 @@ void worst_search_WLP_th::run()
         data.setId(my_query.value("OPERATION_ID").toString());
         data.setName(my_query.value("OPERATION_SHORT_NAME").toString());
         QString INPUT_OUTPUT_SUM_query = QString("SELECT SUM(INPUT_QTY) INPUT_SUM,SUM(OUTPUT_QTY)OUTPUT_SUM,SUM(DEFECT_QTY)DEFECT_SUM,SUM(EXCLUDE_YIELD_QTY) EXCLUDE_YIELD_SUM "
-                                          "FROM [V_OUTPUT_LOTS] "
+                                          "FROM [V_FAB_OUTPUT_LOTS] "
                                           "WHERE MOVEOUT_DTTM BETWEEN \'%1\' AND \'%2\' "
                                           "AND LOT_TYPE = \'A\' "
                                           "AND MATERIAL_GROUP = \'WLP\' "
@@ -1066,7 +1066,7 @@ void worst_search_WLP_th::run()
         data.setId(my_query.value("OPERATION_ID").toString());
         data.setName(my_query.value("OPERATION_SHORT_NAME").toString());
         QString INPUT_OUTPUT_SUM_query = QString("SELECT SUM(INPUT_QTY) INPUT_SUM,SUM(OUTPUT_QTY)OUTPUT_SUM,SUM(DEFECT_QTY)DEFECT_SUM,SUM(EXCLUDE_YIELD_QTY) EXCLUDE_YIELD_SUM "
-                                          "FROM [V_OUTPUT_LOTS] "
+                                          "FROM [V_FAB_OUTPUT_LOTS] "
                                           "WHERE MOVEOUT_DTTM BETWEEN \'%1\' AND \'%2\' "
                                           "AND LOT_TYPE = \'B\' "
                                           "AND MATERIAL_GROUP = \'WLP\' "
@@ -1102,7 +1102,7 @@ void worst_search_WLP_th::run()
 
 #ifdef REAL_QUERY_WLP
     QString DEFECT_QTY_SUM_query = QString("SELECT SUM(DEFECT_QTY) DEFECT_SUM "
-                                           "FROM [V_DEFECT_LOTS] "
+                                           "FROM [V_FAB_DEFECT_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'A' "
                                            "AND MATERIAL_GROUP = 'WLP' "
@@ -1114,8 +1114,8 @@ void worst_search_WLP_th::run()
     ms_query.next();
     double defect_sum = ms_query.value("DEFECT_SUM").toDouble();
 
-    QString REWORK_SUM_query = QString("SELECT SUM(REWORK_QTY) REWORK_SUM "
-                                           "FROM [V_REWORK_LOTS] "
+    QString REWORK_SUM_query = QString("SELECT SUM(REWORK_CHIP_QTY)REWORK_SUM "
+                                           "FROM [V_FAB_REWORK_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'A' "
                                            "AND MATERIAL_GROUP = 'WLP';")
@@ -1126,7 +1126,7 @@ void worst_search_WLP_th::run()
     double rework_sum = ms_query.value("REWORK_SUM").toDouble();
 
     QString PROBE_SUM_query = QString("SELECT SUM(PROBE_INSP_QTY) PROBE_INSP_SUM "
-                                           "FROM [V_PROBE_INSP_LOTS] "
+                                           "FROM [V_FAB_PROBE_INSP_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'A' "
                                            "AND MATERIAL_GROUP = 'WLP';")
@@ -1139,11 +1139,12 @@ void worst_search_WLP_th::run()
     worst_sum = defect_sum+rework_sum+probe_sum;
 
     DEFECT_QTY_SUM_query = QString("SELECT SUM(DEFECT_QTY) DEFECT_SUM "
-                                           "FROM [V_DEFECT_LOTS] "
+                                           "FROM [V_FAB_DEFECT_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'A' "
                                            "AND MATERIAL_GROUP = 'WLP' "
                                            "AND OPERATION_SHORT_NAME = '%3' "
+                                           "AND REPROCESS_FLAG = 'N'"
                                            "AND EXCLUDE_YIELD_FLAG <> 'Y';")
                                            .arg(start_date_str).arg(end_date_str).arg(tr("exterior"));
     emit sig_debug_output(DEFECT_QTY_SUM_query);
@@ -1152,8 +1153,8 @@ void worst_search_WLP_th::run()
     ms_query.next();
     defect_sum = ms_query.value("DEFECT_SUM").toDouble();
 
-    REWORK_SUM_query = QString("SELECT SUM(REWORK_QTY) REWORK_SUM "
-                                           "FROM [V_REWORK_LOTS] "
+    REWORK_SUM_query = QString("SELECT SUM(REWORK_CHIP_QTY)REWORK_SUM "
+                                           "FROM [V_FAB_REWORK_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'A' "
                                            "AND OPERATION_SHORT_NAME = '%3' "
@@ -1165,7 +1166,7 @@ void worst_search_WLP_th::run()
     rework_sum = ms_query.value("REWORK_SUM").toDouble();
 
     PROBE_SUM_query = QString("SELECT SUM(PROBE_INSP_QTY) PROBE_INSP_SUM "
-                                           "FROM [V_PROBE_INSP_LOTS] "
+                                           "FROM [V_FAB_PROBE_INSP_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'A' "
                                            "AND OPERATION_SHORT_NAME = '%3' "
@@ -1184,7 +1185,7 @@ void worst_search_WLP_th::run()
 
 #ifdef REAL_QUERY_WLP
     QString b_DEFECT_QTY_SUM_query = QString("SELECT SUM(DEFECT_QTY) DEFECT_SUM "
-                                           "FROM [V_DEFECT_LOTS] "
+                                           "FROM [V_FAB_DEFECT_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'B' "
                                            "AND MATERIAL_GROUP = 'WLP' "
@@ -1196,8 +1197,8 @@ void worst_search_WLP_th::run()
     ms_query.next();
     double b_defect_sum = ms_query.value("DEFECT_SUM").toDouble();
 
-    QString b_REWORK_SUM_query = QString("SELECT SUM(REWORK_QTY) REWORK_SUM "
-                                           "FROM [V_REWORK_LOTS] "
+    QString b_REWORK_SUM_query = QString("SELECT SUM(REWORK_CHIP_QTY)REWORK_SUM "
+                                           "FROM [V_FAB_REWORK_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'B' "
                                            "AND MATERIAL_GROUP = 'WLP';")
@@ -1208,7 +1209,7 @@ void worst_search_WLP_th::run()
     double b_rework_sum = ms_query.value("REWORK_SUM").toDouble();
 
     QString b_PROBE_SUM_query = QString("SELECT SUM(PROBE_INSP_QTY) PROBE_INSP_SUM "
-                                           "FROM [V_PROBE_INSP_LOTS] "
+                                           "FROM [V_FAB_PROBE_INSP_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'B' "
                                            "AND MATERIAL_GROUP = 'WLP';")
@@ -1221,11 +1222,12 @@ void worst_search_WLP_th::run()
     b_worst_sum = b_defect_sum+b_rework_sum+b_probe_sum;
 
     b_DEFECT_QTY_SUM_query = QString("SELECT SUM(DEFECT_QTY) DEFECT_SUM "
-                                           "FROM [V_DEFECT_LOTS] "
+                                           "FROM [V_FAB_DEFECT_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'B' "
                                            "AND MATERIAL_GROUP = 'WLP' "
                                            "AND OPERATION_SHORT_NAME = '%3' "
+                                           "AND REPROCESS_FLAG = 'N' "
                                            "AND EXCLUDE_YIELD_FLAG <> 'Y';")
                                            .arg(start_date_str).arg(end_date_str).arg(tr("exterior"));
     emit sig_debug_output(b_DEFECT_QTY_SUM_query);
@@ -1234,8 +1236,8 @@ void worst_search_WLP_th::run()
     ms_query.next();
     b_defect_sum = ms_query.value("DEFECT_SUM").toDouble();
 
-    b_REWORK_SUM_query = QString("SELECT SUM(REWORK_QTY) REWORK_SUM "
-                                           "FROM [V_REWORK_LOTS] "
+    b_REWORK_SUM_query = QString("SELECT SUM(REWORK_CHIP_QTY)REWORK_SUM "
+                                           "FROM [V_FAB_REWORK_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'B' "
                                            "AND OPERATION_SHORT_NAME = '%3' "
@@ -1247,7 +1249,7 @@ void worst_search_WLP_th::run()
     b_rework_sum = ms_query.value("REWORK_SUM").toDouble();
 
     b_PROBE_SUM_query = QString("SELECT SUM(PROBE_INSP_QTY) PROBE_INSP_SUM "
-                                           "FROM [V_PROBE_INSP_LOTS] "
+                                           "FROM [V_FAB_PROBE_INSP_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'B' "
                                            "AND OPERATION_SHORT_NAME = '%3' "
@@ -1273,7 +1275,7 @@ void worst_search_WLP_th::run()
     total_DP008_worst=0;
     for(int j=0;j<PROBE_ITEM_LIST.count();j++){
         QString worstcount_query = QString("SELECT SUM(PROBE_INSP_QTY)PROBE_INSP_SUM "
-                                           "FROM [V_PROBE_INSP_LOTS] "
+                                           "FROM [V_FAB_PROBE_INSP_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'A' "
                                            "AND MATERIAL_GROUP = 'WLP' "
@@ -1317,7 +1319,7 @@ void worst_search_WLP_th::run()
     total_b_DP008_worst=0;
     for(int j=0;j<PROBE_ITEM_LIST.count();j++){
         QString worstcount_query = QString("SELECT SUM(PROBE_INSP_QTY)PROBE_INSP_SUM "
-                                           "FROM [V_PROBE_INSP_LOTS] "
+                                           "FROM [V_FAB_PROBE_INSP_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'B' "
                                            "AND MATERIAL_GROUP = 'WLP' "
@@ -1385,7 +1387,7 @@ void worst_search_WLP_th::run()
 #ifdef REAL_QUERY_WLP
     for(int j=0;j<DEFECT_ITEM_LIST.count();j++){
         QString worstcount_query = QString("SELECT SUM(DEFECT_QTY)DEFECT_SUM "
-                                           "FROM [V_DEFECT_LOTS] "
+                                           "FROM [V_FAB_DEFECT_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'A' "
                                            "AND MATERIAL_GROUP = 'WLP' "
@@ -1442,7 +1444,7 @@ void worst_search_WLP_th::run()
 #ifdef REAL_QUERY_WLP
     for(int j=0;j<DEFECT_ITEM_LIST.count();j++){
         QString worstcount_query = QString("SELECT SUM(DEFECT_QTY)DEFECT_SUM "
-                                           "FROM [V_DEFECT_LOTS] "
+                                           "FROM [V_FAB_DEFECT_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'B' "
                                            "AND MATERIAL_GROUP = 'WLP' "
@@ -1510,8 +1512,8 @@ void worst_search_WLP_th::run()
 
 #ifdef REAL_QUERY_WLP
     for(int j=0;j<REWORK_ITEM_LIST.count();j++){
-        QString worstcount_query = QString("SELECT  SUM(REWORK_QTY)REWORK_SUM "
-                                           "FROM [V_REWORK_LOTS] "
+        QString worstcount_query = QString("SELECT  SUM(REWORK_CHIP_QTY)REWORK_SUM "
+                                           "FROM [V_FAB_REWORK_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'A' "
                                            "AND MATERIAL_GROUP = 'WLP' "
@@ -1545,8 +1547,8 @@ void worst_search_WLP_th::run()
 #endif
 #ifdef REAL_QUERY_WLP
     for(int j=0;j<REWORK_ITEM_LIST.count();j++){
-        QString worstcount_query = QString("SELECT  SUM(REWORK_QTY)REWORK_SUM "
-                                           "FROM [V_REWORK_LOTS] "
+        QString worstcount_query = QString("SELECT  SUM(REWORK_CHIP_QTY)REWORK_SUM "
+                                           "FROM [V_FAB_REWORK_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                            "AND LOT_TYPE = 'B' "
                                            "AND MATERIAL_GROUP = 'WLP' "
@@ -1579,8 +1581,8 @@ void worst_search_WLP_th::run()
 #else
 #endif
 #ifdef REAL_QUERY_WLP
-    QString rework_type_txt = QString("SELECT REWORK_NAME,SUM(REWORK_QTY) AS rework_qty "
-                                      "FROM [V_REWORK_LOTS] "
+    QString rework_type_txt = QString("SELECT REWORK_NAME,SUM(REWORK_CHIP_QTY) AS rework_qty "
+                                      "FROM [V_FAB_REWORK_LOTS] "
                                       "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                       "AND LOT_TYPE = 'A' "
                                       "AND MATERIAL_GROUP = 'WLP' "
@@ -1593,8 +1595,8 @@ void worst_search_WLP_th::run()
 
     while(ms_query.next()){
         QString rework_name = ms_query.value("REWORK_NAME").toString();
-        QString rework_lottype_txt = QString("SELECT REWORK_NAME,MATERIAL_ID,SUM(REWORK_QTY) AS rework_qty,TX_COMMENT "
-                                             "FROM [V_REWORK_LOTS] "
+        QString rework_lottype_txt = QString("SELECT REWORK_NAME,MATERIAL_ID,SUM(REWORK_CHIP_QTY) AS rework_qty,TX_COMMENT "
+                                             "FROM [V_FAB_REWORK_LOTS] "
                                              "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                              "AND LOT_TYPE = 'A' "
                                              "AND MATERIAL_GROUP = 'WLP' "
@@ -1610,8 +1612,9 @@ void worst_search_WLP_th::run()
             QString rework_MATERIAL_ID = ms_query_2.value("MATERIAL_ID").toString();
             QString rework_REWORK_NAME = ms_query_2.value("REWORK_NAME").toString();
             QString TX_COMMENT = ms_query_2.value("TX_COMMENT").toString();
+            TX_COMMENT = TX_COMMENT.replace("'","''");
             QString rework_content_txt = QString("SELECT * "
-                                                 "FROM [V_REWORK_LOTS] "
+                                                 "FROM [V_FAB_REWORK_LOTS] "
                                                  "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                                  "AND LOT_TYPE = 'A' "
                                                  "AND MATERIAL_GROUP = 'WLP' "
@@ -1628,12 +1631,10 @@ void worst_search_WLP_th::run()
             rework_text_type_WLP rework_item;
             while(ms_query_3.next()){
                 lot_count++;
-                chip_count += ms_query_3.value("REWORK_QTY").toInt();
+                chip_count += ms_query_3.value("REWORK_CHIP_QTY").toInt();
             }
             ms_query_3.first();
-            QString rework_lotid = ms_query_3.value("LOT_ID").toString();
-            rework_lotid = rework_lotid.mid(0,rework_lotid.length()-1);
-            rework_lotid = rework_lotid + "0";
+            QString rework_lotid = ms_query_3.value("MOTHER_LOT_ID").toString();
             rework_item.setLOT(rework_lotid);
             rework_item.setProcess(ms_query_3.value("OPERATION_SHORT_NAME").toString());
             rework_item.setChip_count(chip_count);
@@ -1657,7 +1658,7 @@ void worst_search_WLP_th::run()
 
     for(int i=0;i<defect_worst_list.count();i++){
     QString defect_lot_txt = QString("SELECT TX_COMMENT,MATERIAL_ID "
-                                     "FROM [V_DEFECT_LOTS] "
+                                     "FROM [V_FAB_DEFECT_LOTS] "
                                      "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                      "AND LOT_TYPE = 'A' "
                                      "AND MATERIAL_GROUP = 'WLP' "
@@ -1673,7 +1674,7 @@ void worst_search_WLP_th::run()
             TX_COMMENT = TX_COMMENT.replace("'","''");
             QString MATERIAL_ID = ms_query.value("MATERIAL_ID").toString();
             QString defect_lot_wrost_txt = QString("SELECT * "
-                                             "FROM [V_DEFECT_LOTS] "
+                                             "FROM [V_FAB_DEFECT_LOTS] "
                                              "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                              "AND LOT_TYPE = 'A' "
                                              "AND MATERIAL_GROUP = 'WLP' "
@@ -1720,8 +1721,8 @@ void worst_search_WLP_th::run()
 #endif
 
 #ifdef REAL_QUERY_WLP
-    QString b_rework_type_txt = QString("SELECT REWORK_NAME,SUM(REWORK_QTY) AS rework_qty "
-                                      "FROM [V_REWORK_LOTS] "
+    QString b_rework_type_txt = QString("SELECT REWORK_NAME,SUM(REWORK_CHIP_QTY) AS rework_qty "
+                                      "FROM [V_FAB_REWORK_LOTS] "
                                       "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                       "AND LOT_TYPE = 'B' "
                                       "AND MATERIAL_GROUP = 'WLP' "
@@ -1731,8 +1732,8 @@ void worst_search_WLP_th::run()
     ms_query.exec(b_rework_type_txt);
     while(ms_query.next()){
         QString rework_name = ms_query.value("REWORK_NAME").toString();
-        QString rework_lottype_txt = QString("SELECT REWORK_NAME,MATERIAL_ID,SUM(REWORK_QTY) AS rework_qty,TX_COMMENT "
-                                             "FROM [V_REWORK_LOTS] "
+        QString rework_lottype_txt = QString("SELECT REWORK_NAME,MATERIAL_ID,SUM(REWORK_CHIP_QTY) AS rework_qty,TX_COMMENT "
+                                             "FROM [V_FAB_REWORK_LOTS] "
                                              "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                              "AND LOT_TYPE = 'B' "
                                              "AND MATERIAL_GROUP = 'WLP' "
@@ -1748,8 +1749,9 @@ void worst_search_WLP_th::run()
             QString rework_MATERIAL_ID = ms_query_2.value("MATERIAL_ID").toString();
             QString rework_REWORK_NAME = ms_query_2.value("REWORK_NAME").toString();
             QString TX_COMMENT = ms_query_2.value("TX_COMMENT").toString();
+            TX_COMMENT = TX_COMMENT.replace("'","''");
             QString rework_content_txt = QString("SELECT * "
-                                                 "FROM [V_REWORK_LOTS] "
+                                                 "FROM [V_FAB_REWORK_LOTS] "
                                                  "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                                  "AND LOT_TYPE = 'B' "
                                                  "AND MATERIAL_GROUP = 'WLP' "
@@ -1766,12 +1768,10 @@ void worst_search_WLP_th::run()
             rework_text_type_WLP rework_item;
             while(ms_query_3.next()){
                 lot_count++;
-                chip_count += ms_query_3.value("REWORK_QTY").toInt();
+                chip_count += ms_query_3.value("REWORK_CHIP_QTY").toInt();
             }
             ms_query_3.first();
-            QString rework_lotid = ms_query_3.value("LOT_ID").toString();
-            rework_lotid = rework_lotid.mid(0,rework_lotid.length()-1);
-            rework_lotid = rework_lotid + "0";
+            QString rework_lotid = ms_query_3.value("MOTHER_LOT_ID").toString();
             rework_item.setLOT(rework_lotid);
             rework_item.setProcess(ms_query_3.value("OPERATION_SHORT_NAME").toString());
             rework_item.setChip_count(chip_count);
@@ -1785,7 +1785,7 @@ void worst_search_WLP_th::run()
 
     for(int i=0;i<defect_worst_list.count();i++){
         QString defect_lot_txt = QString("SELECT TX_COMMENT,MATERIAL_ID "
-                                         "FROM [V_DEFECT_LOTS] "
+                                         "FROM [V_FAB_DEFECT_LOTS] "
                                          "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                          "AND LOT_TYPE = 'B' "
                                          "AND MATERIAL_GROUP = 'WLP' "
@@ -1801,7 +1801,7 @@ void worst_search_WLP_th::run()
                 TX_COMMENT = TX_COMMENT.replace("'","''");
                 QString MATERIAL_ID = ms_query.value("MATERIAL_ID").toString();
                 QString defect_lot_wrost_txt = QString("SELECT * "
-                                                 "FROM [V_DEFECT_LOTS] "
+                                                 "FROM [V_FAB_DEFECT_LOTS] "
                                                  "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                                  "AND LOT_TYPE = 'B' "
                                                  "AND MATERIAL_GROUP = 'WLP' "
@@ -1849,11 +1849,12 @@ void worst_search_WLP_th::run()
 #ifdef REAL_QUERY_WLP
     for(int i=0;i<EXTERIOR_DEFECT_ITEM_LIST.count();i++){
         QString exterior_txt = QString("SELECT SUM(DEFECT_QTY)DEFECT_SUM "
-                                       "FROM [V_DEFECT_LOTS] "
+                                       "FROM [V_FAB_DEFECT_LOTS] "
                                        "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                        "AND LOT_TYPE = 'A' "
                                        "AND MATERIAL_GROUP = 'WLP' "
                                        "AND EXCLUDE_YIELD_FLAG <> 'Y' "
+                                       "AND REPROCESS_FLAG = 'N' "
                                        "AND OPERATION_SHORT_NAME = '%3' "
                                        "AND DEFECT_NAME = '%4';").arg(start_date_str).arg(end_date_str).arg(tr("exterior")).arg(EXTERIOR_DEFECT_ITEM_LIST.at(i));
           ms_query.exec(exterior_txt);
@@ -1887,11 +1888,12 @@ void worst_search_WLP_th::run()
 #ifdef REAL_QUERY_WLP
     for(int i=0;i<EXTERIOR_DEFECT_ITEM_LIST.count();i++){
         QString exterior_txt = QString("SELECT SUM(DEFECT_QTY)DEFECT_SUM "
-                                       "FROM [V_DEFECT_LOTS] "
+                                       "FROM [V_FAB_DEFECT_LOTS] "
                                        "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
                                        "AND LOT_TYPE = 'B' "
                                        "AND MATERIAL_GROUP = 'WLP' "
                                        "AND EXCLUDE_YIELD_FLAG <> 'Y' "
+                                       "AND REPROCESS_FLAG = 'N' "
                                        "AND OPERATION_SHORT_NAME = '%3' "
                                        "AND DEFECT_NAME = '%4';").arg(start_date_str).arg(end_date_str).arg(tr("exterior")).arg(EXTERIOR_DEFECT_ITEM_LIST.at(i));
           ms_query.exec(exterior_txt);

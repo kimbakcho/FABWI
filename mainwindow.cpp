@@ -186,7 +186,8 @@ void MainWindow::on_action_worst_serarch_triggered()
 
 void MainWindow::on_OI_startup_clicked()
 {
-
+    operating_ratio_main *operation_main = new operating_ratio_main();
+    operation_main->show();
 }
 
 void MainWindow::on_action_nikon_err_time_triggered()

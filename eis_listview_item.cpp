@@ -80,7 +80,7 @@ EIS_listview_item::EIS_listview_item(QString doc_data, QWidget *parent) :
 
         ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
         loop.exec();
-        ftp->setTransferMode(QFtp::Passive);
+        ftp->setTransferMode(QFtp::Active);
     }
     ftp->rawCommand(QString("CWD /home/eis/img/%1").arg(doc_number));
     loop.exec();
@@ -377,7 +377,7 @@ void EIS_listview_item::on_attach_listview_doubleClicked(const QModelIndex &inde
 
         ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
         loop.exec();
-        ftp->setTransferMode(QFtp::Passive);
+        ftp->setTransferMode(QFtp::Active);
     }
     ftp->rawCommand(QString("CWD /home/eis/attach/%1").arg(doc_number));
     loop.exec();
@@ -417,7 +417,7 @@ void EIS_listview_item::on_modify_button_clicked()
 
         ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
         loop.exec();
-        ftp->setTransferMode(QFtp::Passive);
+        ftp->setTransferMode(QFtp::Active);
     }
     ftp->rawCommand("CWD /home/eis/img");
     loop.exec();
@@ -619,7 +619,7 @@ void EIS_listview_item::on_attach_btn_clicked()
 
             ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
             loop.exec();
-            ftp->setTransferMode(QFtp::Passive);
+            ftp->setTransferMode(QFtp::Active);
         }
         ftp->rawCommand("CWD /home/eis/attach");
         loop.exec();

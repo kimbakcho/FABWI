@@ -76,7 +76,7 @@ eis_alarmlistview_item::eis_alarmlistview_item(QString doc_data,QWidget *parent)
 
         ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
         loop.exec();
-        ftp->setTransferMode(QFtp::Passive);
+        ftp->setTransferMode(QFtp::Active);
     }
     ftp->rawCommand(QString("CWD /home/eis/alarmimg/%1").arg(doc_number));
     loop.exec();
@@ -360,7 +360,7 @@ void eis_alarmlistview_item::on_attach_listview_doubleClicked(const QModelIndex 
 
         ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
         loop.exec();
-        ftp->setTransferMode(QFtp::Passive);
+        ftp->setTransferMode(QFtp::Active);
     }
     ftp->rawCommand(QString("CWD /home/eis/alarmattach/%1").arg(doc_number));
     loop.exec();
@@ -396,7 +396,7 @@ void eis_alarmlistview_item::on_modify_button_clicked()
 
         ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
         loop.exec();
-        ftp->setTransferMode(QFtp::Passive);
+        ftp->setTransferMode(QFtp::Active);
     }
     ftp->rawCommand("CWD /home/eis/alarmimg");
     loop.exec();
@@ -523,7 +523,7 @@ void eis_alarmlistview_item::on_attach_btn_clicked()
 
             ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
             loop.exec();
-            ftp->setTransferMode(QFtp::Passive);
+            ftp->setTransferMode(QFtp::Active);
         }
         ftp->rawCommand("CWD /home/eis/attach");
         loop.exec();
