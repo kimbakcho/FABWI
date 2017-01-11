@@ -73,3 +73,48 @@ void D_image_size::on_buttonBox_accepted()
     height = ui->LE_height->text().toDouble();
     width = ui->LE_width->text().toDouble();
 }
+
+void D_image_size::on_size_edit_toggled(bool checked)
+{
+      ui->subwindow->setSize_edit_mode(checked);
+      if(checked){
+        ui->LE_height->setReadOnly(false);
+        ui->LE_width->setReadOnly(false);
+      }else {
+        ui->LE_height->setReadOnly(true);
+        ui->LE_width->setReadOnly(true);
+      }
+}
+
+void D_image_size::on_LE_height_editingFinished()
+{
+
+}
+
+void D_image_size::on_LE_width_editingFinished()
+{
+    if(ui->subwindow->getSize_edit_mode()){
+        height = ui->LE_height->text().toDouble();
+        ui->reszie_windows->subWindowList().at(0)->resize(width,height);
+//        resize(getWidth()+30,getHeight()+140);
+
+    }
+}
+
+void D_image_size::on_LE_height_textEdited(const QString &arg1)
+{
+    if(ui->subwindow->getSize_edit_mode()){
+        height = arg1.toDouble();
+        ui->reszie_windows->subWindowList().at(0)->resize(width,height);
+//        resize(getWidth()+30,getHeight()+140);
+    }
+}
+
+void D_image_size::on_LE_width_textEdited(const QString &arg1)
+{
+    if(ui->subwindow->getSize_edit_mode()){
+        width = arg1.toDouble();
+        ui->reszie_windows->subWindowList().at(0)->resize(width,height);
+//        resize(getWidth()+30,getHeight()+140);
+    }
+}

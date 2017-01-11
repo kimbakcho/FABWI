@@ -14,7 +14,14 @@
    <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="3" column="0" colspan="2">
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>너비</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
     <widget class="QMdiArea" name="reszie_windows">
      <property name="contextMenuPolicy">
       <enum>Qt::DefaultContextMenu</enum>
@@ -61,13 +68,6 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>너비</string>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="1">
     <widget class="QLineEdit" name="LE_width">
      <property name="inputMask">
@@ -78,13 +78,20 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0" colspan="2">
+   <item row="3" column="0" colspan="2">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QCheckBox" name="size_edit">
+     <property name="text">
+      <string>사이즈 직접 입력 </string>
      </property>
     </widget>
    </item>

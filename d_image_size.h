@@ -42,6 +42,16 @@ private slots:
     void on_buttonBox_accepted();
 
 
+    void on_size_edit_toggled(bool checked);
+
+    void on_LE_height_editingFinished();
+
+    void on_LE_width_editingFinished();
+
+    void on_LE_height_textEdited(const QString &arg1);
+
+    void on_LE_width_textEdited(const QString &arg1);
+
 private:
     Ui::D_image_size *ui;
 };

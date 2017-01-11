@@ -7,7 +7,18 @@ B_image_resize_widget::B_image_resize_widget(QWidget *parent) :
 {
     ui->setupUi(this);
     ready_flag = false;
+    size_edit_mode =false;
     mouse_press_flag = false;
+}
+
+bool B_image_resize_widget::getSize_edit_mode() const
+{
+    return size_edit_mode;
+}
+
+void B_image_resize_widget::setSize_edit_mode(bool value)
+{
+    size_edit_mode = value;
 }
 
 QLineEdit *B_image_resize_widget::getLE_height() const
@@ -50,8 +61,10 @@ void B_image_resize_widget::paintEvent(QPaintEvent *event)
     if(ready_flag ){
         QPainter painter(this);
         QRect r(0,0,width(),height());
-        LE_width->setText(QString("%1").arg(width()));
-        LE_height->setText(QString("%1").arg(height()));
+        if(!size_edit_mode){
+            LE_width->setText(QString("%1").arg(width()));
+            LE_height->setText(QString("%1").arg(height()));
+        }
         painter.drawImage(r,img);
     }
 }

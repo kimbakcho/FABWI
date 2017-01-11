@@ -20,6 +20,7 @@ public:
     QImage img;
     QLineEdit *LE_width;
     QLineEdit *LE_height;
+    bool size_edit_mode;
     bool mouse_press_flag;
     ~B_image_resize_widget();
 
@@ -41,6 +42,9 @@ public:
 
     QLineEdit *getLE_height() const;
     void setLE_height(QLineEdit *value);
+
+    bool getSize_edit_mode() const;
+    void setSize_edit_mode(bool value);
 
 private:
 
