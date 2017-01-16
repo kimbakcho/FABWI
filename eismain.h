@@ -100,6 +100,9 @@ public slots:
 
     void modify_complete();
 
+    void file_data_transfer(qint64 totalBytes);
+
+
 private slots:
     void on_select_process_currentIndexChanged(const QString &arg1);
 
@@ -180,6 +183,8 @@ private slots:
     void on_total_delete_btn_clicked();
 
     void on_add_EIS_Information_btn_clicked();
+
+
 
 private:
     void closeEvent(QCloseEvent *event);

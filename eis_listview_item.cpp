@@ -419,27 +419,29 @@ void EIS_listview_item::on_modify_button_clicked()
         loop.exec();
         ftp->setTransferMode(QFtp::Active);
     }
-    ftp->rawCommand("CWD /home/eis/img");
-    loop.exec();
-    ftp->rawCommand(QString("MKD %1").arg(doc_number));
-    loop.exec();
-    ftp->rawCommand(QString("CWD /home/eis/img/%1").arg(doc_number));
-    loop.exec();
+//    ftp->rawCommand("CWD /home/eis/img");
+//    loop.exec();
+//    ftp->rawCommand(QString("MKD %1").arg(doc_number));
+//    loop.exec();
+//    ftp->rawCommand(QString("CWD /home/eis/img/%1").arg(doc_number));
+//    loop.exec();
+
+    QDir mother_dir("//fabsv.wisol.co.kr/img");
+    mother_dir.mkdir(QString("%1").arg(doc_number));
 
     QString makedir_txt = qApp->applicationDirPath()+"/temp/EIS/img/"+QString("%1").arg(doc_number);
     QDir doc_dir(makedir_txt);
     QStringList filelist =  doc_dir.entryList(QDir::Files);
     for(int i=0;i<filelist.count();i++){
-        if(progressdialog == 0){
-            progressdialog = new QProgressDialog(this);
-        }
-        //qDebug()<<"filelist"<<filelist.at(i);
         QString des_file = makedir_txt+"/"+filelist.at(i);
         QFile *file = new QFile(des_file);
-        ftp->put(file,filelist.at(i),QFtp::Binary);
+        QString copy_path = QString("//fabsv.wisol.co.kr/img/%1/%2").arg(doc_number).arg(filelist.at(i));
+        if(QFile::copy(des_file,copy_path)){
+            qDebug()<<"ture";
+        }else {
+            qDebug()<<"false";
+        }
         QString part = QString("%1/%2").arg(i).arg(filelist.count());
-        progressdialog->setLabelText(part);
-        progressdialog->exec();
     }
 
     QString now_datetime =QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");

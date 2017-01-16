@@ -11,6 +11,7 @@ EISmain::EISmain(QWidget *parent) :
     progressdialog = 0;
     ui->current_time->setDateTime(QDateTime::currentDateTime());
 
+
     QTime nowtime = ui->current_time->time();
     int second_diff = nowtime.secsTo(QTime(17,00,0));
     if(second_diff>=0){
@@ -41,6 +42,7 @@ EISmain::EISmain(QWidget *parent) :
             this, SLOT(ftpCommandFinished(int,bool)));
     connect(ftp,SIGNAL(rawCommandReply(int,QString)),
             this,SLOT(ftp_rawCommandReply(int,QString)));
+
 
     connect(ftp,SIGNAL(listInfo(QUrlInfo)),
             this,SLOT(ftp_listInfo(QUrlInfo)));
@@ -511,26 +513,28 @@ void EISmain::on_add_button_clicked()
         loop.exec();
         ftp->setTransferMode(QFtp::Active);
     }
-    ftp->rawCommand("CWD /home/eis/img");
-    loop.exec();
-    ftp->rawCommand(QString("MKD %1").arg(doc_number));
-    loop.exec();
-    ftp->rawCommand(QString("CWD /home/eis/img/%1").arg(doc_number));
-    loop.exec();
+//    ftp->rawCommand("CWD /home/eis/img");
+//    loop.exec();
+//    ftp->rawCommand(QString("MKD %1").arg(doc_number));
+//    loop.exec();
+//    ftp->rawCommand(QString("CWD /home/eis/img/%1").arg(doc_number));
+//    loop.exec();
+    QDir mother_dir("//fabsv.wisol.co.kr/img");
+    mother_dir.mkdir(QString("%1").arg(doc_number));
 
     QString makedir_txt = qApp->applicationDirPath()+"/temp/EIS/img/"+QString("%1").arg(doc_number);
     QDir doc_dir(makedir_txt);
     QStringList filelist =  doc_dir.entryList(QDir::Files);
     for(int i=0;i<filelist.count();i++){
-        if(progressdialog == 0){
-            progressdialog = new QProgressDialog(this);
-        }
         QString des_file = makedir_txt+"/"+filelist.at(i);
         QFile *file = new QFile(des_file);
-        ftp->put(file,filelist.at(i),QFtp::Binary);
+        QString copy_path = QString("//fabsv.wisol.co.kr/img/%1/%2").arg(doc_number).arg(filelist.at(i));
+        if(QFile::copy(des_file,copy_path)){
+            qDebug()<<"ture";
+        }else {
+            qDebug()<<"false";
+        }
         QString part = QString("%1/%2").arg(i).arg(filelist.count());
-        progressdialog->setLabelText(part);
-        progressdialog->exec();
     }
 
     QString now_datetime =ui->current_time->dateTime().toString("yyyy-MM-dd HH:mm:ss");
@@ -805,6 +809,13 @@ void EISmain::updateDataTransferProgress(qint64 readBytes, qint64 totalBytes)
     progressdialog->setMaximum(totalBytes);
     progressdialog->setValue(readBytes);
 }
+
+void EISmain::file_data_transfer(qint64 totalBytes)
+{
+    progressdialog->setValue(totalBytes);
+}
+
+
 
 void EISmain::ftp_listInfo(QUrlInfo urlInfo)
 {
