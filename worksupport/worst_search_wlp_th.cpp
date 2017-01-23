@@ -1041,6 +1041,14 @@ void worst_search_WLP_th::run()
         data.setDEFECT_SUM(ms_query.value("DEFECT_SUM").toDouble());
         data.setEXCLUDE_YIELD_QTY_SUM(ms_query.value("EXCLUDE_YIELD_SUM").toDouble());
         data.setVield((data.getOUTPUT_SUM()+data.getEXCLUDE_YIELD_QTY_SUM())/data.getINPUT_SUM());
+            if(data.getName() == tr("lastprobe_vaild")){
+                accumulate_last_probe_vild_daily = data.getVield()*100.0;
+                accumulate_last_probe_vild_daily = roundf(accumulate_last_probe_vild_daily * 100) / 100;
+            }else if(data.getName() == tr("exterior")){
+                accumulate_exterior_vaild = data.getVield()*100.0;
+                accumulate_exterior_vaild = roundf(accumulate_exterior_vaild * 100) / 100;
+                //exterior_worst_count = data.getDEFECT_SUM()+data.getEXCLUDE_YIELD_QTY_SUM();
+            }
         }
         emit sig_debug_output(INPUT_OUTPUT_SUM_query);
 
@@ -1082,6 +1090,14 @@ void worst_search_WLP_th::run()
         data.setDEFECT_SUM(ms_query.value("DEFECT_SUM").toDouble());
         data.setEXCLUDE_YIELD_QTY_SUM(ms_query.value("EXCLUDE_YIELD_SUM").toDouble());
         data.setVield((data.getOUTPUT_SUM()+data.getEXCLUDE_YIELD_QTY_SUM())/data.getINPUT_SUM());
+            if(data.getName() == tr("lastprobe_vaild")){
+                accumulate_b_last_probe_vild_daily = data.getVield()*100.0;
+                accumulate_b_last_probe_vild_daily = roundf(accumulate_b_last_probe_vild_daily * 100) / 100;
+            }else if(data.getName() == tr("exterior")){
+                accumulate_b_exterior_vaild = data.getVield()*100.0;
+                accumulate_b_exterior_vaild = roundf(accumulate_b_exterior_vaild * 100) / 100;
+                //exterior_worst_count = data.getDEFECT_SUM()+data.getEXCLUDE_YIELD_QTY_SUM();
+            }
         }
         emit sig_debug_output(INPUT_OUTPUT_SUM_query);
 
@@ -1138,6 +1154,44 @@ void worst_search_WLP_th::run()
 
     worst_sum = defect_sum+rework_sum+probe_sum;
 
+    //누적
+    QString accumulate_DEFECT_QTY_SUM_query = QString("SELECT SUM(DEFECT_QTY) DEFECT_SUM "
+                                           "FROM [V_FAB_DEFECT_LOTS] "
+                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                           "AND LOT_TYPE = 'A' "
+                                           "AND MATERIAL_GROUP = 'WLP' "
+                                           "AND EXCLUDE_YIELD_FLAG <> 'Y';")
+                                           .arg(accumulate_start_date_str).arg(end_date_str);
+    emit sig_debug_output(accumulate_DEFECT_QTY_SUM_query);
+    ms_query.exec(accumulate_DEFECT_QTY_SUM_query);
+
+    ms_query.next();
+    double accumulate_defect_sum = ms_query.value("DEFECT_SUM").toDouble();
+
+    QString accumulate_REWORK_SUM_query = QString("SELECT SUM(REWORK_CHIP_QTY)REWORK_SUM "
+                                           "FROM [V_FAB_REWORK_LOTS] "
+                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                           "AND LOT_TYPE = 'A' "
+                                           "AND MATERIAL_GROUP = 'WLP';")
+                                           .arg(accumulate_start_date_str).arg(end_date_str);
+    emit sig_debug_output(accumulate_REWORK_SUM_query);
+    ms_query.exec(accumulate_REWORK_SUM_query);
+    ms_query.next();
+    double accumulate_rework_sum = ms_query.value("REWORK_SUM").toDouble();
+
+    QString accumulate_PROBE_SUM_query = QString("SELECT SUM(PROBE_INSP_QTY) PROBE_INSP_SUM "
+                                           "FROM [V_FAB_PROBE_INSP_LOTS] "
+                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                           "AND LOT_TYPE = 'A' "
+                                           "AND MATERIAL_GROUP = 'WLP';")
+                                           .arg(accumulate_start_date_str).arg(end_date_str);
+    emit sig_debug_output(accumulate_PROBE_SUM_query);
+    ms_query.exec(accumulate_PROBE_SUM_query);
+    ms_query.next();
+    double accumulate_probe_sum = ms_query.value("PROBE_INSP_SUM").toDouble();
+
+    accumulate_worst_sum = accumulate_defect_sum+accumulate_rework_sum+accumulate_probe_sum;
+
     DEFECT_QTY_SUM_query = QString("SELECT SUM(DEFECT_QTY) DEFECT_SUM "
                                            "FROM [V_FAB_DEFECT_LOTS] "
                                            "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
@@ -1182,6 +1236,7 @@ void worst_search_WLP_th::run()
 
 #endif
     emit sig_debug_output(QString("worst_sum = %1").arg(worst_sum));
+    emit sig_debug_output(QString("accumulate_worst_sum = %1").arg(accumulate_worst_sum));
 
 #ifdef REAL_QUERY_WLP
     QString b_DEFECT_QTY_SUM_query = QString("SELECT SUM(DEFECT_QTY) DEFECT_SUM "
@@ -1220,6 +1275,45 @@ void worst_search_WLP_th::run()
     double b_probe_sum = ms_query.value("PROBE_INSP_SUM").toDouble();
 
     b_worst_sum = b_defect_sum+b_rework_sum+b_probe_sum;
+
+    //누적
+    QString accumulate_b_DEFECT_QTY_SUM_query = QString("SELECT SUM(DEFECT_QTY) DEFECT_SUM "
+                                           "FROM [V_FAB_DEFECT_LOTS] "
+                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                           "AND LOT_TYPE = 'B' "
+                                           "AND MATERIAL_GROUP = 'WLP' "
+                                           "AND EXCLUDE_YIELD_FLAG <> 'Y';")
+                                           .arg(accumulate_start_date_str).arg(end_date_str);
+    emit sig_debug_output(accumulate_b_DEFECT_QTY_SUM_query);
+    ms_query.exec(accumulate_b_DEFECT_QTY_SUM_query);
+
+    ms_query.next();
+    double accumulate_b_defect_sum = ms_query.value("DEFECT_SUM").toDouble();
+
+    QString accumulate_b_REWORK_SUM_query = QString("SELECT SUM(REWORK_CHIP_QTY)REWORK_SUM "
+                                           "FROM [V_FAB_REWORK_LOTS] "
+                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                           "AND LOT_TYPE = 'B' "
+                                           "AND MATERIAL_GROUP = 'WLP';")
+                                           .arg(accumulate_start_date_str).arg(end_date_str);
+    emit sig_debug_output(accumulate_b_REWORK_SUM_query);
+    ms_query.exec(accumulate_b_REWORK_SUM_query);
+    ms_query.next();
+    double accumulate_b_rework_sum = ms_query.value("REWORK_SUM").toDouble();
+
+    QString accumulate_b_PROBE_SUM_query = QString("SELECT SUM(PROBE_INSP_QTY) PROBE_INSP_SUM "
+                                           "FROM [V_FAB_PROBE_INSP_LOTS] "
+                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                           "AND LOT_TYPE = 'B' "
+                                           "AND MATERIAL_GROUP = 'WLP';")
+                                           .arg(accumulate_start_date_str).arg(end_date_str);
+    emit sig_debug_output(accumulate_b_PROBE_SUM_query);
+    ms_query.exec(accumulate_b_PROBE_SUM_query);
+    ms_query.next();
+    double accumulate_b_probe_sum = ms_query.value("PROBE_INSP_SUM").toDouble();
+
+    accumulate_b_worst_sum = accumulate_b_defect_sum+accumulate_b_rework_sum+accumulate_b_probe_sum;
+
 
     b_DEFECT_QTY_SUM_query = QString("SELECT SUM(DEFECT_QTY) DEFECT_SUM "
                                            "FROM [V_FAB_DEFECT_LOTS] "
@@ -1264,7 +1358,8 @@ void worst_search_WLP_th::run()
 #else
 
 #endif
-    emit sig_debug_output(QString("worst_sum = %1").arg(worst_sum));
+    emit sig_debug_output(QString("b_worst_sum= %1").arg(b_worst_sum));
+    emit sig_debug_output(QString("accumulate_b_worst_sum= %1").arg(accumulate_b_worst_sum));
 
 #ifdef REAL_QUERY_WLP
     total_DP001_worst=0;
@@ -1354,6 +1449,98 @@ void worst_search_WLP_th::run()
 #else
 
 #endif
+
+    //누적
+#ifdef REAL_QUERY_WLP
+    accumulate_total_DP001_worst=0;
+    accumulate_total_DP003_worst=0;
+    accumulate_total_DP004_worst=0;
+    accumulate_total_DP005_worst=0;
+    accumulate_total_DP006_worst=0;
+    accumulate_total_DP008_worst=0;
+    for(int j=0;j<PROBE_ITEM_LIST.count();j++){
+        QString worstcount_query = QString("SELECT SUM(PROBE_INSP_QTY)PROBE_INSP_SUM "
+                                           "FROM [V_FAB_PROBE_INSP_LOTS] "
+                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                           "AND LOT_TYPE = 'A' "
+                                           "AND MATERIAL_GROUP = 'WLP' "
+                                           "AND PROBE_INSP_CODE = '%3';").arg(accumulate_start_date_str).arg(end_date_str)
+                                           .arg(PROBE_ITEM_LIST.at(j));
+
+        ms_query.exec(worstcount_query);
+        emit sig_debug_output(worstcount_query);
+        if(ms_query.next()){
+            int count = ms_query.value("PROBE_INSP_SUM").toInt();
+            double vaild_rate;
+            double temp1 = 100.0-accumulate_totalvild;
+            double temp2 = accumulate_worst_sum;
+            if(count !=0){
+                vaild_rate = ((count/temp2)*temp1);
+                if(PROBE_ITEM_LIST.at(j)=="DP001"){     //OS 불량 .
+                      accumulate_total_DP001_worst = vaild_rate;
+                }else if(PROBE_ITEM_LIST.at(j)=="DP003"){  //저주파 .
+                      accumulate_total_DP003_worst = vaild_rate;
+                }else if(PROBE_ITEM_LIST.at(j)=="DP004"){  //고주파 .
+                      accumulate_total_DP004_worst = vaild_rate;
+                }else if(PROBE_ITEM_LIST.at(j)=="DP005"){  //BW 불량 .
+                      accumulate_total_DP005_worst = vaild_rate;
+                }else if(PROBE_ITEM_LIST.at(j)=="DP006"){ //LIMIT 불량
+                      accumulate_total_DP006_worst = vaild_rate;
+                }else if(PROBE_ITEM_LIST.at(j)=="DP008"){  //VSWR불량
+                      accumulate_total_DP008_worst = vaild_rate;
+                }
+            }
+        }
+    }
+#else
+#endif
+
+#ifdef REAL_QUERY_WLP
+    accumulate_total_b_DP001_worst=0;
+    accumulate_total_b_DP003_worst=0;
+    accumulate_total_b_DP004_worst=0;
+    accumulate_total_b_DP005_worst=0;
+    accumulate_total_b_DP006_worst=0;
+    accumulate_total_b_DP008_worst=0;
+    for(int j=0;j<PROBE_ITEM_LIST.count();j++){
+        QString worstcount_query = QString("SELECT SUM(PROBE_INSP_QTY)PROBE_INSP_SUM "
+                                           "FROM [V_FAB_PROBE_INSP_LOTS] "
+                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                           "AND LOT_TYPE = 'B' "
+                                           "AND MATERIAL_GROUP = 'WLP' "
+                                           "AND PROBE_INSP_CODE = '%3';").arg(accumulate_start_date_str).arg(end_date_str)
+                                           .arg(PROBE_ITEM_LIST.at(j));
+
+        ms_query.exec(worstcount_query);
+        emit sig_debug_output(worstcount_query);
+        if(ms_query.next()){
+            int count = ms_query.value("PROBE_INSP_SUM").toInt();
+            double vaild_rate;
+            double temp1 = 100.0-b_accumulate_totalvild;
+            double temp2 = accumulate_b_worst_sum;
+            if(count !=0){
+                vaild_rate = ((count/temp2)*temp1);
+                if(PROBE_ITEM_LIST.at(j)=="DP001"){     //OS 불량 .
+                      accumulate_total_b_DP001_worst = vaild_rate;
+                }else if(PROBE_ITEM_LIST.at(j)=="DP003"){  //저주파 .
+                      accumulate_total_b_DP003_worst = vaild_rate;
+                }else if(PROBE_ITEM_LIST.at(j)=="DP004"){  //고주파 .
+                      accumulate_total_b_DP004_worst = vaild_rate;
+                }else if(PROBE_ITEM_LIST.at(j)=="DP005"){  //BW 불량 .
+                      accumulate_total_b_DP005_worst = vaild_rate;
+                }else if(PROBE_ITEM_LIST.at(j)=="DP006"){ //LIMIT 불량
+                      accumulate_total_b_DP006_worst = vaild_rate;
+                }else if(PROBE_ITEM_LIST.at(j)=="DP008"){  //VSWR불량
+                      accumulate_total_b_DP008_worst = vaild_rate;
+                }
+            }
+        }
+    }
+#else
+
+#endif
+
+
     total_Workerfail_probe=0;
     total_Workerfail_eatching=0;
     total_Workerfail_light=0;
@@ -1498,6 +1685,151 @@ void worst_search_WLP_th::run()
 #else
 #endif
 
+    //누적
+    accumulate_total_Workerfail_probe=0;
+    accumulate_total_Workerfail_eatching=0;
+    accumulate_total_Workerfail_light=0;
+    accumulate_total_Workerfail_defect=0;
+    accumulate_total_Workerfail_output=0;
+    accumulate_total_Machinefail_probe=0;
+    accumulate_total_Machinefail_eatching=0;
+    accumulate_total_Machinefail_light=0;
+    accumulate_total_Machinefail_defect=0;
+    accumulate_total_Padpaticle=0;
+    accumulate_total_Etcpaticle=0;
+    accumulate_total_Pattenpaticle=0;
+    accumulate_total_Defectpaticle=0;
+
+    accumulate_total_b_Workerfail_probe=0;
+    accumulate_total_b_Workerfail_eatching=0;
+    accumulate_total_b_Workerfail_light=0;
+    accumulate_total_b_Workerfail_defect=0;
+    accumulate_total_b_Workerfail_output=0;
+    accumulate_total_b_Machinefail_probe=0;
+    accumulate_total_b_Machinefail_eatching=0;
+    accumulate_total_b_Machinefail_light=0;
+    accumulate_total_b_Machinefail_defect=0;
+    accumulate_total_b_Padpaticle=0;
+    accumulate_total_b_Etcpaticle=0;
+    accumulate_total_b_Pattenpaticle=0;
+    accumulate_total_b_Defectpaticle=0;
+
+
+
+#ifdef REAL_QUERY_WLP
+    for(int j=0;j<DEFECT_ITEM_LIST.count();j++){
+        QString worstcount_query = QString("SELECT SUM(DEFECT_QTY)DEFECT_SUM "
+                                           "FROM [V_FAB_DEFECT_LOTS] "
+                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                           "AND LOT_TYPE = 'A' "
+                                           "AND MATERIAL_GROUP = 'WLP' "
+                                           "AND EXCLUDE_YIELD_FLAG <> 'Y' "
+                                           "AND DEFECT_NAME = '%4'")
+                                            .arg(accumulate_start_date_str).arg(end_date_str)
+                                            .arg(DEFECT_ITEM_LIST.at(j));
+
+        ms_query.exec(worstcount_query);
+        emit sig_debug_output(worstcount_query);
+        if(ms_query.next()){
+            int count = ms_query.value("DEFECT_SUM").toInt();
+            double vaild_rate;
+            double temp1 = 100.0-accumulate_totalvild;
+            double temp2 = accumulate_worst_sum;
+            if(count!=0){
+                vaild_rate = ((count/temp2)*temp1);
+
+                if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(probe)")){     //작업자 파손(프로브)
+                    accumulate_total_Workerfail_probe = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(eatching)")){  //작업자 파손(에칭)
+                    accumulate_total_Workerfail_eatching = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(light)")){  //작업자 파손(노광)
+                    accumulate_total_Workerfail_light = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(deposition)")){  //작업자 파손(성막)
+                    accumulate_total_Workerfail_defect = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(output)")){ //작업자 파손(출고)
+                    accumulate_total_Workerfail_output = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("machinefail(probe)")){  //설비파손(프로브)
+                    accumulate_total_Machinefail_probe = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("machinefail(eatching)")){  //설비파손(에칭)
+                    accumulate_total_Machinefail_eatching = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("machinefail(light)")){  //설비파손(노광)
+                    accumulate_total_Machinefail_light = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("machinefail(deposition)")){  //설비파손(성막)
+                    accumulate_total_Machinefail_defect = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("padpaticle")){  //패트 이물
+                    accumulate_total_Padpaticle = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("etcpaticle")){  //이외 이물
+                    accumulate_total_Etcpaticle = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("pattenpaticle")){  //패턴 이물
+                    accumulate_total_Pattenpaticle = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("paticle")){  //이물
+                    accumulate_total_Defectpaticle = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("brigit_pad_worst")){//브릿지 패드
+                    accumulate_total_brigit_pad_worst = vaild_rate;
+                }
+            }
+        }
+    }
+#else
+#endif
+
+#ifdef REAL_QUERY_WLP
+    for(int j=0;j<DEFECT_ITEM_LIST.count();j++){
+        QString worstcount_query = QString("SELECT SUM(DEFECT_QTY)DEFECT_SUM "
+                                           "FROM [V_FAB_DEFECT_LOTS] "
+                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                           "AND LOT_TYPE = 'B' "
+                                           "AND MATERIAL_GROUP = 'WLP' "
+                                           "AND EXCLUDE_YIELD_FLAG <> 'Y' "
+                                           "AND DEFECT_NAME = '%4'")
+                                            .arg(accumulate_start_date_str).arg(end_date_str)
+                                            .arg(DEFECT_ITEM_LIST.at(j));
+
+        ms_query.exec(worstcount_query);
+        emit sig_debug_output(worstcount_query);
+        if(ms_query.next()){
+            int count = ms_query.value("DEFECT_SUM").toInt();
+            double vaild_rate;
+            double temp1 = 100.0-b_accumulate_totalvild;
+            double temp2 = accumulate_b_worst_sum;
+            if(count!=0){
+                vaild_rate = ((count/temp2)*temp1);
+
+                if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(probe)")){     //작업자 파손(프로브)
+                    accumulate_total_b_Workerfail_probe = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(eatching)")){  //작업자 파손(에칭)
+                    accumulate_total_b_Workerfail_eatching = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(light)")){  //작업자 파손(노광)
+                    accumulate_total_b_Workerfail_light = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(deposition)")){  //작업자 파손(성막)
+                    accumulate_total_b_Workerfail_defect = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("workerfail(output)")){ //작업자 파손(출고)
+                    accumulate_total_b_Workerfail_output = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("machinefail(probe)")){  //설비파손(프로브)
+                    accumulate_total_b_Machinefail_probe = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("machinefail(eatching)")){  //설비파손(에칭)
+                    accumulate_total_b_Machinefail_eatching = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("machinefail(light)")){  //설비파손(노광)
+                    accumulate_total_b_Machinefail_light = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("machinefail(deposition)")){  //설비파손(성막)
+                    accumulate_total_b_Machinefail_defect = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("padpaticle")){  //패트 이물
+                    accumulate_total_b_Padpaticle = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("etcpaticle")){  //이외 이물
+                    accumulate_total_b_Etcpaticle = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("pattenpaticle")){  //패턴 이물
+                    accumulate_total_b_Pattenpaticle = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("paticle")){  //이물
+                    accumulate_total_b_Defectpaticle = vaild_rate;
+                }else if(DEFECT_ITEM_LIST.at(j)==tr("brigit_pad_worst")){//브릿지 패드
+                    accumulate_total_b_brigit_pad_worst = vaild_rate;
+                }
+            }
+        }
+    }
+#else
+#endif
+
     total_Rework_paticle=0;
     total_Jobmiss_defect=0;
     total_Jobmiss_eatching=0;
@@ -1580,6 +1912,93 @@ void worst_search_WLP_th::run()
     }
 #else
 #endif
+
+    //누적
+    accumulate_total_Rework_paticle=0;
+    accumulate_total_Jobmiss_defect=0;
+    accumulate_total_Jobmiss_eatching=0;
+    accumulate_total_Jobmiss_light=0;
+    accumulate_total_Jobmiss_probe=0;
+
+    accumulate_total_b_Rework_paticle=0;
+    accumulate_total_b_Jobmiss_defect=0;
+    accumulate_total_b_Jobmiss_eatching=0;
+    accumulate_total_b_Jobmiss_light=0;
+    accumulate_total_b_Jobmiss_probe=0;
+
+#ifdef REAL_QUERY_WLP
+    for(int j=0;j<REWORK_ITEM_LIST.count();j++){
+        QString worstcount_query = QString("SELECT  SUM(REWORK_CHIP_QTY)REWORK_SUM "
+                                           "FROM [V_FAB_REWORK_LOTS] "
+                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                           "AND LOT_TYPE = 'A' "
+                                           "AND MATERIAL_GROUP = 'WLP' "
+                                           "AND REWORK_NAME = '%4' ")
+                                            .arg(accumulate_start_date_str).arg(end_date_str)
+                                            .arg(REWORK_ITEM_LIST.at(j));
+        ms_query.exec(worstcount_query);
+        emit sig_debug_output(worstcount_query);
+        if(ms_query.next()){
+            int count = ms_query.value("REWORK_SUM").toInt();
+            double vaild_rate;
+            double temp1 = 100.0-accumulate_totalvild;
+            double temp2 = accumulate_worst_sum;
+            if(count!=0){
+                vaild_rate = ((count/temp2)*temp1);
+                if(REWORK_ITEM_LIST.at(j)==tr("paticle")){     //이물
+                    accumulate_total_Rework_paticle = vaild_rate;
+                }else if(REWORK_ITEM_LIST.at(j)==tr("jobmiss(deposition)")){ //작업 미스(성막)
+                    accumulate_total_Jobmiss_defect = vaild_rate;
+                }else if(REWORK_ITEM_LIST.at(j)==tr("jobmiss(eatching)")){ //작업 미스(에칭)
+                    accumulate_total_Jobmiss_eatching = vaild_rate;
+                }else if(REWORK_ITEM_LIST.at(j)==tr("jobmiss(light)")){ //작업 미스(성막)
+                    accumulate_total_Jobmiss_light = vaild_rate;
+                }else if(REWORK_ITEM_LIST.at(j)==tr("jobmiss(probe)")){ //작업미스(프로브)
+                    accumulate_total_Jobmiss_probe = vaild_rate;
+                }
+            }
+        }
+    }
+#else
+#endif
+
+#ifdef REAL_QUERY_WLP
+    for(int j=0;j<REWORK_ITEM_LIST.count();j++){
+        QString worstcount_query = QString("SELECT  SUM(REWORK_CHIP_QTY)REWORK_SUM "
+                                           "FROM [V_FAB_REWORK_LOTS] "
+                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                           "AND LOT_TYPE = 'B' "
+                                           "AND MATERIAL_GROUP = 'WLP' "
+                                           "AND REWORK_NAME = '%4' ")
+                                            .arg(start_date_str).arg(end_date_str)
+                                            .arg(REWORK_ITEM_LIST.at(j));
+        ms_query.exec(worstcount_query);
+        emit sig_debug_output(worstcount_query);
+        if(ms_query.next()){
+            int count = ms_query.value("REWORK_SUM").toInt();
+            double vaild_rate;
+            double temp1 = 100.0-b_accumulate_totalvild;
+            double temp2 = accumulate_b_worst_sum;
+            if(count!=0){
+                vaild_rate = ((count/temp2)*temp1);
+                if(REWORK_ITEM_LIST.at(j)==tr("paticle")){     //이물
+                    accumulate_total_b_Rework_paticle = vaild_rate;
+                }else if(REWORK_ITEM_LIST.at(j)==tr("jobmiss(deposition)")){ //작업 미스(성막)
+                    accumulate_total_b_Jobmiss_defect = vaild_rate;
+                }else if(REWORK_ITEM_LIST.at(j)==tr("jobmiss(eatching)")){ //작업 미스(에칭)
+                    accumulate_total_b_Jobmiss_eatching = vaild_rate;
+                }else if(REWORK_ITEM_LIST.at(j)==tr("jobmiss(light)")){ //작업 미스(성막)
+                    accumulate_total_b_Jobmiss_light = vaild_rate;
+                }else if(REWORK_ITEM_LIST.at(j)==tr("jobmiss(probe)")){ //작업미스(프로브)
+                    accumulate_total_b_Jobmiss_probe = vaild_rate;
+                }
+            }
+        }
+    }
+#else
+#endif
+
+
 #ifdef REAL_QUERY_WLP
     QString rework_type_txt = QString("SELECT REWORK_NAME,SUM(REWORK_CHIP_QTY) AS rework_qty "
                                       "FROM [V_FAB_REWORK_LOTS] "

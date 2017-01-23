@@ -509,6 +509,67 @@ void worst_search_excel_main::slot_excel_work()
     modify_cell = sheet_fab10->querySubObject("Cells(int,int)",43,cellcolumn);
     modify_cell->setProperty("Value",th->getAccumulate_totalvild());
 
+    //누적
+    modify_cell = sheet_fab10->querySubObject("Cells(int,int)",28,cellcolumn);
+    modify_cell = modify_cell->querySubObject("end(int)",-4161);
+    cellcolumn = modify_cell->dynamicCall("Column()").toInt();
+    double accumulate_daily_total_sum = 0.0;
+    modify_cell = sheet_fab10->querySubObject("Cells(int,int)",28,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_DP003_worst);
+    accumulate_daily_total_sum += th->accumulate_total_DP003_worst;
+    modify_cell = sheet_fab10->querySubObject("Cells(int,int)",29,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_DP004_worst);
+    accumulate_daily_total_sum += th->accumulate_total_DP004_worst;
+    modify_cell = sheet_fab10->querySubObject("Cells(int,int)",30,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_DP006_worst);
+    accumulate_daily_total_sum += th->accumulate_total_DP006_worst;
+    modify_cell = sheet_fab10->querySubObject("Cells(int,int)",31,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_DP001_worst);
+    accumulate_daily_total_sum += th->accumulate_total_DP001_worst;
+    modify_cell = sheet_fab10->querySubObject("Cells(int,int)",32,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_DP005_worst);
+    accumulate_daily_total_sum += th->accumulate_total_DP005_worst;
+    modify_cell = sheet_fab10->querySubObject("Cells(int,int)",33,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_DP008_worst);
+    accumulate_daily_total_sum += th->accumulate_total_DP008_worst;
+    double accumulate_totalmachine_fail = th->accumulate_total_Machinefail_defect+th->accumulate_total_Machinefail_eatching
+                                +th->accumulate_total_Machinefail_light+th->accumulate_total_Machinefail_probe;
+    modify_cell = sheet_fab10->querySubObject("Cells(int,int)",34,cellcolumn);
+    modify_cell->setProperty("Value",accumulate_totalmachine_fail);
+    accumulate_daily_total_sum += accumulate_totalmachine_fail;
+    double accumulate_totalworker_fail = th->accumulate_total_Workerfail_defect+th->accumulate_total_Workerfail_light+th->accumulate_total_Workerfail_eatching
+                                +th->accumulate_total_Workerfail_output+th->accumulate_total_Workerfail_probe;
+    modify_cell = sheet_fab10->querySubObject("Cells(int,int)",35,cellcolumn);
+    modify_cell->setProperty("Value",accumulate_totalworker_fail);
+    accumulate_daily_total_sum += accumulate_totalworker_fail;
+    double accumulate_total_prcdspecout = th->accumulate_total_prcdlow+th->accumulate_total_prcdhigh;
+    modify_cell = sheet_fab10->querySubObject("Cells(int,int)",36,cellcolumn);
+    modify_cell->setProperty("Value",accumulate_total_prcdspecout);
+    accumulate_daily_total_sum += accumulate_total_prcdspecout;
+    double accumulate_total_metalspecout = th->accumulate_total_metallow+th->accumulate_total_metalhigh;
+    modify_cell = sheet_fab10->querySubObject("Cells(int,int)",37,cellcolumn);
+    modify_cell->setProperty("Value",accumulate_total_metalspecout);
+    accumulate_daily_total_sum += accumulate_total_metalspecout;
+    double accumulate_totalpaticle= th->accumulate_total_Defectpaticle+th->accumulate_total_Etcpaticle
+                            +th->accumulate_total_Padpaticle+th->accumulate_total_Pattenpaticle+th->accumulate_total_Rework_paticle;
+    modify_cell = sheet_fab10->querySubObject("Cells(int,int)",38,cellcolumn);
+    modify_cell->setProperty("Value",accumulate_totalpaticle);
+    accumulate_daily_total_sum += accumulate_totalpaticle;
+    double accumulate_totaljobmiss = th->accumulate_total_Jobmiss_defect+th->accumulate_total_Jobmiss_eatching
+                            +th->accumulate_total_Jobmiss_light+th->accumulate_total_Jobmiss_probe;
+    modify_cell = sheet_fab10->querySubObject("Cells(int,int)",39,cellcolumn);
+    modify_cell->setProperty("Value",accumulate_totaljobmiss);
+    accumulate_daily_total_sum += accumulate_totaljobmiss;
+    modify_cell = sheet_fab10->querySubObject("Cells(int,int)",40,cellcolumn);
+    modify_cell->setProperty("Value",accumulate_daily_total_sum);
+    modify_cell = sheet_fab10->querySubObject("Cells(int,int)",41,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_last_probe_vild_daily);
+
+    modify_cell = sheet_fab10->querySubObject("Cells(int,int)",43,cellcolumn);
+    modify_cell->setProperty("Value",th->getAccumulate_totalvild());
+
+
+
     i=2;
     cellcolumn = 0;
     while(true){
@@ -1170,6 +1231,57 @@ void worst_search_excel_main::slot_excel_WLP_work()
     modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",41,cellcolumn);
     modify_cell->setProperty("Value",th->getAccumulate_totalvild());
 
+    //누적
+    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",28,cellcolumn);
+    modify_cell = modify_cell->querySubObject("end(int)",-4161);
+    cellcolumn = modify_cell->dynamicCall("Column()").toInt();
+    double accumulate_daily_total_sum = 0.0;
+    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",28,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_DP003_worst);
+    accumulate_daily_total_sum += th->accumulate_total_DP003_worst;
+    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",29,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_DP004_worst);
+    accumulate_daily_total_sum += th->accumulate_total_DP004_worst;
+    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",30,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_DP006_worst);
+    accumulate_daily_total_sum += th->accumulate_total_DP006_worst;
+    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",31,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_DP005_worst);
+    accumulate_daily_total_sum += th->accumulate_total_DP005_worst;
+    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",32,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_DP008_worst);
+    accumulate_daily_total_sum += th->accumulate_total_DP008_worst;
+    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",33,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_DP001_worst);
+    accumulate_daily_total_sum += th->accumulate_total_DP001_worst;
+    double accumulate_totalmachine_fail = th->accumulate_total_Machinefail_defect+th->accumulate_total_Machinefail_eatching
+                                +th->accumulate_total_Machinefail_light+th->accumulate_total_Machinefail_probe;
+    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",34,cellcolumn);
+    modify_cell->setProperty("Value",accumulate_totalmachine_fail);
+    accumulate_daily_total_sum += accumulate_totalmachine_fail;
+    double accumulate_totalworker_fail = th->accumulate_total_Workerfail_defect+th->accumulate_total_Workerfail_light+th->accumulate_total_Workerfail_eatching
+                                +th->accumulate_total_Workerfail_output+th->accumulate_total_Workerfail_probe;
+    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",35,cellcolumn);
+    modify_cell->setProperty("Value",accumulate_totalworker_fail);
+    accumulate_daily_total_sum += accumulate_totalworker_fail;
+    double accumulate_totalpaticle= th->accumulate_total_Defectpaticle+th->accumulate_total_Etcpaticle
+                            +th->accumulate_total_Padpaticle+th->accumulate_total_Pattenpaticle+th->accumulate_total_Rework_paticle;
+    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",36,cellcolumn);
+    modify_cell->setProperty("Value",accumulate_totalpaticle);
+    accumulate_daily_total_sum += accumulate_totalpaticle;
+    double accumulate_totaljobmiss = th->accumulate_total_Jobmiss_defect+th->accumulate_total_Jobmiss_eatching
+                            +th->accumulate_total_Jobmiss_light+th->accumulate_total_Jobmiss_probe;
+    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",37,cellcolumn);
+    modify_cell->setProperty("Value",accumulate_totaljobmiss);
+    accumulate_daily_total_sum += accumulate_totaljobmiss;
+    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",38,cellcolumn);
+    modify_cell->setProperty("Value",accumulate_daily_total_sum);
+    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",39,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_last_probe_vild_daily);
+
+    modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",41,cellcolumn);
+    modify_cell->setProperty("Value",th->getAccumulate_totalvild());
+
     //WLP 한도생산 10대불량율
     modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",26,2);
 
@@ -1255,6 +1367,60 @@ void worst_search_excel_main::slot_excel_WLP_work()
     modify_cell->setProperty("Value",th->getB_daily_totalvild());
     modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",41,cellcolumn);
     modify_cell->setProperty("Value",th->getB_accumulate_totalvild());
+
+    //누적
+    modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",28,cellcolumn);
+    modify_cell = modify_cell->querySubObject("end(int)",-4161);
+    cellcolumn = modify_cell->dynamicCall("Column()").toInt();
+    double accumulate_b_daily_total_sum = 0.0;
+    modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",28,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_b_DP003_worst);
+    accumulate_b_daily_total_sum += th->accumulate_total_b_DP003_worst;
+    modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",29,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_b_DP004_worst);
+    accumulate_b_daily_total_sum += th->accumulate_total_b_DP004_worst;
+    modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",30,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_b_DP006_worst);
+    accumulate_b_daily_total_sum += th->accumulate_total_b_DP006_worst;
+    modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",31,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_b_DP005_worst);
+    accumulate_b_daily_total_sum += th->accumulate_total_b_DP005_worst;
+    modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",32,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_b_DP008_worst);
+    accumulate_b_daily_total_sum += th->accumulate_total_b_DP008_worst;
+    modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",33,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_total_b_DP001_worst);
+    accumulate_b_daily_total_sum += th->accumulate_total_b_DP001_worst;
+    double accumulate_b_totalmachine_fail = th->accumulate_total_b_Machinefail_defect+th->accumulate_total_b_Machinefail_eatching
+                                +th->accumulate_total_b_Machinefail_light+th->accumulate_total_b_Machinefail_probe;
+    modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",34,cellcolumn);
+    modify_cell->setProperty("Value",accumulate_b_totalmachine_fail);
+    accumulate_b_daily_total_sum += accumulate_b_totalmachine_fail;
+    double accumulate_b_totalworker_fail = th->accumulate_total_b_Workerfail_defect+th->accumulate_total_b_Workerfail_light+th->accumulate_total_b_Workerfail_eatching
+                                +th->accumulate_total_b_Workerfail_output+th->accumulate_total_b_Workerfail_probe;
+    modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",35,cellcolumn);
+    modify_cell->setProperty("Value",accumulate_b_totalworker_fail);
+    accumulate_b_daily_total_sum += accumulate_b_totalworker_fail;
+    double accumulate_b_totalpaticle= th->accumulate_total_Defectpaticle+th->accumulate_total_Etcpaticle
+                            +th->accumulate_total_Padpaticle+th->accumulate_total_Pattenpaticle+th->accumulate_total_Rework_paticle;
+    modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",36,cellcolumn);
+    modify_cell->setProperty("Value",accumulate_b_totalpaticle);
+    accumulate_b_daily_total_sum += accumulate_b_totalpaticle;
+    double accumulate_b_totaljobmiss = th->accumulate_total_Jobmiss_defect+th->accumulate_total_Jobmiss_eatching
+                            +th->accumulate_total_Jobmiss_light+th->accumulate_total_Jobmiss_probe;
+    modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",37,cellcolumn);
+    modify_cell->setProperty("Value",accumulate_b_totaljobmiss);
+    accumulate_b_daily_total_sum += accumulate_b_totaljobmiss;
+    modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",38,cellcolumn);
+    modify_cell->setProperty("Value",accumulate_b_daily_total_sum);
+    modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",39,cellcolumn);
+    modify_cell->setProperty("Value",th->accumulate_b_last_probe_vild_daily);
+
+    modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",41,cellcolumn);
+    modify_cell->setProperty("Value",th->getB_accumulate_totalvild());
+
+
+
     //외관 검사 불량률
     modify_cell = sheet_exteriorcheck->querySubObject("Cells(int,int)",17,2);
     i = 2;

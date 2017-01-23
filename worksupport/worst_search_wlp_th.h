@@ -123,12 +123,16 @@ public:
     double daily_totalvild;
     double accumulate_totalvild;
     double last_probe_vild_daily;
+    double accumulate_last_probe_vild_daily;
     double worst_sum;
+    double accumulate_worst_sum;
 
     double b_daily_totalvild;
     double b_accumulate_totalvild;
     double b_last_probe_vild_daily;
+    double accumulate_b_last_probe_vild_daily;
     double b_worst_sum;
+    double accumulate_b_worst_sum;
 
     double total_DP001_worst;
     double total_DP003_worst;
@@ -143,6 +147,20 @@ public:
     double total_b_DP005_worst;
     double total_b_DP006_worst;
     double total_b_DP008_worst;
+
+    double accumulate_total_DP001_worst;
+    double accumulate_total_DP003_worst;
+    double accumulate_total_DP004_worst;
+    double accumulate_total_DP005_worst;
+    double accumulate_total_DP006_worst;
+    double accumulate_total_DP008_worst;
+
+    double accumulate_total_b_DP001_worst;
+    double accumulate_total_b_DP003_worst;
+    double accumulate_total_b_DP004_worst;
+    double accumulate_total_b_DP005_worst;
+    double accumulate_total_b_DP006_worst;
+    double accumulate_total_b_DP008_worst;
 
     double total_Workerfail_probe;
     double total_Workerfail_eatching;
@@ -174,6 +192,36 @@ public:
     double total_b_Defectpaticle;
     double total_b_brigit_pad_worst;
 
+    double accumulate_total_Workerfail_probe;
+    double accumulate_total_Workerfail_eatching;
+    double accumulate_total_Workerfail_light;
+    double accumulate_total_Workerfail_defect;
+    double accumulate_total_Workerfail_output;
+    double accumulate_total_Machinefail_probe;
+    double accumulate_total_Machinefail_eatching;
+    double accumulate_total_Machinefail_light;
+    double accumulate_total_Machinefail_defect;
+    double accumulate_total_Padpaticle;
+    double accumulate_total_Etcpaticle;
+    double accumulate_total_Pattenpaticle;
+    double accumulate_total_Defectpaticle;
+    double accumulate_total_brigit_pad_worst;
+
+    double accumulate_total_b_Workerfail_probe;
+    double accumulate_total_b_Workerfail_eatching;
+    double accumulate_total_b_Workerfail_light;
+    double accumulate_total_b_Workerfail_defect;
+    double accumulate_total_b_Workerfail_output;
+    double accumulate_total_b_Machinefail_probe;
+    double accumulate_total_b_Machinefail_eatching;
+    double accumulate_total_b_Machinefail_light;
+    double accumulate_total_b_Machinefail_defect;
+    double accumulate_total_b_Padpaticle;
+    double accumulate_total_b_Etcpaticle;
+    double accumulate_total_b_Pattenpaticle;
+    double accumulate_total_b_Defectpaticle;
+    double accumulate_total_b_brigit_pad_worst;
+
     double total_Rework_paticle;
     double total_Jobmiss_defect;
     double total_Jobmiss_eatching;
@@ -185,6 +233,18 @@ public:
     double total_b_Jobmiss_eatching;
     double total_b_Jobmiss_light;
     double total_b_Jobmiss_probe;
+
+    double accumulate_total_Rework_paticle;
+    double accumulate_total_Jobmiss_defect;
+    double accumulate_total_Jobmiss_eatching;
+    double accumulate_total_Jobmiss_light;
+    double accumulate_total_Jobmiss_probe;
+
+    double accumulate_total_b_Rework_paticle;
+    double accumulate_total_b_Jobmiss_defect;
+    double accumulate_total_b_Jobmiss_eatching;
+    double accumulate_total_b_Jobmiss_light;
+    double accumulate_total_b_Jobmiss_probe;
 
 
     double exterior_pattenpaticle_vaild;
@@ -202,8 +262,14 @@ public:
     double exterior_vaild;
     double exterior_worst_count;
 
+    double accumulate_exterior_vaild;
+    double accumulate_exterior_worst_count;
+
     double b_exterior_vaild;
     double b_exterior_worst_count;
+
+    double accumulate_b_exterior_vaild;
+    double accumulate_b_exterior_worst_count;
 
 
     double getDaily_totalvild() const;

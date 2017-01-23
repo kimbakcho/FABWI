@@ -55,6 +55,7 @@ public:
     BTextEdit *content_edit;
     BTextEdit *alarm_content_edit;
     QFtp *ftp;
+
     QString server_ip;
     QString db_port;
     QString ftp_port;
