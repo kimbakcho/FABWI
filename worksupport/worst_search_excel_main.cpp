@@ -509,6 +509,10 @@ void worst_search_excel_main::slot_excel_work()
     modify_cell = sheet_fab10->querySubObject("Cells(int,int)",43,cellcolumn);
     modify_cell->setProperty("Value",th->getAccumulate_totalvild());
 
+
+    modify_cell = modify_cell->querySubObject("EntireColumn");
+    modify_cell->setProperty("Hidden",false);
+
     //누적
     modify_cell = sheet_fab10->querySubObject("Cells(int,int)",28,cellcolumn);
     modify_cell = modify_cell->querySubObject("end(int)",-4161);
@@ -1231,6 +1235,8 @@ void worst_search_excel_main::slot_excel_WLP_work()
     modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",41,cellcolumn);
     modify_cell->setProperty("Value",th->getAccumulate_totalvild());
 
+    modify_cell = modify_cell->querySubObject("EntireColumn");
+    modify_cell->setProperty("Hidden",false);
     //누적
     modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",28,cellcolumn);
     modify_cell = modify_cell->querySubObject("end(int)",-4161);
@@ -1281,6 +1287,9 @@ void worst_search_excel_main::slot_excel_WLP_work()
 
     modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",41,cellcolumn);
     modify_cell->setProperty("Value",th->getAccumulate_totalvild());
+
+    modify_cell = modify_cell->querySubObject("EntireColumn");
+    modify_cell->setProperty("Hidden",false);
 
     //WLP 한도생산 10대불량율
     modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",26,2);
