@@ -68,37 +68,30 @@ EIS_listview_item::EIS_listview_item(QString doc_data, QWidget *parent) :
     query_base_data.exec(query_txt);
     query_base_data.next();
 
-    QString makedir_txt = qApp->applicationDirPath()+"/temp/EIS/img";
+//    QString makedir_txt = qApp->applicationDirPath()+"/temp/EIS/img";
 
-    QDir makedir(makedir_txt);
-    if(!makedir.exists(doc_number_str)){
-       makedir.mkdir(doc_number_str);
-    }
+//    QDir makedir(makedir_txt);
+//    if(!makedir.exists(doc_number_str)){
+//       makedir.mkdir(doc_number_str);
+//    }
 
-    if(ftp->state()==QFtp::Unconnected){
-        ftp->connectToHost(server_ip,21);
+//    makedir_txt = QString("//fabsv.wisol.co.kr/img/%1").arg(doc_number);
+//    QDir doc_dir(makedir_txt);
+//    QStringList filelist =  doc_dir.entryList(QDir::Files);
+//    for(int i=0;i<filelist.count();i++){
+//        QString des_file = makedir_txt+"/"+filelist.at(i);
+//        QString copy_path = qApp->applicationDirPath()+"/temp/EIS/img/"+QString("%1").arg(doc_number)+QString("/%2").arg(filelist.at(i));
+//        if(QFile::copy(des_file,copy_path)){
+//            qDebug()<<"ture";
+//        }else {
+//            qDebug()<<"false";
+//        }
+//        QString part = QString("%1/%2").arg(i).arg(filelist.count());
+//    }
 
-        ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
-        loop.exec();
-        ftp->setTransferMode(QFtp::Active);
-    }
-    ftp->rawCommand(QString("CWD /home/eis/img/%1").arg(doc_number));
-    loop.exec();
-    makedir_txt = qApp->applicationDirPath()+"/temp/EIS/img/"+QString("%1").arg(doc_number);
-    img_download_file = query_base_data.value("downloadimg").toString();
-    QStringList img_file_list = query_base_data.value("downloadimg").toString().split("/////");
-    for(int i=0;i<img_file_list.count()-1;i++){
-        if(progressdialog==0){
-            progressdialog = new QProgressDialog(this);
-        }
-        QString file_name = img_file_list.at(i);
-        QString des_file_path = makedir_txt+"/"+file_name;
-        QFile des_file(des_file_path);
-        des_file.open(QFile::ReadWrite);
-        ftp->get(file_name,&des_file);
-        progressdialog->exec();
-        des_file.close();
-    }
+
+
+
 
     QSqlQuery query(db);
     query.exec("select team from People_information GROUP by team;");
@@ -189,7 +182,10 @@ EIS_listview_item::EIS_listview_item(QString doc_data, QWidget *parent) :
 //        ui->no_complete->setChecked(true);
 //    }
     QString content_change = query_base_data.value("content").toString();
-    content_change.replace("server_image_change_part_temp",qApp->applicationDirPath());
+
+    content_change.replace("server_image_change_part_temp/temp/EIS","\\fabsv.wisol.co.kr");
+
+    qDebug()<<content_change;
     content_edit->setHtml(content_change);
 
     QSqlQuery query_history_data(db);
@@ -469,6 +465,7 @@ void EIS_listview_item::on_modify_button_clicked()
     QString content_change = content_edit->tosqlhtml();
 
     content_change.replace(qApp->applicationDirPath(),"server_image_change_part_temp");
+    content_change.replace("fabsv.wisol.co.kr/","server_image_change_part_temp/temp/EIS/");
     QString content = content_change;
 
     QString attach_file_list;

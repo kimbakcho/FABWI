@@ -32,7 +32,6 @@ void BTextEdit::insertFromMimeData( const QMimeData *source ){
           }
           qDebug()<<this->objectName();
 
-
           if(source->hasImage() && source->hasText()){
             eis_select_copymode_dialog select_dialog;
             int result = select_dialog.exec();

@@ -561,6 +561,7 @@ void EISmain::on_add_button_clicked()
     QString content_change = content_edit->tosqlhtml();
 
     content_change.replace(qApp->applicationDirPath(),"server_image_change_part_temp");
+    content_change.replace("fabsv.wisol.co.kr/","server_image_change_part_temp/temp/EIS/");
     QString content = content_change;
 
     QString attach_file_list;
@@ -672,34 +673,54 @@ void EISmain::on_add_button_2_clicked()
         msg.exec();
         return ;
     }
-    if(ftp->state()==QFtp::Unconnected){
-        ftp->connectToHost(server_ip,21);
+//    if(ftp->state()==QFtp::Unconnected){
+//        ftp->connectToHost(server_ip,21);
 
-        ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
-        loop.exec();
-        ftp->setTransferMode(QFtp::Active);
-    }
-    ftp->rawCommand("CWD /home/eis/alarmimg");
-    loop.exec();
-    ftp->rawCommand(QString("MKD %1").arg(alarm_doc_number));
-    loop.exec();
-    ftp->rawCommand(QString("CWD /home/eis/alarmimg/%1").arg(alarm_doc_number));
-    loop.exec();
+//        ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
+//        loop.exec();
+//        ftp->setTransferMode(QFtp::Active);
+//    }
+//    ftp->rawCommand("CWD /home/eis/alarmimg");
+//    loop.exec();
+//    ftp->rawCommand(QString("MKD %1").arg(alarm_doc_number));
+//    loop.exec();
+//    ftp->rawCommand(QString("CWD /home/eis/alarmimg/%1").arg(alarm_doc_number));
+//    loop.exec();
+
+//    QString makedir_txt = qApp->applicationDirPath()+"/temp/EIS/alarmimg/"+QString("%1").arg(alarm_doc_number);
+//    QDir doc_dir(makedir_txt);
+//    QStringList filelist =  doc_dir.entryList(QDir::Files);
+//    for(int i=0;i<filelist.count();i++){
+//        if(progressdialog == 0){
+//            progressdialog = new QProgressDialog(this);
+//        }
+//        QString des_file = makedir_txt+"/"+filelist.at(i);
+//        QFile *file = new QFile(des_file);
+//        ftp->put(file,filelist.at(i),QFtp::Binary);
+//        QString part = QString("%1/%2").arg(i).arg(filelist.count());
+//        progressdialog->setLabelText(part);
+//        progressdialog->exec();
+//    }
+
+    QDir mother_dir("//fabsv.wisol.co.kr/alarmimg");
+    mother_dir.mkdir(QString("%1").arg(alarm_doc_number));
 
     QString makedir_txt = qApp->applicationDirPath()+"/temp/EIS/alarmimg/"+QString("%1").arg(alarm_doc_number);
     QDir doc_dir(makedir_txt);
     QStringList filelist =  doc_dir.entryList(QDir::Files);
     for(int i=0;i<filelist.count();i++){
-        if(progressdialog == 0){
-            progressdialog = new QProgressDialog(this);
-        }
         QString des_file = makedir_txt+"/"+filelist.at(i);
         QFile *file = new QFile(des_file);
-        ftp->put(file,filelist.at(i),QFtp::Binary);
+        QString copy_path = QString("//fabsv.wisol.co.kr/alarmimg/%1/%2").arg(alarm_doc_number).arg(filelist.at(i));
+        if(QFile::copy(des_file,copy_path)){
+            qDebug()<<"ture";
+        }else {
+            qDebug()<<"false";
+        }
         QString part = QString("%1/%2").arg(i).arg(filelist.count());
-        progressdialog->setLabelText(part);
-        progressdialog->exec();
     }
+
+
     QString now_datetime =ui->current_time->dateTime().toString("yyyy-MM-dd HH:mm:ss");
     QSqlQuery query(db);
 
@@ -711,6 +732,7 @@ void EISmain::on_add_button_2_clicked()
     QString content_change = alarm_content_edit->tosqlhtml();
 
     content_change.replace(qApp->applicationDirPath(),"server_image_change_part_temp");
+    content_change.replace("fabsv.wisol.co.kr/","server_image_change_part_temp/temp/EIS/");
     QString content = content_change;
 
     QString attach_file_list;
