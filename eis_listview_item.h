@@ -59,6 +59,7 @@ public slots:
 
     void ftp_rawCommandReply(int a, QString data);
 
+    void fnishi_done(bool error);
 
 
 private slots:

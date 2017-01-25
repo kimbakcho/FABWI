@@ -42,7 +42,8 @@ EISmain::EISmain(QWidget *parent) :
             this, SLOT(ftpCommandFinished(int,bool)));
     connect(ftp,SIGNAL(rawCommandReply(int,QString)),
             this,SLOT(ftp_rawCommandReply(int,QString)));
-
+    connect(ftp, SIGNAL(done(bool)),
+            this, SLOT(fnishi_done(bool)));
 
     connect(ftp,SIGNAL(listInfo(QUrlInfo)),
             this,SLOT(ftp_listInfo(QUrlInfo)));
@@ -513,12 +514,6 @@ void EISmain::on_add_button_clicked()
         loop.exec();
         ftp->setTransferMode(QFtp::Active);
     }
-//    ftp->rawCommand("CWD /home/eis/img");
-//    loop.exec();
-//    ftp->rawCommand(QString("MKD %1").arg(doc_number));
-//    loop.exec();
-//    ftp->rawCommand(QString("CWD /home/eis/img/%1").arg(doc_number));
-//    loop.exec();
     QDir mother_dir("//fabsv.wisol.co.kr/img");
     mother_dir.mkdir(QString("%1").arg(doc_number));
 
@@ -673,34 +668,6 @@ void EISmain::on_add_button_2_clicked()
         msg.exec();
         return ;
     }
-//    if(ftp->state()==QFtp::Unconnected){
-//        ftp->connectToHost(server_ip,21);
-
-//        ftp->login(QUrl::fromPercentEncoding(FTPID),FTPPW);
-//        loop.exec();
-//        ftp->setTransferMode(QFtp::Active);
-//    }
-//    ftp->rawCommand("CWD /home/eis/alarmimg");
-//    loop.exec();
-//    ftp->rawCommand(QString("MKD %1").arg(alarm_doc_number));
-//    loop.exec();
-//    ftp->rawCommand(QString("CWD /home/eis/alarmimg/%1").arg(alarm_doc_number));
-//    loop.exec();
-
-//    QString makedir_txt = qApp->applicationDirPath()+"/temp/EIS/alarmimg/"+QString("%1").arg(alarm_doc_number);
-//    QDir doc_dir(makedir_txt);
-//    QStringList filelist =  doc_dir.entryList(QDir::Files);
-//    for(int i=0;i<filelist.count();i++){
-//        if(progressdialog == 0){
-//            progressdialog = new QProgressDialog(this);
-//        }
-//        QString des_file = makedir_txt+"/"+filelist.at(i);
-//        QFile *file = new QFile(des_file);
-//        ftp->put(file,filelist.at(i),QFtp::Binary);
-//        QString part = QString("%1/%2").arg(i).arg(filelist.count());
-//        progressdialog->setLabelText(part);
-//        progressdialog->exec();
-//    }
 
     QDir mother_dir("//fabsv.wisol.co.kr/alarmimg");
     mother_dir.mkdir(QString("%1").arg(alarm_doc_number));
@@ -823,7 +790,7 @@ void EISmain::on_add_button_2_clicked()
 void EISmain::ftpCommandFinished(int commandId, bool error)
 {
 
-    loop.exit();
+
 }
 
 void EISmain::updateDataTransferProgress(qint64 readBytes, qint64 totalBytes)
@@ -835,6 +802,11 @@ void EISmain::updateDataTransferProgress(qint64 readBytes, qint64 totalBytes)
 void EISmain::file_data_transfer(qint64 totalBytes)
 {
     progressdialog->setValue(totalBytes);
+}
+
+void EISmain::fnishi_done(bool)
+{
+     loop.exit();
 }
 
 
@@ -945,11 +917,10 @@ void EISmain::on_attach_btn_clicked()
             loop.exec();
             ftp->setTransferMode(QFtp::Active);
         }
-        ftp->rawCommand("CWD /home/eis/attach");
+        ftp->mkdir(QString("/home/eis/attach/%1").arg(doc_number));
+
         loop.exec();
-        ftp->rawCommand(QString("MKD %1").arg(doc_number));
-        loop.exec();
-        ftp->rawCommand(QString("CWD /home/eis/attach/%1").arg(doc_number));
+        ftp->cd(QString("/home/eis/attach/%1").arg(doc_number));
         loop.exec();
         QFile *source_file = new QFile(filename);
         source_file->open(QFile::ReadWrite);
@@ -992,13 +963,11 @@ void EISmain::on_attach_btn_2_clicked()
             loop.exec();
             ftp->setTransferMode(QFtp::Active);
         }
+        ftp->mkdir(QString("/home/eis/alarmattach/%1").arg(alarm_doc_number));
+        loop.exec();
+        ftp->cd(QString("/home/eis/alarmattach/%1").arg(alarm_doc_number));
+        loop.exec();
 
-        ftp->rawCommand("CWD /home/eis/alarmattach");
-        loop.exec();
-        ftp->rawCommand(QString("MKD %1").arg(alarm_doc_number));
-        loop.exec();
-        ftp->rawCommand(QString("CWD /home/eis/alarmattach/%1").arg(alarm_doc_number));
-        loop.exec();
         QFile *source_file = new QFile(filename);
         source_file->open(QFile::ReadWrite);
         QString upload_filename = filename.split('/').last();
@@ -1038,7 +1007,7 @@ void EISmain::on_attach_remove_btn_clicked()
          loop.exec();
          ftp->setTransferMode(QFtp::Active);
      }
-     ftp->rawCommand(QString("CWD /home/eis/attach/%1").arg(doc_number));
+     ftp->cd(QString("/home/eis/attach/%1").arg(doc_number));
      loop.exec();
      ftp->remove(select_file);
      loop.exec();
@@ -1057,7 +1026,7 @@ void EISmain::on_attach_remove_btn_2_clicked()
         loop.exec();
         ftp->setTransferMode(QFtp::Active);
     }
-    ftp->rawCommand(QString("CWD /home/eis/alarmattach/%1").arg(alarm_doc_number));
+    ftp->cd(QString("/home/eis/alarmattach/%1").arg(alarm_doc_number));
     loop.exec();
     ftp->remove(select_file);
     loop.exec();
@@ -1082,7 +1051,7 @@ void EISmain::on_attach_listview_doubleClicked(const QModelIndex &index)
         loop.exec();
         ftp->setTransferMode(QFtp::Active);
     }
-    ftp->rawCommand(QString("CWD /home/eis/attach/%1").arg(doc_number));
+    ftp->cd(QString("/home/eis/attach/%1").arg(doc_number));
     loop.exec();
     save_file->open(QFile::ReadWrite);
     ftp->get(source_file,save_file);
@@ -1119,7 +1088,7 @@ void EISmain::on_attach_listview_2_doubleClicked(const QModelIndex &index)
         loop.exec();
         ftp->setTransferMode(QFtp::Active);
     }
-    ftp->rawCommand(QString("CWD /home/eis/alarmattach/%1").arg(alarm_doc_number));
+    ftp->cd(QString("/home/eis/alarmattach/%1").arg(alarm_doc_number));
     loop.exec();
     save_file->open(QFile::ReadWrite);
     ftp->get(source_file,save_file);

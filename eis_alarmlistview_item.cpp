@@ -33,6 +33,8 @@ eis_alarmlistview_item::eis_alarmlistview_item(QString doc_data,QWidget *parent)
             this, SLOT(ftpCommandFinished(int,bool)));
     connect(ftp,SIGNAL(rawCommandReply(int,QString)),
             this,SLOT(ftp_rawCommandReply(int,QString)));
+    connect(ftp, SIGNAL(done(bool)),
+            this, SLOT(fnishi_done(bool)));
 
     connect(ftp,SIGNAL(listInfo(QUrlInfo)),
             this,SLOT(ftp_listInfo(QUrlInfo)));
@@ -326,7 +328,7 @@ void eis_alarmlistview_item::on_fontsize_editingFinished()
 void eis_alarmlistview_item::ftpCommandFinished(int commandId, bool error)
 {
 
-    loop.exit();
+
 }
 
 void eis_alarmlistview_item::updateDataTransferProgress(qint64 readBytes, qint64 totalBytes)
@@ -345,7 +347,12 @@ void eis_alarmlistview_item::ftp_listInfo(QUrlInfo urlInfo)
 
 void eis_alarmlistview_item::ftp_rawCommandReply(int a, QString data)
 {
-       //qDebug()<<"ftp data = "<<data;
+    //qDebug()<<"ftp data = "<<data;
+}
+
+void eis_alarmlistview_item::fnishi_done(bool)
+{
+    loop.exit();
 }
 
 void eis_alarmlistview_item::on_attach_listview_doubleClicked(const QModelIndex &index)
@@ -365,7 +372,7 @@ void eis_alarmlistview_item::on_attach_listview_doubleClicked(const QModelIndex 
         loop.exec();
         ftp->setTransferMode(QFtp::Active);
     }
-    ftp->rawCommand(QString("CWD /home/eis/alarmattach/%1").arg(doc_number));
+    ftp->cd(QString("/home/eis/alarmattach/%1").arg(doc_number));
     loop.exec();
     save_file->open(QFile::ReadWrite);
     ftp->get(source_file,save_file);
@@ -546,11 +553,10 @@ void eis_alarmlistview_item::on_attach_btn_clicked()
             loop.exec();
             ftp->setTransferMode(QFtp::Active);
         }
-        ftp->rawCommand("CWD /home/eis/attach");
+        ftp->mkdir(QString("/home/eis/alarmattach/%1").arg(doc_number));
+
         loop.exec();
-        ftp->rawCommand(QString("MKD %1").arg(doc_number));
-        loop.exec();
-        ftp->rawCommand(QString("CWD /home/eis/attach/%1").arg(doc_number));
+        ftp->cd(QString("/home/eis/alarmattach/%1").arg(doc_number));
         loop.exec();
         QFile *source_file = new QFile(filename);
         source_file->open(QFile::ReadWrite);

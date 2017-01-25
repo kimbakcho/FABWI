@@ -61,6 +61,8 @@ public slots:
 
     void ftp_rawCommandReply(int a, QString data);
 
+    void fnishi_done(bool);
+
 signals:
     void update_alarm_data();
 

@@ -31,6 +31,8 @@ EIS_listview_item::EIS_listview_item(QString doc_data, QWidget *parent) :
 
     connect(ftp, SIGNAL(commandFinished(int,bool)),
             this, SLOT(ftpCommandFinished(int,bool)));
+    connect(ftp, SIGNAL(done(bool)),
+            this, SLOT(fnishi_done(bool)));
     connect(ftp,SIGNAL(rawCommandReply(int,QString)),
             this,SLOT(ftp_rawCommandReply(int,QString)));
 
@@ -335,8 +337,8 @@ void EIS_listview_item::on_fontsize_editingFinished()
 }
 void EIS_listview_item::ftpCommandFinished(int commandId, bool error)
 {
+    qDebug()<<commandId<<"="<<error;
 
-    loop.exit();
 }
 
 void EIS_listview_item::updateDataTransferProgress(qint64 readBytes, qint64 totalBytes)
@@ -355,7 +357,13 @@ void EIS_listview_item::ftp_listInfo(QUrlInfo urlInfo)
 
 void EIS_listview_item::ftp_rawCommandReply(int a, QString data)
 {
-       //qDebug()<<"ftp data = "<<data;
+    //qDebug()<<"ftp data = "<<data;
+}
+
+void EIS_listview_item::fnishi_done(bool error)
+{
+    qDebug()<<"DONE= "<<error;
+    loop.exit();
 }
 
 void EIS_listview_item::on_attach_listview_doubleClicked(const QModelIndex &index)
@@ -375,7 +383,7 @@ void EIS_listview_item::on_attach_listview_doubleClicked(const QModelIndex &inde
         loop.exec();
         ftp->setTransferMode(QFtp::Active);
     }
-    ftp->rawCommand(QString("CWD /home/eis/attach/%1").arg(doc_number));
+    ftp->cd(QString("/home/eis/attach/%1").arg(doc_number));
     loop.exec();
     save_file->open(QFile::ReadWrite);
     ftp->get(source_file,save_file);
@@ -620,11 +628,10 @@ void EIS_listview_item::on_attach_btn_clicked()
             loop.exec();
             ftp->setTransferMode(QFtp::Active);
         }
-        ftp->rawCommand("CWD /home/eis/attach");
+        ftp->mkdir(QString("/home/eis/attach/%1").arg(doc_number));
+
         loop.exec();
-        ftp->rawCommand(QString("MKD %1").arg(doc_number));
-        loop.exec();
-        ftp->rawCommand(QString("CWD /home/eis/attach/%1").arg(doc_number));
+        ftp->cd(QString("/home/eis/attach/%1").arg(doc_number));
         loop.exec();
         QFile *source_file = new QFile(filename);
         source_file->open(QFile::ReadWrite);

@@ -103,6 +103,8 @@ public slots:
 
     void file_data_transfer(qint64 totalBytes);
 
+    void fnishi_done(bool);
+
 
 private slots:
     void on_select_process_currentIndexChanged(const QString &arg1);
