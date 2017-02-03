@@ -68,7 +68,11 @@ SOURCES += main.cpp\
     operatingratio/operating_ratio_action.cpp \
     oistystemsoap/oisystemC.cpp \
     oistystemsoap/oisystemOIWebServiceSoapProxy.cpp \
-    oistystemsoap/stdsoap2.cpp
+    oistystemsoap/stdsoap2.cpp \
+    bridge_chart/bridge_chart.cpp \
+    bridge_chart/bridge_chart_widget.cpp \
+    bridge_chart/bridge_chartview.cpp
+
 
 
 
@@ -124,7 +128,11 @@ HEADERS  += mainwindow.h \
     oistystemsoap/oisystemH.h \
     oistystemsoap/oisystemOIWebServiceSoapProxy.h \
     oistystemsoap/oisystemStub.h \
-    oistystemsoap/stdsoap2.h
+    oistystemsoap/stdsoap2.h \
+    bridge_chart/bridge_chart.h \
+    bridge_chart/bridge_chart_widget.h \
+    bridge_chart/bridge_chartview.h
+
 
 
 
@@ -163,7 +171,8 @@ FORMS    += mainwindow.ui \
     logsrc/hanile_log_item.ui \
     logsrc/hanile_log_main.ui \
     operatingratio/operating_ratio_main.ui \
-    operatingratio/operating_ratio_action.ui
+    operatingratio/operating_ratio_action.ui \
+    bridge_chart/bridge_chart_widget.ui
 
 RESOURCES += \
     resourec.qrc

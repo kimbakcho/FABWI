@@ -115,23 +115,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="d_image_size.ui" line="39"/>
+        <location filename="d_image_size.ui" line="46"/>
         <source>resize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="d_image_size.ui" line="47"/>
+        <location filename="d_image_size.ui" line="54"/>
         <source>높이</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="d_image_size.ui" line="57"/>
+        <location filename="d_image_size.ui" line="64"/>
         <location filename="d_image_size.ui" line="74"/>
         <source>9999</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="d_image_size.ui" line="67"/>
+        <location filename="d_image_size.ui" line="94"/>
+        <source>사이즈 직접 입력 </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="d_image_size.ui" line="20"/>
         <source>너비</source>
         <translation type="unfinished"></translation>
     </message>
@@ -144,129 +149,132 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="20"/>
+        <location filename="e2r_every_report.ui" line="310"/>
+        <source>Daily Bridge 두께 
+ 동진 PR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="e2r_every_report.ui" line="332"/>
         <source>파일추출</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="55"/>
-        <location filename="e2r_every_report.ui" line="102"/>
-        <location filename="e2r_every_report.ui" line="109"/>
-        <location filename="e2r_every_report.ui" line="116"/>
-        <location filename="e2r_every_report.ui" line="123"/>
-        <location filename="e2r_every_report.ui" line="130"/>
-        <location filename="e2r_every_report.ui" line="177"/>
-        <location filename="e2r_every_report.ui" line="187"/>
-        <location filename="e2r_every_report.ui" line="211"/>
-        <location filename="e2r_every_report.ui" line="225"/>
-        <location filename="e2r_every_report.ui" line="242"/>
-        <location filename="e2r_every_report.ui" line="252"/>
-        <location filename="e2r_every_report.ui" line="269"/>
-        <location filename="e2r_every_report.ui" line="286"/>
-        <location filename="e2r_every_report.ui" line="307"/>
+        <location filename="e2r_every_report.ui" line="35"/>
+        <location filename="e2r_every_report.ui" line="45"/>
+        <location filename="e2r_every_report.ui" line="66"/>
+        <location filename="e2r_every_report.ui" line="83"/>
+        <location filename="e2r_every_report.ui" line="100"/>
+        <location filename="e2r_every_report.ui" line="110"/>
+        <location filename="e2r_every_report.ui" line="127"/>
+        <location filename="e2r_every_report.ui" line="141"/>
+        <location filename="e2r_every_report.ui" line="161"/>
+        <location filename="e2r_every_report.ui" line="208"/>
+        <location filename="e2r_every_report.ui" line="215"/>
+        <location filename="e2r_every_report.ui" line="222"/>
+        <location filename="e2r_every_report.ui" line="229"/>
+        <location filename="e2r_every_report.ui" line="253"/>
+        <location filename="e2r_every_report.ui" line="283"/>
+        <location filename="e2r_every_report.ui" line="321"/>
         <source>파일경로</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="65"/>
+        <location filename="e2r_every_report.ui" line="171"/>
         <source>Daily PAD 막두께</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="72"/>
+        <location filename="e2r_every_report.ui" line="178"/>
         <source>Daily PAD 에싱후 
 PR두께</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="83"/>
+        <location filename="e2r_every_report.ui" line="189"/>
         <source>3매측정_PR_CD관리</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="137"/>
+        <location filename="e2r_every_report.ui" line="260"/>
         <source>1차 PR측정 관리대장</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="144"/>
+        <location filename="e2r_every_report.ui" line="267"/>
         <source>2차,3차 PR두께 측정</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="154"/>
+        <location filename="e2r_every_report.ui" line="300"/>
         <source>SIN_Etch_rate관리</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="161"/>
+        <location filename="e2r_every_report.ui" line="293"/>
         <source>ICP_Etch_rate_관리</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="194"/>
+        <location filename="e2r_every_report.ui" line="246"/>
         <source>SiO2_Etch_rate_관리</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="201"/>
+        <location filename="e2r_every_report.ui" line="239"/>
         <source>export 파일 경로</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="218"/>
+        <location filename="e2r_every_report.ui" line="134"/>
         <source>WLP SiO2 막두께</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="232"/>
+        <location filename="e2r_every_report.ui" line="120"/>
         <source>ICP_Ashing_rate_관리</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="259"/>
+        <location filename="e2r_every_report.ui" line="93"/>
         <source>성막일일관리</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="276"/>
+        <location filename="e2r_every_report.ui" line="76"/>
         <source>설비별 균일도 check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="293"/>
+        <location filename="e2r_every_report.ui" line="59"/>
         <source>Daily GAP Trend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="300"/>
+        <location filename="e2r_every_report.ui" line="52"/>
         <source>Daily Bridge 두께</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.ui" line="321"/>
-        <source>mecro</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="e2r_every_report.cpp" line="60"/>
+        <location filename="e2r_every_report.cpp" line="62"/>
         <source>excelfile (*.xlsx)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="e2r_every_report.cpp" line="214"/>
-        <location filename="e2r_every_report.cpp" line="232"/>
-        <location filename="e2r_every_report.cpp" line="250"/>
-        <location filename="e2r_every_report.cpp" line="268"/>
-        <location filename="e2r_every_report.cpp" line="286"/>
-        <location filename="e2r_every_report.cpp" line="304"/>
-        <location filename="e2r_every_report.cpp" line="322"/>
-        <location filename="e2r_every_report.cpp" line="340"/>
-        <location filename="e2r_every_report.cpp" line="359"/>
-        <location filename="e2r_every_report.cpp" line="377"/>
-        <location filename="e2r_every_report.cpp" line="395"/>
-        <location filename="e2r_every_report.cpp" line="413"/>
-        <location filename="e2r_every_report.cpp" line="431"/>
+        <location filename="e2r_every_report.cpp" line="224"/>
+        <location filename="e2r_every_report.cpp" line="242"/>
+        <location filename="e2r_every_report.cpp" line="260"/>
+        <location filename="e2r_every_report.cpp" line="278"/>
+        <location filename="e2r_every_report.cpp" line="296"/>
+        <location filename="e2r_every_report.cpp" line="314"/>
+        <location filename="e2r_every_report.cpp" line="332"/>
+        <location filename="e2r_every_report.cpp" line="350"/>
+        <location filename="e2r_every_report.cpp" line="369"/>
+        <location filename="e2r_every_report.cpp" line="387"/>
+        <location filename="e2r_every_report.cpp" line="404"/>
+        <location filename="e2r_every_report.cpp" line="421"/>
+        <location filename="e2r_every_report.cpp" line="439"/>
+        <location filename="e2r_every_report.cpp" line="457"/>
         <source>excelfile (*.xlsx *.xls)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -513,68 +521,68 @@ PR두께</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="58"/>
+        <location filename="eis_listview_item.cpp" line="60"/>
         <source>conntion false</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="369"/>
+        <location filename="eis_listview_item.cpp" line="373"/>
         <source>Save File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="393"/>
+        <location filename="eis_listview_item.cpp" line="397"/>
         <source>now open file ?
 </source>
         <translation>지금 바로 파일을 실행 하시겠습니까</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="541"/>
+        <location filename="eis_listview_item.cpp" line="548"/>
         <source>modify complete</source>
         <translation>수정 완료</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="565"/>
+        <location filename="eis_listview_item.cpp" line="572"/>
         <source>team</source>
         <translation>부서</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="567"/>
+        <location filename="eis_listview_item.cpp" line="574"/>
         <source>process</source>
         <translation>공정                              </translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="569"/>
+        <location filename="eis_listview_item.cpp" line="576"/>
         <source>facilities</source>
         <translation>설비</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="571"/>
+        <location filename="eis_listview_item.cpp" line="578"/>
         <source>witer_name</source>
         <translation>작성자</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="573"/>
+        <location filename="eis_listview_item.cpp" line="580"/>
         <source>change_have</source>
         <translation>변경점유무</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="575"/>
+        <location filename="eis_listview_item.cpp" line="582"/>
         <source>have</source>
         <translation>유</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="577"/>
+        <location filename="eis_listview_item.cpp" line="584"/>
         <source>don&apos;t have</source>
         <translation>무</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="579"/>
+        <location filename="eis_listview_item.cpp" line="586"/>
         <source>complete</source>
         <translation>완료 유무</translation>
     </message>
     <message>
-        <location filename="eis_listview_item.cpp" line="588"/>
+        <location filename="eis_listview_item.cpp" line="595"/>
         <source>subname</source>
         <translation>제목</translation>
     </message>
@@ -745,13 +753,13 @@ PR두께</source>
     </message>
     <message>
         <location filename="eismain.ui" line="354"/>
-        <location filename="eismain.cpp" line="1368"/>
+        <location filename="eismain.cpp" line="1370"/>
         <source>O</source>
         <translation>유</translation>
     </message>
     <message>
         <location filename="eismain.ui" line="359"/>
-        <location filename="eismain.cpp" line="1370"/>
+        <location filename="eismain.cpp" line="1372"/>
         <source>X</source>
         <translation>무</translation>
     </message>
@@ -948,33 +956,33 @@ PR두께</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="64"/>
+        <location filename="eismain.cpp" line="67"/>
         <source>conntion false</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="471"/>
+        <location filename="eismain.cpp" line="474"/>
         <source>empty team_name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="477"/>
+        <location filename="eismain.cpp" line="480"/>
         <source>empty process</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="483"/>
-        <location filename="eismain.cpp" line="489"/>
+        <location filename="eismain.cpp" line="486"/>
+        <location filename="eismain.cpp" line="492"/>
         <source>empty facilities</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="495"/>
+        <location filename="eismain.cpp" line="498"/>
         <source>empty name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="502"/>
+        <location filename="eismain.cpp" line="505"/>
         <location filename="eismain.cpp" line="666"/>
         <source>empty document_name</source>
         <translation type="unfinished"></translation>
@@ -985,123 +993,123 @@ PR두께</source>
         <translation>등록 완료</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="788"/>
+        <location filename="eismain.cpp" line="781"/>
         <source>add complete1</source>
         <translation>등록 완료</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1039"/>
-        <location filename="eismain.cpp" line="1076"/>
+        <location filename="eismain.cpp" line="1041"/>
+        <location filename="eismain.cpp" line="1078"/>
         <source>Save File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1063"/>
-        <location filename="eismain.cpp" line="1100"/>
+        <location filename="eismain.cpp" line="1065"/>
+        <location filename="eismain.cpp" line="1102"/>
         <source>now open file ?
 </source>
         <translation>지금 바로 파일을 실행 하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1303"/>
+        <location filename="eismain.cpp" line="1305"/>
         <source>low</source>
         <translation>낮음</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1305"/>
+        <location filename="eismain.cpp" line="1307"/>
         <source>middle</source>
         <translation>중간</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1307"/>
+        <location filename="eismain.cpp" line="1309"/>
         <source>high</source>
         <translation>높음</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1309"/>
+        <location filename="eismain.cpp" line="1311"/>
         <source>very_high</source>
         <translation>최우선</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1474"/>
+        <location filename="eismain.cpp" line="1476"/>
         <source>Are you sure?
 </source>
         <translation>정말로 종료 하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1651"/>
-        <location filename="eismain.cpp" line="1673"/>
+        <location filename="eismain.cpp" line="1653"/>
+        <location filename="eismain.cpp" line="1675"/>
         <source>delete complete</source>
         <translation>삭제 완료</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="848"/>
-        <location filename="eismain.cpp" line="1221"/>
-        <location filename="eismain.cpp" line="1435"/>
+        <location filename="eismain.cpp" line="853"/>
+        <location filename="eismain.cpp" line="1223"/>
+        <location filename="eismain.cpp" line="1437"/>
         <source>have</source>
         <translation>유</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="850"/>
-        <location filename="eismain.cpp" line="1223"/>
-        <location filename="eismain.cpp" line="1437"/>
+        <location filename="eismain.cpp" line="855"/>
+        <location filename="eismain.cpp" line="1225"/>
+        <location filename="eismain.cpp" line="1439"/>
         <source>don&apos;t have</source>
         <translation>무</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1228"/>
+        <location filename="eismain.cpp" line="1230"/>
         <source>have sun</source>
         <translation>주간</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1230"/>
+        <location filename="eismain.cpp" line="1232"/>
         <source>don&apos;t have sun</source>
         <translation>야간</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="1246"/>
+        <location filename="eismain.cpp" line="1248"/>
         <source>no reslut</source>
         <translation>결과 없음</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="838"/>
-        <location filename="eismain.cpp" line="1425"/>
+        <location filename="eismain.cpp" line="843"/>
+        <location filename="eismain.cpp" line="1427"/>
         <source>team</source>
         <translation>부서</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="840"/>
-        <location filename="eismain.cpp" line="1427"/>
+        <location filename="eismain.cpp" line="845"/>
+        <location filename="eismain.cpp" line="1429"/>
         <source>process</source>
         <translation>공정</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="842"/>
-        <location filename="eismain.cpp" line="1429"/>
+        <location filename="eismain.cpp" line="847"/>
+        <location filename="eismain.cpp" line="1431"/>
         <source>facilities</source>
         <translation>설비</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="844"/>
-        <location filename="eismain.cpp" line="1431"/>
+        <location filename="eismain.cpp" line="849"/>
+        <location filename="eismain.cpp" line="1433"/>
         <source>witer_name</source>
         <translation>작성자</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="846"/>
-        <location filename="eismain.cpp" line="1433"/>
+        <location filename="eismain.cpp" line="851"/>
+        <location filename="eismain.cpp" line="1435"/>
         <source>change_have</source>
         <translation>변경점유무</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="852"/>
-        <location filename="eismain.cpp" line="1439"/>
+        <location filename="eismain.cpp" line="857"/>
+        <location filename="eismain.cpp" line="1441"/>
         <source>complete</source>
         <translation>완료 유무</translation>
     </message>
     <message>
-        <location filename="eismain.cpp" line="861"/>
-        <location filename="eismain.cpp" line="1448"/>
+        <location filename="eismain.cpp" line="866"/>
+        <location filename="eismain.cpp" line="1450"/>
         <source>subname</source>
         <translation>제목</translation>
     </message>
@@ -1223,7 +1231,11 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Gulim&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;업데이트 내용 &lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;다운로드후 바로 실행 기능을 추가 하였습니다&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;그림 버그 수정 &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;OI 시스템 업데이트(가동률 프로그램 )&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;첨부 버그 수정 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1280,69 +1292,74 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="171"/>
+        <location filename="mainwindow.ui" line="172"/>
         <source>IDIX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="176"/>
+        <location filename="mainwindow.ui" line="177"/>
         <source>일일 업무 보고</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="181"/>
+        <location filename="mainwindow.ui" line="182"/>
         <source>EIS</source>
         <translation>인폼시스템(EIS)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="186"/>
+        <location filename="mainwindow.ui" line="187"/>
         <source>message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="191"/>
+        <location filename="mainwindow.ui" line="192"/>
         <source>서버설정</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="196"/>
+        <location filename="mainwindow.ui" line="197"/>
         <source>V 1.1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="201"/>
+        <location filename="mainwindow.ui" line="202"/>
         <source>CVD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="206"/>
-        <location filename="mainwindow.ui" line="231"/>
+        <location filename="mainwindow.ui" line="207"/>
+        <location filename="mainwindow.ui" line="232"/>
         <source>에러분석기</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="211"/>
+        <location filename="mainwindow.ui" line="212"/>
         <source>TIME</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="216"/>
+        <location filename="mainwindow.ui" line="217"/>
         <source>한일진공</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="221"/>
+        <location filename="mainwindow.ui" line="222"/>
         <source>EVATEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="226"/>
+        <location filename="mainwindow.ui" line="227"/>
         <source>FAB 실시간 온도</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="236"/>
+        <location filename="mainwindow.ui" line="237"/>
         <source>Worst_search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="242"/>
+        <source>MES 브릿지 두께 그래프</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1378,6 +1395,74 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="b_visualization_test.ui" line="14"/>
         <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>bridge_chart_widget</name>
+    <message>
+        <location filename="bridge_chart_widget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bridge_chart_widget.ui" line="41"/>
+        <source>~</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bridge_chart_widget.ui" line="54"/>
+        <source>기간</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bridge_chart_widget.ui" line="64"/>
+        <source>검색</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bridge_chart_widget.ui" line="71"/>
+        <source>줌리셋</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bridge_chart_widget.ui" line="78"/>
+        <source>값보기</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bridge_chart_widget.cpp" line="56"/>
+        <source>name</source>
+        <translation>이름</translation>
+    </message>
+    <message>
+        <location filename="bridge_chart_widget.cpp" line="57"/>
+        <source>Time</source>
+        <translation>시간</translation>
+    </message>
+    <message>
+        <location filename="bridge_chart_widget.cpp" line="58"/>
+        <source>machine_name</source>
+        <translation>설비이름</translation>
+    </message>
+    <message>
+        <location filename="bridge_chart_widget.cpp" line="59"/>
+        <source>value1</source>
+        <translation>측정값</translation>
+    </message>
+    <message>
+        <location filename="bridge_chart_widget.cpp" line="60"/>
+        <source>CL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bridge_chart_widget.cpp" line="61"/>
+        <source>USL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bridge_chart_widget.cpp" line="62"/>
+        <source>LSL</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1603,28 +1688,28 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_alarmlistview_item.cpp" line="55"/>
+        <location filename="eis_alarmlistview_item.cpp" line="57"/>
         <source>conntion false</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_alarmlistview_item.cpp" line="352"/>
+        <location filename="eis_alarmlistview_item.cpp" line="362"/>
         <source>Save File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="eis_alarmlistview_item.cpp" line="376"/>
+        <location filename="eis_alarmlistview_item.cpp" line="386"/>
         <source>now open file ?
 </source>
         <translation>지금 바로 파일을 실행 하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="eis_alarmlistview_item.cpp" line="497"/>
+        <location filename="eis_alarmlistview_item.cpp" line="525"/>
         <source>modify complete</source>
         <translation>수정 완료</translation>
     </message>
     <message>
-        <location filename="eis_alarmlistview_item.cpp" line="660"/>
+        <location filename="eis_alarmlistview_item.cpp" line="687"/>
         <source>delete complete</source>
         <translation>삭제 완료</translation>
     </message>
@@ -1948,107 +2033,107 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.ui" line="20"/>
+        <location filename="operatingratio/operating_ratio_action.ui" line="28"/>
         <source>설비 종류</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.ui" line="44"/>
+        <location filename="operatingratio/operating_ratio_action.ui" line="52"/>
         <source>공정</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.ui" line="63"/>
+        <location filename="operatingratio/operating_ratio_action.ui" line="71"/>
         <source>성막</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.ui" line="68"/>
+        <location filename="operatingratio/operating_ratio_action.ui" line="76"/>
         <source>에칭</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.ui" line="73"/>
+        <location filename="operatingratio/operating_ratio_action.ui" line="81"/>
         <source>노광</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.ui" line="78"/>
-        <source>프로브</source>
+        <location filename="operatingratio/operating_ratio_action.ui" line="86"/>
+        <source>ALL 프로브</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.ui" line="92"/>
+        <location filename="operatingratio/operating_ratio_action.ui" line="100"/>
         <source>설비</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.ui" line="119"/>
+        <location filename="operatingratio/operating_ratio_action.ui" line="127"/>
         <source>설비 고장</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.ui" line="132"/>
+        <location filename="operatingratio/operating_ratio_action.ui" line="140"/>
         <source>순간 정지</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.ui" line="145"/>
+        <location filename="operatingratio/operating_ratio_action.ui" line="153"/>
         <source>품질 문제</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.ui" line="158"/>
+        <location filename="operatingratio/operating_ratio_action.ui" line="166"/>
         <source>기종 변경</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.ui" line="171"/>
+        <location filename="operatingratio/operating_ratio_action.ui" line="179"/>
         <source>정상가동</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.ui" line="184"/>
+        <location filename="operatingratio/operating_ratio_action.ui" line="192"/>
         <source>공정,설비 테스트</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.ui" line="197"/>
+        <location filename="operatingratio/operating_ratio_action.ui" line="205"/>
         <source>휴지</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.ui" line="210"/>
+        <location filename="operatingratio/operating_ratio_action.ui" line="218"/>
         <source>자재 품절</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.ui" line="223"/>
+        <location filename="operatingratio/operating_ratio_action.ui" line="231"/>
         <source>예방 정비</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.ui" line="230"/>
+        <location filename="operatingratio/operating_ratio_action.ui" line="238"/>
         <source>대기(재공,인력부족)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.cpp" line="33"/>
+        <location filename="operatingratio/operating_ratio_action.cpp" line="44"/>
         <source>deposition</source>
         <translation>성막</translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.cpp" line="34"/>
+        <location filename="operatingratio/operating_ratio_action.cpp" line="45"/>
         <source>light</source>
         <translation>노광</translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.cpp" line="35"/>
+        <location filename="operatingratio/operating_ratio_action.cpp" line="46"/>
         <source>eatching</source>
         <translation>에칭</translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_action.cpp" line="36"/>
+        <location filename="operatingratio/operating_ratio_action.cpp" line="47"/>
         <source>ALL probe</source>
         <translation>ALL 프로브</translation>
     </message>
@@ -2070,8 +2155,23 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="operatingratio/operating_ratio_main.ui" line="39"/>
-        <source>현황</source>
+        <location filename="operatingratio/operating_ratio_main.ui" line="42"/>
+        <source>노광</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="operatingratio/operating_ratio_main.ui" line="59"/>
+        <source>에칭</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="operatingratio/operating_ratio_main.ui" line="88"/>
+        <source>프로브</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="operatingratio/operating_ratio_main.ui" line="105"/>
+        <source>성막</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2171,73 +2271,91 @@ p, li { white-space: pre-wrap; }
     <name>worst_search_WLP_th</name>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="39"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1409"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1466"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1652"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1637"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1694"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1782"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1839"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2113"/>
         <source>workerfail(probe)</source>
         <translation>작업자파손(프로브)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="40"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1411"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1468"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1653"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1639"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1696"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1784"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1841"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2114"/>
         <source>workerfail(eatching)</source>
         <translation>작업자파손(에칭)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="41"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1413"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1470"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1654"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1641"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1698"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1786"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1843"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2115"/>
         <source>workerfail(light)</source>
         <translation>작업자파손(노광)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="42"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1415"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1472"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1655"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1643"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1700"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1788"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1845"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2116"/>
         <source>workerfail(deposition)</source>
         <translation>작업자파손(성막)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="43"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1417"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1474"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1656"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1645"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1702"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1790"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1847"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2117"/>
         <source>workerfail(output)</source>
         <translation>작업자파손(출하)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="45"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1419"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1476"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1648"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1647"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1704"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1792"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1849"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2109"/>
         <source>machinefail(probe)</source>
         <translation>설비파손(프로브)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="46"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1421"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1478"/>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="1649"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1706"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1794"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1851"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2110"/>
         <source>machinefail(eatching)</source>
         <translation>설비파손(에칭)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="47"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1423"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1480"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1650"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1651"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1708"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1796"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1853"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2111"/>
         <source>machinefail(light)</source>
         <translation>설비파손(노광)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="48"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1425"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1482"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1651"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1653"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1710"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1798"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1855"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2112"/>
         <source>machinefail(deposition)</source>
         <translation>설비파손(성막)</translation>
     </message>
@@ -2245,105 +2363,129 @@ p, li { white-space: pre-wrap; }
         <location filename="worksupport/worst_search_wlp_th.cpp" line="50"/>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="56"/>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="63"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1433"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1490"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1532"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1567"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1661"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1718"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1806"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1863"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1905"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1940"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1989"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2025"/>
         <source>paticle</source>
         <translation>이물</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="51"/>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="57"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1427"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1484"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1868"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1907"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1655"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1712"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1800"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1857"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2369"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2408"/>
         <source>padpaticle</source>
         <translation>패드이물</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="52"/>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="58"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1429"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1486"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1870"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1909"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1657"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1714"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1802"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1859"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2371"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2410"/>
         <source>etcpaticle</source>
         <translation>이외이물</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="53"/>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="59"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1431"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1488"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1872"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1911"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1659"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1716"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1804"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1861"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2373"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2412"/>
         <source>pattenpaticle</source>
         <translation>패턴이물</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="54"/>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="61"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1435"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1492"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1876"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1915"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1663"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1720"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1808"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1865"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2377"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2416"/>
         <source>brigit_pad_worst</source>
         <translation>브릿지PAD 불량</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="60"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1874"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1913"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2375"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2414"/>
         <source>sin_diseatching_worst</source>
         <translation>SiN 미에칭불량</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="64"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1540"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1575"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1913"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1948"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1997"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2033"/>
         <source>jobmiss(probe)</source>
         <translation>작업미스(프로브)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="65"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1536"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1571"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1909"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1944"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1993"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2029"/>
         <source>jobmiss(eatching)</source>
         <translation>작업미스(에칭)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="66"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1538"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1573"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1911"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1946"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1995"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2031"/>
         <source>jobmiss(light)</source>
         <translation>작업미스(노광)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="67"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1534"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1569"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1907"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1942"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1991"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2027"/>
         <source>jobmiss(deposition)</source>
         <translation>작업미스(성막)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="945"/>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="994"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1044"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1093"/>
         <source>lastprobe_vaild</source>
         <translation>최종 프로브</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="948"/>
         <location filename="worksupport/worst_search_wlp_th.cpp" line="997"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1149"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1162"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1174"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1232"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1245"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1257"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1857"/>
-        <location filename="worksupport/worst_search_wlp_th.cpp" line="1896"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1047"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1096"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1203"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1216"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1228"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1367"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1380"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="1392"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2358"/>
+        <location filename="worksupport/worst_search_wlp_th.cpp" line="2397"/>
         <source>exterior</source>
         <translation>최종외검</translation>
     </message>
@@ -2424,17 +2566,17 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="699"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="781"/>
         <source>workerfail(probe)</source>
         <translation>작업자파손(프로브)</translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="701"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="783"/>
         <source>workerfail(eatching)</source>
         <translation>작업자파손(에칭)</translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="703"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="785"/>
         <source>workerfail(light)</source>
         <translation>작업자파손(노광)</translation>
     </message>
@@ -2443,22 +2585,22 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">작업자파손(성막)</translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="707"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="789"/>
         <source>workerfail(output)</source>
         <translation>작업자파손(출하)</translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="691"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="773"/>
         <source>machinefail(probe)</source>
         <translation>설비파손(프로브)</translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="693"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="775"/>
         <source>machinefail(eatching)</source>
         <translation>설비파손(에칭)</translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="695"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="777"/>
         <source>machinefail(light)</source>
         <translation>설비파손(노광)</translation>
     </message>
@@ -2559,22 +2701,22 @@ p, li { white-space: pre-wrap; }
         <location filename="worksupport/worst_search_excel_main.cpp" line="356"/>
         <location filename="worksupport/worst_search_excel_main.cpp" line="384"/>
         <location filename="worksupport/worst_search_excel_main.cpp" line="435"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="586"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="792"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="827"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="903"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="948"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="962"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="975"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="988"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="1001"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="1010"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="1048"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="651"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="874"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="909"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="985"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1030"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1044"/>
         <location filename="worksupport/worst_search_excel_main.cpp" line="1057"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="1095"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1070"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1083"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1092"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1130"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1139"/>
         <location filename="worksupport/worst_search_excel_main.cpp" line="1177"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="1346"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="1389"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1315"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1538"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1581"/>
         <source>month</source>
         <translation>월</translation>
     </message>
@@ -2586,103 +2728,103 @@ p, li { white-space: pre-wrap; }
         <location filename="worksupport/worst_search_excel_main.cpp" line="271"/>
         <location filename="worksupport/worst_search_excel_main.cpp" line="283"/>
         <location filename="worksupport/worst_search_excel_main.cpp" line="448"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="518"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="587"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="834"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="907"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="948"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="962"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="975"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="988"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="1108"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="583"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="652"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="916"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="989"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1030"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1044"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1057"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1070"/>
         <location filename="worksupport/worst_search_excel_main.cpp" line="1190"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="1347"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="1390"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1328"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1539"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1582"/>
         <source>day</source>
         <translation>일</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_excel_main.cpp" line="200"/>
         <location filename="worksupport/worst_search_excel_main.cpp" line="221"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="837"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="858"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="911"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="932"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="919"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="940"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="993"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1014"/>
         <source>accmulate</source>
         <translation>누계</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_excel_main.cpp" line="214"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="851"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="925"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="933"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1007"/>
         <source>daily</source>
         <translation>일별</translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="697"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="779"/>
         <source>machinefail(deposition)</source>
         <translation>설비파손(성막)</translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="705"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="787"/>
         <source>workerfail(deposition)</source>
         <translation>작업자파손(성막)</translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="770"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="845"/>
         <location filename="worksupport/worst_search_excel_main.cpp" line="852"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="859"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="927"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="934"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="941"/>
         <source>WLP10worstrate</source>
         <translation>WLP10대불량율</translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="771"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="919"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="926"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="933"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="853"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1001"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1008"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1015"/>
         <source>WLP10worstrate_limit</source>
         <translation>WLP 한도생산 10대불량율</translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="772"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="854"/>
         <source>a_reworkhistory</source>
         <translation>재작업이력 양산</translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="773"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="855"/>
         <source>b_reworkhistory</source>
         <translation>재작업이력 한도</translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="774"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="856"/>
         <source>a_distoryhistory</source>
         <translation>파손이력 양산</translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="775"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="857"/>
         <source>b_distoryhistory</source>
         <translation>파손이력 한도</translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="776"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="858"/>
         <source>WLP_exteriorcheck</source>
         <translation>외관검사불량율 </translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="777"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="859"/>
         <source>exterior_limitproductvaild</source>
         <translation>한도생산외관검사불량율</translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="1491"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="1514"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1683"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1706"/>
         <source>open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="1493"/>
-        <location filename="worksupport/worst_search_excel_main.cpp" line="1516"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1685"/>
+        <location filename="worksupport/worst_search_excel_main.cpp" line="1708"/>
         <source>excel (*.xlsx)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2691,65 +2833,74 @@ p, li { white-space: pre-wrap; }
     <name>worst_search_th</name>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="40"/>
-        <location filename="worksupport/worst_search_th.cpp" line="938"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1438"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1089"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1193"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1760"/>
         <source>workerfail(probe)</source>
         <translation>작업자파손(프로브)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="41"/>
-        <location filename="worksupport/worst_search_th.cpp" line="940"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1439"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1091"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1195"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1761"/>
         <source>workerfail(eatching)</source>
         <translation>작업자파손(에칭)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="42"/>
-        <location filename="worksupport/worst_search_th.cpp" line="942"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1440"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1093"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1197"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1762"/>
         <source>workerfail(light)</source>
         <translation>작업자파손(노광)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="43"/>
-        <location filename="worksupport/worst_search_th.cpp" line="944"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1441"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1095"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1199"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1763"/>
         <source>workerfail(deposition)</source>
         <oldsource>workerfail(defect)</oldsource>
         <translation>작업자파손(성막)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="44"/>
-        <location filename="worksupport/worst_search_th.cpp" line="946"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1442"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1097"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1201"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1764"/>
         <source>workerfail(output)</source>
         <translation>작업자파손(출하)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="46"/>
-        <location filename="worksupport/worst_search_th.cpp" line="948"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1434"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1099"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1203"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1756"/>
         <source>machinefail(probe)</source>
         <translation>설비파손(프로브)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="47"/>
-        <location filename="worksupport/worst_search_th.cpp" line="950"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1435"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1101"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1205"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1757"/>
         <source>machinefail(eatching)</source>
         <translation>설비파손(에칭)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="48"/>
-        <location filename="worksupport/worst_search_th.cpp" line="952"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1436"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1103"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1207"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1758"/>
         <source>machinefail(light)</source>
         <translation>설비파손(노광)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="49"/>
-        <location filename="worksupport/worst_search_th.cpp" line="954"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1437"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1105"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1209"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1759"/>
         <source>machinefail(deposition)</source>
         <oldsource>machinefail(defect)</oldsource>
         <translation>설비파손(성막)</translation>
@@ -2758,115 +2909,132 @@ p, li { white-space: pre-wrap; }
         <location filename="worksupport/worst_search_th.cpp" line="51"/>
         <location filename="worksupport/worst_search_th.cpp" line="58"/>
         <location filename="worksupport/worst_search_th.cpp" line="69"/>
-        <location filename="worksupport/worst_search_th.cpp" line="962"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1032"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1113"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1217"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1287"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1352"/>
         <source>paticle</source>
         <translation>이물</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="52"/>
         <location filename="worksupport/worst_search_th.cpp" line="59"/>
-        <location filename="worksupport/worst_search_th.cpp" line="956"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1540"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1107"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1211"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1862"/>
         <source>padpaticle</source>
         <translation>패드이물</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="53"/>
         <location filename="worksupport/worst_search_th.cpp" line="60"/>
-        <location filename="worksupport/worst_search_th.cpp" line="958"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1542"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1109"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1213"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1864"/>
         <source>etcpaticle</source>
         <translation>이외이물</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="54"/>
         <location filename="worksupport/worst_search_th.cpp" line="61"/>
-        <location filename="worksupport/worst_search_th.cpp" line="960"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1544"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1111"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1215"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1866"/>
         <source>pattenpaticle</source>
         <translation>패턴이물</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="55"/>
         <location filename="worksupport/worst_search_th.cpp" line="62"/>
-        <location filename="worksupport/worst_search_th.cpp" line="964"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1546"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1115"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1219"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1868"/>
         <source>sin_diseatching_worst</source>
         <translation>SiN 미에칭불량</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="56"/>
         <location filename="worksupport/worst_search_th.cpp" line="63"/>
-        <location filename="worksupport/worst_search_th.cpp" line="966"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1548"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1117"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1221"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1870"/>
         <source>brigit_pad_worst</source>
         <translation>브릿지PAD 불량</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="65"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1040"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1295"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1360"/>
         <source>jobmiss(probe)</source>
         <translation>작업미스(프로브)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="66"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1036"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1291"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1356"/>
         <source>jobmiss(eatching)</source>
         <translation>작업미스(에칭)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="67"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1038"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1293"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1358"/>
         <source>jobmiss(light)</source>
         <translation>작업미스(노광)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="68"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1034"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1289"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1354"/>
         <source>jobmiss(deposition)</source>
         <oldsource>jobmiss(defect)</oldsource>
         <translation>작업미스(성막)</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="71"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1042"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1297"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1362"/>
         <source>metalcdhigh</source>
         <translation>Metal CD작음</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="72"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1044"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1299"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1364"/>
         <source>metalcdlow</source>
         <translation>Metal CD작음</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="73"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1046"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1301"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1366"/>
         <source>prcdhigh</source>
         <translation>PR CD큼</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="74"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1048"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1303"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1368"/>
         <source>prcdlow</source>
         <translation>PR CD작음</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="685"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1097"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1197"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1297"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1567"/>
+        <location filename="worksupport/worst_search_th.cpp" line="736"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1418"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1518"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1618"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1928"/>
         <source>lastprobe_vaild</source>
         <translation>최종 프로브</translation>
     </message>
     <message>
         <location filename="worksupport/worst_search_th.cpp" line="688"/>
-        <location filename="worksupport/worst_search_th.cpp" line="800"/>
-        <location filename="worksupport/worst_search_th.cpp" line="813"/>
-        <location filename="worksupport/worst_search_th.cpp" line="825"/>
-        <location filename="worksupport/worst_search_th.cpp" line="1529"/>
+        <location filename="worksupport/worst_search_th.cpp" line="739"/>
+        <location filename="worksupport/worst_search_th.cpp" line="848"/>
+        <location filename="worksupport/worst_search_th.cpp" line="861"/>
+        <location filename="worksupport/worst_search_th.cpp" line="873"/>
+        <location filename="worksupport/worst_search_th.cpp" line="1851"/>
         <source>exterior</source>
         <translation>최종외검</translation>
     </message>

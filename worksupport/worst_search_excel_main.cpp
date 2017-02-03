@@ -730,6 +730,23 @@ void worst_search_excel_main::slot_excel_work()
 
      exteriorcheck_cell = exteriorcheck_cell->querySubObject("EntireColumn");
      exteriorcheck_cell->setProperty("Hidden",false);
+//    장은지씨 물어 보고 작업
+//     exteriorcheck_cell = sheet_exteriorcheck->querySubObject("Cells(int,int)",18,exteriorcheck_colum)->querySubObject("end(int)",-4161);
+
+//     exteriorcheck_cell = exteriorcheck_cell->querySubObject("offset(int,int)",0,1);
+//     exteriorcheck_colum = exteriorcheck_cell->dynamicCall("Column").toInt();
+//     exteriorcheck_cell = sheet_exteriorcheck->querySubObject("Cells(int,int)",18,exteriorcheck_colum);
+//     exteriorcheck_cell->setProperty("Value",th->accumulate_exterior_pattenpaticle_vaild);
+//     exteriorcheck_cell = sheet_exteriorcheck->querySubObject("Cells(int,int)",19,exteriorcheck_colum);
+//     exteriorcheck_cell->setProperty("Value",th->accumulate_exterior_padpaticle_vaild);
+//     exteriorcheck_cell = sheet_exteriorcheck->querySubObject("Cells(int,int)",20,exteriorcheck_colum);
+//     exteriorcheck_cell->setProperty("Value",th->accumulate_exterior_sindiseatching_vaild);
+//     exteriorcheck_cell = sheet_exteriorcheck->querySubObject("Cells(int,int)",21,exteriorcheck_colum);
+//     exteriorcheck_cell->setProperty("Value",th->accumulate_exterior_etcpaticle_vaild);
+//     exteriorcheck_cell = sheet_exteriorcheck->querySubObject("Cells(int,int)",22,exteriorcheck_colum);
+//     exteriorcheck_cell->setProperty("Value",th->accumulate_exterior_brigitpadworst_vaild);
+
+
 
      QAxObject *destory_cell = sheet_destory->querySubObject("Cells(int,int)",26,2);
      i=2;

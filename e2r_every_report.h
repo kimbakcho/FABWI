@@ -11,7 +11,7 @@
 #include <qstring.h>
 #include <QMessageBox>
 
-
+#include <QDesktopServices>
 
 namespace Ui {
 class E2R_every_report;
@@ -61,6 +61,8 @@ private slots:
     void on_daily_pad_ashing_btn_clicked();
 
     void on_mesure_pr_cd_btn_clicked();
+
+    void on_Daily_Bridge_dongjin_btn_clicked();
 
 private:
     Ui::E2R_every_report *ui;

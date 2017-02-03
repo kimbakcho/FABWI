@@ -427,6 +427,12 @@ public:
     double exterior_etcpaticle_vaild;
     double exterior_brigitpadworst_vaild;
 
+    double accumulate_exterior_pattenpaticle_vaild;
+    double accumulate_exterior_padpaticle_vaild;
+    double accumulate_exterior_sindiseatching_vaild;
+    double accumulate_exterior_etcpaticle_vaild;
+    double accumulate_exterior_brigitpadworst_vaild;
+
 
     QVector<product_item *> item_vector;
     QDate getSelect_date() const;

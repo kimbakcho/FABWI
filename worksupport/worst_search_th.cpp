@@ -877,6 +877,47 @@ void worst_search_th::run()
     probe_sum = ms_query.value("PROBE_INSP_SUM").toDouble();
 
     exterior_worst_count = defect_sum+rework_sum+probe_sum;
+    //누적
+//    DEFECT_QTY_SUM_query = QString("SELECT SUM(DEFECT_QTY) DEFECT_SUM "
+//                                           "FROM [V_FAB_DEFECT_LOTS] "
+//                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+//                                           "AND LOT_TYPE = 'A' "
+//                                           "AND MATERIAL_GROUP = 'CSP' "
+//                                           "AND OPERATION_SHORT_NAME = '%3' "
+//                                           "AND REPROCESS_FLAG = 'N' "
+//                                           "AND EXCLUDE_YIELD_FLAG <> 'Y';")
+//                                           .arg(accumulate_start_date_str).arg(end_date_str).arg(tr("exterior"));
+//    emit sig_debug_output(DEFECT_QTY_SUM_query);
+//    ms_query.exec(DEFECT_QTY_SUM_query);
+
+//    ms_query.next();
+//    defect_sum = ms_query.value("DEFECT_SUM").toDouble();
+
+//    REWORK_SUM_query = QString("SELECT SUM(REWORK_CHIP_QTY)REWORK_SUM "
+//                                           "FROM [V_FAB_REWORK_LOTS] "
+//                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+//                                           "AND LOT_TYPE = 'A' "
+//                                           "AND OPERATION_SHORT_NAME = '%3' "
+//                                           "AND MATERIAL_GROUP = 'CSP';")
+//                                           .arg(accumulate_start_date_str).arg(end_date_str).arg(tr("exterior"));
+//    emit sig_debug_output(REWORK_SUM_query);
+//    ms_query.exec(REWORK_SUM_query);
+//    ms_query.next();
+//    rework_sum = ms_query.value("REWORK_SUM").toDouble();
+
+//    PROBE_SUM_query = QString("SELECT SUM(PROBE_INSP_QTY) PROBE_INSP_SUM "
+//                                           "FROM [V_FAB_PROBE_INSP_LOTS] "
+//                                           "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+//                                           "AND LOT_TYPE = 'A' "
+//                                           "AND OPERATION_SHORT_NAME = '%3' "
+//                                           "AND MATERIAL_GROUP = 'CSP';")
+//                                           .arg(accumulate_start_date_str).arg(end_date_str).arg(tr("exterior"));
+//    emit sig_debug_output(PROBE_SUM_query);
+//    ms_query.exec(PROBE_SUM_query);
+//    ms_query.next();
+//    probe_sum = ms_query.value("PROBE_INSP_SUM").toDouble();
+
+//    accumulate_exterior_worst_count = defect_sum+rework_sum+probe_sum;
 
 
 
@@ -1835,6 +1876,45 @@ void worst_search_th::run()
 #else
 
 #endif
+////누적
+//#ifdef REAL_QUERY
+//    for(int i=0;i<EXTERIOR_DEFECT_ITEM_LIST.count();i++){
+//        QString exterior_txt = QString("SELECT SUM(DEFECT_QTY)DEFECT_SUM "
+//                                       "FROM [V_FAB_DEFECT_LOTS] "
+//                                       "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+//                                       "AND LOT_TYPE = 'A' "
+//                                       "AND MATERIAL_GROUP = 'CSP' "
+//                                       "AND EXCLUDE_YIELD_FLAG <> 'Y' "
+//                                       "AND OPERATION_SHORT_NAME = '%3' "
+//                                       "AND REPROCESS_FLAG = 'N' "
+//                                       "AND DEFECT_NAME = '%4';").arg(accumulate_start_date_str).arg(end_date_str).arg(tr("exterior")).arg(EXTERIOR_DEFECT_ITEM_LIST.at(i));
+//          ms_query.exec(exterior_txt);
+//          emit sig_debug_output(exterior_txt);
+//          if(ms_query.next()){
+//              int count = ms_query.value("DEFECT_SUM").toInt();
+//              double vaild_rate;
+//              double temp1 = 100.0-accumulate_exterior_vaild;
+//              double temp2 = accumulate_exterior_worst_count;
+//              if(count!=0){
+//                  vaild_rate = ((count/temp2)*temp1);
+
+//                   if(EXTERIOR_DEFECT_ITEM_LIST.at(i)==tr("padpaticle")){
+//                        accumulate_exterior_padpaticle_vaild = vaild_rate;
+//                   }else if(EXTERIOR_DEFECT_ITEM_LIST.at(i)==tr("etcpaticle")){
+//                        accumulate_exterior_etcpaticle_vaild = vaild_rate;
+//                   }else if(EXTERIOR_DEFECT_ITEM_LIST.at(i)==tr("pattenpaticle")){
+//                        accumulate_exterior_pattenpaticle_vaild = vaild_rate;
+//                   }else if(EXTERIOR_DEFECT_ITEM_LIST.at(i)==tr("sin_diseatching_worst")){
+//                        accumulate_exterior_sindiseatching_vaild = vaild_rate;
+//                   }else if(EXTERIOR_DEFECT_ITEM_LIST.at(i)==tr("brigit_pad_worst")){
+//                        accumulate_exterior_brigitpadworst_vaild = vaild_rate;
+//                   }
+//              }
+//          }
+//    }
+//#else
+
+//#endif
 #ifdef REAL_QUERY
     for(int i=0;i<CSP_LIMIT_PRODUCT_LIST.count();i++){
         QString CSP_limit_product_query = QString("SELECT SUM(INPUT_QTY)INPUT_SUM,SUM(OUTPUT_QTY)OUTPUT_SUM "

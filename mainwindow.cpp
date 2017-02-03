@@ -198,3 +198,9 @@ void MainWindow::on_action_nikon_err_time_triggered()
     nikon_time_log *analysor = new nikon_time_log();
     analysor->show();
 }
+
+void MainWindow::on_actionMES_bridge_chart_triggered()
+{
+    bridge_chart_widget *bridgewidget = new bridge_chart_widget();
+    bridgewidget->show();
+}

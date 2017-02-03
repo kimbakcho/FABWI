@@ -24,7 +24,8 @@ E2R_every_report::E2R_every_report(QWidget *parent) :
     QString sungmak_day_path = settings.value("sungmak_day_path").toString();
     QString uniformity_ckeck_path = settings.value("uniformity_ckeck_path").toString();
     QString daily_gap_path = settings.value("daily_gap_path").toString();
-    QString Daily_Bridge_path = settings.value("Daily_Bridge_path").toString();
+    QString Daily_Bridge_dongjin_path = settings.value("Daily_Bridge_path").toString();
+    QString Daily_Bridge_path = settings.value("Daily_Bridge_dongjin_path").toString();
     QString Daily_pad_path = settings.value("Daily_pad_path").toString();
     QString daily_pad_ashing_path = settings.value("daily_pad_ashing_path").toString();
     QString mesure_pr_cd_path = settings.value("mesure_pr_cd_path").toString();
@@ -42,6 +43,7 @@ E2R_every_report::E2R_every_report(QWidget *parent) :
     ui->uniformity_ckeck_path->setText(uniformity_ckeck_path);
     ui->daily_gap_path->setText(daily_gap_path);
     ui->Daily_Bridge_path->setText(Daily_Bridge_path);
+    ui->Daily_Bridge_dongjin_path->setText(Daily_Bridge_dongjin_path);
     ui->Daily_pad_path->setText(Daily_pad_path);
     ui->daily_pad_ashing_path->setText(daily_pad_ashing_path);
     ui->mesure_pr_cd_path->setText(mesure_pr_cd_path);
@@ -145,6 +147,12 @@ void E2R_every_report::on_export_btn_clicked()
       copypath = ui->export_path_edit->text() +"/"+ filename;
       file.copy(copypath);
 
+      file.setFileName(ui->Daily_Bridge_dongjin_path->text());
+      filename = ui->Daily_Bridge_dongjin_path->text().split('/').last();
+      copypath = ui->export_path_edit->text() +"/"+ filename;
+      file.copy(copypath);
+
+
       file.setFileName(ui->Daily_pad_path->text());
       filename = ui->Daily_pad_path->text().split('/').last();
       copypath = ui->export_path_edit->text() +"/"+ filename;
@@ -183,6 +191,8 @@ void E2R_every_report::on_export_btn_clicked()
           msgbox.setText("complete.");
           msgbox.exec();
       }
+      QString openfile_name  = QString("%1%2").arg("file:///").arg(copypath);
+      QDesktopServices::openUrl(openfile_name);
 }
 /**
  * @brief E2R_every_report::on_export_path_btn_clicked
@@ -388,7 +398,23 @@ void E2R_every_report::on_Daily_Bridge_btn_clicked()
     settings.setValue("Daily_Bridge_path",path);
     settings.endGroup();
 }
-
+void E2R_every_report::on_Daily_Bridge_dongjin_btn_clicked()
+{
+    QFileDialog dialog(this);
+    dialog.setNameFilter(tr("excelfile (*.xlsx *.xls)"));
+    dialog.setFileMode(QFileDialog::ExistingFile);\
+    dialog.exec();
+    QStringList fileselect = dialog.selectedFiles();
+    QString path ="";
+    if(!fileselect.isEmpty()){
+        path=fileselect.first();
+        ui->Daily_Bridge_dongjin_path->setText(fileselect.first());
+    }
+    QSettings settings(configini_str,QSettings::IniFormat);
+    settings.beginGroup("path");
+    settings.setValue("Daily_Bridge_dongjin_path",path);
+    settings.endGroup();
+}
 void E2R_every_report::on_Daily_pad_btn_clicked()
 {
     QFileDialog dialog(this);
@@ -442,3 +468,5 @@ void E2R_every_report::on_mesure_pr_cd_btn_clicked()
     settings.setValue("mesure_pr_cd_path",path);
     settings.endGroup();
 }
+
+

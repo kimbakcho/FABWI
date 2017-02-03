@@ -18,6 +18,7 @@
 #include <worksupport/worst_search_excel_main.h>
 #include <logsrc/nikon_time_log.h>
 #include <operatingratio/operating_ratio_main.h>
+#include <bridge_chart/bridge_chart_widget.h>
 namespace Ui {
 class MainWindow;
 }
@@ -65,6 +66,8 @@ private slots:
     void on_OI_startup_clicked();
 
     void on_action_nikon_err_time_triggered();
+
+    void on_actionMES_bridge_chart_triggered();
 
 private:
     void closeEvent(QCloseEvent *event);

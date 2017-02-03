@@ -150,6 +150,7 @@
     <addaction name="menuNikon"/>
     <addaction name="menu_6"/>
     <addaction name="menuASML"/>
+    <addaction name="actionMES_bridge_chart"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
@@ -234,6 +235,11 @@
   <action name="action_worst_serarch">
    <property name="text">
     <string>Worst_search</string>
+   </property>
+  </action>
+  <action name="actionMES_bridge_chart">
+   <property name="text">
+    <string>MES 브릿지 두께 그래프</string>
    </property>
   </action>
  </widget>
