@@ -64,6 +64,16 @@ private slots:
 
     void on_Daily_Bridge_dongjin_btn_clicked();
 
+    void on_machine_kind_pad_btn_clicked();
+
+    void on_Opti_probe_daily_check_sheet_btn_clicked();
+
+    void on_XRF_Moniter_btn_clicked();
+
+    void on_CD_SEM_1_2_3_WRM_btn_clicked();
+
+    void on_dongjin_bridge_tickness_btn_clicked();
+
 private:
     Ui::E2R_every_report *ui;
 };

@@ -2306,44 +2306,44 @@ void worst_search_WLP_th::run()
 #else
 #endif
 
-//#ifdef REAL_QUERY_WLP
-//    for(int i=0;i<EXTERIOR_DEFECT_ITEM_LIST.count();i++){
-//        QString exterior_txt = QString("SELECT SUM(DEFECT_QTY)DEFECT_SUM "
-//                                       "FROM [V_FAB_DEFECT_LOTS] "
-//                                       "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
-//                                       "AND LOT_TYPE = 'A' "
-//                                       "AND MATERIAL_GROUP = 'WLP' "
-//                                       "AND EXCLUDE_YIELD_FLAG <> 'Y' "
-//                                       "AND REPROCESS_FLAG = 'N' "
-//                                       "AND OPERATION_SHORT_NAME = '%3' "
-//                                       "AND DEFECT_NAME = '%4';").arg(start_date_str).arg(end_date_str).arg(tr("exterior")).arg(EXTERIOR_DEFECT_ITEM_LIST.at(i));
-//          ms_query.exec(exterior_txt);
-//          emit sig_debug_output(exterior_txt);
-//          if(ms_query.next()){
-//              int count = ms_query.value("DEFECT_SUM").toInt();
-//              double vaild_rate;
-//              double temp1 = 100.0-exterior_vaild;
-//              double temp2 = exterior_worst_count;
-//              if(count!=0){
-//                  vaild_rate = ((count/temp2)*temp1);
+#ifdef REAL_QUERY_WLP
+    for(int i=0;i<EXTERIOR_DEFECT_ITEM_LIST.count();i++){
+        QString exterior_txt = QString("SELECT SUM(DEFECT_QTY)DEFECT_SUM "
+                                       "FROM [V_FAB_DEFECT_LOTS] "
+                                       "WHERE MOVEOUT_DTTM BETWEEN '%1' AND '%2' "
+                                       "AND LOT_TYPE = 'A' "
+                                       "AND MATERIAL_GROUP = 'WLP' "
+                                       "AND EXCLUDE_YIELD_FLAG <> 'Y' "
+                                       "AND REPROCESS_FLAG = 'N' "
+                                       "AND OPERATION_SHORT_NAME = '%3' "
+                                       "AND DEFECT_NAME = '%4';").arg(start_date_str).arg(end_date_str).arg(tr("exterior")).arg(EXTERIOR_DEFECT_ITEM_LIST.at(i));
+          ms_query.exec(exterior_txt);
+          emit sig_debug_output(exterior_txt);
+          if(ms_query.next()){
+              int count = ms_query.value("DEFECT_SUM").toInt();
+              double vaild_rate;
+              double temp1 = 100.0-exterior_vaild;
+              double temp2 = exterior_worst_count;
+              if(count!=0){
+                  vaild_rate = ((count/temp2)*temp1);
 
-//                   if(EXTERIOR_DEFECT_ITEM_LIST.at(i)==tr("padpaticle")){
-//                        exterior_padpaticle_vaild = vaild_rate;
-//                   }else if(EXTERIOR_DEFECT_ITEM_LIST.at(i)==tr("etcpaticle")){
-//                        exterior_etcpaticle_vaild = vaild_rate;
-//                   }else if(EXTERIOR_DEFECT_ITEM_LIST.at(i)==tr("pattenpaticle")){
-//                        exterior_pattenpaticle_vaild = vaild_rate;
-//                   }else if(EXTERIOR_DEFECT_ITEM_LIST.at(i)==tr("sin_diseatching_worst")){
-//                        exterior_sindiseatching_vaild = vaild_rate;
-//                   }else if(EXTERIOR_DEFECT_ITEM_LIST.at(i)==tr("brigit_pad_worst")){
-//                        exterior_brigitpadworst_vaild = vaild_rate;
-//                   }
-//              }
-//          }
-//    }
-//#else
+                   if(EXTERIOR_DEFECT_ITEM_LIST.at(i)==tr("padpaticle")){
+                        exterior_padpaticle_vaild = vaild_rate;
+                   }else if(EXTERIOR_DEFECT_ITEM_LIST.at(i)==tr("etcpaticle")){
+                        exterior_etcpaticle_vaild = vaild_rate;
+                   }else if(EXTERIOR_DEFECT_ITEM_LIST.at(i)==tr("pattenpaticle")){
+                        exterior_pattenpaticle_vaild = vaild_rate;
+                   }else if(EXTERIOR_DEFECT_ITEM_LIST.at(i)==tr("sin_diseatching_worst")){
+                        exterior_sindiseatching_vaild = vaild_rate;
+                   }else if(EXTERIOR_DEFECT_ITEM_LIST.at(i)==tr("brigit_pad_worst")){
+                        exterior_brigitpadworst_vaild = vaild_rate;
+                   }
+              }
+          }
+    }
+#else
 
-//#endif
+#endif
 //누적
 #ifdef REAL_QUERY_WLP
     for(int i=0;i<EXTERIOR_DEFECT_ITEM_LIST.count();i++){

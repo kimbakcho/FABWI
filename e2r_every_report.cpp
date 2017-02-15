@@ -24,12 +24,16 @@ E2R_every_report::E2R_every_report(QWidget *parent) :
     QString sungmak_day_path = settings.value("sungmak_day_path").toString();
     QString uniformity_ckeck_path = settings.value("uniformity_ckeck_path").toString();
     QString daily_gap_path = settings.value("daily_gap_path").toString();
-    QString Daily_Bridge_dongjin_path = settings.value("Daily_Bridge_path").toString();
-    QString Daily_Bridge_path = settings.value("Daily_Bridge_dongjin_path").toString();
+    QString Daily_Bridge_dongjin_path = settings.value("Daily_Bridge_dongjin_path").toString();
+    QString Daily_Bridge_path = settings.value("Daily_Bridge_path").toString();
     QString Daily_pad_path = settings.value("Daily_pad_path").toString();
     QString daily_pad_ashing_path = settings.value("daily_pad_ashing_path").toString();
     QString mesure_pr_cd_path = settings.value("mesure_pr_cd_path").toString();
-
+    QString machine_kind_pad_path = settings.value("machine_kind_pad").toString();
+    QString Opti_probe_daily_check_sheet_path = settings.value("Opti_probe_daily_check_sheet").toString();
+    QString XRF_Moniter_path = settings.value("XRF_Moniter").toString();
+    QString CD_SEM_1_2_3_WRM_path = settings.value("CD_SEM_1_2_3_WRM").toString();
+    QString dongjin_bridge_tickness_path = settings.value("dongjin_bridge_tickness").toString();
     settings.endGroup();
     ui->export_path_edit->setText(export_path);
     ui->ICP_Etch_rate_path->setText(ICP_Etch_rate_path);
@@ -47,6 +51,11 @@ E2R_every_report::E2R_every_report(QWidget *parent) :
     ui->Daily_pad_path->setText(Daily_pad_path);
     ui->daily_pad_ashing_path->setText(daily_pad_ashing_path);
     ui->mesure_pr_cd_path->setText(mesure_pr_cd_path);
+    ui->machine_kind_pad->setText(machine_kind_pad_path);
+    ui->Opti_probe_daily_check_sheet->setText(Opti_probe_daily_check_sheet_path);
+    ui->XRF_Moniter->setText(XRF_Moniter_path);
+    ui->CD_SEM_1_2_3_WRM->setText(CD_SEM_1_2_3_WRM_path);
+    ui->dongjin_bridge_tickness->setText(dongjin_bridge_tickness_path);
 
 
 }
@@ -172,6 +181,32 @@ void E2R_every_report::on_export_btn_clicked()
       filename = ui->mesure_pr_cd_path->text().split('/').last();
       copypath = ui->export_path_edit->text() +"/"+ filename;
       file.copy(copypath);
+
+      file.setFileName(ui->machine_kind_pad->text());
+      filename = ui->machine_kind_pad->text().split('/').last();
+      copypath = ui->export_path_edit->text() +"/"+ filename;
+      file.copy(copypath);
+
+      file.setFileName(ui->Opti_probe_daily_check_sheet->text());
+      filename = ui->Opti_probe_daily_check_sheet->text().split('/').last();
+      copypath = ui->export_path_edit->text() +"/"+ filename;
+      file.copy(copypath);
+
+      file.setFileName(ui->XRF_Moniter->text());
+      filename = ui->XRF_Moniter->text().split('/').last();
+      copypath = ui->export_path_edit->text() +"/"+ filename;
+      file.copy(copypath);
+
+      file.setFileName(ui->CD_SEM_1_2_3_WRM->text());
+      filename = ui->CD_SEM_1_2_3_WRM->text().split('/').last();
+      copypath = ui->export_path_edit->text() +"/"+ filename;
+      file.copy(copypath);
+
+      file.setFileName(ui->dongjin_bridge_tickness->text());
+      filename = ui->dongjin_bridge_tickness->text().split('/').last();
+      copypath = ui->export_path_edit->text() +"/"+ filename;
+      file.copy(copypath);
+
       mesure_pr_cd_path = copypath;
 
       file.setFileName(qApp->applicationDirPath()+"/chart_report_total.xlsm");
@@ -470,3 +505,93 @@ void E2R_every_report::on_mesure_pr_cd_btn_clicked()
 }
 
 
+
+void E2R_every_report::on_machine_kind_pad_btn_clicked()
+{
+    QFileDialog dialog(this);
+    dialog.setNameFilter(tr("excelfile (*.xlsx *.xls)"));
+    dialog.setFileMode(QFileDialog::ExistingFile);\
+    dialog.exec();
+    QStringList fileselect = dialog.selectedFiles();
+    QString path ="";
+    if(!fileselect.isEmpty()){
+        path=fileselect.first();
+        ui->machine_kind_pad->setText(fileselect.first());
+    }
+    QSettings settings(configini_str,QSettings::IniFormat);
+    settings.beginGroup("path");
+    settings.setValue("machine_kind_pad",path);
+    settings.endGroup();
+}
+
+void E2R_every_report::on_Opti_probe_daily_check_sheet_btn_clicked()
+{
+    QFileDialog dialog(this);
+    dialog.setNameFilter(tr("excelfile (*.xlsx *.xls)"));
+    dialog.setFileMode(QFileDialog::ExistingFile);\
+    dialog.exec();
+    QStringList fileselect = dialog.selectedFiles();
+    QString path ="";
+    if(!fileselect.isEmpty()){
+        path=fileselect.first();
+        ui->Opti_probe_daily_check_sheet->setText(fileselect.first());
+    }
+    QSettings settings(configini_str,QSettings::IniFormat);
+    settings.beginGroup("path");
+    settings.setValue("Opti_probe_daily_check_sheet",path);
+    settings.endGroup();
+}
+
+void E2R_every_report::on_XRF_Moniter_btn_clicked()
+{
+    QFileDialog dialog(this);
+    dialog.setNameFilter(tr("excelfile (*.xlsx *.xls)"));
+    dialog.setFileMode(QFileDialog::ExistingFile);\
+    dialog.exec();
+    QStringList fileselect = dialog.selectedFiles();
+    QString path ="";
+    if(!fileselect.isEmpty()){
+        path=fileselect.first();
+        ui->XRF_Moniter->setText(fileselect.first());
+    }
+    QSettings settings(configini_str,QSettings::IniFormat);
+    settings.beginGroup("path");
+    settings.setValue("XRF_Moniter",path);
+    settings.endGroup();
+}
+
+void E2R_every_report::on_CD_SEM_1_2_3_WRM_btn_clicked()
+{
+    QFileDialog dialog(this);
+    dialog.setNameFilter(tr("excelfile (*.xlsx *.xls)"));
+    dialog.setFileMode(QFileDialog::ExistingFile);\
+    dialog.exec();
+    QStringList fileselect = dialog.selectedFiles();
+    QString path ="";
+    if(!fileselect.isEmpty()){
+        path=fileselect.first();
+        ui->CD_SEM_1_2_3_WRM->setText(fileselect.first());
+    }
+    QSettings settings(configini_str,QSettings::IniFormat);
+    settings.beginGroup("path");
+    settings.setValue("CD_SEM_1_2_3_WRM",path);
+    settings.endGroup();
+}
+
+void E2R_every_report::on_dongjin_bridge_tickness_btn_clicked()
+{
+    QFileDialog dialog(this);
+    dialog.setNameFilter(tr("excelfile (*.xlsx *.xls)"));
+    dialog.setFileMode(QFileDialog::ExistingFile);\
+    dialog.exec();
+    QStringList fileselect = dialog.selectedFiles();
+    QString path ="";
+    if(!fileselect.isEmpty()){
+        path=fileselect.first();
+        ui->dongjin_bridge_tickness->setText(fileselect.first());
+    }
+    QSettings settings(configini_str,QSettings::IniFormat);
+    settings.beginGroup("path");
+    settings.setValue("dongjin_bridge_tickness",path);
+    settings.endGroup();
+}
