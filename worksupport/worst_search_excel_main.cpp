@@ -103,11 +103,13 @@ void worst_search_excel_main::on_start_btn_clicked()
             return;
         }
     }
+    if(ui->LE_filepath->text() != ""){
     worst_search_th *th = new worst_search_th();
     th->setSelect_date(ui->select_data->date());
     th->start();
     connect(th,SIGNAL(sig_excel_work()),this,SLOT(slot_excel_work()));
     connect(th,SIGNAL(sig_debug_output(QString)),this,SLOT(slot_debug_output(QString)));
+    }
     if(ui->LE_WLP_filepath->text() != ""){
     worst_search_WLP_th *th_WLP = new worst_search_WLP_th();
     th_WLP->setSelect_date(ui->select_data->date());
