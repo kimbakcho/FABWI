@@ -71,7 +71,8 @@ SOURCES += main.cpp\
     oistystemsoap/stdsoap2.cpp \
     bridge_chart/bridge_chart.cpp \
     bridge_chart/bridge_chart_widget.cpp \
-    bridge_chart/bridge_chartview.cpp
+    bridge_chart/bridge_chartview.cpp \
+    searchlist_table_widget.cpp
 
 
 
@@ -131,7 +132,8 @@ HEADERS  += mainwindow.h \
     oistystemsoap/stdsoap2.h \
     bridge_chart/bridge_chart.h \
     bridge_chart/bridge_chart_widget.h \
-    bridge_chart/bridge_chartview.h
+    bridge_chart/bridge_chartview.h \
+    searchlist_table_widget.h
 
 
 

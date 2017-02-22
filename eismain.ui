@@ -371,7 +371,7 @@
             </widget>
            </item>
            <item row="11" column="0" colspan="3">
-            <widget class="QTableWidget" name="search_listview">
+            <widget class="searchlist_table_widget" name="search_listview">
              <property name="dragDropMode">
               <enum>QAbstractItemView::NoDragDrop</enum>
              </property>
@@ -1633,6 +1633,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>searchlist_table_widget</class>
+   <extends>QTableWidget</extends>
+   <header>searchlist_table_widget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
