@@ -863,8 +863,8 @@ void worst_search_excel_main::slot_excel_WLP_work()
     QAxObject *sheet_limitproductvaild = workbook->querySubObject( "Worksheets(QString)",tr("exterior_limitproductvaild"));
 
 
-    if(ui->select_data->date().day()== 1){  //매월 1일 초기화 작업
-        //WLP 10대 불량율
+    if(ui->select_data->date().day()== 1){
+
         QAxObject *insert_cell;
         QAxObject *select_cell= sheet_wlp10->querySubObject("Cells(int,int)",27,16000);
         QAxObject *select_cell1;
@@ -872,8 +872,15 @@ void worst_search_excel_main::slot_excel_WLP_work()
         select_cell = select_cell->querySubObject("end(int)",-4159);
         select_cell = select_cell->querySubObject("end(int)",-4159);
         select_cell = select_cell->querySubObject("offset(int,int)",0,1);
+
+
+
+
         insert_cell = select_cell->querySubObject("EntireColumn()");
         insert_cell->dynamicCall("Insert(int,int)",-4161,0);
+
+
+
         select_cell = select_cell->querySubObject("offset(int,int)",0,-1);
         QString temp_month = QString("%1%2").arg(ui->select_data->date().addMonths(-1).month()).arg(tr("month"));
         select_cell->setProperty("Value",temp_month);
@@ -1019,6 +1026,7 @@ void worst_search_excel_main::slot_excel_WLP_work()
         SeriesCollection->setProperty("Values",QString("='%1'!%2:%3").arg(tr("WLP10worstrate_limit")).arg(chart_excel_start_address).arg(chart_excel_end_address));
 
         //재작업 양산 시트 초기화
+
         QAxObject *select_cell5 = sheet_rework->querySubObject("Cells(int,int)",2,1);
         select_cell5->dynamicCall("AutoFilter(int)",1);
 
@@ -1046,7 +1054,9 @@ void worst_search_excel_main::slot_excel_WLP_work()
         select_cell5->dynamicCall("ClearFormats");
         select_cell5 = sheet_b_rework->querySubObject("Cells(int,int)",1,1)->querySubObject("EntireColumn");
         select_cell5->setProperty("NumberFormat",QString("m%1 d%2").arg(tr("month")).arg(tr("day")));
+
         //파손 양손 시트 초기화
+
         QAxObject *select_cell6 = sheet_destoryhistory->querySubObject("Cells(int,int)",2,1);
         select_cell6->dynamicCall("AutoFilter(int)",1);
         select_cell6 = sheet_destoryhistory->querySubObject("Cells(int,int)",2,1);
@@ -1075,6 +1085,7 @@ void worst_search_excel_main::slot_excel_WLP_work()
 
 
         //외관검사불량율
+
         QAxObject *select_cell7 = sheet_exteriorcheck->querySubObject("Cells(int,int)",17,2);
         QAxObject *select_cell8;
         QAxObject *select_cell9;
@@ -1175,6 +1186,7 @@ void worst_search_excel_main::slot_excel_WLP_work()
     }
 
     //WLP 10대불량율
+
     QAxObject *modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",26,2);
 
     modify_cell = modify_cell->querySubObject("end(int)",-4161);
@@ -1258,7 +1270,9 @@ void worst_search_excel_main::slot_excel_WLP_work()
 
     modify_cell = modify_cell->querySubObject("EntireColumn");
     modify_cell->setProperty("Hidden",false);
+
     //누적
+
     modify_cell = sheet_wlp10->querySubObject("Cells(int,int)",28,cellcolumn);
     modify_cell = modify_cell->querySubObject("end(int)",-4161);
     cellcolumn = modify_cell->dynamicCall("Column()").toInt();
@@ -1313,6 +1327,7 @@ void worst_search_excel_main::slot_excel_WLP_work()
     modify_cell->setProperty("Hidden",false);
 
     //WLP 한도생산 10대불량율
+
     modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",26,2);
 
     modify_cell = modify_cell->querySubObject("end(int)",-4161);
@@ -1399,6 +1414,7 @@ void worst_search_excel_main::slot_excel_WLP_work()
     modify_cell->setProperty("Value",th->getB_accumulate_totalvild());
 
     //누적
+
     modify_cell = sheet_wlp10_limit->querySubObject("Cells(int,int)",28,cellcolumn);
     modify_cell = modify_cell->querySubObject("end(int)",-4161);
     cellcolumn = modify_cell->dynamicCall("Column()").toInt();
@@ -1452,6 +1468,7 @@ void worst_search_excel_main::slot_excel_WLP_work()
 
 
     //외관 검사 불량률
+
     modify_cell = sheet_exteriorcheck->querySubObject("Cells(int,int)",17,2);
     i = 2;
     while(true){
@@ -1477,6 +1494,7 @@ void worst_search_excel_main::slot_excel_WLP_work()
     exteriorcheck_cell->setProperty("Hidden",false);
 
     //한도생산외관검사불량율
+
     modify_cell = sheet_limitproductvaild->querySubObject("Cells(int,int)",17,2);
     i = 2;
     while(true){
@@ -1500,7 +1518,9 @@ void worst_search_excel_main::slot_excel_WLP_work()
 
     exteriorcheck_cell = exteriorcheck_cell->querySubObject("EntireColumn");
     exteriorcheck_cell->setProperty("Hidden",false);
+
     //재작업이력_양산
+
     modify_cell =  sheet_rework->querySubObject("Cells(int,int)",1,1)->querySubObject("resize(int,int)",193,15);
     modify_cell->dynamicCall("AutoFilter(int)",1);
 
@@ -1545,6 +1565,7 @@ void worst_search_excel_main::slot_excel_WLP_work()
      modify_cell->dynamicCall("AutoFilter(int,QString,int)",1,selection_date,1);
 
      //재작업이력_한도
+
      modify_cell =  sheet_b_rework->querySubObject("Cells(int,int)",1,1)->querySubObject("resize(int,int)",193,15);
      modify_cell->dynamicCall("AutoFilter(int)",1);
 
@@ -1588,6 +1609,7 @@ void worst_search_excel_main::slot_excel_WLP_work()
       modify_cell->dynamicCall("AutoFilter(int,QString,int)",1,selection_date,1);
 
      //파손 양산
+
      modify_cell =  sheet_destoryhistory->querySubObject("Cells(int,int)",1,1)->querySubObject("resize(int,int)",193,15);
      modify_cell->dynamicCall("AutoFilter(int)",1);
 
@@ -1632,6 +1654,7 @@ void worst_search_excel_main::slot_excel_WLP_work()
      modify_cell->dynamicCall("AutoFilter(int,QString,int)",1,selection_date,1);
 
      //파손 한도
+
      modify_cell =  sheet_b_destoryhistory->querySubObject("Cells(int,int)",1,1)->querySubObject("resize(int,int)",193,15);
      modify_cell->dynamicCall("AutoFilter(int)",1);
 
